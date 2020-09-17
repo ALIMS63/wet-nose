@@ -1,10 +1,15 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Login from './components/Login/Login';
-import Registration from './components/Registration/Registration';
-import Navigation from './components/Navigation/Navigation';
-import Home from './components/Home/Home';
+import Login from '../Login/Login';
+import Registration from '../Registration/Registration';
+import ModalLogin from '../Login/ModalLogin'
+import ModalRegister from '../Registration/ModalRegister'
+import Filter from '../Filter/Filter'
+import Panel from '../Filter/Panel';
+import Navigation from '../Navigation/Navigation';
+import Home from '../Home/Home';
+
 
 
 function App() {
@@ -13,6 +18,7 @@ function App() {
       <Router>
 
         <Switch>
+
           <Route path="/" exact>
             <Navigation />
           </Route>
@@ -25,9 +31,14 @@ function App() {
             <Registration />
           </Route>
 
-          <Route path="/home" exact>
+          <Route path="/" exact>
             <Home />
+            <ModalRegister />
+            <ModalLogin />
+            <Filter />
+            <Panel />
           </Route>
+
           {/* <PrivateRouter path="/user/:id" exact> */}
 
           {/* <User></User> */}
