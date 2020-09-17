@@ -1,8 +1,11 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Login from './components/Login/Login';
-import Registration from './components/Registration/Registration';
+import Login from '../Login/Login';
+import Registration from '../Registration/Registration';
+import ModalLogin from '../Login/ModalLogin'
+import ModalRegister from '../Registration/ModalRegister'
+import Filter from '../Filter/Filter'
 
 
 function App() {
@@ -12,21 +15,19 @@ function App() {
         {/* <Navigation /> */}
 
         <Switch>
-          <Route path="/" exact>
-
-            /////
-            <Login />
-
-          </Route>
+          
           <Route path="/login" exact>
-
             <Login />
-
           </Route>
+          
           <Route path="/registration" exact>
-
             <Registration />
+          </Route>
 
+          <Route path="/" exact>
+          <ModalRegister />
+            <ModalLogin />
+            <Filter/>
           </Route>
           {/* <PrivateRouter path="/user/:id" exact> */}
 
