@@ -41,6 +41,10 @@ function serializeUser(user) {
 // res.redirect('/api');
 // });
 
+router.get('/', (req, res) => {
+  res.send('api')
+})
+
 router.post('/api/login', async (req, res) => {
   const { email, password } = req.body;
   console.log(email, password);

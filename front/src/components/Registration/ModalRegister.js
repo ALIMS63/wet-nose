@@ -5,6 +5,7 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import { useSpring, animated } from 'react-spring/web.cjs'; // web.cjs is required for IE 11 support
 import Registration from './Registration'
+import { Button} from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -65,9 +66,10 @@ export default function SpringModal() {
 
   return (
     <div>
-      <button type="button" onClick={handleOpen}>
+      {/* <button type="button" onClick={handleOpen}>
         Register
-      </button>
+      </button> */}
+      <Button className={classes.button} onClick={handleOpen} color="inherit">Rigister</Button>
       <Modal
         aria-labelledby="spring-modal-title"
         aria-describedby="spring-modal-description"

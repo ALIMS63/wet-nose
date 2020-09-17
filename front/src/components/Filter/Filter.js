@@ -6,6 +6,8 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import InputBase from '@material-ui/core/InputBase';
+import FormHelperText from '@material-ui/core/FormHelperText';
+
 
 const BootstrapInput = withStyles((theme) => ({
   root: {
@@ -56,12 +58,17 @@ export default function CustomizedSelects() {
   };
   return (
     <div>
-      <FormControl className={classes.margin}>
+      <h2>Filters</h2>
+
+      {/* <FormControl className={classes.margin}>
         <InputLabel htmlFor="demo-customized-textbox">Age</InputLabel>
         <BootstrapInput id="demo-customized-textbox" />
       </FormControl>
+
       <FormControl className={classes.margin}>
-        <InputLabel id="demo-customized-select-label">Age</InputLabel>
+        <InputLabel id="demo-customized-select-label">
+          Age
+            </InputLabel>
         <Select
           labelId="demo-customized-select-label"
           id="demo-customized-select"
@@ -77,8 +84,11 @@ export default function CustomizedSelects() {
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>
       </FormControl>
+
       <FormControl className={classes.margin}>
-        <InputLabel htmlFor="demo-customized-select-native">Age</InputLabel>
+        <InputLabel htmlFor="demo-customized-select-native">
+          Age
+            </InputLabel>
         <NativeSelect
           id="demo-customized-select-native"
           value={age}
@@ -90,7 +100,70 @@ export default function CustomizedSelects() {
           <option value={20}>Twenty</option>
           <option value={30}>Thirty</option>
         </NativeSelect>
+      </FormControl> */}
+
+      <FormControl className={classes.formControl}>
+        <InputLabel id="demo-simple-select-helper-label">Age</InputLabel>
+        <Select
+          labelId="demo-simple-select-helper-label"
+          id="demo-simple-select-helper"
+          value={age}
+          onChange={handleChange}
+        >
+          <MenuItem value=""><em>None</em></MenuItem>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>
+        <FormHelperText>Some important helper text</FormHelperText>
       </FormControl>
+      <FormControl className={classes.formControl}>
+        <InputLabel id="demo-simple-select-helper-label">Age</InputLabel>
+        <Select
+          labelId="demo-simple-select-helper-label"
+          id="demo-simple-select-helper"
+          value={age}
+          onChange={handleChange}
+        >
+          <MenuItem value=""><em>None</em></MenuItem>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>
+        <FormHelperText>Some important helper text</FormHelperText>
+      </FormControl>
+      <FormControl className={classes.formControl}>
+        <InputLabel id="demo-simple-select-helper-label">Age</InputLabel>
+        <Select
+          labelId="demo-simple-select-helper-label"
+          id="demo-simple-select-helper"
+          value={age}
+          onChange={handleChange}
+        >
+          <MenuItem value=""><em>None</em></MenuItem>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>
+        <FormHelperText>Some important helper text</FormHelperText>
+      </FormControl>
+      
+      <FormControl className={classes.formControl}>
+        <InputLabel id="demo-simple-select-helper-label">Age</InputLabel>
+        <Select
+          labelId="demo-simple-select-helper-label"
+          id="demo-simple-select-helper"
+          value={age}
+          onChange={handleChange}
+        >
+          <MenuItem value=""><em>None</em></MenuItem>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>
+        <FormHelperText>Some important helper text</FormHelperText>
+      </FormControl>
+
     </div>
   );
 }

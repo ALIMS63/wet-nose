@@ -3,6 +3,8 @@ import CameraIcon from '@material-ui/icons/PhotoCamera';
 import { Container, AppBar, Button, CardActions, CardContent, CssBaseline, CardMedia, Typography, Toolbar, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from "react-router-dom";
+import ModalRegister from '../Registration/ModalRegister'
+import ModalLogin from '../Login/ModalLogin'
 
 
 function Copyright() {
@@ -86,9 +88,15 @@ function Navigation() {
           </Typography>
           </div>
           <div >
-            <Link className={classes.link} to="/registration"><Button className={classes.button} color="inherit">Registration</Button></Link>
-            <Link className={classes.link} to="/login"><Button className={classes.button} color="inherit">Login</Button></Link>
-            <Link className={classes.link} to="/home"><Button className={classes.button} color="inherit">Home</Button></Link>
+            {/* <Link className={classes.link} to="/registration"> */}
+              <Button className={classes.button} color="inherit"><ModalRegister/></Button>
+              {/* </Link> */}
+            {/* <Link className={classes.link} to="/login"> */}
+              <Button className={classes.button} color="inherit"><ModalLogin/></Button>
+              {/* </Link> */}
+            <Link className={classes.link} to="/home">
+              <Button className={classes.button} color="inherit">Home</Button>
+              </Link>
           </div>
         </Toolbar>
       </AppBar>
@@ -153,12 +161,7 @@ function Navigation() {
           </Grid> */}
         </Container>
       </main>
-      {/* Footer */}
-      <footer className={classes.footer}>
 
-        <Copyright />
-      </footer>
-      {/* End footer */}
     </React.Fragment>
   );
 }
