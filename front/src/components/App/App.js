@@ -6,9 +6,9 @@ import Registration from '../Registration/Registration';
 import ModalLogin from '../Login/ModalLogin'
 import ModalRegister from '../Registration/ModalRegister'
 import Filter from '../Filter/Filter'
-import Panel from '../Filter/Panel/Registration';
-import Navigation from './components/Navigation/Navigation';
-import Home from './components/Home/Home';
+import Panel from '../Filter/Panel';
+import Navigation from '../Navigation/Navigation';
+import Home from '../Home/Home';
 
 
 
@@ -32,11 +32,11 @@ function App() {
           </Route>
 
           <Route path="/" exact>
-          <Home />
-          <ModalRegister />
+            <Home />
+            <ModalRegister />
             <ModalLogin />
-            <Filter/>
-            <Panel/>
+            <Filter />
+            <Panel />
           </Route>
 
           {/* <PrivateRouter path="/user/:id" exact> */}
