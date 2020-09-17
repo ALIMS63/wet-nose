@@ -6,31 +6,39 @@ import Registration from '../Registration/Registration';
 import ModalLogin from '../Login/ModalLogin'
 import ModalRegister from '../Registration/ModalRegister'
 import Filter from '../Filter/Filter'
-import Panel from '../Filter/Panel'
+import Panel from '../Filter/Panel/Registration';
+import Navigation from './components/Navigation/Navigation';
+import Home from './components/Home/Home';
+
 
 
 function App() {
   return (
     <div className="App">
       <Router>
-        {/* <Navigation /> */}
 
         <Switch>
-          
+
+          <Route path="/" exact>
+            <Navigation />
+          </Route>
+
           <Route path="/login" exact>
             <Login />
           </Route>
-          
+
           <Route path="/registration" exact>
             <Registration />
           </Route>
 
           <Route path="/" exact>
+          <Home />
           <ModalRegister />
             <ModalLogin />
             <Filter/>
             <Panel/>
           </Route>
+
           {/* <PrivateRouter path="/user/:id" exact> */}
 
           {/* <User></User> */}
