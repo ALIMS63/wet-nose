@@ -19,9 +19,6 @@ function App() {
 
         <Switch>
 
-          <Route path="/" exact>
-            <Navigation />
-          </Route>
 
           <Route path="/login" exact>
             <Login />
@@ -32,10 +29,8 @@ function App() {
           </Route>
 
           <Route path="/" exact>
+          <Navigation />
             <Home />
-            <ModalRegister />
-            <ModalLogin />
-            <Filter />
             <Panel />
           </Route>
 
