@@ -1,3 +1,5 @@
+/* eslint-disable consistent-return */
+/* eslint-disable no-console */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable import/extensions */
 import express from 'express';
@@ -14,30 +16,30 @@ function serializeUser(user) {
   };
 }
 
-router.get('/api', async (req, res) => {
-  // let tasks = await Task.find();
-  // res.json({ tasks });
-});
+// router.get('/api', async (req, res) => {
+// let tasks = await Task.find();
+// res.json({ tasks });
+// });
 
-router.post('/api/add', async (req, res) => {
-  console.log(req.body.inputValue);
-  // const item = await Task.create({ text: req.body.inputValue });
-  // res.json({ item });
-});
+// router.post('/api/add', async (req, res) => {
+// console.log(req.body.inputValue);
+// const item = await Task.create({ text: req.body.inputValue });
+// res.json({ item });
+// });
 
-router.post('/api/check', async (req, res) => {
-  console.log(req.body.id);
-  // const item = await Task.findOne({ _id: req.body.id });
-  // item.status = !item.status;
-  // await item.save();
-  res.redirect('/api');
-});
+// router.post('/api/check', async (req, res) => {
+// console.log(req.body.id);
+// const item = await Task.findOne({ _id: req.body.id });
+// item.status = !item.status;
+// await item.save();
+// res.redirect('/api');
+// });
 
-router.post('/api/delete', async (req, res) => {
-  console.log(req.body.id);
-  // const item = await Task.findOneAndDelete({ _id: req.body.id });
-  res.redirect('/api');
-});
+// router.post('/api/delete', async (req, res) => {
+// console.log(req.body.id);
+// const item = await Task.findOneAndDelete({ _id: req.body.id });
+// res.redirect('/api');
+// });
 
 router.post('/api/login', async (req, res) => {
   const { email, password } = req.body;
