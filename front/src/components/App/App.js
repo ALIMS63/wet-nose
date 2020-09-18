@@ -12,8 +12,9 @@ import Main from '../Main/Main';
 import ModalLogin from '../Login/ModalLogin';
 import ModalRegister from '../Registration/ModalRegister';
 import Filter from '../Filter/Filter'
-import Panel from '../Filter/Panel';
 import NewAnimal from '../NewAnimal/NewAnimal';
+import PetCart from '../PetCart';
+
 
 
 
@@ -27,9 +28,9 @@ function App() {
         <Switch>
           <Route path="/" exact>
             <Main />
+            <Filter/>
+            <PetCart/>
           </Route>
-
-
           <Route path="/login" exact>
             <Login />
           </Route>
@@ -37,6 +38,7 @@ function App() {
           <Route path="/registration" exact>
             <Registration />
           </Route>
+
 
           <Route path="/logout" exact>
             <Logout />
@@ -48,11 +50,6 @@ function App() {
           <PrivateRoute path="/secret">
             <NewAnimal />
           </PrivateRoute>
-
-          <Route path="/filter" exact>
-            <Navigation />
-            <Panel />
-          </Route>
 
           {/* <PrivateRouter path="/user/:id" exact> */}
 

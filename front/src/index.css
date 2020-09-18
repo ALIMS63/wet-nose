@@ -1,3 +1,9 @@
+* 
+{
+  margin: 0;
+  padding: 0;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +16,49 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.textContainer{
+  position: relative;
+  display: flex;
+  margin: 15px 0 0 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.content-text{
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
+.container-1{
+  max-width: 700px;
+  margin: 30px;
+  background: white;
+  border-radius: 2px;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)
+  
+}
+.pet-content{
+  display: flex;
+}
+.pet-link{
+  position: relative;
+  left: 275px;
+  top: -15px;
+  margin-top: 50px;
+  border: 1px solid black;
+  border-radius: 5px;
+
+}
+.pet-link:hover{
+  background-color: turquoise;
+}
+.pet-img{
+  width: 40%;
+  
+  object-fit: cover;
+  
 }

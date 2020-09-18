@@ -1,3 +1,5 @@
+import React from 'react'
+
 export default FilterControl() {
   return (<>
     <FormControl className={classes.formControl}>

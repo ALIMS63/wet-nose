@@ -51,7 +51,7 @@ app.use((req, res, next) => {
 app.use(notFoundMiddleware);
 app.use(errorMiddleware);
 
-const port = process.env.PORT ?? 3001;
+const port = process.env.PORT || 3001;
 app.listen(port, () => {
   console.log('Connected', `${port}----------------------------------------------------------------------------->`);
 });
