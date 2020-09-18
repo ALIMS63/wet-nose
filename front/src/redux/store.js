@@ -15,7 +15,7 @@ const preloadedState = window.localStorage.getItem('redux') || '{}';
 //   undefined,
 //   composeWithDevTools()
 // );
-const preloadedState = window.localStorage.getItem('redux') ?? '{}';
+// const preloadedState = window.localStorage.getItem('redux') ?? '{}';
 const store = createStore(
  combineReducers({
     user: userReducer,

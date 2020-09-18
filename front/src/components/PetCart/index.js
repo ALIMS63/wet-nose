@@ -6,9 +6,15 @@ import {useDispatch, useSelector} from 'react-redux'
     const [modal, setModal] = useState(false)
     const [btnStat, setBtnStat] = useState(true)
     
-    const data = useSelector(state => state)
-    console.log(data);
-
+    const data =  useSelector(state => state.animals).animals
+    console.log('......',data);
+    const animalType = Object.keys(data)
+    const Animals = data[animalType[0]]
+    
+   
+    
+    
+    
 
     function handlePetInfo(){
         setModal(!modal)
@@ -16,17 +22,22 @@ import {useDispatch, useSelector} from 'react-redux'
     }
 
     return (
+        <>
+           {Animals ? Animals.map(animal => (
         <div className='container-1'>
             <div className='pet-content'>
-                {/* <img className='pet-img' src={''} /> */}
+                <img className='pet-img' src={animal.photo[0]} />
                 <div className='textContainer'>
-                    <h3>Барсик крокодил нильский</h3>
+                    
+                    
+           <h3>nickname:{animal.nickname}  </h3>
                     <div className='content-text'>
-                        <p>возраст: 12лет</p>
-                        <p>самка</p>
-                        <p>размер(д/ш/в):3м/60см/40см</p>
+           <p>{animal.kind}</p>
+                        <p>возраст:{animal.age} </p>
+                        <p>{animal.description}</p>
+                        
                     </div>
-                        <a onClick={handlePetInfo} className='pet-link'>{btnStat? 'подробнее' : 'свернуть'}</a>
+                    <a onClick={handlePetInfo} className='pet-link'>{btnStat? 'подробнее' : 'свернуть'}</a>
                 </div>
                 {modal ? 
                 <div className='textContainer moreDetails'>
@@ -35,9 +46,11 @@ import {useDispatch, useSelector} from 'react-redux'
                     <p>корм: сухой, мокрый, сырой</p>
                     <p>здоровье: богатырское</p>
                 </div> : ''}
+                
             </div>
-        
         </div>
+                )) : ''}
+                </>
     )
  }
 
