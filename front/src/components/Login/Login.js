@@ -1,27 +1,11 @@
-import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
+import React, { useState } from 'react';
+import { Avatar, CssBaseline, Button, TextField, Link, Grid, Box, Typography, Container } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { setUser, deleteUser } from "../../redux/actions";
+import Copyright from '../Copyright/Copyright';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -43,8 +27,52 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn() {
+function Login() {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const [inputs, setInputs] = useState({
+    email: '',
+    password: '',
+  });
+
+  const [failed, setFailed] = useState(null);
+
+  async function handleSubmit(event) {
+    const { email, password } = inputs
+    event.preventDefault();
+    const response = await fetch("/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    });
+    const finalResult = await response.json();
+    if (response.status === 200) {
+
+      dispatch(setUser(finalResult));
+      dispatch({
+        type: 'AUTHENTICATED_SUCCESSFULLY'
+      });
+      return history.push('/secret');
+    } else {
+      setFailed(finalResult.message);
+    }
+  }
+
+  function handleChange({ target: { name, value } }) {
+    setInputs({
+      ...inputs,
+      [name]: value,
+    })
+  }
+
+  const { email, password } = inputs;
 
   return (
     <Container component="main" maxWidth="xs">
@@ -54,9 +82,9 @@ export default function SignIn() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Login
         </Typography>
-        <form className={classes.form} noValidate>
+        <form onSubmit={handleSubmit} className={classes.form} noValidate>
           <TextField
             variant="outlined"
             margin="normal"
@@ -67,6 +95,8 @@ export default function SignIn() {
             name="email"
             autoComplete="email"
             autoFocus
+            onChange={handleChange}
+            value={email}
           />
           <TextField
             variant="outlined"
@@ -78,10 +108,8 @@ export default function SignIn() {
             type="password"
             id="password"
             autoComplete="current-password"
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
+            onChange={handleChange}
+            value={password}
           />
           <Button
             type="submit"
@@ -90,17 +118,12 @@ export default function SignIn() {
             color="primary"
             className={classes.submit}
           >
-            Sign In
+            Login
           </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
+          <Grid container justify="center">
             <Grid item>
-              <Link href="#" variant="body2">
-                {"Don't have an account? Sign Up"}
+              <Link href="/registration" variant="body2">
+                {"Don't have an account? Register"}
               </Link>
             </Grid>
           </Grid>
@@ -112,3 +135,5 @@ export default function SignIn() {
     </Container>
   );
 }
+
+export default Login;
