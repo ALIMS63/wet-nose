@@ -7,16 +7,13 @@ const DogSchema = new mongoose.Schema({
   nickname: { // кличка животного
     type: String,
   },
-  photo: [{ // фото животного
-    type: String,
-  }],
   description: { // описание животного
     type: String,
   },
   age: { // возраст животного
     type: Number,
   },
-  pay: { // оплата животного  (платно-бесплатно)
+  pay: { // Даром
     type: Boolean,
   },
   price: { // цена животного
@@ -42,6 +39,9 @@ const DogSchema = new mongoose.Schema({
     ref: 'User',
     required: true,
   },
+  photo: [{ // фото животного
+    type: String,
+  }],
 });
 
 export default mongoose.model('Dog', DogSchema);
