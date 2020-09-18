@@ -11,7 +11,7 @@ async function createDog() {
     {
       kind: 'Сенбернар',
       nickname: 'Бетховен',
-      photo: '',
+      photo: '/st_bernard_dog.jpeg',
       description: 'Отличная слюнявая собака',
       age: 1,
       pay: true,
@@ -30,7 +30,7 @@ async function createDog() {
     {
       kind: 'Беспородная',
       nickname: 'Лютик',
-      photo: '',
+      photo: 'mongrel_dog.jpeg',
       description: 'Друг на всегда',
       age: 7,
       pay: false,
@@ -54,7 +54,7 @@ async function createCat() {
     {
       kind: 'Перс',
       nickname: 'Вася',
-      photo: '',
+      photo: 'persian_cat.jpeg',
       description: 'Мерзавчик',
       age: 3.5,
       pay: true,
@@ -70,7 +70,7 @@ async function createCat() {
     {
       kind: 'Беспородная',
       nickname: 'Ирма',
-      photo: '',
+      photo: 'mongrel_cat.jpeg',
       description: 'Диванодер',
       age: 1,
       pay: false,
@@ -89,7 +89,7 @@ async function createCat() {
 async function createOtherAnimal() {
   await OtherAnimalModel.insertMany([
     {
-      type: 'крокодил',
+      type: 'crocodile.jpeg',
       nickname: 'Звезда',
       photo: '',
       description: 'За...опукусь',
