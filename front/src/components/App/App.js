@@ -9,6 +9,11 @@ import Logout from './components/Logout/Logout';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import Secret from './components/Secret/Secret';
 import Main from './components/Main/Main';
+import ModalLogin from '../Login/ModalLogin'
+import ModalRegister from '../Registration/ModalRegister'
+import Filter from '../Filter/Filter'
+import Panel from '../Filter/Panel';
+
 
 
 function App() {
@@ -21,6 +26,7 @@ function App() {
           <Route path="/" exact>
             <Main />
           </Route>
+
 
           <Route path="/login" exact>
             <Login />
@@ -40,6 +46,11 @@ function App() {
           <PrivateRoute path="/secret">
             <Secret />
           </PrivateRoute>
+
+          <Route path="/filter" exact>
+          <Navigation />
+            <Panel />
+          </Route>
 
           {/* <PrivateRouter path="/user/:id" exact> */}
 

@@ -22,6 +22,10 @@ const UserSchema = mongoose.Schema({
     minlength: 3,
     match: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
   },
+  phone: [Number],
+  professionalBreeder: Boolean,
+  animalshelter: Boolean,
+  privatePerson: Boolean,
 });
 
 export default mongoose.model('User', UserSchema);
