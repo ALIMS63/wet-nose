@@ -1,18 +1,22 @@
-import React from 'react';
-import NewDogForm from './newDogForm';
+import React, { useState } from 'react';
+import NewDogForm from './NewDogForm';
 
 function NewAnimal() {
   const [bigTypeInput, setbigTypeInput] = useState('');
   const [error, setError] = useState(false);
   function changed({ target: { value } }) {
-    setInputs(value);
+    setbigTypeInput(value);
+  }
+
+  function whatAnimal() {
+
   }
 
   return (
     <>
       <form onSubmit={whatAnimal}>
         <label htmlFor="bigType">Тип животного:
-          <select name="bigType" onChange={changed} value={inputs.adultSize}>
+          <select name="bigType" onChange={changed} value={bigTypeInput}>
             <option value="Собака">Собака</option>
             <option value="Кот">Кот</option>
             <option value="Иное">Иное</option>

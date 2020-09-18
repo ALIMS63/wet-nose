@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function NewDogForm() {
   // async function login(event) {
@@ -17,7 +17,7 @@ function NewDogForm() {
   //   return setError('Попробуйте еще раз');
   // }
   const [inputs, setInputs] = useState({
-    kind: '', 
+    kind: '',
     nickname: '',
     description: '',
     age: '',
@@ -42,6 +42,10 @@ function NewDogForm() {
       ...inputs,
       [name]: value,
     });
+  }
+
+  function addAnimal() {
+
   }
 
   return (
