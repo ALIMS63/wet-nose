@@ -80,13 +80,16 @@ function Navigation() {
           </Typography>
           </div>
           <div >
-{isAuthenticated && <Link className={classes.link} to="/privateHome"><Button className={classes.button} color="inherit">Home</Button></Link>}
+
+            {isAuthenticated && <Link className={classes.link} to="/privateHome"><Button className={classes.button} color="inherit">Home</Button></Link>}
             {!isAuthenticated && <Link className={classes.link} to="/registration"><Button className={classes.button} color="inherit">Registration</Button></Link>}
             {!isAuthenticated && <Link className={classes.link} to="/login"><Button className={classes.button} color="inherit">Login</Button></Link>}
             <Link className={classes.link} to="/secret"><Button className={classes.button} color="inherit">ADD NEW</Button></Link>
             <Link className={classes.link} to="/"><Button className={classes.button} color="inherit">Main</Button></Link>
             {isAuthenticated && <Link className={classes.link} to="/logout"><Button className={classes.button} color="inherit">Logout</Button></Link>}
-</div>
+
+          </div>
+>>>>>>> 490f3007aa28724a9fad921fd68f2fc0cbf1438d
         </Toolbar>
       </AppBar>
       
