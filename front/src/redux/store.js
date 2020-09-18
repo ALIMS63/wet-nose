@@ -1,7 +1,9 @@
 import { useSelector } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-import { userReducer } from './reducers.js';
+import { userReducer, animalReducer } from './reducers.js';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import thunkMiddleware from 'redux-thunk';
+
 
 // const auth = useSelector(state => state?.user);
 const preloadedState = window.localStorage.getItem('redux') || '{}';
@@ -10,9 +12,14 @@ const preloadedState = window.localStorage.getItem('redux') || '{}';
 const store = createStore(
   combineReducers({
     user: userReducer,
+    animals: animalReducer
   }),
   JSON.parse(preloadedState),
-  composeWithDevTools()
+  composeWithDevTools(
+    applyMiddleware(
+      thunkMiddleware
+    )
+  )
 );
 
 store.subscribe(() => {

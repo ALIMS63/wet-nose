@@ -6,6 +6,9 @@ import express from 'express';
 import bcrypt from 'bcrypt';
 import User from '../models/user.js';
 // import Task from '../models/task.js';
+import Dog from '../models/dog.js'
+import Cat from '../models/cat.js'
+import Other from '../models/otherAnimal.js'
 
 const router = express.Router();
 
@@ -124,4 +127,11 @@ router.get('/api/logout', (req, res, next) => {
   }
 });
 
+router.get('/api/allAnimals', async (req, res) => {
+  const cats = await Cat.find()
+  const dogs = await Dog.find()
+  const other = await Other.find()
+
+  res.json({ cats, dogs, other })
+})
 export default router;
