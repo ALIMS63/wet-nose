@@ -25,7 +25,7 @@ async function createDog() {
       onlyInNonApartments: true,
       specialConditionsOfDetention: false,
       childrenInTheHouse: true,
-      sellerID: mongoose.Types.ObjectId('5f3a5c67de4a0103d3dde537'),
+      sellerID: mongoose.Types.ObjectId('5f636b0d818f4d1e20648e3b'),
     },
     {
       kind: 'Беспородная',
@@ -43,11 +43,11 @@ async function createDog() {
       onlyInNonApartments: false,
       specialConditionsOfDetention: false,
       childrenInTheHouse: false,
-      sellerID: mongoose.Types.ObjectId('5f3a5c67de4a0103d3dde537'),
+      sellerID: mongoose.Types.ObjectId('5f636b0d818f4d1e20648e3b'),
     },
   ]);
 }
-// createDog();
+createDog();
 
 async function createCat() {
   await CatModel.insertMany([
@@ -65,7 +65,7 @@ async function createCat() {
       longHaired: true,
       specialConditionsOfDetention: false,
       childrenInTheHouse: false,
-      sellerID: mongoose.Types.ObjectId('5f3a5c67de4a0103d3dde537'),
+      sellerID: mongoose.Types.ObjectId('5f636b0d818f4d1e20648e3b'),
     },
     {
       kind: 'Беспородная',
@@ -80,11 +80,11 @@ async function createCat() {
       longHaired: false,
       specialConditionsOfDetention: false,
       childrenInTheHouse: true,
-      sellerID: mongoose.Types.ObjectId('5f3a5c67de4a0103d3dde537'),
+      sellerID: mongoose.Types.ObjectId('5f636b0d818f4d1e20648e3b'),
     },
   ]);
 }
-// createCat();
+createCat();
 
 async function createOtherAnimal() {
   await OtherAnimalModel.insertMany([
@@ -106,8 +106,8 @@ async function createOtherAnimal() {
       childrenInTheHouse: true,
       exotic: true,
       farmAnimal: false,
-      sellerID: mongoose.Types.ObjectId('5f3a5c67de4a0103d3dde537'),
+      sellerID: mongoose.Types.ObjectId('5f636b0d818f4d1e20648e3b'),
     },
   ]);
 }
-// createOtherAnimal();
+createOtherAnimal();
