@@ -14,6 +14,7 @@ function NewAnimal() {
 
   return (
     <>
+     <br />
       <form onSubmit={whatAnimal}>
         <label htmlFor="bigType">Тип животного:
           <select name="bigType" onChange={changed} value={bigTypeInput}>
@@ -21,10 +22,10 @@ function NewAnimal() {
             <option value="Кот">Кот</option>
             <option value="Иное">Иное</option>
           </select>
-          <button type="submit">Занести в базу животных</button>
           {error && <div className="error">{error}</div>}
         </label>
       </form>
+      <br />
       <NewDogForm />
     </>
   )
