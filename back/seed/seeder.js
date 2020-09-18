@@ -25,7 +25,11 @@ async function createDog() {
       onlyInNonApartments: true,
       specialConditionsOfDetention: false,
       childrenInTheHouse: true,
+<<<<<<< HEAD
       sellerID: mongoose.Types.ObjectId('5f64903ad81749e92a1eadbd'),
+=======
+      sellerID: mongoose.Types.ObjectId('5f636b0d818f4d1e20648e3b'),
+>>>>>>> 89db3f35d435f8cbe22c1b2b0655abb434bf3732
     },
     {
       kind: 'Беспородная',
@@ -43,11 +47,19 @@ async function createDog() {
       onlyInNonApartments: false,
       specialConditionsOfDetention: false,
       childrenInTheHouse: false,
+<<<<<<< HEAD
       sellerID: mongoose.Types.ObjectId('5f64903ad81749e92a1eadbd'),
     },
   ]);
 }
  createDog();
+=======
+      sellerID: mongoose.Types.ObjectId('5f636b0d818f4d1e20648e3b'),
+    },
+  ]);
+}
+createDog();
+>>>>>>> 89db3f35d435f8cbe22c1b2b0655abb434bf3732
 
 async function createCat() {
   await CatModel.insertMany([
@@ -65,7 +77,11 @@ async function createCat() {
       longHaired: true,
       specialConditionsOfDetention: false,
       childrenInTheHouse: false,
+<<<<<<< HEAD
       sellerID: mongoose.Types.ObjectId('5f64903ad81749e92a1eadbd'),
+=======
+      sellerID: mongoose.Types.ObjectId('5f636b0d818f4d1e20648e3b'),
+>>>>>>> 89db3f35d435f8cbe22c1b2b0655abb434bf3732
     },
     {
       kind: 'Беспородная',
@@ -80,11 +96,19 @@ async function createCat() {
       longHaired: false,
       specialConditionsOfDetention: false,
       childrenInTheHouse: true,
+<<<<<<< HEAD
       sellerID: mongoose.Types.ObjectId('5f64903ad81749e92a1eadbd'),
     },
   ]);
 }
  createCat();
+=======
+      sellerID: mongoose.Types.ObjectId('5f636b0d818f4d1e20648e3b'),
+    },
+  ]);
+}
+createCat();
+>>>>>>> 89db3f35d435f8cbe22c1b2b0655abb434bf3732
 
 async function createOtherAnimal() {
   await OtherAnimalModel.insertMany([
@@ -106,8 +130,16 @@ async function createOtherAnimal() {
       childrenInTheHouse: true,
       exotic: true,
       farmAnimal: false,
+<<<<<<< HEAD
       sellerID: mongoose.Types.ObjectId('5f64903ad81749e92a1eadbd'),
     },
   ]);
 }
  createOtherAnimal();
+=======
+      sellerID: mongoose.Types.ObjectId('5f636b0d818f4d1e20648e3b'),
+    },
+  ]);
+}
+createOtherAnimal();
+>>>>>>> 89db3f35d435f8cbe22c1b2b0655abb434bf3732
