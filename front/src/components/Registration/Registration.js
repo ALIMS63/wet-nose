@@ -5,19 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { setUser, deleteUser } from "../../redux/actions";
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import Copyright from '../Copyright/Copyright';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -150,10 +138,10 @@ function Registration() {
           >
             Register
           </Button>
-          <Grid container justify="flex-end">
+          <Grid container justify="center">
             <Grid item>
-              <Link href="#" variant="body2">
-                Already have an account? Register
+              <Link href="/login" variant="body2">
+                Already have an account? Login
               </Link>
             </Grid>
           </Grid>

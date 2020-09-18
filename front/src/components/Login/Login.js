@@ -1,20 +1,11 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Avatar, CssBaseline, Button, TextField, Link, Grid, Box, Typography, Container } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { setUser, deleteUser } from "../../redux/actions";
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import Copyright from '../Copyright/Copyright';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -65,11 +56,13 @@ function Login() {
     if (response.status === 200) {
 
       dispatch(setUser(finalResult));
-      return history.push(`/user/${finalResult.id}`);
+      dispatch({
+        type: 'AUTHENTICATED_SUCCESSFULLY'
+      });
+      return history.push('/secret');
     } else {
       setFailed(finalResult.message);
     }
-
   }
 
   function handleChange({ target: { name, value } }) {
@@ -91,7 +84,7 @@ function Login() {
         <Typography component="h1" variant="h5">
           Login
         </Typography>
-        <form className={classes.form} noValidate>
+        <form onSubmit={handleSubmit} className={classes.form} noValidate>
           <TextField
             variant="outlined"
             margin="normal"
@@ -127,10 +120,10 @@ function Login() {
           >
             Login
           </Button>
-          <Grid container>
+          <Grid container justify="center">
             <Grid item>
-              <Link href="#" variant="body2">
-                {"Don't have an account? Login"}
+              <Link href="/registration" variant="body2">
+                {"Don't have an account? Register"}
               </Link>
             </Grid>
           </Grid>

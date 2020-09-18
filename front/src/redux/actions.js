@@ -1,4 +1,4 @@
-import { SET_USER, DELETE_USER } from "./action-types";
+import { SET_USER, DELETE_USER, AUTHENTICATED_SUCCESSFULLY } from "./action-types";
 
 export function setUser(user) {
   return {
@@ -8,10 +8,3 @@ export function setUser(user) {
     },
   };
 }
-
-export function deleteUser() {
-  return {
-    type: DELETE_USER,
-  };
-}
-

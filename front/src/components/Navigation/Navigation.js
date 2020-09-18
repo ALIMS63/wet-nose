@@ -2,19 +2,9 @@ import React from 'react';
 import CameraIcon from '@material-ui/icons/PhotoCamera';
 import { Container, AppBar, Button, CardActions, CardContent, CssBaseline, CardMedia, Typography, Toolbar, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -73,6 +63,8 @@ const useStyles = makeStyles((theme) => ({
 
 function Navigation() {
   const classes = useStyles();
+  const isAuthenticated = useSelector(state => state.user.isAuthenticated);
+  console.log(isAuthenticated);
 
   return (
     <React.Fragment>
@@ -86,9 +78,13 @@ function Navigation() {
           </Typography>
           </div>
           <div >
-            <Link className={classes.link} to="/registration"><Button className={classes.button} color="inherit">Registration</Button></Link>
-            <Link className={classes.link} to="/login"><Button className={classes.button} color="inherit">Login</Button></Link>
-            <Link className={classes.link} to="/home"><Button className={classes.button} color="inherit">Home</Button></Link>
+            {isAuthenticated && <Link className={classes.link} to="/privateHome"><Button className={classes.button} color="inherit">Home</Button></Link>}
+            {!isAuthenticated && <Link className={classes.link} to="/registration"><Button className={classes.button} color="inherit">Registration</Button></Link>}
+            {/* {!isAuthenticated && <Link className={classes.link} to="/login"><Button className={classes.button} color="inherit">Login</Button></Link>} */}
+            <Link className={classes.link} to="/secret"><Button className={classes.button} color="inherit">ADD NEW</Button></Link>
+            <Link className={classes.link} to="/"><Button className={classes.button} color="inherit">Main</Button></Link>
+            {isAuthenticated && <Link className={classes.link} to="/logout"><Button className={classes.button} color="inherit">Logout</Button></Link>}
+
           </div>
         </Toolbar>
       </AppBar>
@@ -153,12 +149,6 @@ function Navigation() {
           </Grid> */}
         </Container>
       </main>
-      {/* Footer */}
-      <footer className={classes.footer}>
-
-        <Copyright />
-      </footer>
-      {/* End footer */}
     </React.Fragment>
   );
 }

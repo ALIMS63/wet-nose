@@ -1,11 +1,17 @@
-import { SET_USER, DELETE_USER } from "./action-types";
+import { SET_USER, AUTHENTICATED_SUCCESSFULLY, LOGOUT } from "./action-types";
 
 export function userReducer(state = false, action) {
   switch (action.type) {
     case SET_USER:
       return action.payload.user;
-    case DELETE_USER:
-      return false;
+    case AUTHENTICATED_SUCCESSFULLY:
+      return {
+        isAuthenticated: true,
+      };
+    case LOGOUT:
+      return {
+        isAuthenticated: false,
+      };
     default:
       return state;
   }
