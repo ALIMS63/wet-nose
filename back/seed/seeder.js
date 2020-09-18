@@ -26,10 +26,10 @@ async function createDog() {
       specialConditionsOfDetention: false,
       childrenInTheHouse: true,
 <<<<<<< HEAD
-      sellerID: mongoose.Types.ObjectId('5f64903ad81749e92a1eadbd'),
+      sellerID: mongoose.Types.ObjectId('5f647bddc7199933c81b3a52'),
 =======
-      sellerID: mongoose.Types.ObjectId('5f636b0d818f4d1e20648e3b'),
->>>>>>> 89db3f35d435f8cbe22c1b2b0655abb434bf3732
+      sellerID: mongoose.Types.ObjectId('5f64903ad81749e92a1eadbd'),
+>>>>>>> 8a530c0f0cbfda059bc56cac5d1abd10f42816a0
     },
     {
       kind: 'Беспородная',
@@ -48,18 +48,14 @@ async function createDog() {
       specialConditionsOfDetention: false,
       childrenInTheHouse: false,
 <<<<<<< HEAD
-      sellerID: mongoose.Types.ObjectId('5f64903ad81749e92a1eadbd'),
-    },
-  ]);
-}
- createDog();
+      sellerID: mongoose.Types.ObjectId('5f647bddc7199933c81b3a52'),
 =======
-      sellerID: mongoose.Types.ObjectId('5f636b0d818f4d1e20648e3b'),
+      sellerID: mongoose.Types.ObjectId('5f64903ad81749e92a1eadbd'),
+>>>>>>> 8a530c0f0cbfda059bc56cac5d1abd10f42816a0
     },
   ]);
 }
-createDog();
->>>>>>> 89db3f35d435f8cbe22c1b2b0655abb434bf3732
+// createDog();
 
 async function createCat() {
   await CatModel.insertMany([
@@ -78,10 +74,10 @@ async function createCat() {
       specialConditionsOfDetention: false,
       childrenInTheHouse: false,
 <<<<<<< HEAD
-      sellerID: mongoose.Types.ObjectId('5f64903ad81749e92a1eadbd'),
+      sellerID: mongoose.Types.ObjectId('5f647bddc7199933c81b3a52'),
 =======
-      sellerID: mongoose.Types.ObjectId('5f636b0d818f4d1e20648e3b'),
->>>>>>> 89db3f35d435f8cbe22c1b2b0655abb434bf3732
+      sellerID: mongoose.Types.ObjectId('5f64903ad81749e92a1eadbd'),
+>>>>>>> 8a530c0f0cbfda059bc56cac5d1abd10f42816a0
     },
     {
       kind: 'Беспородная',
@@ -97,18 +93,14 @@ async function createCat() {
       specialConditionsOfDetention: false,
       childrenInTheHouse: true,
 <<<<<<< HEAD
-      sellerID: mongoose.Types.ObjectId('5f64903ad81749e92a1eadbd'),
-    },
-  ]);
-}
- createCat();
+      sellerID: mongoose.Types.ObjectId('5f647bddc7199933c81b3a52'),
 =======
-      sellerID: mongoose.Types.ObjectId('5f636b0d818f4d1e20648e3b'),
+      sellerID: mongoose.Types.ObjectId('5f64903ad81749e92a1eadbd'),
+>>>>>>> 8a530c0f0cbfda059bc56cac5d1abd10f42816a0
     },
   ]);
 }
-createCat();
->>>>>>> 89db3f35d435f8cbe22c1b2b0655abb434bf3732
+// createCat();
 
 async function createOtherAnimal() {
   await OtherAnimalModel.insertMany([
@@ -131,15 +123,11 @@ async function createOtherAnimal() {
       exotic: true,
       farmAnimal: false,
 <<<<<<< HEAD
-      sellerID: mongoose.Types.ObjectId('5f64903ad81749e92a1eadbd'),
-    },
-  ]);
-}
- createOtherAnimal();
+      sellerID: mongoose.Types.ObjectId('5f647bddc7199933c81b3a52'),
 =======
-      sellerID: mongoose.Types.ObjectId('5f636b0d818f4d1e20648e3b'),
+      sellerID: mongoose.Types.ObjectId('5f64903ad81749e92a1eadbd'),
+>>>>>>> 8a530c0f0cbfda059bc56cac5d1abd10f42816a0
     },
   ]);
 }
-createOtherAnimal();
->>>>>>> 89db3f35d435f8cbe22c1b2b0655abb434bf3732
+// createOtherAnimal();

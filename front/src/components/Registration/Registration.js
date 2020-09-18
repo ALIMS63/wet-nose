@@ -57,7 +57,10 @@ function Registration() {
     const finalResult = await response.json();
     if (response.status === 200) {
       dispatch(setUser(finalResult));
-      return history.push(`/user/${finalResult.id}`);
+      dispatch({
+        type: 'AUTHENTICATED_SUCCESSFULLY'
+      });
+      return history.push('/secret');
     } else {
       setFailed(finalResult.message);
     }
