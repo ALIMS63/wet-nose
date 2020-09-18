@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable import/extensions */
 import express from 'express';
@@ -5,9 +6,9 @@ import session from 'express-session';
 import sessionFileStore from 'session-file-store';
 // import './misc/env.js';
 import './misc/db.js';
+import path from 'path';
 import notFoundMiddleware from './middlewares/notfound.js';
 import errorMiddleware from './middlewares/error.js';
-
 import mainRouter from './routes/mainRouter.js';
 
 const app = express();
@@ -18,6 +19,7 @@ app.set('session cookie name', 'sid');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(process.env.PWD, 'public')));
 app.use(session({
   name: app.get('session cookie name'),
   secret: 'someSecret',
@@ -49,7 +51,7 @@ app.use((req, res, next) => {
 app.use(notFoundMiddleware);
 app.use(errorMiddleware);
 
-const port = process.env.PORT ?? 3001;
+const port = process.env.PORT || 3001;
 app.listen(port, () => {
   console.log('Connected', `${port}----------------------------------------------------------------------------->`);
 });

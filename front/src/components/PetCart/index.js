@@ -1,10 +1,14 @@
 import React,{useState} from "react"
-import img from '../../img/1.jpg'
+import {useDispatch, useSelector} from 'react-redux'
+//import img from '../../img/1.jpg'
 
  export default function PetCart(){
     const [modal, setModal] = useState(false)
     const [btnStat, setBtnStat] = useState(true)
     
+    const data = useSelector(state => state)
+    console.log(data);
+
 
     function handlePetInfo(){
         setModal(!modal)
@@ -14,7 +18,7 @@ import img from '../../img/1.jpg'
     return (
         <div className='container-1'>
             <div className='pet-content'>
-                <img className='pet-img' src={img} />
+                {/* <img className='pet-img' src={''} /> */}
                 <div className='textContainer'>
                     <h3>Барсик крокодил нильский</h3>
                     <div className='content-text'>
