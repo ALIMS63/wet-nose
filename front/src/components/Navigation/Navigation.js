@@ -80,25 +80,19 @@ function Navigation() {
           </Typography>
           </div>
           <div >
-{/* <<<<<<< HEAD */}
             {isAuthenticated && <Link className={classes.link} to="/privateHome"><Button className={classes.button} color="inherit">Home</Button></Link>}
             {!isAuthenticated && <Link className={classes.link} to="/registration"><Button className={classes.button} color="inherit">Registration</Button></Link>}
-            {/* {!isAuthenticated && <Link className={classes.link} to="/login"><Button className={classes.button} color="inherit">Login</Button></Link>} */}
+            {!isAuthenticated && <Link className={classes.link} to="/login"><Button className={classes.button} color="inherit">Login</Button></Link>}
             <Link className={classes.link} to="/secret"><Button className={classes.button} color="inherit">ADD NEW</Button></Link>
             <Link className={classes.link} to="/"><Button className={classes.button} color="inherit">Main</Button></Link>
             {isAuthenticated && <Link className={classes.link} to="/logout"><Button className={classes.button} color="inherit">Logout</Button></Link>}
 
-{/* ======= */}
-         
-{/* >>>>>>> eab8321fd398c2a9a96304e666a5b9a25cf518e8 */}
+
           </div>
         </Toolbar>
       </AppBar>
       
-{/* <<<<<<< HEAD */}
-{/* ======= */}
 
-{/* >>>>>>> eab8321fd398c2a9a96304e666a5b9a25cf518e8 */}
     </React.Fragment>
   );
 }

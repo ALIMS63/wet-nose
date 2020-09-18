@@ -8,7 +8,7 @@ import thunkMiddleware from 'redux-thunk';
 const store = createStore(
   combineReducers({
     user: userReducer,
-    animals: animalReducer
+    animals: animalReducer,
   }),
   undefined,
   composeWithDevTools(

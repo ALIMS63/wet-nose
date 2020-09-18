@@ -1,5 +1,5 @@
 
-import { SET_USER, DELETE_USER, AUTHENTICATED_SUCCESSFULLY, SET_ANIMALS } from "./action-types";
+import { SET_USER, DELETE_USER, AUTHENTICATED_SUCCESSFULLY, SET_ANIMALS, ANIMAL_CATEGORY } from "./action-types";
 
 import axios from 'axios'
 
@@ -30,6 +30,13 @@ export function setAnimals(animals) {
   return {
     type: SET_ANIMALS,
     payload: animals
+  }
+}
+
+export function setAnimalCategory(category) {
+  return {
+    type:ANIMAL_CATEGORY, 
+    payload: category
   }
 }
 
