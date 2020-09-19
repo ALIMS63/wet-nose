@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { setUser, deleteUser } from "../../redux/actions";
 import Copyright from '../Copyright/Copyright';
+import Select from '../Select/Select';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -73,7 +74,7 @@ function Registration() {
     })
   }
 
-  const { username, email, password } = inputs;
+  const { username, email, password, phone } = inputs;
 
 
 
@@ -130,6 +131,24 @@ function Registration() {
                 value={password}
               />
             </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="phone"
+                label="Phone Number"
+                type="phone"
+                id="phone"
+                autoComplete="current-password"
+                onChange={handleChange}
+                value={phone}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Select />
+            </Grid>
+
 
           </Grid>
           <Button

@@ -6,9 +6,9 @@ import express from 'express';
 import bcrypt from 'bcrypt';
 import User from '../models/user.js';
 // import Task from '../models/task.js';
-import Dog from '../models/dog.js'
-import Cat from '../models/cat.js'
-import Other from '../models/otherAnimal.js'
+import Dog from '../models/dog.js';
+import Cat from '../models/cat.js';
+import Other from '../models/otherAnimal.js';
 
 const router = express.Router();
 
@@ -89,11 +89,15 @@ router.post('/api/login', async (req, res) => {
 });
 
 router.post('/api/registration', async (req, res) => {
-  const { username, email, password } = req.body;
+  const {
+    username, email, password, phone, whoAreYou,
+  } = req.body;
+  console.log(111);
   let user;
   const validUsername = await User.findOne({ username, email });
   if (validUsername) {
     res.status(401);
+    console.log('answer frim back');
     res.json({ message: 'The user with such email already exists' });
   } else {
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -102,6 +106,8 @@ router.post('/api/registration', async (req, res) => {
         username,
         email,
         password: hashedPassword,
+        phone,
+        whoAreYou,
       });
     } catch (err) {
       res.status(401);
@@ -109,7 +115,13 @@ router.post('/api/registration', async (req, res) => {
     }
     req.session.user = serializeUser(user);
     res.status(200);
-    return res.json({ id: user._id, name: user.name, email: user.email });
+    return res.json({
+      id: user._id,
+      name: user.name,
+      email: user.email,
+      phone: user.phone,
+      whoAreYou: user.whoAreYou,
+    });
   }
 });
 
@@ -128,10 +140,10 @@ router.get('/api/logout', (req, res, next) => {
 });
 
 router.get('/api/allAnimals', async (req, res) => {
-  const cats = await Cat.find()
-  const dogs = await Dog.find()
-  const other = await Other.find()
+  const cats = await Cat.find();
+  const dogs = await Dog.find();
+  const other = await Other.find();
 
-  res.json({ cats, dogs, other })
-})
+  res.json({ cats, dogs, other });
+});
 export default router;
