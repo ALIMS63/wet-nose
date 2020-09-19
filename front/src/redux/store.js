@@ -8,11 +8,18 @@ import thunkMiddleware from 'redux-thunk';
 // const auth = useSelector(state => state?.user);
 const preloadedState = window.localStorage.getItem('redux') || '{}';
 
-
+// const store = createStore(
+//   combineReducers({
+//     user: userReducer,
+//   }),
+//   undefined,
+//   composeWithDevTools()
+// );
+// const preloadedState = window.localStorage.getItem('redux') ?? '{}';
 const store = createStore(
-  combineReducers({
+ combineReducers({
     user: userReducer,
-    animals: animalReducer
+    animals: animalReducer,
   }),
   JSON.parse(preloadedState),
   composeWithDevTools(

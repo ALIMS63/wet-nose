@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux'
 import { Select } from 'antd';
 import 'antd/dist/antd.css';
-import {startAnimals} from '../../redux/actions'
+import {startAnimals, setAnimalCategory} from '../../redux/actions'
 
 const { Option } = Select;
 
@@ -13,16 +13,24 @@ function Filter() {
   const dispatch = useDispatch()
   
   const animalsFromState = useSelector((state) => state.animals)
+  const filterAnimalsFromState = useSelector((state) => state.animals.filterAnimals)
+  console.log(filterAnimalsFromState);
+  
+
   // console.log(animalsFromState);
   
   
   useEffect(() => {
     dispatch(startAnimals())
   },[])
+
   
   function handleChange(value) {
+    console.log(animalsFromState);
+    
     console.log(`selected ${value}`);
-    console.log(animalsFromState.animals);
+    console.log(animalsFromState.animals[value]);
+    dispatch(setAnimalCategory(value))
     
   }
   return (
@@ -33,9 +41,9 @@ function Filter() {
         <Option value="other">Other</Option>
       </Select>
       {' '}
-      <Select defaultValue="Choose" style={{ width: 120 }} onChange={handleChange}>
-        <Option value="jack">Cats</Option>
-        <Option value="lucy">Lucy</Option>
+      <Select defaultValue="Pay" style={{ width: 120 }} onChange={handleChange}>
+        <Option value="true">True</Option>
+        <Option value="false">False</Option>
       </Select>
       {' '}
       <Select defaultValue="Choose" style={{ width: 120 }} onChange={handleChange}>
