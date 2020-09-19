@@ -25,6 +25,17 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  failedBox: {
+    marginTop: "0px",
+    marginBottom: "20px",
+    width: "397px",
+    height: "20px",
+  },
+  failed: {
+    color: 'red',
+    fontFamily: 'Arial',
+    fontWeight: "bold"
+  }
 }));
 
 function Login() {
@@ -120,6 +131,9 @@ function Login() {
           >
             Login
           </Button>
+          {failed && <Box className={classes.failedBox}>
+            <h4 className={classes.failed}>{failed}</h4>
+          </Box>}
           <Grid container justify="center">
             <Grid item>
               <Link href="/registration" variant="body2">
@@ -132,7 +146,7 @@ function Login() {
       <Box mt={8}>
         <Copyright />
       </Box>
-    </Container>
+    </Container >
   );
 }
 
