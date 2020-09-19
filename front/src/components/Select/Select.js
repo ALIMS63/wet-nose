@@ -1,81 +1,60 @@
-import React from 'react';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import NativeSelect from '@material-ui/core/NativeSelect';
-import InputBase from '@material-ui/core/InputBase';
+// import React from "react";
+// import { makeStyles } from "@material-ui/core/styles";
+// import InputLabel from "@material-ui/core/InputLabel";
+// import FormControl from "@material-ui/core/FormControl";
+// import Select from "@material-ui/core/Select";
 
-const BootstrapInput = withStyles((theme) => ({
-  root: {
-    'label + &': {
-      marginTop: theme.spacing(1),
-    },
-  },
-  input: {
-    borderRadius: 4,
-    position: 'relative',
-    backgroundColor: theme.palette.background.paper,
-    border: '1px solid #ced4da',
-    fontSize: 16,
-    padding: '10px 26px 10px 12px',
-    transition: theme.transitions.create(['border-color', 'box-shadow']),
-    // Use the system font instead of the default Roboto font.
-    fontFamily: [
-      '-apple-system',
-      'BlinkMacSystemFont',
-      '"Segoe UI"',
-      'Roboto',
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif',
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
-    ].join(','),
-    '&:focus': {
-      borderRadius: 4,
-      borderColor: '#80bdff',
-      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
-    },
-  },
-}))(InputBase);
+// const useStyles = makeStyles((theme) => ({
+//   formControl: {
+//     margin: theme.spacing(1),
+//     padding: '0px',
+//     margin: '0px',
+//     height: '50px',
+//     width: '397px',
+//   },
+//   selectEmpty: {
+//     marginTop: theme.spacing(2)
+//   }
+// }));
 
-const useStyles = makeStyles((theme) => ({
-  margin: {
-    margin: theme.spacing(1),
-  },
-  sel: {
-    width: '420px',
-    
-    paddingRight: '30px',
-    paddingLeft: '0px',
-    marginLeft: '0px'
-  }
-}));
+// export default function NativeSelects() {
+//   const classes = useStyles();
+//   const [state, setState] = React.useState({
+//     age: "",
+//     name: "hai"
+//   });
 
-export default function CustomizedSelects() {
-  const classes = useStyles();
-  const [age, setAge] = React.useState('');
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
-  return (
-    <FormControl className={classes.margin}>
-      <InputLabel htmlFor="demo-customized-select-native">Age</InputLabel>
-      <NativeSelect
-        className={classes.sel}
-        id="demo-customized-select-native"
-        value={age}
-        onChange={handleChange}
-        input={<BootstrapInput />}
-      >
-        <option aria-label="None" value="" />
-        <option value={10}>Ten</option>
-        <option value={20}>Twenty</option>
-        <option value={30}>Thirty</option>
-      </NativeSelect>
-    </FormControl>
-  );
-}
+//   const handleChange = (event) => {
+//     const name = event.target.name;
+//     setState({
+//       ...state,
+//       [name]: event.target.value
+//     });
+//   };
+
+//   return (
+//     // <div>
+//       <FormControl variant="outlined" className={classes.formControl}>
+//         <InputLabel htmlFor="outlined-age-native-simple">Who are you?</InputLabel>
+//         <Select
+//           native
+//           value={state.age}
+//           onChange={handleChange}
+//           label="Who are you?"
+//           inputProps={{
+//             name: "age",
+//             id: "outlined-age-native-simple"
+//           }}
+//         >
+//           <option aria-label="None" value="" />
+//           <option value={10}>Professional Breeder</option>
+//           <option value={20}>Animal Shelter</option>
+//           <option value={30}>Private Person</option>
+//         </Select>
+//       </FormControl>
+//     // </div>
+//   );
+// }
+
+
+

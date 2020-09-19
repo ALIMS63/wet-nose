@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { Avatar, Button, CssBaseline, TextField, Link, Grid, Box, Typography, Container } from '@material-ui/core';
+import { Select, InputLabel, FormControl, Avatar, Button, CssBaseline, TextField, Link, Grid, Box, Typography, Container } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { setUser, deleteUser } from "../../redux/actions";
 import Copyright from '../Copyright/Copyright';
-import Select from '../Select/Select';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -26,6 +25,27 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  formControl: {
+    margin: theme.spacing(1),
+    padding: '0px',
+    margin: '0px',
+    height: '50px',
+    width: '397px',
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2)
+  },
+  failedBox: {
+    marginTop: "0px",
+    marginBottom: "20px",
+    width: "397px",
+    height: "20px",
+  },
+  failed: {
+    color: 'red',
+    fontFamily: 'Arial',
+    fontWeight: "bold"
+  }
 }));
 
 function Registration() {
@@ -37,6 +57,8 @@ function Registration() {
     username: '',
     email: '',
     password: '',
+    phone: '',
+    whoAreYou: '',
   });
 
   const [failed, setFailed] = useState(null);
@@ -53,6 +75,8 @@ function Registration() {
         username,
         email,
         password,
+        phone,
+        whoAreYou
       }),
     });
     const finalResult = await response.json();
@@ -74,7 +98,7 @@ function Registration() {
     })
   }
 
-  const { username, email, password, phone } = inputs;
+  const { username, email, password, phone, whoAreYou } = inputs;
 
 
 
@@ -146,7 +170,27 @@ function Registration() {
               />
             </Grid>
             <Grid item xs={12}>
-              <Select />
+              <FormControl variant="outlined" className={classes.formControl}>
+                <InputLabel
+                  htmlFor="outlined-native-simple"
+                  required
+                >Who are you?</InputLabel>
+                <Select
+                  native
+                  value={whoAreYou}
+                  onChange={handleChange}
+                  label="Who are you?"
+                  inputProps={{
+                    name: "whoAreYou",
+                    id: "outlined-native-simple"
+                  }}
+                >
+                  <option aria-label="None" value="" />
+                  <option value={'Professional Breeder'}>Professional Breeder</option>
+                  <option value={'Animal Shelter'}>Animal Shelter</option>
+                  <option value={'Private Person'}>Private Person</option>
+                </Select>
+              </FormControl>
             </Grid>
 
 
@@ -160,6 +204,9 @@ function Registration() {
           >
             Register
           </Button>
+          {failed && <Box className={classes.failedBox}>
+            <h4 className={classes.failed}>{failed}</h4>
+          </Box>}
           <Grid container justify="center">
             <Grid item>
               <Link href="/login" variant="body2">
