@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { Select, InputLabel, FormControl, Avatar, Button, CssBaseline, TextField, Link, Grid, Box, Typography, Container } from '@material-ui/core';
+import { Select, InputLabel, FormControl, Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Container } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { setUser, deleteUser } from "../../redux/actions";
 import Copyright from '../Copyright/Copyright';
+import { Link } from "react-router-dom";
+
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -45,6 +47,11 @@ const useStyles = makeStyles((theme) => ({
     color: 'red',
     fontFamily: 'Arial',
     fontWeight: "bold"
+  },
+  inp: {
+    backgroundColor: 'white',
+    borderRadius: '5px',
+    opacity: '0.8'
   }
 }));
 
@@ -116,6 +123,7 @@ function Registration() {
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
+                className={classes.inp}
                 autoComplete="username"
                 name="username"
                 variant="outlined"
@@ -130,6 +138,7 @@ function Registration() {
             </Grid>
             <Grid item xs={12}>
               <TextField
+                className={classes.inp}
                 variant="outlined"
                 required
                 fullWidth
@@ -143,6 +152,7 @@ function Registration() {
             </Grid>
             <Grid item xs={12}>
               <TextField
+                className={classes.inp}
                 variant="outlined"
                 required
                 fullWidth
@@ -157,6 +167,7 @@ function Registration() {
             </Grid>
             <Grid item xs={12}>
               <TextField
+                className={classes.inp}
                 variant="outlined"
                 required
                 fullWidth
@@ -176,6 +187,7 @@ function Registration() {
                   required
                 >Who are you?</InputLabel>
                 <Select
+                  className={classes.inp}
                   native
                   value={whoAreYou}
                   onChange={handleChange}
@@ -209,7 +221,7 @@ function Registration() {
           </Box>}
           <Grid container justify="center">
             <Grid item>
-              <Link href="/login" variant="body2">
+              <Link to="/login" variant="body2">
                 Already have an account? Login
               </Link>
             </Grid>
