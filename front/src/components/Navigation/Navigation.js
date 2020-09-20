@@ -57,6 +57,8 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'end',
+    backgroundColor: '#3a9207',
+    color: 'white',
   },
   btns: {
     marginTop: '13px',
@@ -80,7 +82,7 @@ function Navigation() {
           <div className={classes.appName}>
             <CameraIcon className={classes.icon} />
             <Typography variant="h6" color="inherit" noWrap>
-              Your Dog App
+              Your Pet App
           </Typography>
           </div>
           <div className={classes.btns}>
