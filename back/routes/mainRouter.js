@@ -97,7 +97,7 @@ router.post('/api/registration', async (req, res) => {
   const validUsername = await User.findOne({ username, email });
   if (validUsername) {
     res.status(401);
-    console.log('answer frim back');
+    console.log('answer from back');
     res.json({ message: 'The user with such email already exists' });
   } else {
     const hashedPassword = await bcrypt.hash(password, 10);

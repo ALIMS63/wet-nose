@@ -58,6 +58,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     alignItems: 'end',
     backgroundColor: '#3a9207',
+    // background: url('../App/images/leather-green.jpg'),
     color: 'white',
   },
   btns: {

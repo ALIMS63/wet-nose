@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Avatar, CssBaseline, Button, TextField, Link, Grid, Box, Typography, Container } from '@material-ui/core';
+import { Avatar, CssBaseline, Button, TextField, Grid, Box, Typography, Container } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { setUser, deleteUser } from "../../redux/actions";
 import Copyright from '../Copyright/Copyright';
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -35,6 +36,11 @@ const useStyles = makeStyles((theme) => ({
     color: 'red',
     fontFamily: 'Arial',
     fontWeight: "bold"
+  },
+  inp: {
+    backgroundColor: 'white',
+    borderRadius: '5px',
+    opacity: '0.8'
   }
 }));
 
@@ -97,6 +103,7 @@ function Login() {
         </Typography>
         <form onSubmit={handleSubmit} className={classes.form} noValidate>
           <TextField
+            className={classes.inp}
             variant="outlined"
             margin="normal"
             required
@@ -110,6 +117,7 @@ function Login() {
             value={email}
           />
           <TextField
+            className={classes.inp}
             variant="outlined"
             margin="normal"
             required
@@ -136,7 +144,7 @@ function Login() {
           </Box>}
           <Grid container justify="center">
             <Grid item>
-              <Link href="/registration" variant="body2">
+              <Link to="/registration" variant="body2">
                 {"Don't have an account? Register"}
               </Link>
             </Grid>
