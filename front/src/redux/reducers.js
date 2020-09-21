@@ -1,6 +1,4 @@
-
-import { SET_USER, AUTHENTICATED_SUCCESSFULLY, LOGOUT, DELETE_USER, SET_ANIMALS, ANIMAL_CATEGORY  } from "./action-types";
-
+import { SET_USER, AUTHENTICATED_SUCCESSFULLY, LOGOUT, DELETE_USER, SET_ANIMALS, ANIMAL_CATEGORY, PAY_FILTER, SET_FILTERED_ANIMALS } from "./action-types";
 
 
 export function userReducer(state = false, action) {
@@ -28,7 +26,7 @@ const initialState = {
 }
 
 export function animalReducer(state = initialState, action) {
-  console.log(state)
+  console.log('STATE===', state)
   switch (action.type) {
     case SET_ANIMALS:
       return {
@@ -36,13 +34,22 @@ export function animalReducer(state = initialState, action) {
         animals: action.payload,
         filterAnimals: action.payload
       }
-      case ANIMAL_CATEGORY:
-        console.log('filter>>>>',state.animals.filterAnimals);
-        
-        return{
-          ...state,
-          filterAnimals:{...state.filterAnimals[action.payload]}
-        }
+    case SET_FILTERED_ANIMALS:
+      return {
+        ...state,
+        filterAnimals: action.payload
+      }
+    case ANIMAL_CATEGORY:
+      return {
+        ...state,
+        filterAnimals: { ...state.filterAnimals[action.payload] }
+      }
+    case PAY_FILTER:
+      console.log('PAY_FILTER');
+      return {
+        ...state,
+        filterAnimals: { ...state.filterAnimals }
+      }
     default:
       return state;
   }
