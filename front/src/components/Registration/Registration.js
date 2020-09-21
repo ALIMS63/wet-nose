@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { Avatar, Button, CssBaseline, TextField, Link, Grid, Box, Typography, Container } from '@material-ui/core';
+import { Select, InputLabel, FormControl, Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Container } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { setUser, deleteUser } from "../../redux/actions";
 import Copyright from '../Copyright/Copyright';
+import { Link } from "react-router-dom";
+
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -25,6 +27,32 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  formControl: {
+    margin: theme.spacing(1),
+    padding: '0px',
+    margin: '0px',
+    height: '50px',
+    width: '397px',
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2)
+  },
+  failedBox: {
+    marginTop: "0px",
+    marginBottom: "20px",
+    width: "397px",
+    height: "20px",
+  },
+  failed: {
+    color: 'red',
+    fontFamily: 'Arial',
+    fontWeight: "bold"
+  },
+  inp: {
+    backgroundColor: 'white',
+    borderRadius: '5px',
+    opacity: '0.8'
+  }
 }));
 
 function Registration() {
@@ -36,6 +64,8 @@ function Registration() {
     username: '',
     email: '',
     password: '',
+    phone: '',
+    whoAreYou: '',
   });
 
   const [failed, setFailed] = useState(null);
@@ -52,6 +82,8 @@ function Registration() {
         username,
         email,
         password,
+        phone,
+        whoAreYou
       }),
     });
     const finalResult = await response.json();
@@ -73,7 +105,7 @@ function Registration() {
     })
   }
 
-  const { username, email, password } = inputs;
+  const { username, email, password, phone, whoAreYou } = inputs;
 
 
 
@@ -91,6 +123,7 @@ function Registration() {
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
+                className={classes.inp}
                 autoComplete="username"
                 name="username"
                 variant="outlined"
@@ -105,6 +138,7 @@ function Registration() {
             </Grid>
             <Grid item xs={12}>
               <TextField
+                className={classes.inp}
                 variant="outlined"
                 required
                 fullWidth
@@ -118,6 +152,7 @@ function Registration() {
             </Grid>
             <Grid item xs={12}>
               <TextField
+                className={classes.inp}
                 variant="outlined"
                 required
                 fullWidth
@@ -130,6 +165,46 @@ function Registration() {
                 value={password}
               />
             </Grid>
+            <Grid item xs={12}>
+              <TextField
+                className={classes.inp}
+                variant="outlined"
+                required
+                fullWidth
+                name="phone"
+                label="Phone Number"
+                type="phone"
+                id="phone"
+                autoComplete="current-password"
+                onChange={handleChange}
+                value={phone}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <FormControl variant="outlined" className={classes.formControl}>
+                <InputLabel
+                  htmlFor="outlined-native-simple"
+                  required
+                >Who are you?</InputLabel>
+                <Select
+                  className={classes.inp}
+                  native
+                  value={whoAreYou}
+                  onChange={handleChange}
+                  label="Who are you?"
+                  inputProps={{
+                    name: "whoAreYou",
+                    id: "outlined-native-simple"
+                  }}
+                >
+                  <option aria-label="None" value="" />
+                  <option value={'Professional Breeder'}>Professional Breeder</option>
+                  <option value={'Animal Shelter'}>Animal Shelter</option>
+                  <option value={'Private Person'}>Private Person</option>
+                </Select>
+              </FormControl>
+            </Grid>
+
 
           </Grid>
           <Button
@@ -141,9 +216,12 @@ function Registration() {
           >
             Register
           </Button>
+          {failed && <Box className={classes.failedBox}>
+            <h4 className={classes.failed}>{failed}</h4>
+          </Box>}
           <Grid container justify="center">
             <Grid item>
-              <Link href="/login" variant="body2">
+              <Link to="/login" variant="body2">
                 Already have an account? Login
               </Link>
             </Grid>

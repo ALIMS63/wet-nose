@@ -1,57 +1,116 @@
-import React, { useEffect } from 'react';
-import {useDispatch, useSelector} from 'react-redux'
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux'
 import { Select } from 'antd';
 import 'antd/dist/antd.css';
-import {startAnimals} from '../../redux/actions'
+import { startAnimals, setAnimalCategory, paymentFilter, setFilteredAnimals } from '../../redux/actions'
 
 const { Option } = Select;
 
 
 
 function Filter() {
-  
+
   const dispatch = useDispatch()
-  
+  const [category, setCategory] = useState()
+  // const [filtered, setFiltered] = useState([])
   const animalsFromState = useSelector((state) => state.animals)
-  // console.log(animalsFromState);
-  
-  
+  const filterAnimalsFromState = useSelector((state) => state.animals.filterAnimals)
+  console.log('filtered ARR ==>>>', filterAnimalsFromState);
+
+
   useEffect(() => {
     dispatch(startAnimals())
-  },[])
-  
-  function handleChange(value) {
-    console.log(`selected ${value}`);
-    console.log(animalsFromState.animals);
-    
+  }, [])
+
+  let arr = []
+
+  async function chooseCategory(value) {
+    setCategory(value)
+    await dispatch(startAnimals())
+    dispatch(setAnimalCategory(value))
   }
+
+  function choosePay(value) {
+    arr= []
+    dispatch(paymentFilter())
+    for (let animal in filterAnimalsFromState) {
+      if (String(filterAnimalsFromState[animal].pay) === value) {
+        arr.push(filterAnimalsFromState[animal])
+      }
+    }
+    dispatch(setFilteredAnimals(arr))
+    console.log('arr PAY', arr);
+  }
+
+  function chooseAge(value) {
+    arr= []
+    for (let animal in filterAnimalsFromState) {
+      if (filterAnimalsFromState[animal].age >= value[0] && filterAnimalsFromState[animal].age <= value[2]) {
+        arr.push(filterAnimalsFromState[animal])
+      }
+    }
+    dispatch(setFilteredAnimals(arr))
+    console.log('arr AGE', arr);
+  }
+
+  function choosePrice(value) {
+    arr= []
+    for (let animal in filterAnimalsFromState) {
+      console.log(filterAnimalsFromState[animal].price);
+      let price = value.split('-')
+      if (filterAnimalsFromState[animal].price >= Number(price[0]) && filterAnimalsFromState[animal].price <= Number(price[1])) {
+        arr.push(filterAnimalsFromState[animal])
+      }
+    }
+    dispatch(setFilteredAnimals(arr))
+    console.log('arr PRICE', arr);
+  }
+
   return (
     <>
-      <Select defaultValue="Category" style={{ width: 120 }} onChange={handleChange}>
+      <Select defaultValue="Category" style={{ width: 120 }} onChange={chooseCategory}>
         <Option value="cats">Cats</Option>
         <Option value="dogs">Dogs</Option>
         <Option value="other">Other</Option>
       </Select>
       {' '}
-      <Select defaultValue="Choose" style={{ width: 120 }} onChange={handleChange}>
-        <Option value="jack">Cats</Option>
-        <Option value="lucy">Lucy</Option>
+      <Select
+        // disabled={category ? false : true}
+        defaultValue="Pay"
+        style={{ width: 120 }}
+        onChange={choosePay}>
+        <Option value="true">True</Option>
+        <Option value="false">False</Option>
       </Select>
       {' '}
-      <Select defaultValue="Choose" style={{ width: 120 }} onChange={handleChange}>
-        <Option value="jack">Jack</Option>
-        <Option value="lucy">Lucy</Option>
+      <Select
+        // disabled={category ? false : true}
+        defaultValue="Age"
+        style={{ width: 120 }}
+        onChange={chooseAge}>
+        <Option value="1">0-1</Option>
+        <Option value="1-3">1-3</Option>
+        <Option value="3-7">3-7</Option>
       </Select>
       {' '}
-      <Select defaultValue="Choose" style={{ width: 120 }} onChange={handleChange}>
-        <Option value="jack">Jack</Option>
-        <Option value="lucy">Lucy</Option>
+      <Select
+        // disabled={category ? false : true}
+        defaultValue="Price"
+        style={{ width: 120 }}
+        onChange={choosePrice}>
+        <Option value="0-1000">0-1000</Option>
+        <Option value="1000-5000">1000-5000</Option>
+        <Option value="5000-10000">5000-10000</Option>
+        <Option value="10000-999999"> >10000</Option>
       </Select>
     </>
   )
 }
 
 export default Filter
+
+
+
 
 // import { makeStyles, withStyles } from '@material-ui/core/styles';
 // import InputLabel from '@material-ui/core/InputLabel';

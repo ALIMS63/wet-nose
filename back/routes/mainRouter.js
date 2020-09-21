@@ -93,11 +93,15 @@ router.post('/api/login', async (req, res) => {
 });
 
 router.post('/api/registration', async (req, res) => {
-  const { username, email, password } = req.body;
+  const {
+    username, email, password, phone, whoAreYou,
+  } = req.body;
+  console.log(111);
   let user;
   const validUsername = await User.findOne({ username, email });
   if (validUsername) {
     res.status(401);
+    console.log('answer from back');
     res.json({ message: 'The user with such email already exists' });
   } else {
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -106,6 +110,8 @@ router.post('/api/registration', async (req, res) => {
         username,
         email,
         password: hashedPassword,
+        phone,
+        whoAreYou,
       });
     } catch (err) {
       res.status(401);
@@ -113,7 +119,13 @@ router.post('/api/registration', async (req, res) => {
     }
     req.session.user = serializeUser(user);
     res.status(200);
-    return res.json({ id: user._id, name: user.name, email: user.email });
+    return res.json({
+      id: user._id,
+      name: user.name,
+      email: user.email,
+      phone: user.phone,
+      whoAreYou: user.whoAreYou,
+    });
   }
 });
 

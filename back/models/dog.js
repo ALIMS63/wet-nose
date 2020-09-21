@@ -40,7 +40,7 @@ const DogSchema = new mongoose.Schema({
   sellerID: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-    required: true,
+    // required: true,
   },
   photo: [{ // фото животного
     type: String,

@@ -16,9 +16,6 @@ import NewAnimal from '../NewAnimal/NewAnimal';
 import PetCart from '../PetCart';
 
 
-
-
-
 function App() {
   return (
     <div className="App">

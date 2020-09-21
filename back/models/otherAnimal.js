@@ -48,7 +48,7 @@ const OtherAnimalSchema = new mongoose.Schema({
   sellerID: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-    required: true,
+    // required: true,
   },
   gender: { // пол животного
     type: String,
