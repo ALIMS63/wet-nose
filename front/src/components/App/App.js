@@ -14,6 +14,7 @@ import ModalRegister from '../Registration/ModalRegister';
 import Filter from '../Filter/Filter'
 import NewAnimal from '../NewAnimal/NewAnimal';
 import PetCart from '../PetCart';
+import AnimalCard from '../AnimalCard/AnimalCard';
 
 
 function App() {
@@ -25,8 +26,9 @@ function App() {
         <Switch>
           <Route path="/" exact>
             <Main />
-            <Filter/>
-            <PetCart/>
+            <Filter />
+            <PetCart />
+            {/* <AnimalCard /> */}
           </Route>
           <Route path="/login" exact>
             <Login />
