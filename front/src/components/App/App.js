@@ -15,6 +15,11 @@ import Filter from '../Filter/Filter'
 import NewAnimal from '../NewAnimal/NewAnimal';
 import PetCart from '../PetCart';
 import ModalFilter from '../Filter/ModalFilter';
+import Anketa from '../Anketa';
+import InfoPetCard from '../InfoPetCard/InfoPetCart';
+
+
+
 import AnimalCard from '../AnimalCard/AnimalCard';
 import OneAnimal from '../OneAnimal/OneAnimal';
 
@@ -28,6 +33,10 @@ function App() {
         <Switch>
           <Route path="/" exact>
             <Main />
+            <Filter/>
+            <PetCart/>
+            <Anketa/>
+            <InfoPetCard/>
             <Filter />
             {/* <PetCart /> */}
             <AnimalCard />
