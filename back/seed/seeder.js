@@ -1,10 +1,8 @@
 /* eslint-disable import/extensions */
-import mongoose from 'mongoose';
+import '../misc/db.js';
 import CatModel from '../models/cat.js';
 import DogModel from '../models/dog.js';
 import OtherAnimalModel from '../models/otherAnimal.js';
-
-mongoose.connect('mongodb://localhost:27017/your-animal', { useNewUrlParser: true });
 
 async function createDog() {
   await DogModel.insertMany([
@@ -25,8 +23,8 @@ async function createDog() {
       onlyInNonApartments: true,
       specialConditionsOfDetention: false,
       childrenInTheHouse: true,
-
       sellerID: mongoose.Types.ObjectId('5f676af5b69844141be7c3fa'),
+
     },
     {
       kind: 'Беспородная',
@@ -44,7 +42,6 @@ async function createDog() {
       onlyInNonApartments: false,
       specialConditionsOfDetention: false,
       childrenInTheHouse: false,
-
       sellerID: mongoose.Types.ObjectId('5f676af5b69844141be7c3fa'),
     },
   ]);
@@ -67,7 +64,6 @@ async function createCat() {
       longHaired: true,
       specialConditionsOfDetention: false,
       childrenInTheHouse: false,
-
       sellerID: mongoose.Types.ObjectId('5f676af5b69844141be7c3fa'),
     },
     {

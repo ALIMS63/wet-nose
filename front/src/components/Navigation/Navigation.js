@@ -57,8 +57,15 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'end',
-    // backgroundColor: 'red',
-
+    backgroundColor: '#3a9207',
+    // background: url('../App/images/leather-green.jpg'),
+    color: 'white',
+  },
+  btns: {
+    marginTop: '13px',
+  },
+  appName: {
+    marginLeft: '30px'
   }
 }));
 
@@ -69,32 +76,27 @@ function Navigation() {
   console.log(isAuthenticated);
 
   return (
-    <React.Fragment>
+    <>
       <CssBaseline />
       <AppBar position="relative">
         <Toolbar className={classes.auth}>
-          <div>
+          <div className={classes.appName}>
             <CameraIcon className={classes.icon} />
             <Typography variant="h6" color="inherit" noWrap>
-              Your Dog App
+              Your Pet App
           </Typography>
           </div>
-          <div >
-
+          <div className={classes.btns}>
             {isAuthenticated && <Link className={classes.link} to="/privateHome"><Button className={classes.button} color="inherit">Home</Button></Link>}
             {!isAuthenticated && <Link className={classes.link} to="/registration"><Button className={classes.button} color="inherit">Registration</Button></Link>}
-            {!isAuthenticated && <Link className={classes.link} to="/login"><Button className={classes.button} color="inherit">Login</Button></Link>}
+            {/* {!isAuthenticated && <Link className={classes.link} to="/login"><Button className={classes.button} color="inherit">Login</Button></Link>} */}
             <Link className={classes.link} to="/secret"><Button className={classes.button} color="inherit">ADD NEW</Button></Link>
             <Link className={classes.link} to="/"><Button className={classes.button} color="inherit">Main</Button></Link>
             {isAuthenticated && <Link className={classes.link} to="/logout"><Button className={classes.button} color="inherit">Logout</Button></Link>}
-
           </div>
->>>>>>> 490f3007aa28724a9fad921fd68f2fc0cbf1438d
         </Toolbar>
       </AppBar>
-      
-
-    </React.Fragment>
+    </>
   );
 }
 
