@@ -3,6 +3,7 @@ import '../misc/db.js';
 import CatModel from '../models/cat.js';
 import DogModel from '../models/dog.js';
 import OtherAnimalModel from '../models/otherAnimal.js';
+import mongoose from 'mongoose'
 
 async function createDog() {
   await DogModel.insertMany([
@@ -26,7 +27,7 @@ async function createDog() {
       gender: 'male',
       pedigree: 'длиннющая',
       vaccinationРistory: 'проставлены',
-      sellerID: mongoose.Types.ObjectId('5f647bddc7199933c81b3a52'),
+      sellerID: mongoose.Types.ObjectId('5f636b0d818f4d1e20648e3b'),
 
     },
     {
@@ -48,7 +49,7 @@ async function createDog() {
       gender: 'male',
       pedigree: 'не имеется',
       vaccinationРistory: 'не имеется',
-      sellerID: mongoose.Types.ObjectId('5f647bddc7199933c81b3a52'),
+      sellerID: mongoose.Types.ObjectId('5f636b0d818f4d1e20648e3b'),
     },
   ]);
 }
@@ -73,7 +74,7 @@ async function createCat() {
       gender: 'male',
       pedigree: 'наследный принц',
       vaccinationРistory: 'все обязательные',
-      sellerID: mongoose.Types.ObjectId('5f647bddc7199933c81b3a52'),
+      sellerID: mongoose.Types.ObjectId('5f636b0d818f4d1e20648e3b'),
     },
     {
       kind: 'Беспородная',
@@ -91,7 +92,7 @@ async function createCat() {
       gender: 'female',
       pedigree: '-',
       vaccinationРistory: 'нет',
-      sellerID: mongoose.Types.ObjectId('5f647bddc7199933c81b3a52'),
+      sellerID: mongoose.Types.ObjectId('5f636b0d818f4d1e20648e3b'),
     },
   ]);
 }
@@ -120,7 +121,7 @@ async function createOtherAnimal() {
       gender: 'female',
       pedigree: 'отцы и деды призеры Нила',
       vaccinationРistory: 'нет',
-      sellerID: mongoose.Types.ObjectId('5f647bddc7199933c81b3a52'),
+      sellerID: mongoose.Types.ObjectId('5f636b0d818f4d1e20648e3b'),
     }
   ]);
 }
