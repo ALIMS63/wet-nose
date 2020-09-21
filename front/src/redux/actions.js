@@ -1,5 +1,5 @@
 
-import { SET_USER, DELETE_USER, AUTHENTICATED_SUCCESSFULLY, SET_ANIMALS, ANIMAL_CATEGORY, PAY_FILTER, SET_FILTERED_ANIMALS, ADD_ANIMAL } from "./action-types";
+import { SET_USER, DELETE_USER, AUTHENTICATED_SUCCESSFULLY, SET_ANIMALS, ANIMAL_CATEGORY, PAY_FILTER, SET_FILTERED_ANIMALS, ADD_ANIMAL, AGE_FILTER } from "./action-types";
 
 
 import axios from 'axios'
@@ -55,9 +55,11 @@ export function addNewAnimal(typeAnimal, newAnimal) {
       typeAnimal,
       newAnimal,
     }
-export function ageFilter(age){
-  return{
-    type: AGE_FILTER,
-    payload: age
   }
 }
+  export function ageFilter(age) {
+    return {
+      type: AGE_FILTER,
+      payload: age
+    }
+  }
