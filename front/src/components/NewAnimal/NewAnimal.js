@@ -123,7 +123,7 @@ function NewAnimal() {
     const response = await axios.post('/api/allAnimals', { inputs });
     console.log(response.data)
     ///For dispatch
-    return history.push('/oneAnimal');
+    // return history.push(`/oneAnimal/${}`);
 
   }
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from "react-router-dom";
 
 
 const useStyles = makeStyles({
@@ -34,6 +35,8 @@ const useStyles = makeStyles({
 function AnimalCard() {
   const classes = useStyles();
   const data = useSelector(state => state.animals).animals;
+  const history = useHistory();
+
 
   return (
     <>
@@ -41,9 +44,9 @@ function AnimalCard() {
         {Object.keys(data) && Object.keys(data).map(key => {
           return (data[key] && data[key].map(obj => {
             return (
-              <div className={classes.onePet}>
+              <div onClick={() => history.push(`/oneAnimal/${obj._id}`)} className={classes.onePet}>
                 <div>
-                  <img className={classes.img} src={obj.photo} alt="animal" />
+                  <img className={classes.img} src={`/${obj.photo}`} alt="animal" />
                 </div>
               </div>
             )
