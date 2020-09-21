@@ -10,7 +10,7 @@ async function createDog() {
     {
       kind: 'Сенбернар',
       nickname: 'Бетховен',
-      photo: '/st_bernard_dog.jpeg',
+      photo: 'st_bernard_dog.jpeg',
       description: 'Отличная слюнявая собака',
       age: 1,
       pay: true,
