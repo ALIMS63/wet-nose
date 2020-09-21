@@ -14,6 +14,8 @@ import ModalRegister from '../Registration/ModalRegister';
 import Filter from '../Filter/Filter'
 import NewAnimal from '../NewAnimal/NewAnimal';
 // import PetCart from '../PetCart';
+import PetCart from '../PetCart';
+import ModalFilter from '../Filter/ModalFilter';
 import Anketa from '../Anketa';
 
 

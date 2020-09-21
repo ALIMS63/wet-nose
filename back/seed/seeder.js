@@ -48,7 +48,7 @@ async function createDog() {
       gender: 'male',
       pedigree: 'не имеется',
       vaccinationРistory: 'не имеется',
-      sellerID: mongoose.Types.ObjectId('5f647bddc7199933c81b3a52'),
+      sellerID: mongoose.Types.ObjectId('5f68ae6e0967e40409746021'),
     },
   ]);
 }
@@ -73,7 +73,7 @@ async function createCat() {
       gender: 'male',
       pedigree: 'наследный принц',
       vaccinationРistory: 'все обязательные',
-      sellerID: mongoose.Types.ObjectId('5f647bddc7199933c81b3a52'),
+      sellerID: mongoose.Types.ObjectId('5f68ae6e0967e40409746021'),
     },
     {
       kind: 'Беспородная',
@@ -91,7 +91,7 @@ async function createCat() {
       gender: 'female',
       pedigree: '-',
       vaccinationРistory: 'нет',
-      sellerID: mongoose.Types.ObjectId('5f647bddc7199933c81b3a52'),
+      sellerID: mongoose.Types.ObjectId('5f68ae6e0967e40409746021'),
     },
   ]);
 }
@@ -120,8 +120,8 @@ async function createOtherAnimal() {
       gender: 'female',
       pedigree: 'отцы и деды призеры Нила',
       vaccinationРistory: 'нет',
-      sellerID: mongoose.Types.ObjectId('5f647bddc7199933c81b3a52'),
-    },
+      sellerID: mongoose.Types.ObjectId('5f68ae6e0967e40409746021'),
+    }
   ]);
 }
 createOtherAnimal();
