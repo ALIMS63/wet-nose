@@ -19,6 +19,8 @@ import InfoPetCard from '../InfoPetCard/InfoPetCart';
 
 
 
+import AnimalCard from '../AnimalCard/AnimalCard';
+import OneAnimal from '../OneAnimal/OneAnimal';
 
 
 function App() {
@@ -34,6 +36,9 @@ function App() {
             <PetCart/>
             <Anketa/>
             <InfoPetCard/>
+            <Filter />
+            {/* <PetCart /> */}
+            <AnimalCard />
           </Route>
           <Route path="/login" exact>
             <Login />
@@ -51,6 +56,11 @@ function App() {
           <Route path="/privateHome" exact>
             <PrivateHome />
           </Route>
+
+          <Route path="/oneAnimal" exact>
+            <OneAnimal />
+          </Route>
+
           <PrivateRoute path="/secret">
             <NewAnimal />
           </PrivateRoute>

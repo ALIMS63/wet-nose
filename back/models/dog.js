@@ -3,15 +3,18 @@ import mongoose from 'mongoose';
 const DogSchema = new mongoose.Schema({
   kind: { // порода животного
     type: String,
+    required: true,
   },
   nickname: { // кличка животного
     type: String,
+    required: true,
   },
   description: { // описание животного
     type: String,
   },
   age: { // возраст животного
     type: Number,
+    required: true,
   },
   pay: { // Даром
     type: Boolean,
@@ -37,11 +40,17 @@ const DogSchema = new mongoose.Schema({
   sellerID: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
+    // required: true,
+  },
+  photo: { // фото животного
+    type: String,
+  },
+  gender: { // пол животного
+    type: String,
     required: true,
   },
-  photo: [{ // фото животного
-    type: String,
-  }],
+  pedigree: String, // родословная животного
+  vaccinationРistory: String, // история прививок животного
 });
 
 export default mongoose.model('Dog', DogSchema);
