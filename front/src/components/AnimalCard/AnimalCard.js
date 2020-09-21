@@ -22,7 +22,7 @@ const useStyles = makeStyles({
   onePet: {
     backgroundColor: '#39f250',
     boxShadow: '0 0 5px 2px white',
-    border: '2px solid white',
+    border: '1px solid white',
     borderRadius: '30px 30px 30px 30px',
     margin: '10px',
     display: 'flex',
@@ -34,14 +34,12 @@ const useStyles = makeStyles({
 function AnimalCard() {
   const classes = useStyles();
   const data = useSelector(state => state.animals).animals;
-  console.log(Object.keys(data));
-  console.log(data[Object.keys(data)[0]][0].photo);
+
   return (
     <>
-      <img src={data[Object.keys(data)[0]][0].photo} alt="" />
       <container className={classes.block}>
         {Object.keys(data) && Object.keys(data).map(key => {
-          return (data.key && data.key.map(obj => {
+          return (data[key] && data[key].map(obj => {
             return (
               <div className={classes.onePet}>
                 <div>
@@ -51,11 +49,7 @@ function AnimalCard() {
             )
           }))
         })
-
         }
-
-
-
       </container>
     </>
   );
