@@ -138,7 +138,7 @@ function Filter() {
             <Option value="0-1000">0-1000</Option>
             <Option value="1000-5000">1000-5000</Option>
             <Option value="5000-10000">5000-10000</Option>
-            <Option value="10000-999999"> >10000</Option>
+            <Option value="10000-999999"> &gt;10000</Option>
           </Select>
         </Form.Item>
         {' '}
