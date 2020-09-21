@@ -1,4 +1,5 @@
-import { SET_USER, AUTHENTICATED_SUCCESSFULLY, LOGOUT, DELETE_USER, SET_ANIMALS, ANIMAL_CATEGORY, PAY_FILTER, AGE_FILTER } from "./action-types";
+import { SET_USER, AUTHENTICATED_SUCCESSFULLY, LOGOUT, DELETE_USER, SET_ANIMALS, ANIMAL_CATEGORY, PAY_FILTER, SET_FILTERED_ANIMALS, ADD_ANIMAL, AGE_FILTER } from "./action-types";
+
 
 
 export function userReducer(state = false, action) {
@@ -48,6 +49,12 @@ export function animalReducer(state = initialState, action) {
         ...state,
         filters: { ...state.filters, age: action.payload }
       }
+    case ADD_ANIMAL:
+      console.log('ADD_ANIMAL');
+          return {
+            ...state,
+            animals: { ...state.animals[action.payload.typeAnimal], new: action.payload.newAnimal }
+          }
     default:
       return state;
   }

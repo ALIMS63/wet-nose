@@ -10,7 +10,7 @@ async function createDog() {
     {
       kind: 'Сенбернар',
       nickname: 'Бетховен',
-      photo: '/st_bernard_dog.jpeg',
+      photo: 'st_bernard_dog.jpeg',
       description: 'Отличная слюнявая собака',
       age: 1,
       pay: true,
@@ -28,8 +28,6 @@ async function createDog() {
       gender: 'male',
       pedigree: 'длиннющая',
       vaccinationРistory: 'проставлены',
-      sellerID: mongoose.Types.ObjectId('5f68ae6e0967e40409746021'),
-
     },
     {
       kind: 'Беспородная',
@@ -122,8 +120,8 @@ async function createOtherAnimal() {
       gender: 'female',
       pedigree: 'отцы и деды призеры Нила',
       vaccinationРistory: 'нет',
-      sellerID: mongoose.Types.ObjectId('5f68ae6e0967e40409746021'),
-    }
+      sellerID: mongoose.Types.ObjectId('5f647bddc7199933c81b3a52'),
+    },
   ]);
 }
 createOtherAnimal();
