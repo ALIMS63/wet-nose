@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { Select } from 'antd';
+import { Select, Form, Button } from 'antd';
 import 'antd/dist/antd.css';
-import { startAnimals, setAnimalCategory, paymentFilter, setFilteredAnimals } from '../../redux/actions'
+import { startAnimals, setAnimalCategory, paymentFilter, ageFilter } from '../../redux/actions'
 
 const { Option } = Select;
 
@@ -10,12 +10,16 @@ const { Option } = Select;
 
 function Filter() {
 
-  const dispatch = useDispatch()
   const [category, setCategory] = useState()
+  const dispatch = useDispatch()
   // const [filtered, setFiltered] = useState([])
-  const animalsFromState = useSelector((state) => state.animals)
-  const filterAnimalsFromState = useSelector((state) => state.animals.filterAnimals)
-  console.log('filtered ARR ==>>>', filterAnimalsFromState);
+  const animalsFromState = useSelector((state) => state.animals.animals)
+  console.log(animalsFromState);
+  const filters = useSelector((state) => state.animals.filters)
+  console.log(filters);
+
+  // const filterAnimalsFromState = useSelector((state) => state.animals.filterAnimals)
+  // console.log('filtered ARR ==>>>', filterAnimalsFromState);
 
 
   useEffect(() => {
@@ -26,83 +30,146 @@ function Filter() {
 
   async function chooseCategory(value) {
     setCategory(value)
-    await dispatch(startAnimals())
+    // await dispatch(startAnimals())
     dispatch(setAnimalCategory(value))
   }
 
   function choosePay(value) {
-    arr= []
-    dispatch(paymentFilter())
-    for (let animal in filterAnimalsFromState) {
-      if (String(filterAnimalsFromState[animal].pay) === value) {
-        arr.push(filterAnimalsFromState[animal])
-      }
-    }
-    dispatch(setFilteredAnimals(arr))
-    console.log('arr PAY', arr);
+    arr = []
+    dispatch(paymentFilter(value))
+    // for (let animal in filterAnimalsFromState) {
+    //   if (String(filterAnimalsFromState[animal].pay) === value) {
+    //     arr.push(filterAnimalsFromState[animal])
+    //   }
+    // }
+    // dispatch(setFilteredAnimals(arr))
   }
 
   function chooseAge(value) {
-    arr= []
-    for (let animal in filterAnimalsFromState) {
-      if (filterAnimalsFromState[animal].age >= value[0] && filterAnimalsFromState[animal].age <= value[2]) {
-        arr.push(filterAnimalsFromState[animal])
-      }
-    }
-    dispatch(setFilteredAnimals(arr))
-    console.log('arr AGE', arr);
+    arr = []
+    dispatch(ageFilter(value))
+
+    // for (let animal in filterAnimalsFromState) {
+    //   if (filterAnimalsFromState[animal].age >= value[0] && filterAnimalsFromState[animal].age <= value[2]) {
+    //     arr.push(filterAnimalsFromState[animal])
+    //   }
+    // }
+    // dispatch(setFilteredAnimals(arr))
   }
 
   function choosePrice(value) {
-    arr= []
-    for (let animal in filterAnimalsFromState) {
-      console.log(filterAnimalsFromState[animal].price);
-      let price = value.split('-')
-      if (filterAnimalsFromState[animal].price >= Number(price[0]) && filterAnimalsFromState[animal].price <= Number(price[1])) {
-        arr.push(filterAnimalsFromState[animal])
+    arr = []
+    // for (let animal in filterAnimalsFromState) {
+    //   console.log(filterAnimalsFromState[animal].price);
+    //   let price = value.split('-')
+    //   if (filterAnimalsFromState[animal].price >= Number(price[0]) && filterAnimalsFromState[animal].price <= Number(price[1])) {
+    //     arr.push(filterAnimalsFromState[animal])
+    //   }
+    // }
+    // dispatch(setFilteredAnimals(arr))
+  }
+
+  function chooseGender() {
+
+  }
+
+  function chooseHaired() {
+
+  }
+
+  const [visible, setVisible] = useState(false)
+  const [loading, setLoading] = useState(false)
+
+  function filter(values) {
+    setLoading(true)
+    let category = animalsFromState[values.category]
+
+    for (let animal in category) {
+      if (String(category[animal].pay) === values.pay) {
+        console.log(category[animal])
       }
     }
-    dispatch(setFilteredAnimals(arr))
-    console.log('arr PRICE', arr);
   }
 
   return (
     <>
-      <Select defaultValue="Category" style={{ width: 120 }} onChange={chooseCategory}>
-        <Option value="cats">Cats</Option>
-        <Option value="dogs">Dogs</Option>
-        <Option value="other">Other</Option>
-      </Select>
-      {' '}
-      <Select
-        // disabled={category ? false : true}
-        defaultValue="Pay"
-        style={{ width: 120 }}
-        onChange={choosePay}>
-        <Option value="true">True</Option>
-        <Option value="false">False</Option>
-      </Select>
-      {' '}
-      <Select
-        // disabled={category ? false : true}
-        defaultValue="Age"
-        style={{ width: 120 }}
-        onChange={chooseAge}>
-        <Option value="1">0-1</Option>
-        <Option value="1-3">1-3</Option>
-        <Option value="3-7">3-7</Option>
-      </Select>
-      {' '}
-      <Select
-        // disabled={category ? false : true}
-        defaultValue="Price"
-        style={{ width: 120 }}
-        onChange={choosePrice}>
-        <Option value="0-1000">0-1000</Option>
-        <Option value="1000-5000">1000-5000</Option>
-        <Option value="5000-10000">5000-10000</Option>
-        <Option value="10000-999999"> >10000</Option>
-      </Select>
+
+      
+
+      <Form onFinish={filter}>
+      <form onSubmit={filter}>
+        <Form.Item name='category'>
+          <Select defaultValue="Category" style={{ width: 120 }} onChange={chooseCategory}>
+            <Option value="cats">Cats</Option>
+            <Option value="dogs">Dogs</Option>
+            <Option value="other">Other</Option>
+          </Select>
+        </Form.Item>
+        {' '}
+        <Form.Item name='pay'>
+          <Select
+            // disabled={category ? false : true}
+            defaultValue="Pay"
+            style={{ width: 120 }}
+            onChange={choosePay}>
+            <Option value="true">True</Option>
+            <Option value="false">False</Option>
+          </Select>
+        </Form.Item>
+        {' '}
+        <Form.Item name='age'>
+          <Select
+            // disabled={category ? false : true}
+            defaultValue="Age"
+            style={{ width: 120 }}
+            onChange={chooseAge}>
+            <Option value="1">0-1</Option>
+            <Option value="1-3">1-3</Option>
+            <Option value="3-7">3-7</Option>
+          </Select>
+        </Form.Item>
+        {' '}
+        <Form.Item name='price'>
+          <Select
+            // disabled={category ? false : true}
+            defaultValue="Price"
+            style={{ width: 120 }}
+            onChange={choosePrice}>
+            <Option value="0-1000">0-1000</Option>
+            <Option value="1000-5000">1000-5000</Option>
+            <Option value="5000-10000">5000-10000</Option>
+            <Option value="10000-999999"> >10000</Option>
+          </Select>
+        </Form.Item>
+        {' '}
+        <Form.Item name='gender'>
+          <Select
+            // disabled={category ? false : true}
+            defaultValue="Gender"
+            style={{ width: 120 }}
+            onChange={chooseGender}>
+            <Option value="Male">Male</Option>
+            <Option value="Female">Female</Option>
+          </Select>
+        </Form.Item>
+        {' '}
+        <Form.Item name='longHaired'>
+          <Select
+            // disabled={category ? false : true}
+            defaultValue="LongHaired"
+            style={{ width: 120 }}
+            onChange={chooseHaired}>
+            <Option value='true'>true</Option>
+            <Option value='false'>false</Option>
+          </Select>
+        </Form.Item>
+        <Form.Item>
+          <Button type="primary" htmlType="submit">
+            Submit
+        </Button>
+        </Form.Item>
+        </form>
+      </Form>
     </>
   )
 }
