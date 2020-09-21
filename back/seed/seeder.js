@@ -25,11 +25,10 @@ async function createDog() {
       onlyInNonApartments: true,
       specialConditionsOfDetention: false,
       childrenInTheHouse: true,
-<<<<<<< HEAD
+      gender: 'male',
+      pedigree: 'длиннющая',
+      vaccinationРistory: 'проставлены',
       sellerID: mongoose.Types.ObjectId('5f647bddc7199933c81b3a52'),
-=======
-      sellerID: mongoose.Types.ObjectId('5f64903ad81749e92a1eadbd'),
->>>>>>> 8a530c0f0cbfda059bc56cac5d1abd10f42816a0
     },
     {
       kind: 'Беспородная',
@@ -47,11 +46,10 @@ async function createDog() {
       onlyInNonApartments: false,
       specialConditionsOfDetention: false,
       childrenInTheHouse: false,
-<<<<<<< HEAD
+      gender: 'male',
+      pedigree: 'не имеется',
+      vaccinationРistory: 'не имеется',
       sellerID: mongoose.Types.ObjectId('5f647bddc7199933c81b3a52'),
-=======
-      sellerID: mongoose.Types.ObjectId('5f64903ad81749e92a1eadbd'),
->>>>>>> 8a530c0f0cbfda059bc56cac5d1abd10f42816a0
     },
   ]);
 }
@@ -60,7 +58,7 @@ async function createDog() {
 async function createCat() {
   await CatModel.insertMany([
     {
-      kind: 'Перс',
+      kind: 'Персидский кот',
       nickname: 'Вася',
       photo: 'persian_cat.jpeg',
       description: 'Мерзавчик',
@@ -73,11 +71,10 @@ async function createCat() {
       longHaired: true,
       specialConditionsOfDetention: false,
       childrenInTheHouse: false,
-<<<<<<< HEAD
+      gender: 'male',
+      pedigree: 'наследный принц',
+      vaccinationРistory: 'все обязательные',
       sellerID: mongoose.Types.ObjectId('5f647bddc7199933c81b3a52'),
-=======
-      sellerID: mongoose.Types.ObjectId('5f64903ad81749e92a1eadbd'),
->>>>>>> 8a530c0f0cbfda059bc56cac5d1abd10f42816a0
     },
     {
       kind: 'Беспородная',
@@ -92,11 +89,10 @@ async function createCat() {
       longHaired: false,
       specialConditionsOfDetention: false,
       childrenInTheHouse: true,
-<<<<<<< HEAD
+      gender: 'female',
+      pedigree: '-',
+      vaccinationРistory: 'нет',
       sellerID: mongoose.Types.ObjectId('5f647bddc7199933c81b3a52'),
-=======
-      sellerID: mongoose.Types.ObjectId('5f64903ad81749e92a1eadbd'),
->>>>>>> 8a530c0f0cbfda059bc56cac5d1abd10f42816a0
     },
   ]);
 }
@@ -105,10 +101,10 @@ async function createCat() {
 async function createOtherAnimal() {
   await OtherAnimalModel.insertMany([
     {
-      type: 'crocodile.jpeg',
+      type: 'Крокодил',
       nickname: 'Звезда',
-      photo: '',
-      description: 'За...опукусь',
+      photo: 'crocodile.jpeg',
+      description: 'Запопукусь',
       age: 13,
       pay: true,
       price: 150000,
@@ -122,11 +118,10 @@ async function createOtherAnimal() {
       childrenInTheHouse: true,
       exotic: true,
       farmAnimal: false,
-<<<<<<< HEAD
+      gender: 'female',
+      pedigree: 'отцы и деды призеры Нила',
+      vaccinationРistory: 'нет',
       sellerID: mongoose.Types.ObjectId('5f647bddc7199933c81b3a52'),
-=======
-      sellerID: mongoose.Types.ObjectId('5f64903ad81749e92a1eadbd'),
->>>>>>> 8a530c0f0cbfda059bc56cac5d1abd10f42816a0
     },
   ]);
 }
