@@ -9,7 +9,7 @@ export default function PetCart() {
   const data = useSelector(state => state.animals).animals
   console.log('......', data);
   const animalType = Object.keys(data)
-  const Animals = data[animalType[0]]
+  const Animals = data[animalType[0]];
 
 
 

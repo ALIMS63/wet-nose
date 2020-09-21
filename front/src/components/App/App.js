@@ -15,6 +15,8 @@ import Filter from '../Filter/Filter'
 import NewAnimal from '../NewAnimal/NewAnimal';
 import PetCart from '../PetCart';
 import ModalFilter from '../Filter/ModalFilter';
+import AnimalCard from '../AnimalCard/AnimalCard';
+import OneAnimal from '../OneAnimal/OneAnimal';
 
 
 function App() {
@@ -26,9 +28,9 @@ function App() {
         <Switch>
           <Route path="/" exact>
             <Main />
-            {/* <ModalFilter/> */}
-            <Filter/>
-            <PetCart/>
+            <Filter />
+            {/* <PetCart /> */}
+            <AnimalCard />
           </Route>
           <Route path="/login" exact>
             <Login />
@@ -46,6 +48,11 @@ function App() {
           <Route path="/privateHome" exact>
             <PrivateHome />
           </Route>
+
+          <Route path="/oneAnimal" exact>
+            <OneAnimal />
+          </Route>
+
           <PrivateRoute path="/secret">
             <NewAnimal />
           </PrivateRoute>
