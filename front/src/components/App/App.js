@@ -15,6 +15,7 @@ import Filter from '../Filter/Filter'
 import NewAnimal from '../NewAnimal/NewAnimal';
 import PetCart from '../PetCart';
 import AnimalCard from '../AnimalCard/AnimalCard';
+import OneAnimal from '../OneAnimal/OneAnimal';
 
 
 function App() {
@@ -27,8 +28,8 @@ function App() {
           <Route path="/" exact>
             <Main />
             <Filter />
-            <PetCart />
-            {/* <AnimalCard /> */}
+            {/* <PetCart /> */}
+            <AnimalCard />
           </Route>
           <Route path="/login" exact>
             <Login />
@@ -46,6 +47,11 @@ function App() {
           <Route path="/privateHome" exact>
             <PrivateHome />
           </Route>
+
+          <Route path="/oneAnimal" exact>
+            <OneAnimal />
+          </Route>
+
           <PrivateRoute path="/secret">
             <NewAnimal />
           </PrivateRoute>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { useDispatch, useSelector } from 'react-redux'
 
 
 const useStyles = makeStyles({
@@ -20,8 +21,8 @@ const useStyles = makeStyles({
   },
   onePet: {
     backgroundColor: '#39f250',
-    boxShadow: '0 0 5px 2px',
-    border: '2px solid black',
+    boxShadow: '0 0 5px 2px white',
+    border: '2px solid white',
     borderRadius: '30px 30px 30px 30px',
     margin: '10px',
     display: 'flex',
@@ -32,69 +33,29 @@ const useStyles = makeStyles({
 
 function AnimalCard() {
   const classes = useStyles();
-
+  const data = useSelector(state => state.animals).animals;
+  console.log(Object.keys(data));
+  console.log(data[Object.keys(data)[0]][0].photo);
   return (
     <>
+      <img src={data[Object.keys(data)[0]][0].photo} alt="" />
       <container className={classes.block}>
-        <div className={classes.onePet}>
-          <div>
-            <img className={classes.img} src="https://lh3.googleusercontent.com/proxy/tnHGrMGNj0aMKp-wyVZcpnzWcS-9t4XvjpnyXNtZIvKeTecqgTrs9VNRhlaagquHPdRPUrjecmHJVjVrupz7YnBRX76C84ZlHyDUepk_YOXD_8z_o-DTRiwp0kGredyzZpxuw4vMf5YGdAOf8GKkWio2QItz9XWELmvPGVa44FhOMhH8W59zsnr0ykqH4OW1a51-Wwr0JgdLCKUim53GCldP" alt="animal" />
-          </div>
-        </div>
+        {Object.keys(data) && Object.keys(data).map(key => {
+          return (data.key && data.key.map(obj => {
+            return (
+              <div className={classes.onePet}>
+                <div>
+                  <img className={classes.img} src={obj.photo} alt="animal" />
+                </div>
+              </div>
+            )
+          }))
+        })
 
-        <div className={classes.onePet}>
-          <div>
-            <img className={classes.img} src="https://lh3.googleusercontent.com/proxy/tnHGrMGNj0aMKp-wyVZcpnzWcS-9t4XvjpnyXNtZIvKeTecqgTrs9VNRhlaagquHPdRPUrjecmHJVjVrupz7YnBRX76C84ZlHyDUepk_YOXD_8z_o-DTRiwp0kGredyzZpxuw4vMf5YGdAOf8GKkWio2QItz9XWELmvPGVa44FhOMhH8W59zsnr0ykqH4OW1a51-Wwr0JgdLCKUim53GCldP" alt="animal" />
-          </div>
-        </div>
+        }
 
-        <div className={classes.onePet}>
-          <div>
-            <img className={classes.img} src="https://lh3.googleusercontent.com/proxy/tnHGrMGNj0aMKp-wyVZcpnzWcS-9t4XvjpnyXNtZIvKeTecqgTrs9VNRhlaagquHPdRPUrjecmHJVjVrupz7YnBRX76C84ZlHyDUepk_YOXD_8z_o-DTRiwp0kGredyzZpxuw4vMf5YGdAOf8GKkWio2QItz9XWELmvPGVa44FhOMhH8W59zsnr0ykqH4OW1a51-Wwr0JgdLCKUim53GCldP" alt="animal" />
-          </div>
-        </div>
 
-        <div className={classes.onePet}>
-          <div>
-            <img className={classes.img} src="https://lh3.googleusercontent.com/proxy/tnHGrMGNj0aMKp-wyVZcpnzWcS-9t4XvjpnyXNtZIvKeTecqgTrs9VNRhlaagquHPdRPUrjecmHJVjVrupz7YnBRX76C84ZlHyDUepk_YOXD_8z_o-DTRiwp0kGredyzZpxuw4vMf5YGdAOf8GKkWio2QItz9XWELmvPGVa44FhOMhH8W59zsnr0ykqH4OW1a51-Wwr0JgdLCKUim53GCldP" alt="animal" />
-          </div>
-        </div>
 
-        <div className={classes.onePet}>
-          <div>
-            <img className={classes.img} src="https://lh3.googleusercontent.com/proxy/tnHGrMGNj0aMKp-wyVZcpnzWcS-9t4XvjpnyXNtZIvKeTecqgTrs9VNRhlaagquHPdRPUrjecmHJVjVrupz7YnBRX76C84ZlHyDUepk_YOXD_8z_o-DTRiwp0kGredyzZpxuw4vMf5YGdAOf8GKkWio2QItz9XWELmvPGVa44FhOMhH8W59zsnr0ykqH4OW1a51-Wwr0JgdLCKUim53GCldP" alt="animal" />
-          </div>
-        </div>
-
-        <div className={classes.onePet}>
-          <div>
-            <img className={classes.img} src="https://lh3.googleusercontent.com/proxy/tnHGrMGNj0aMKp-wyVZcpnzWcS-9t4XvjpnyXNtZIvKeTecqgTrs9VNRhlaagquHPdRPUrjecmHJVjVrupz7YnBRX76C84ZlHyDUepk_YOXD_8z_o-DTRiwp0kGredyzZpxuw4vMf5YGdAOf8GKkWio2QItz9XWELmvPGVa44FhOMhH8W59zsnr0ykqH4OW1a51-Wwr0JgdLCKUim53GCldP" alt="animal" />
-          </div>
-        </div>
-
-        <div className={classes.onePet}>
-          <div>
-            <img className={classes.img} src="https://lh3.googleusercontent.com/proxy/tnHGrMGNj0aMKp-wyVZcpnzWcS-9t4XvjpnyXNtZIvKeTecqgTrs9VNRhlaagquHPdRPUrjecmHJVjVrupz7YnBRX76C84ZlHyDUepk_YOXD_8z_o-DTRiwp0kGredyzZpxuw4vMf5YGdAOf8GKkWio2QItz9XWELmvPGVa44FhOMhH8W59zsnr0ykqH4OW1a51-Wwr0JgdLCKUim53GCldP" alt="animal" />
-          </div>
-        </div>
-
-        <div className={classes.onePet}>
-          <div>
-            <img className={classes.img} src="https://lh3.googleusercontent.com/proxy/tnHGrMGNj0aMKp-wyVZcpnzWcS-9t4XvjpnyXNtZIvKeTecqgTrs9VNRhlaagquHPdRPUrjecmHJVjVrupz7YnBRX76C84ZlHyDUepk_YOXD_8z_o-DTRiwp0kGredyzZpxuw4vMf5YGdAOf8GKkWio2QItz9XWELmvPGVa44FhOMhH8W59zsnr0ykqH4OW1a51-Wwr0JgdLCKUim53GCldP" alt="animal" />
-          </div>
-        </div>
-
-        <div className={classes.onePet}>
-          <div>
-            <img className={classes.img} src="https://lh3.googleusercontent.com/proxy/tnHGrMGNj0aMKp-wyVZcpnzWcS-9t4XvjpnyXNtZIvKeTecqgTrs9VNRhlaagquHPdRPUrjecmHJVjVrupz7YnBRX76C84ZlHyDUepk_YOXD_8z_o-DTRiwp0kGredyzZpxuw4vMf5YGdAOf8GKkWio2QItz9XWELmvPGVa44FhOMhH8W59zsnr0ykqH4OW1a51-Wwr0JgdLCKUim53GCldP" alt="animal" />
-          </div>
-        </div>
-
-        <div className={classes.onePet}>
-          <div>
-            <img className={classes.img} src="https://lh3.googleusercontent.com/proxy/tnHGrMGNj0aMKp-wyVZcpnzWcS-9t4XvjpnyXNtZIvKeTecqgTrs9VNRhlaagquHPdRPUrjecmHJVjVrupz7YnBRX76C84ZlHyDUepk_YOXD_8z_o-DTRiwp0kGredyzZpxuw4vMf5YGdAOf8GKkWio2QItz9XWELmvPGVa44FhOMhH8W59zsnr0ykqH4OW1a51-Wwr0JgdLCKUim53GCldP" alt="animal" />
-          </div>
-        </div>
       </container>
     </>
   );

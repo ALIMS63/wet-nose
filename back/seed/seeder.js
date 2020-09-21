@@ -1,4 +1,5 @@
 /* eslint-disable import/extensions */
+import mongoose from 'mongoose';
 import '../misc/db.js';
 import CatModel from '../models/cat.js';
 import DogModel from '../models/dog.js';
@@ -33,7 +34,7 @@ async function createDog() {
       kind: 'Беспородная',
       nickname: 'Лютик',
       photo: 'mongrel_dog.jpeg',
-      description: 'Друг на всегда',
+      description: 'Друг навсегда',
       age: 7,
       pay: false,
       adultSize: 'Среднее',
@@ -121,7 +122,7 @@ async function createOtherAnimal() {
       pedigree: 'отцы и деды призеры Нила',
       vaccinationРistory: 'нет',
       sellerID: mongoose.Types.ObjectId('5f647bddc7199933c81b3a52'),
-    }
+    },
   ]);
 }
 createOtherAnimal();
