@@ -42,9 +42,9 @@ const DogSchema = new mongoose.Schema({
     ref: 'User',
     // required: true,
   },
-  photo: [{ // фото животного
+  photo: { // фото животного
     type: String,
-  }],
+  },
   gender: { // пол животного
     type: String,
     required: true,

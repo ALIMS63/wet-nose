@@ -9,9 +9,9 @@ const CatSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  photo: [{ // фото животного
+  photo: { // фото животного
     type: String,
-  }],
+  },
   description: { // описание животного
     type: String,
   },

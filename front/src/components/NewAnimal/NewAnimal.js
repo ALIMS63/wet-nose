@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux'
+import { addNewAnimal } from '../../redux/actions'
 // material-ui========================================
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -62,6 +63,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 //======================================
 function NewAnimal() {
+  const dispatch = useDispatch();
+  const allAnimals = useSelector((state) => state.animals.animals)
+  console.log(allAnimals)
   const classes = useStyles();  //material-ui button
   const [error, setError] = useState(false);
   const [inputs, setInputs] = useState({
@@ -87,14 +91,14 @@ function NewAnimal() {
     childrenInTheHouse: false,
     exotic: false,
     farmAnimal: false,
-    photo: '',
+    photo: null,
     gender: 'female',
     pedigree: '',
     vaccinationРistory: '',
   });
 
   function changed({ target: { value, name } }) {
-    console.log("start")
+    console.log(value)
     setInputs({
       ...inputs,
       [name]: value,
@@ -106,11 +110,37 @@ function NewAnimal() {
       [name]: !prevInputs[name],
     }));
   }
+  function photoChanged({ target: { files, name } }) {
+    setInputs({
+      ...inputs,
+      [name]: files[0],
+    });;
+  }
   async function addAnimal(event) {
     event.preventDefault();
-    console.log('зашли в функцию')
-    const response = await axios.post('/api/allAnimals', { inputs });
-    console.log(response.data)
+    const formData = new FormData();
+    Object.keys(inputs).forEach((key) => {
+      formData.append(key, inputs[key])
+    })
+    const config = {
+      headers: {
+        'content-type': 'multipart/form-data'
+      }
+    };
+    const response = await axios.post('/api/allAnimals', formData, config);
+    // console.log(response.data)
+    const newAnimal = response.data
+    console.log(newAnimal);
+
+    for (let typeAnimals in allAnimals) {
+      console.log('for', typeof typeAnimals, typeof newAnimal.type)
+      if (typeAnimals === newAnimal.type) {
+        console.log('if')
+        return dispatch(addNewAnimal(newAnimal.type, newAnimal))
+      } console.log('else')
+      return dispatch(addNewAnimal('other', newAnimal))
+    }
+
   }
 
   return (
@@ -118,41 +148,43 @@ function NewAnimal() {
       <form onSubmit={addAnimal} encType="multipart/form-data">
         <div className={classes.root}>
           <Grid container spacing={5} >
-
             {/* Тип, порода, кличка */}
             <Grid container direction="row" justify="space-evenly" alignItems="center" >
               <div style={{ width: 300 }}>
-                <Autocomplete
-                  id="free-solo-demo"
-                  freeSolo
+                <Autocomplete name="bigType" inputValue={inputs.bigType} id="free-solo-demo" freeSolo
                   options={typeAnimal.map((option) => option.type)}
+                  onInputChange={(event, newInputValue) => {
+                    changed({ target: { value: newInputValue, name: 'bigType' } })
+                  }}
                   renderInput={(params) => (
-                    <TextField {...params} label="Тип животного" margin="normal" variant="outlined" onChange={changed} value={inputs.bigType}
-                      name="bigType" required />
+                    <TextField {...params} label="Тип животного" margin="normal" variant="outlined"
+                      required />
                   )}
                 />
               </div>
-              {inputs.bigType === "Собака" ?
+              {inputs.bigType === "dogs" ?
                 <div style={{ width: 300 }}>
-                  <Autocomplete
-                    id="free-solo-demo"
-                    freeSolo
+                  <Autocomplete name="kindDog" inputValue={inputs.kindDog} id="free-solo-demo" freeSolo
                     options={kindDog.map((option) => option.type)}
+                    onInputChange={(event, newInputValue) => {
+                      changed({ target: { value: newInputValue, name: 'kindDog' } })
+                    }}
                     renderInput={(params) => (
-                      <TextField {...params} label="Порода" margin="normal" variant="outlined" value={inputs.kindDog}
-                        onChange={changed} name="kindDog" required />
+                      <TextField {...params} label="Порода" margin="normal" variant="outlined"
+                        required />
                     )}
                   />
                 </div>
-                : inputs.bigType === "Кот" ?
+                : inputs.bigType === "cats" ?
                   <div style={{ width: 300 }}>
-                    <Autocomplete
-                      id="free-solo-demo"
-                      freeSolo
+                    <Autocomplete name="kindCat" inputValue={inputs.kindCat} id="free-solo-demo" freeSolo
                       options={kindCat.map((option) => option.type)}
+                      onInputChange={(event, newInputValue) => {
+                        changed({ target: { value: newInputValue, name: 'kindCat' } })
+                      }}
                       renderInput={(params) => (
-                        <TextField {...params} label="Порода" margin="normal" variant="outlined" value={inputs.kindCat}
-                          onChange={changed} name="kindCat" required />
+                        <TextField {...params} label="Порода" margin="normal" variant="outlined"
+                          required />
                       )}
                     />
                   </div>
@@ -349,11 +381,12 @@ function NewAnimal() {
 
           </Grid>
         </div>
-        <label htmlFor="photo">Загрузите фотографии собаки: {' '}
-          <input type="file" name="photo" id="photo" multiple accept="image/*,image/jpeg" required value={inputs.photo} onChange={changed} />
-          <div>{inputs.photo}</div>
+        <label htmlFor="photo">Загрузите фотографию животного: {' '}
+          <input type="file" name="photo" id="photo" accept="image/*,image/jpeg" required onChange={photoChanged} />
+          {/* <img src={inputs.photo} alt="альтернативный текст" />
+          <div>{inputs.photo}</div> */}
         </label>
-
+        {/* value={inputs.photo} */}
         <div className={classes.root}><Button type="submit" variant="contained" color="primary">Добавить животное</Button></div>
         {error && <div className="error">{error}</div>}
       </form>
@@ -362,8 +395,8 @@ function NewAnimal() {
 }
 
 const typeAnimal = [
-  { type: 'Собака' },
-  { type: 'Кот' },
+  { type: 'dogs' },
+  { type: 'cats' },
   { type: 'Впишите свой вариант' },
 ];
 const kindDog = [
@@ -379,7 +412,7 @@ const kindCat = [
 
 export default NewAnimal;
 
-      {/* <div className={classes.root}>
+{/* <div className={classes.root}>
           <input
             name="photo"
             accept="image/*"
@@ -392,10 +425,10 @@ export default NewAnimal;
             <Button variant="contained" color="primary" component="span">Загрузите фотографии:</Button>
           </label> */}
 
-          {/* <input accept="image/*" className={classes.input} id="icon-button-file" type="file" /> */}
-          {/* <label htmlFor="icon-button-file">
+{/* <input accept="image/*" className={classes.input} id="icon-button-file" type="file" /> */ }
+{/* <label htmlFor="icon-button-file">
             <IconButton color="primary" aria-label="upload picture" component="span">
               <PhotoCamera />
             </IconButton>
           </label> */}
-        {/* </div> */}
+{/* </div> */ }

@@ -1,5 +1,6 @@
 /* eslint-disable import/extensions */
 import '../misc/db.js';
+import mongoose from 'mongoose';
 import CatModel from '../models/cat.js';
 import DogModel from '../models/dog.js';
 import OtherAnimalModel from '../models/otherAnimal.js';
@@ -27,7 +28,6 @@ async function createDog() {
       pedigree: 'длиннющая',
       vaccinationРistory: 'проставлены',
       sellerID: mongoose.Types.ObjectId('5f647bddc7199933c81b3a52'),
-
     },
     {
       kind: 'Беспородная',
@@ -52,7 +52,7 @@ async function createDog() {
     },
   ]);
 }
-createDog();
+// createDog();
 
 async function createCat() {
   await CatModel.insertMany([
@@ -95,7 +95,7 @@ async function createCat() {
     },
   ]);
 }
-createCat();
+// createCat();
 
 async function createOtherAnimal() {
   await OtherAnimalModel.insertMany([
@@ -121,7 +121,7 @@ async function createOtherAnimal() {
       pedigree: 'отцы и деды призеры Нила',
       vaccinationРistory: 'нет',
       sellerID: mongoose.Types.ObjectId('5f647bddc7199933c81b3a52'),
-    }
+    },
   ]);
 }
-createOtherAnimal();
+// createOtherAnimal();

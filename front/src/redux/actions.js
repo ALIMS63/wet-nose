@@ -1,5 +1,5 @@
 
-import { SET_USER, DELETE_USER, AUTHENTICATED_SUCCESSFULLY, SET_ANIMALS, ANIMAL_CATEGORY, PAY_FILTER, SET_FILTERED_ANIMALS } from "./action-types";
+import { SET_USER, DELETE_USER, AUTHENTICATED_SUCCESSFULLY, SET_ANIMALS, ANIMAL_CATEGORY, PAY_FILTER, SET_FILTERED_ANIMALS, ADD_ANIMAL } from "./action-types";
 
 import axios from 'axios'
 
@@ -42,14 +42,24 @@ export function setFilteredAnimals(animals) {
 
 export function setAnimalCategory(category) {
   return {
-    type:ANIMAL_CATEGORY, 
+    type: ANIMAL_CATEGORY,
     payload: category
   }
 }
 
-export function paymentFilter(payment){
-  return{
+export function paymentFilter(payment) {
+  return {
     type: PAY_FILTER,
     payload: payment
+  }
+}
+
+export function addNewAnimal(typeAnimal, newAnimal) {
+  return {
+    type: ADD_ANIMAL,
+    payload: {
+      typeAnimal,
+      newAnimal,
+    }
   }
 }

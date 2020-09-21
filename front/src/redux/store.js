@@ -22,7 +22,7 @@ const store = createStore(
 );
 
 store.subscribe(() => {
-  window.localStorage.setItem('redux', JSON.stringify(store.getState()));
+  window.localStorage.setItem('redux', JSON.stringify(store.getState().user));
 });
 
 
