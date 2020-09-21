@@ -26,24 +26,24 @@ function Filter() {
 
   async function chooseCategory(value) {
     setCategory(value)
-    await dispatch(startAnimals())
+    dispatch(startAnimals())
     dispatch(setAnimalCategory(value))
   }
 
   function choosePay(value) {
-    arr= []
+    arr = []
     dispatch(paymentFilter())
     for (let animal in filterAnimalsFromState) {
       if (String(filterAnimalsFromState[animal].pay) === value) {
         arr.push(filterAnimalsFromState[animal])
       }
     }
-    dispatch(setFilteredAnimals(arr))
+    dispatch(setFilteredAnimals(arr));
     console.log('arr PAY', arr);
   }
 
   function chooseAge(value) {
-    arr= []
+    arr = []
     for (let animal in filterAnimalsFromState) {
       if (filterAnimalsFromState[animal].age >= value[0] && filterAnimalsFromState[animal].age <= value[2]) {
         arr.push(filterAnimalsFromState[animal])
@@ -54,7 +54,7 @@ function Filter() {
   }
 
   function choosePrice(value) {
-    arr= []
+    arr = []
     for (let animal in filterAnimalsFromState) {
       console.log(filterAnimalsFromState[animal].price);
       let price = value.split('-')
@@ -101,7 +101,7 @@ function Filter() {
         <Option value="0-1000">0-1000</Option>
         <Option value="1000-5000">1000-5000</Option>
         <Option value="5000-10000">5000-10000</Option>
-        <Option value="10000-999999"> >10000</Option>
+        <Option value="10000-999999"> &gt;10000</Option>
       </Select>
     </>
   )
