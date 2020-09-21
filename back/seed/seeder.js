@@ -24,6 +24,7 @@ async function createDog() {
       onlyInNonApartments: true,
       specialConditionsOfDetention: false,
       childrenInTheHouse: true,
+      sellerID: mongoose.Types.ObjectId('5f647bddc7199933c81b3a52'),
       gender: 'male',
       pedigree: 'длиннющая',
       vaccinationРistory: 'проставлены',
