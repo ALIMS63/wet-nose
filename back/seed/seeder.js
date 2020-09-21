@@ -28,8 +28,6 @@ async function createDog() {
       gender: 'male',
       pedigree: 'длиннющая',
       vaccinationРistory: 'проставлены',
-      sellerID: mongoose.Types.ObjectId('5f647bddc7199933c81b3a52'),
-
     },
     {
       kind: 'Беспородная',
