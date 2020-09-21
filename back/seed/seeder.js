@@ -1,4 +1,5 @@
 /* eslint-disable import/extensions */
+import mongoose from 'mongoose';
 import '../misc/db.js';
 import mongoose from 'mongoose';
 import CatModel from '../models/cat.js';
@@ -10,7 +11,7 @@ async function createDog() {
     {
       kind: 'Сенбернар',
       nickname: 'Бетховен',
-      photo: '/st_bernard_dog.jpeg',
+      photo: 'st_bernard_dog.jpeg',
       description: 'Отличная слюнявая собака',
       age: 1,
       pay: true,
@@ -24,6 +25,7 @@ async function createDog() {
       onlyInNonApartments: true,
       specialConditionsOfDetention: false,
       childrenInTheHouse: true,
+      sellerID: mongoose.Types.ObjectId('5f647bddc7199933c81b3a52'),
       gender: 'male',
       pedigree: 'длиннющая',
       vaccinationРistory: 'проставлены',
@@ -33,7 +35,7 @@ async function createDog() {
       kind: 'Беспородная',
       nickname: 'Лютик',
       photo: 'mongrel_dog.jpeg',
-      description: 'Друг на всегда',
+      description: 'Друг навсегда',
       age: 7,
       pay: false,
       adultSize: 'Среднее',
@@ -48,7 +50,7 @@ async function createDog() {
       gender: 'male',
       pedigree: 'не имеется',
       vaccinationРistory: 'не имеется',
-      sellerID: mongoose.Types.ObjectId('5f647bddc7199933c81b3a52'),
+      sellerID: mongoose.Types.ObjectId('5f68ae6e0967e40409746021'),
     },
   ]);
 }
@@ -73,7 +75,7 @@ async function createCat() {
       gender: 'male',
       pedigree: 'наследный принц',
       vaccinationРistory: 'все обязательные',
-      sellerID: mongoose.Types.ObjectId('5f647bddc7199933c81b3a52'),
+      sellerID: mongoose.Types.ObjectId('5f68ae6e0967e40409746021'),
     },
     {
       kind: 'Беспородная',
@@ -91,7 +93,7 @@ async function createCat() {
       gender: 'female',
       pedigree: '-',
       vaccinationРistory: 'нет',
-      sellerID: mongoose.Types.ObjectId('5f647bddc7199933c81b3a52'),
+      sellerID: mongoose.Types.ObjectId('5f68ae6e0967e40409746021'),
     },
   ]);
 }

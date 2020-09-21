@@ -21,6 +21,8 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormLabel from '@material-ui/core/FormLabel';
+import { useHistory } from "react-router-dom";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     //button
@@ -60,6 +62,14 @@ const useStyles = makeStyles((theme) => ({
   input: {
     display: 'none',
   },
+  inp: {
+    backgroundColor: 'white',
+    borderRadius: '5px',
+    opacity: '0.8'
+  },
+  sel: {
+    color: 'black'
+  }
 }));
 //======================================
 function NewAnimal() {
@@ -68,6 +78,7 @@ function NewAnimal() {
   console.log(allAnimals)
   const classes = useStyles();  //material-ui button
   const [error, setError] = useState(false);
+  const history = useHistory();
   const [inputs, setInputs] = useState({
     bigType: '',
     kindDog: '',
@@ -118,6 +129,7 @@ function NewAnimal() {
   }
   async function addAnimal(event) {
     event.preventDefault();
+
     const formData = new FormData();
     Object.keys(inputs).forEach((key) => {
       formData.append(key, inputs[key])
@@ -140,7 +152,7 @@ function NewAnimal() {
       } console.log('else')
       return dispatch(addNewAnimal('other', newAnimal))
     }
-
+    // return history.push(`/oneAnimal/${}`);
   }
 
   return (
@@ -188,9 +200,9 @@ function NewAnimal() {
                       )}
                     />
                   </div>
-                  : <TextField id="standard-required" name="kindOther" label="Порода" value={inputs.kindOther} onChange={changed} />
+                  : <TextField className={classes.inp} id="standard-required" name="kindOther" label="Порода" value={inputs.kindOther} onChange={changed} />
               }
-              <TextField id="standard-required" name="nickname" label="Кличка" required value={inputs.nickname} onChange={changed} />
+              <TextField className={classes.inp} id="standard-required" name="nickname" label="Кличка" required value={inputs.nickname} onChange={changed} />
             </Grid>
             {/* Гендер, возраст, Описание */}
             <Grid container direction="row" justify="space-evenly" alignItems="center" className={classes.formControl}>
@@ -201,13 +213,14 @@ function NewAnimal() {
                   <FormControlLabel value="male" control={<Radio />} label="Male" />
                 </RadioGroup>
               </FormControl>
-              <TextField id="outlined-number" label="Возраст" type="number" variant="outlined" name="age" required
+              <TextField className={classes.inp} id="outlined-number" label="Возраст" type="number" variant="outlined" name="age" required
                 value={inputs.age} onChange={changed}
                 InputLabelProps={{
                   shrink: true,
                 }}
               />
               <TextField
+                className={classes.inp}
                 onChange={changed}
                 name="description"
                 id="outlined-multiline-static"
@@ -223,6 +236,7 @@ function NewAnimal() {
             <Grid container direction="row" justify="space-evenly" alignItems="center" className={classes.formControl}>
               <label htmlFor="pay">Даром:
           <Checkbox
+                  className={classes.inp}
                   name="pay"
                   color="primary"
                   inputProps={{ 'aria-label': 'secondary checkbox' }}
@@ -231,8 +245,8 @@ function NewAnimal() {
                 />
               </label>
               {inputs.pay ?
-                <TextField disabled id="filled-disabled" label="цена" defaultValue="-" variant="filled" />
-                : <TextField id="outlined-number" label="Цена" type="number" variant="outlined" name="price" required
+                <TextField className={classes.inp} disabled id="filled-disabled" label="цена" defaultValue="-" variant="filled" />
+                : <TextField className={classes.inp} id="outlined-number" label="Цена" type="number" variant="outlined" name="price" required
                   value={inputs.price} onChange={changed}
                   InputLabelProps={{
                     shrink: true,
@@ -241,14 +255,15 @@ function NewAnimal() {
             </Grid>
             {/* Родословная, история прививок */}
             <Grid container direction="row" justify="space-around" alignItems="center" className={classes.formControl}>
-              <TextField onChange={changed} name="pedigree" id="outlined-helperText" label="Родословная" value={inputs.pedigree} helperText="" variant="outlined" />
-              <TextField onChange={changed} name="vaccinationРistory" id="outlined-helperText" label="История прививок" value={inputs.vaccinationРistory} helperText="" variant="outlined" />
+              <TextField className={classes.inp} onChange={changed} name="pedigree" id="outlined-helperText" label="Родословная" value={inputs.pedigree} helperText="" variant="outlined" />
+              <TextField className={classes.inp} onChange={changed} name="vaccinationРistory" id="outlined-helperText" label="История прививок" value={inputs.vaccinationРistory} helperText="" variant="outlined" />
             </Grid>
             {/* Размер взрослого животного, вес взрослого животного */}
             <Grid container direction="row" justify="space-around" alignItems="center" className={classes.formControl}>
               <FormControl className={classes.formControl}>
-                <InputLabel id="demo-simple-select-label">Размер взрослого животного</InputLabel>
+                <InputLabel className={classes.sel} id="demo-simple-select-label">Размер взрослого животного</InputLabel>
                 <Select
+                  className={classes.inp}
                   name="adultSize"
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
@@ -262,12 +277,13 @@ function NewAnimal() {
                   <MenuItem value="очень большое (лошадь и более)">очень большое (лошадь и более)</MenuItem>
                 </Select>
               </FormControl>
-              <TextField onChange={changed} name="adultweight" id="outlined-helperText" label="Вес взрослого животного" value={inputs.adultweight} helperText="" variant="outlined" />
+              <TextField className={classes.inp} onChange={changed} name="adultweight" id="outlined-helperText" label="Вес взрослого животного" value={inputs.adultweight} helperText="" variant="outlined" />
             </Grid>
             {/* Домашнее, экзотическое, сельскохозяйственное */}
             <Grid container direction="row" justify="space-evenly" alignItems="center" className={classes.ch}>
               <label htmlFor="pet">Домашнее животное:
           <Checkbox
+                  className={classes.inp}
                   name="pet"
                   color="primary"
                   inputProps={{ 'aria-label': 'secondary checkbox' }}
@@ -277,6 +293,7 @@ function NewAnimal() {
               </label>
               <label htmlFor="exotic">Экзотическое животное:
           <Checkbox
+                  className={classes.inp}
                   name="exotic"
                   color="primary"
                   inputProps={{ 'aria-label': 'secondary checkbox' }}
@@ -286,6 +303,7 @@ function NewAnimal() {
               </label>
               <label htmlFor="farmAnimal">Сельскохозяйственное животное:
           <Checkbox
+                  className={classes.inp}
                   name="farmAnimal"
                   color="primary"
                   inputProps={{ 'aria-label': 'secondary checkbox' }}
@@ -298,6 +316,7 @@ function NewAnimal() {
             <Grid container direction="row" justify="space-around" alignItems="center" className={classes.ch}>
               <label htmlFor="serviceAnimal">Cлужебное  животное:
           <Checkbox
+                  className={classes.inp}
                   name="serviceAnimal"
                   color="primary"
                   inputProps={{ 'aria-label': 'secondary checkbox' }}
@@ -307,6 +326,7 @@ function NewAnimal() {
               </label>
               <label htmlFor="warDog">Служебная собака:
           <Checkbox
+                  className={classes.inp}
                   name="warDog"
                   color="primary"
                   inputProps={{ 'aria-label': 'secondary checkbox' }}
@@ -316,6 +336,7 @@ function NewAnimal() {
               </label>
               <label htmlFor="guideВog">Собака-поводырь:
           <Checkbox
+                  className={classes.inp}
                   name="guideВog"
                   color="primary"
                   inputProps={{ 'aria-label': 'secondary checkbox' }}
@@ -328,6 +349,7 @@ function NewAnimal() {
             <Grid container direction="row" justify="space-evenly" alignItems="center" className={classes.ch}>
               <label htmlFor="longHaired">Длинношерстное:
           <Checkbox
+                  className={classes.inp}
                   name="longHaired"
                   color="primary"
                   inputProps={{ 'aria-label': 'secondary checkbox' }}
@@ -337,6 +359,7 @@ function NewAnimal() {
               </label>
               <label htmlFor="possibleForAllergySufferers">Хороший вариант для аллергиков:
           <Checkbox
+                  className={classes.inp}
                   name="possibleForAllergySufferers"
                   color="primary"
                   inputProps={{ 'aria-label': 'secondary checkbox' }}
@@ -349,6 +372,7 @@ function NewAnimal() {
             <Grid container direction="row" justify="space-evenly" alignItems="center" className={classes.ch}>
               <label htmlFor="onlyInNonApartments">Только в не квартиры:
           <Checkbox
+                  className={classes.inp}
                   name="onlyInNonApartments"
                   color="primary"
                   inputProps={{ 'aria-label': 'secondary checkbox' }}
@@ -358,6 +382,7 @@ function NewAnimal() {
               </label>
               <label htmlFor="specialConditionsOfDetention">Специальные условия содержания:
           <Checkbox
+                  className={classes.inp}
                   name="specialConditionsOfDetention"
                   color="primary"
                   inputProps={{ 'aria-label': 'secondary checkbox' }}
@@ -370,6 +395,7 @@ function NewAnimal() {
             <Grid container direction="row" justify="space-around" alignItems="center" className={classes.ch}>
               <label htmlFor="childrenInTheHouse">Дети в доме:
           <Checkbox
+                  className={classes.inp}
                   name="childrenInTheHouse"
                   color="primary"
                   inputProps={{ 'aria-label': 'secondary checkbox' }}
