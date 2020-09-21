@@ -18,7 +18,7 @@ export default function InfoPetCard() {
     
     const animalType = Object.keys(data)
     const animals = data[animalType[0]]
-    console.log(animals[0]);
+    // console.log(animals[0]);
 
     return (
         <section className='form-container'>
