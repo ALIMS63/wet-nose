@@ -14,6 +14,8 @@ import ModalRegister from '../Registration/ModalRegister';
 import Filter from '../Filter/Filter'
 import NewAnimal from '../NewAnimal/NewAnimal';
 import PetCart from '../PetCart';
+import Anketa from '../Anketa';
+import InfoPetCard from '../InfoPetCard/InfoPetCart';
 
 
 
@@ -30,6 +32,8 @@ function App() {
             <Main />
             <Filter/>
             <PetCart/>
+            <Anketa/>
+            <InfoPetCard/>
           </Route>
           <Route path="/login" exact>
             <Login />
