@@ -44,7 +44,7 @@ function AnimalCard() {
         {Object.keys(data) && Object.keys(data).map(key => {
           return (data[key] && data[key].map(obj => {
             return (
-              <div onClick={() => history.push(`/oneAnimal/${obj._id}`)} className={classes.onePet}>
+              <div key={obj._id} onClick={() => history.push(`/oneAnimal/${obj._id}`)} className={classes.onePet}>
                 <div>
                   <img className={classes.img} src={`/${obj.photo}`} alt="animal" />
                 </div>
