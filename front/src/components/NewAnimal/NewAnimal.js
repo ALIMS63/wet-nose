@@ -75,7 +75,6 @@ const useStyles = makeStyles((theme) => ({
 function NewAnimal() {
   const dispatch = useDispatch();
   const allAnimals = useSelector((state) => state.animals.animals)
-  console.log(allAnimals)
   const classes = useStyles();  //material-ui button
   const [error, setError] = useState(false);
   const history = useHistory();
@@ -109,7 +108,6 @@ function NewAnimal() {
   });
 
   function changed({ target: { value, name } }) {
-    console.log(value)
     setInputs({
       ...inputs,
       [name]: value,
@@ -129,7 +127,6 @@ function NewAnimal() {
   }
   async function addAnimal(event) {
     event.preventDefault();
-
     const formData = new FormData();
     Object.keys(inputs).forEach((key) => {
       formData.append(key, inputs[key])
@@ -140,19 +137,15 @@ function NewAnimal() {
       }
     };
     const response = await axios.post('/api/allAnimals', formData, config);
-    // console.log(response.data)
     const newAnimal = response.data
-    console.log(newAnimal);
-
     for (let typeAnimals in allAnimals) {
-      console.log('for', typeof typeAnimals, typeof newAnimal.type)
       if (typeAnimals === newAnimal.type) {
-        console.log(newAnimal.type, 'sjdvbrhjvbzhjvb')
-        return dispatch(addNewAnimal(newAnimal.type, newAnimal))
-      } console.log('else')
-      return dispatch(addNewAnimal('other', newAnimal))
+        dispatch(addNewAnimal(newAnimal.type, newAnimal))
+        return history.push(`/oneAnimal/${newAnimal._id}`);
+      }
     }
-    // return history.push(`/oneAnimal/${}`);
+    dispatch(addNewAnimal('other', newAnimal))
+    return history.push(`/oneAnimal/${newAnimal._id}`);
   }
 
   return (
@@ -404,16 +397,19 @@ function NewAnimal() {
                 />
               </label>
             </Grid>
-
           </Grid>
         </div>
+        {/* кнопка добавления животного */}
         <label htmlFor="photo">Загрузите фотографию животного: {' '}
           <input type="file" name="photo" id="photo" accept="image/*,image/jpeg" required onChange={photoChanged} />
           {/* <img src={inputs.photo} alt="альтернативный текст" />
           <div>{inputs.photo}</div> */}
         </label>
-        {/* value={inputs.photo} */}
-        <div className={classes.root}><Button type="submit" variant="contained" color="primary">Добавить животное</Button></div>
+        {/* отправить форму */}
+        <div className={classes.root}>
+          <Button type="submit" variant="contained" color="primary">Добавить животное</Button>
+        </div>
+        {/* место для сообщения об ошибке */}
         {error && <div className="error">{error}</div>}
       </form>
     </>
