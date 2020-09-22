@@ -97,7 +97,6 @@ function Filter() {
       
 
       <Form onFinish={filter}>
-      <form onSubmit={filter}>
         <Form.Item name='category'>
           <Select defaultValue="Category" style={{ width: 120 }} onChange={chooseCategory}>
             <Option value="cats">Cats</Option>
@@ -108,7 +107,7 @@ function Filter() {
         {' '}
         <Form.Item name='pay'>
           <Select
-            // disabled={category ? false : true}
+            disabled={category ? false : true}
             defaultValue="Pay"
             style={{ width: 120 }}
             onChange={choosePay}>
@@ -119,7 +118,7 @@ function Filter() {
         {' '}
         <Form.Item name='age'>
           <Select
-            // disabled={category ? false : true}
+            disabled={category ? false : true}
             defaultValue="Age"
             style={{ width: 120 }}
             onChange={chooseAge}>
@@ -131,7 +130,7 @@ function Filter() {
         {' '}
         <Form.Item name='price'>
           <Select
-            // disabled={category ? false : true}
+            disabled={category ? false : true}
             defaultValue="Price"
             style={{ width: 120 }}
             onChange={choosePrice}>
@@ -144,7 +143,7 @@ function Filter() {
         {' '}
         <Form.Item name='gender'>
           <Select
-            // disabled={category ? false : true}
+            disabled={category ? false : true}
             defaultValue="Gender"
             style={{ width: 120 }}
             onChange={chooseGender}>
@@ -155,7 +154,7 @@ function Filter() {
         {' '}
         <Form.Item name='longHaired'>
           <Select
-            // disabled={category ? false : true}
+            disabled={category ? false : true}
             defaultValue="LongHaired"
             style={{ width: 120 }}
             onChange={chooseHaired}>
@@ -168,7 +167,6 @@ function Filter() {
             Submit
         </Button>
         </Form.Item>
-        </form>
       </Form>
     </>
   )

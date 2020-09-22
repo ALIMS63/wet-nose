@@ -408,7 +408,7 @@ function NewAnimal() {
           </Grid>
         </div>
         <label htmlFor="photo">Загрузите фотографию животного: {' '}
-          <input type="file" name="photo" id="photo" accept="image/*,image/jpeg" required onChange={photoChanged} />
+          <input type="file" name="photo" id="photo" accept="image/*,image/jpeg" onChange={photoChanged} />
           {/* <img src={inputs.photo} alt="альтернативный текст" />
           <div>{inputs.photo}</div> */}
         </label>

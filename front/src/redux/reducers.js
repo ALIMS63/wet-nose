@@ -53,7 +53,13 @@ export function animalReducer(state = initialState, action) {
       console.log('ADD_ANIMAL');
           return {
             ...state,
-            animals: { ...state.animals[action.payload.typeAnimal], new: action.payload.newAnimal }
+            animals: {
+              ...state.animals,
+              [action.payload.typeAnimal]: [
+                ...state.animals[action.payload.typeAnimal],
+                action.payload.newAnimal
+              ]
+            }
           }
     default:
       return state;
