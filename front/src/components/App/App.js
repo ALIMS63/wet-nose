@@ -18,7 +18,9 @@ import NewAnimal from '../NewAnimal/NewAnimal';
 import PetCart from '../PetCart';
 import ModalFilter from '../Filter/ModalFilter';
 import Anketa from '../Anketa';
-
+import HomeRoute from '../HomeRoute/HomeRoute';
+import UpdateAnimal from '../UpdateAnimal/UpdateAnimal';
+import DeleteAnimal from '../DeleteAnimal/DeleteAnimal';
 
 
 import AnimalCard from '../AnimalCard/AnimalCard';
@@ -36,7 +38,9 @@ function App() {
             {/* <Main /> */}
             <ModalFilter/>
             {/* <Filter/> */}
-            <Anketa/>
+            <Main />
+            <Filter />
+            <Anketa />
             <AnimalCard />
           </Route>
           <Route path="/login" exact>
@@ -52,17 +56,24 @@ function App() {
             <Logout />
           </Route>
 
-          <Route path="/privateHome" exact>
+          <HomeRoute path="/privateHome" exact>
             <PrivateHome />
-          </Route>
+          </HomeRoute>
 
           <Route path="/oneAnimal/:id" exact>
             <OneAnimal />
           </Route>
 
-          <Route path="/secret">
-            <NewAnimal />
+          <Route path="/update/:id" exact>
+            <UpdateAnimal />
           </Route>
+          <Route path="/delete/:id" exact>
+            <DeleteAnimal />
+          </Route>
+
+          <PrivateRoute path="/secret">
+            <NewAnimal />
+          </PrivateRoute>
 
           {/* <PrivateRouter path="/user/:id" exact> */}
 
