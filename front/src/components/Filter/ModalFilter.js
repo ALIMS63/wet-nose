@@ -73,9 +73,9 @@ function ModalFilter() {
     dispatch(startAnimals())
   }, [])
 
-  async function chooseCategory(value) {
+  function chooseCategory(value) {
     setCategory(value)
-    await dispatch(setAnimalCategory(value))
+    dispatch(setAnimalCategory(value))
   }
 
   function choosePay(value) {

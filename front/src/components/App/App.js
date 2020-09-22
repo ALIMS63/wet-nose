@@ -35,7 +35,6 @@ function App() {
 
         <Switch>
           <Route path="/" exact>
-            {/* <Main /> */}
             <ModalFilter/>
             {/* <Filter/> */}
           
