@@ -151,7 +151,7 @@ function NewAnimal() {
             {/* Тип, порода, кличка */}
             <Grid container direction="row" justify="space-evenly" alignItems="center" >
               <div style={{ width: 300 }}>
-                <Autocomplete name="bigType" inputValue={inputs.bigType} id="free-solo-demo" freeSolo
+                <Autocomplete  inputProps={{ 'aria-label': 'Without label' }} name="bigType" inputValue={inputs.bigType} id="free-solo-demo" freeSolo
                   options={typeAnimal.map((option) => option.type)}
                   onInputChange={(event, newInputValue) => {
                     changed({ target: { value: newInputValue, name: 'bigType' } })
@@ -417,13 +417,47 @@ const typeAnimal = [
   { type: 'Впишите свой вариант' },
 ];
 const kindDog = [
+  { type: 'Впишите свой вариант' },
+  { type: 'Немецкий шпиц' },
+  { type: 'Йоркширский терьер' },
+  { type: 'Чихуахуа' },
+  { type: 'Немецкая овчарка' },
+  { type: 'Лабрадор-ретривер' },
+  { type: 'Хаски' },
+  { type: 'Джек-рассел-терьерог' },
+  { type: 'Среднеазиатская овчарка' },
+  { type: 'Кавказская овчарка' },
+  { type: 'Вельш-корги пемброк' },
+  { type: 'Золотистый ретривер' },
+  { type: 'Французский бульдог' },
+  { type: 'Кокер-спаниель' },
+  { type: 'Английский бульдог' },
+  { type: 'Бигль' },
+  { type: 'Пудель' },
+  { type: 'Ротвейлер' },
   { type: 'Дог' },
   { type: 'Беспородная' },
-  { type: 'Впишите свой вариант' },
 ];
 const kindCat = [
   { type: 'Персидский кот' },
-  { type: 'Беспородная' },
+  { type: 'Британская короткошерстная.' },
+  { type: 'Скоттиш-фолд' },
+  { type: 'Сибирская' },
+  { type: 'Мейн-кун' },
+  { type: 'Сфинкс' },
+  { type: 'Рекс' },
+  { type: 'Персидская' },
+  { type: 'Невская маскарадная' },
+  { type: 'Русская голубая' },
+  { type: 'Ориентальная' },
+  { type: 'Сиамская' },
+  { type: 'Шотландская вислоухая' },
+  { type: 'Экзотическая кошка' },
+  { type: 'Курильский бобтейл' },
+  { type: 'Абиссинская' },
+  { type: 'Австралийский мист' },
+  { type: 'Азиатская (табби)' },
+  { type: 'Акринская' },
   { type: 'Впишите свой вариант' },
 ];
 
