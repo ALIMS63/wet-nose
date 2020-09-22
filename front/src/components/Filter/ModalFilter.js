@@ -130,7 +130,7 @@ function ModalFilter() {
   return (
     <>
       <Button type="primary" onClick={showModal}>
-        Filters
+        Фильтры
         </Button>
       <Modal
         title="Find Your Animal"
