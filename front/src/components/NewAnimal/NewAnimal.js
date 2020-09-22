@@ -147,7 +147,7 @@ function NewAnimal() {
     for (let typeAnimals in allAnimals) {
       console.log('for', typeof typeAnimals, typeof newAnimal.type)
       if (typeAnimals === newAnimal.type) {
-        console.log('if')
+        console.log(newAnimal.type, 'sjdvbrhjvbzhjvb')
         return dispatch(addNewAnimal(newAnimal.type, newAnimal))
       } console.log('else')
       return dispatch(addNewAnimal('other', newAnimal))
