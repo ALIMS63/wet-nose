@@ -10,7 +10,7 @@ async function createDog() {
     {
       kind: 'Сенбернар',
       nickname: 'Бетховен',
-      photo: 'st_bernard_dog.jpeg',
+      photo: 'dog2.jpeg',
       description: 'Отличная слюнявая собака',
       age: 1,
       pay: true,
@@ -24,7 +24,7 @@ async function createDog() {
       onlyInNonApartments: true,
       specialConditionsOfDetention: false,
       childrenInTheHouse: true,
-      sellerID: mongoose.Types.ObjectId('5f647bddc7199933c81b3a52'),
+      sellerID: mongoose.Types.ObjectId('5f68e2d5a36fbd03fc75f80c'),
       gender: 'male',
       pedigree: 'длиннющая',
       vaccinationРistory: 'проставлены',
@@ -32,7 +32,7 @@ async function createDog() {
     {
       kind: 'Беспородная',
       nickname: 'Лютик',
-      photo: 'mongrel_dog.jpeg',
+      photo: 'dog1.jpeg',
       description: 'Друг навсегда',
       age: 7,
       pay: false,
@@ -48,18 +48,17 @@ async function createDog() {
       gender: 'male',
       pedigree: 'не имеется',
       vaccinationРistory: 'не имеется',
-      sellerID: mongoose.Types.ObjectId('5f68ae6e0967e40409746021'),
+      sellerID: mongoose.Types.ObjectId('5f68e2d5a36fbd03fc75f80c'),
     },
   ]);
 }
-createDog();
 
 async function createCat() {
   await CatModel.insertMany([
     {
       kind: 'Персидский кот',
       nickname: 'Вася',
-      photo: 'persian_cat.jpeg',
+      photo: 'cat2.jpeg',
       description: 'Мерзавчик',
       age: 3.5,
       pay: true,
@@ -73,12 +72,12 @@ async function createCat() {
       gender: 'male',
       pedigree: 'наследный принц',
       vaccinationРistory: 'все обязательные',
-      sellerID: mongoose.Types.ObjectId('5f68ae6e0967e40409746021'),
+      sellerID: mongoose.Types.ObjectId('5f68e2d5a36fbd03fc75f80c'),
     },
     {
       kind: 'Беспородная',
       nickname: 'Ирма',
-      photo: 'mongrel_cat.jpeg',
+      photo: 'cat1.jpeg',
       description: 'Диванодер',
       age: 1,
       pay: false,
@@ -91,11 +90,10 @@ async function createCat() {
       gender: 'female',
       pedigree: '-',
       vaccinationРistory: 'нет',
-      sellerID: mongoose.Types.ObjectId('5f68ae6e0967e40409746021'),
+      sellerID: mongoose.Types.ObjectId('5f68e2d5a36fbd03fc75f80c'),
     },
   ]);
 }
-createCat();
 
 async function createOtherAnimal() {
   await OtherAnimalModel.insertMany([
@@ -120,8 +118,11 @@ async function createOtherAnimal() {
       gender: 'female',
       pedigree: 'отцы и деды призеры Нила',
       vaccinationРistory: 'нет',
-      sellerID: mongoose.Types.ObjectId('5f647bddc7199933c81b3a52'),
+      sellerID: mongoose.Types.ObjectId('5f68e2d5a36fbd03fc75f80c'),
     },
   ]);
 }
+
+createDog();
+createCat();
 createOtherAnimal();
