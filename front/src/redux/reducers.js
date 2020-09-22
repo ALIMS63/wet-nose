@@ -115,8 +115,6 @@ export function animalReducer(state = initialState, action) {
           ]
         }
       }
-
-
     default:
       return state;
   }

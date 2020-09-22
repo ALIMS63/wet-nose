@@ -15,7 +15,6 @@ const useStyles = makeStyles((theme) => ({
 
 function OneAnimal() {
   const data = useSelector(state => state.animals).animals;
-  console.log(Object.keys(data));
 
   let obj;
   const { id } = useParams();
@@ -25,7 +24,6 @@ function OneAnimal() {
       if (two._id === id) obj = two;
     }
   }
-  console.log(obj);
 
   return (
     <section className='form-container'>

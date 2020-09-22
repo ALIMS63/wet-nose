@@ -52,7 +52,6 @@ async function createDog() {
     },
   ]);
 }
-createDog();
 
 async function createCat() {
   await CatModel.insertMany([
@@ -95,7 +94,6 @@ async function createCat() {
     },
   ]);
 }
-createCat();
 
 async function createOtherAnimal() {
   await OtherAnimalModel.insertMany([
@@ -124,4 +122,7 @@ async function createOtherAnimal() {
     },
   ]);
 }
+
+createDog();
+createCat();
 createOtherAnimal();
