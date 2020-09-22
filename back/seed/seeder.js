@@ -10,7 +10,7 @@ async function createDog() {
     {
       kind: 'Сенбернар',
       nickname: 'Бетховен',
-      photo: 'st_bernard_dog.jpeg',
+      photo: 'dog2.jpeg',
       description: 'Отличная слюнявая собака',
       age: 1,
       pay: true,
@@ -32,7 +32,7 @@ async function createDog() {
     {
       kind: 'Беспородная',
       nickname: 'Лютик',
-      photo: 'mongrel_dog.jpeg',
+      photo: 'dog1.jpeg',
       description: 'Друг навсегда',
       age: 7,
       pay: false,
@@ -58,7 +58,7 @@ async function createCat() {
     {
       kind: 'Персидский кот',
       nickname: 'Вася',
-      photo: 'persian_cat.jpeg',
+      photo: 'cat2.jpeg',
       description: 'Мерзавчик',
       age: 3.5,
       pay: true,
@@ -77,7 +77,7 @@ async function createCat() {
     {
       kind: 'Беспородная',
       nickname: 'Ирма',
-      photo: 'mongrel_cat.jpeg',
+      photo: 'cat1.jpeg',
       description: 'Диванодер',
       age: 1,
       pay: false,

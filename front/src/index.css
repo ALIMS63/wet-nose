@@ -8,8 +8,9 @@
 body {
   /* background-color: #a3b949 */
   /* background: url('./components/App/images/leather-green.jpg'); */
-  background-image: linear-gradient(rgba(250, 226, 92, 0.9), rgba(47, 224, 23, 0.6)), url('./components/App/images/leather-green.jpg');
-  background-size: cover;
+  background-image: linear-gradient(to right, rgba(255, 234, 116, 0.801), rgba(250, 155, 77, 0.7)), url('./components/App/images/кожа.jpg');
+  background-size: auto;
+  /* background-size: cover; */
   min-height: 100%;
   min-width: 100%;
 }
@@ -77,6 +78,7 @@ code {
   object-fit: cover;
 }
 
+
 .container-form {
   display: flex;
   width: 100vh;
@@ -122,6 +124,7 @@ li {
 
 .img-container {
   min-width: 250px;
+  
   height: 150px;
   object-fit: cover;
   margin: 20px;
@@ -133,6 +136,7 @@ li {
 .text-wrap {
   margin: 20px;
   text-align: start;
+ 
 }
 
 .end-button {
@@ -140,4 +144,41 @@ li {
   width: 700px;
   display: flex;
   justify-content: space-around;
+}
+/***img-anceta****/
+
+
+.img-anceta{
+  width: 150px;
+}
+
+
+.radio:checked + img {
+  border: 1px solid red;
+}
+
+
+.img-div{
+  background-color: inherit;
+  min-width: 500px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  border-radius: 2px;
+  margin: 20px;
+  padding: 20px;
+}
+.container-form{
+  display: flex;
+  flex-direction: column;
+  min-width: 50vh;
+
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  background: rgba(157, 157, 158, 0.75);
+  border-radius: 2px;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  margin: 30px;
+ 
 }
