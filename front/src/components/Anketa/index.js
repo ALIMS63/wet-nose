@@ -6,6 +6,22 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import {
+  startAnimals,
+  setAnimalCategory,
+  paymentFilter,
+  ageFilter,
+  priceFilter,
+  genderFilter,
+  hairFilter,
+  weightFilter,
+  warFilter,
+  guideFilter,
+  sufferFilter,
+  conditionFilter,
+  apartmentFilter,
+  childrenFilter
+} from '../../redux/actions'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,19 +33,91 @@ const useStyles = makeStyles((theme) => ({
 
 
 
+
 export default function Anketa(){
   const data = useSelector(state => state.animals).animals;
   const [active, setActive] = useState(true)
+  const filters = useSelector((state) => state.animals.filters)
+  const animalsFromState = useSelector((state) => state.animals.animals)
+
+  const [visible, setVisible] = useState(false)
+
+  let category = animalsFromState[filters.category]
+
+  const dispatch = useDispatch()
 
 
   function handleActive(e) {
-    // setActive(!active)
-    // e.target.parentElement.getElementsByTagName('img')[0].classList.toggle('active')
-    console.log(e.target.value);
+    const key = e.target.value
+    switch (key) {
+      case 'dogs':
+        dispatch(setAnimalCategory(key))
+        break;
+      case 'cats':
+        dispatch(setAnimalCategory(key))
+        break;
+      case 'otheranimals':
+        dispatch(setAnimalCategory('other'))
+        break;
+      case 'female':
+        dispatch(genderFilter(key))
+        break;
+      case 'male':
+        dispatch(genderFilter(key))
+        break;
+      case '0-10':
+        dispatch(weightFilter(key))
+        break;
+      case '10-25':
+        dispatch(weightFilter(key))
+        break;
+      case '25-50':
+        dispatch(weightFilter(key))
+        break;
+      case '0-1':
+        dispatch(ageFilter(key))
+        break;
+      case '3-7':
+        dispatch(ageFilter(key))
+        break;
+      case 'дом':
+        dispatch(apartmentFilter(false))
+        break;
+      case 'специальные условия':
+        dispatch(apartmentFilter(false))
+        break;
+      case 'квартира':
+        dispatch(apartmentFilter(true))
+        break;
+      case 'есть':
+        dispatch(sufferFilter(true))
+        break;
+      case 'нет':
+        dispatch(sufferFilter(false))
+        break;
+    
+      default:
+        break;
+    }
+
+    
+  }
+
+  function handleSubmit() {
+    
+    setVisible(!visible)
+  }
+  function handleAnketa() {
+    
+    setVisible(!visible)
   }
 
     return (
-        <div className='container-form'>
+      <>
+        <Button type="primary" style={{display: visible ? 'none' :'inline' }} onClick={handleAnketa}>
+        XXX
+        </Button>
+        <div className='container-form' style={{display: visible ? 'block' : 'none'}}>
             <div className='text-box'>
               <div>Каое животное ты ищешь?</div>
             <div className='img-div'>
@@ -49,7 +137,7 @@ export default function Anketa(){
               </div>
               <div>
                   <label for='3'>
-                  <input className="radio" style={{visibility: 'hidden'}} id='3' name='1' value='other' onClick={handleActive} type='radio'/>
+                  <input className="radio" style={{visibility: 'hidden'}} id='3' name='1' value='otheranimals' onClick={handleActive} type='radio'/>
                   <img className='img-anceta'   src='http://img1.joyreactor.cc/pics/post/anon-%D0%9A%D0%B0%D1%80%D1%82%D0%B8%D0%BD%D0%BA%D0%B0-2191131.jpeg' />
                   <div>другое</div>
                   </label>
@@ -114,21 +202,21 @@ export default function Anketa(){
             <div className='img-div'>
               <div>
                   <label for='9'>
-                  <input className='radio' style={{visibility: 'hidden'}} id='9' value='true' onClick={handleActive} name='5' type='radio'/>
+                  <input className='radio' style={{visibility: 'hidden'}} id='9' value='квартира' onClick={handleActive} name='5' type='radio'/>
                   <img className='img-anceta'   src='http://img1.joyreactor.cc/pics/post/anon-%D0%9A%D0%B0%D1%80%D1%82%D0%B8%D0%BD%D0%BA%D0%B0-2191131.jpeg' />
                   <div>квартира</div>
                   </label>
                 </div>
                 <div>
                   <label for='10'>
-                  <input className='radio' style={{visibility: 'hidden'}} id='10' name='5' value='false' onClick={handleActive} type='radio'/>
+                  <input className='radio' style={{visibility: 'hidden'}} id='10' name='5' value='дом' onClick={handleActive} type='radio'/>
                   <img className='img-anceta'    src='http://img1.joyreactor.cc/pics/post/anon-%D0%9A%D0%B0%D1%80%D1%82%D0%B8%D0%BD%D0%BA%D0%B0-2191131.jpeg' />
                   <div>дом</div>
                   </label>
               </div>
                 <div>
                   <label for='11'>
-                  <input className='radio' style={{visibility: 'hidden'}} id='11' name='5' value='false' onClick={handleActive} type='radio'/>
+                  <input className='radio' style={{visibility: 'hidden'}} id='11' name='5' value='специальные условия' onClick={handleActive} type='radio'/>
                   <img className='img-anceta'    src='http://img1.joyreactor.cc/pics/post/anon-%D0%9A%D0%B0%D1%80%D1%82%D0%B8%D0%BD%D0%BA%D0%B0-2191131.jpeg' />
                   <div>специальные условия</div>
                   </label>
@@ -138,21 +226,21 @@ export default function Anketa(){
             <div className='img-div'>
               <div>
                   <label for='12'>
-                  <input className='radio' style={{visibility: 'hidden'}} id='12' value='Маленькое' onClick={handleActive} name='5' type='radio'/>
+                  <input className='radio' style={{visibility: 'hidden'}} id='12' value='0-10' onClick={handleActive} name='5' type='radio'/>
                   <img className='img-anceta'  src='http://img1.joyreactor.cc/pics/post/anon-%D0%9A%D0%B0%D1%80%D1%82%D0%B8%D0%BD%D0%BA%D0%B0-2191131.jpeg' />
                   <div>маленькое</div>
                   </label>
                 </div>
                 <div>
                   <label for='13'>
-                  <input className='radio' style={{visibility: 'hidden'}} id='13' name='5' value='Среднее' onClick={handleActive} type='radio'/>
+                  <input className='radio' style={{visibility: 'hidden'}} id='13' name='5' value='10-25' onClick={handleActive} type='radio'/>
                   <img className='img-anceta'   src='http://img1.joyreactor.cc/pics/post/anon-%D0%9A%D0%B0%D1%80%D1%82%D0%B8%D0%BD%D0%BA%D0%B0-2191131.jpeg' />
                   <div>среднее</div>
                   </label>
               </div>
                 <div>
                   <label for='14'>
-                  <input className='radio' style={{visibility: 'hidden'}} id='14' name='5' value='Большое' onClick={handleActive} type='radio'/>
+                  <input className='radio' style={{visibility: 'hidden'}} id='14' name='5' value='25-50' onClick={handleActive} type='radio'/>
                   <img className='img-anceta'   src='http://img1.joyreactor.cc/pics/post/anon-%D0%9A%D0%B0%D1%80%D1%82%D0%B8%D0%BD%D0%BA%D0%B0-2191131.jpeg' />
                   <div>большое</div>
                   </label>
@@ -162,14 +250,14 @@ export default function Anketa(){
             <div className='img-div'>
               <div>
                   <label for='15'>
-                  <input className='radio' style={{visibility: 'hidden'}} id='15' value='true' onClick={handleActive} name='5' type='radio'/>
+                  <input className='radio' style={{visibility: 'hidden'}} id='15' value='есть' onClick={handleActive} name='5' type='radio'/>
                   <img className='img-anceta'  src='http://img1.joyreactor.cc/pics/post/anon-%D0%9A%D0%B0%D1%80%D1%82%D0%B8%D0%BD%D0%BA%D0%B0-2191131.jpeg' />
                   <div>есть</div>
                   </label>
                 </div>
                 <div>
                   <label for='16'>
-                  <input className='radio' style={{visibility: 'hidden'}} id='16' name='5' value='false' onClick={handleActive} type='radio'/>
+                  <input className='radio' style={{visibility: 'hidden'}} id='16' name='5' value='нет' onClick={handleActive} type='radio'/>
                   <img className='img-anceta'   src='http://img1.joyreactor.cc/pics/post/anon-%D0%9A%D0%B0%D1%80%D1%82%D0%B8%D0%BD%D0%BA%D0%B0-2191131.jpeg' />
                   <div>нет</div>
                   </label>
@@ -177,11 +265,12 @@ export default function Anketa(){
             </div>
             
             <div className='form-button'>
-               <Button variant="outlined" color="inherit">Подобрать</Button> 
+               <Button variant="outlined" onClick={handleSubmit} color="inherit">Подобрать</Button> 
             </div>
             
             </div>
 
         </div>
+        </>
     )
 }

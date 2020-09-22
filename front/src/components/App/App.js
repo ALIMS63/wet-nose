@@ -38,8 +38,7 @@ function App() {
             {/* <Main /> */}
             <ModalFilter/>
             {/* <Filter/> */}
-            <Main />
-            <Filter />
+          
             <Anketa />
             <AnimalCard />
           </Route>
