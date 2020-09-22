@@ -65,9 +65,9 @@ function App() {
           <Route path="/update/:id" exact>
             <UpdateAnimal />
           </Route>
-          <Route path="/delete/:id" exact>
+          {/* <Route path="/delete/:id" exact>
             <DeleteAnimal />
-          </Route>
+          </Route> */}
 
           <PrivateRoute path="/secret">
             <NewAnimal />

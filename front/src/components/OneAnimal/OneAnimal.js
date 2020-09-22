@@ -4,6 +4,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { useParams } from 'react-router-dom';
 import { Link } from "react-router-dom";
+import { startAnimals } from '../../redux/actions';
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,7 +23,9 @@ const useStyles = makeStyles((theme) => ({
 
 function OneAnimal() {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const data = useSelector(state => state.animals).animals;
+  const history = useHistory();
 
   let obj;
   const { id } = useParams();
@@ -30,6 +34,14 @@ function OneAnimal() {
     for (let two of data[one]) {
       if (two._id === id) obj = two;
     }
+  }
+
+  function handleDelete() {
+    (async () => {
+      const response = await fetch(`/api/delete/${id}`);
+    })()
+    dispatch(startAnimals());
+    history.push('/');
   }
 
   return (
@@ -61,7 +73,7 @@ function OneAnimal() {
       </div>
       <div className='end-button'>
         <Link to={`/update/${obj._id}`}><Button color="primary">Редактировать</Button></Link>
-        <Link to={`/delete/${obj._id}`}><Button color="primary">Удалить</Button></Link>
+        <Button onClick={handleDelete} color="primary">Удалить</Button>
       </div>
 
     </section>
