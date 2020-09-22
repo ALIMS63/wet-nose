@@ -1,17 +1,30 @@
+/* eslint-disable max-len */
 /* eslint-disable consistent-return */
 /* eslint-disable no-console */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable import/extensions */
 import express from 'express';
 import bcrypt from 'bcrypt';
+import multer from 'multer';
+import path from 'path';
 import User from '../models/user.js';
 // import Task from '../models/task.js';
-import Dog from '../models/dog.js'
-import Cat from '../models/cat.js'
-import Other from '../models/otherAnimal.js'
+import Dog from '../models/dog.js';
+import Cat from '../models/cat.js';
+import Other from '../models/otherAnimal.js';
+
+const storage = multer.diskStorage({
+  destination: './public/',
+  filename(req, file, cb) {
+    cb(null, `IMAGE-${Date.now()}${path.extname(file.originalname)}`);
+  },
+});
+const upload = multer({
+  storage,
+  limits: { fileSize: 1000000 },
+}).single('photo');
 
 const router = express.Router();
-
 function serializeUser(user) {
   return {
     id: user._id,
@@ -89,11 +102,15 @@ router.post('/api/login', async (req, res) => {
 });
 
 router.post('/api/registration', async (req, res) => {
-  const { username, email, password } = req.body;
+  const {
+    username, email, password, phone, whoAreYou,
+  } = req.body;
+  console.log(111);
   let user;
   const validUsername = await User.findOne({ username, email });
   if (validUsername) {
     res.status(401);
+    console.log('answer from back');
     res.json({ message: 'The user with such email already exists' });
   } else {
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -102,6 +119,8 @@ router.post('/api/registration', async (req, res) => {
         username,
         email,
         password: hashedPassword,
+        phone,
+        whoAreYou,
       });
     } catch (err) {
       res.status(401);
@@ -109,7 +128,13 @@ router.post('/api/registration', async (req, res) => {
     }
     req.session.user = serializeUser(user);
     res.status(200);
-    return res.json({ id: user._id, name: user.name, email: user.email });
+    return res.json({
+      id: user._id,
+      name: user.name,
+      email: user.email,
+      phone: user.phone,
+      whoAreYou: user.whoAreYou,
+    });
   }
 });
 
@@ -128,10 +153,36 @@ router.get('/api/logout', (req, res, next) => {
 });
 
 router.get('/api/allAnimals', async (req, res) => {
-  const cats = await Cat.find()
-  const dogs = await Dog.find()
-  const other = await Other.find()
+  const cats = await Cat.find();
+  const dogs = await Dog.find();
+  const other = await Other.find();
+  res.json({ cats, dogs, other });
+});
 
-  res.json({ cats, dogs, other })
-})
+router.post('/api/allAnimals', upload, async (req, res) => {
+  // console.log('Request file ---', req.file);
+  // console.log('1111111111111111111', req.body);
+  const photo = req.file.path.slice(7);
+  // console.log(photo);
+  const {
+    bigType, kindDog, kindCat, kindOther, nickname, age, description, pay, price, adultSize, adultweight, possibleForAllergySufferers, longHaired, guideВog, serviceAnimal, warDog, pet, onlyInNonApartments, specialConditionsOfDetention, childrenInTheHouse, exotic, farmAnimal, gender, pedigree, vaccinationРistory,
+  } = req.body;
+  if (bigType === 'Собака') {
+    const newDog = await new Dog({
+      kind: kindDog, nickname, gender, age, description, pay, price, pedigree, vaccinationРistory, adultSize, adultweight, pet, exotic, farmAnimal, serviceAnimal, warDog, guideВog, longHaired, possibleForAllergySufferers, onlyInNonApartments, specialConditionsOfDetention, childrenInTheHouse, photo, sellerID: req.session.user.id,
+    }).save();
+    return res.json(newDog);
+  }
+  if (bigType === 'Кот') {
+    const newCat = await new Cat({
+      kind: kindCat, nickname, gender, age, description, pay, price, pedigree, vaccinationРistory, adultSize, adultweight, pet, exotic, farmAnimal, serviceAnimal, warDog, guideВog, longHaired, possibleForAllergySufferers, onlyInNonApartments, specialConditionsOfDetention, childrenInTheHouse, photo, sellerID: req.session.user.id,
+    }).save();
+    return res.json(newCat);
+  }
+  const newOtherAnimal = await new Other({
+    type: bigType, kind: kindOther, nickname, gender, age, description, pay, price, pedigree, vaccinationРistory, adultSize, adultweight, pet, exotic, farmAnimal, serviceAnimal, warDog, guideВog, longHaired, possibleForAllergySufferers, onlyInNonApartments, specialConditionsOfDetention, childrenInTheHouse, photo, sellerID: req.session.user.id,
+  }).save();
+  return res.json(newOtherAnimal);
+});
+
 export default router;

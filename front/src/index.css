@@ -3,6 +3,9 @@
   margin: 0;
   padding: 0;
 }
+p{
+  margin-bottom: 0.1em;
+}
 
 body {
   margin: 0;
@@ -46,19 +49,80 @@ code {
 }
 .pet-link{
   position: relative;
-  left: 275px;
-  top: -15px;
+  left: 80px;
+  top: 47px;
   margin-top: 50px;
-  border: 1px solid black;
+  
   border-radius: 5px;
+  padding: 3px 10px;
+  
 
 }
 .pet-link:hover{
-  background-color: turquoise;
+  background-color: rgb(242, 247, 246);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)
+
 }
 .pet-img{
-  width: 40%;
-  
+  width: 70%;
   object-fit: cover;
-  
+}
+.container-form{
+  display: flex;
+  width: 100vh;
+  height: 50%;
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  background: rgba(157, 157, 158, 0.75);
+  border-radius: 2px;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  margin: 30px;
+ 
+ 
+}
+.form-button{
+  margin-bottom: 10px;
+  display: flex;
+justify-content: flex-end;
+}
+.text-box{
+  padding: 30px;
+}
+li{
+  list-style: none;
+}
+
+/************** info pet card************/
+
+.form-container{
+  min-width: 700px;
+  padding: 5px;
+  height: 50%;
+  margin: 30px;
+  background: white;
+  border-radius: 2px;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)
+}
+.wrap-content{
+  display: flex;
+  margin: 20px;
+}
+.img-container{
+  min-width: 250px;
+  height: 150px;
+  object-fit: cover;
+  margin: 20px;
+  background: white;
+  border-radius: 2px;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)
+}
+.text-wrap{
+  margin: 20px;
+  text-align: start;
+}
+.end-button{
+  margin: 30px auto;
+  width: 700px;
+  display: flex;
+  justify-content: space-around;
 }

@@ -10,21 +10,24 @@ const OtherAnimalSchema = new mongoose.Schema({
   },
   nickname: { // кличка животного
     type: String,
+    required: true,
   },
-  photo: [{ // фото животного
+  photo: { // фото животного
     type: String,
-  }],
+  },
   description: { // описание животного
     type: String,
   },
   age: { // возраст животного
     type: Number,
+    required: true,
   },
   pay: { // оплата животного  (платно-бесплатно)
     type: Boolean,
   },
   price: { // цена животного
     type: Number,
+    default: 0,
   },
   // размер взрослого животного (очень маленькое (хомяк и меньше),
   // маленькое (кошка), среднее (бульдог), , большое (сенбернар?), очень большое (лошадь и более)
@@ -35,7 +38,7 @@ const OtherAnimalSchema = new mongoose.Schema({
     type: String,
   },
   possibleForAllergySufferers: Boolean, // возможно для аллергиков
-  wserviceAnimal: Boolean, // служебное  животное
+  serviceAnimal: Boolean, // служебное  животное
   longHaired: Boolean, // длинношерстное
   pet: Boolean, // домашнее животное?
   onlyInNonApartments: Boolean, // только в не квартиры
@@ -46,8 +49,14 @@ const OtherAnimalSchema = new mongoose.Schema({
   sellerID: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
+    // required: true,
+  },
+  gender: { // пол животного
+    type: String,
     required: true,
   },
+  pedigree: String, // родословная животного
+  vaccinationРistory: String, // история прививок животного
 });
 
 export default mongoose.model('OtherAnimal', OtherAnimalSchema);
