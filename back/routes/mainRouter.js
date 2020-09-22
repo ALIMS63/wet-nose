@@ -1,14 +1,15 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable max-len */
 /* eslint-disable consistent-return */
 /* eslint-disable no-console */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable import/extensions */
+
 import express from 'express';
 import bcrypt from 'bcrypt';
 import multer from 'multer';
 import path from 'path';
 import User from '../models/user.js';
-// import Task from '../models/task.js';
 import Dog from '../models/dog.js';
 import Cat from '../models/cat.js';
 import Other from '../models/otherAnimal.js';
@@ -31,31 +32,6 @@ function serializeUser(user) {
     username: user.username,
   };
 }
-
-// router.get('/api', async (req, res) => {
-// let tasks = await Task.find();
-// res.json({ tasks });
-// });
-
-// router.post('/api/add', async (req, res) => {
-// console.log(req.body.inputValue);
-// const item = await Task.create({ text: req.body.inputValue });
-// res.json({ item });
-// });
-
-// router.post('/api/check', async (req, res) => {
-// console.log(req.body.id);
-// const item = await Task.findOne({ _id: req.body.id });
-// item.status = !item.status;
-// await item.save();
-// res.redirect('/api');
-// });
-
-// router.post('/api/delete', async (req, res) => {
-// console.log(req.body.id);
-// const item = await Task.findOneAndDelete({ _id: req.body.id });
-// res.redirect('/api');
-// });
 
 router.get('/api', (req, res) => {
   res.send('some text');
@@ -183,6 +159,16 @@ router.post('/api/allAnimals', upload, async (req, res) => {
     type: bigType, kind: kindOther, nickname, gender, age, description, pay, price, pedigree, vaccinationРistory, adultSize, adultweight, pet, exotic, farmAnimal, serviceAnimal, warDog, guideВog, longHaired, possibleForAllergySufferers, onlyInNonApartments, specialConditionsOfDetention, childrenInTheHouse, photo, sellerID: req.session.user.id,
   }).save();
   return res.json(newOtherAnimal);
+});
+
+router.get('/api/delete/:id', async (req, res) => {
+  console.log(req.params);
+  const cat = await Cat.findOne({ _id: req.params.id }).exec();
+  const dog = await Dog.findOne({ _id: req.params.id }).exec();
+  const other = await Other.findOne({ _id: req.params.id }).exec();
+  if (cat) await Cat.deleteOne({ _id: req.params.id });
+  else if (dog) await Dog.deleteOne({ _id: req.params.id });
+  else if (other) await Other.deleteOne({ _id: req.params.id });
 });
 
 export default router;

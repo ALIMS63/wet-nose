@@ -28,9 +28,9 @@ function Filter() {
   const animalsFromState = useSelector((state) => state.animals.animals)
   const filters = useSelector((state) => state.animals.filters)
 
-  console.log(animalsFromState);
-  console.log(filters);
-  console.log('immideatly', animalsFromState[filters.category]);
+  // console.log(animalsFromState);
+  // console.log(filters);
+  // console.log('immideatly', animalsFromState[filters.category]);
 
   let animalCategory = animalsFromState[filters.category]
 
@@ -44,9 +44,9 @@ function Filter() {
     dispatch(startAnimals())
   }, [])
 
-  async function chooseCategory(value) {
+  function chooseCategory(value) {
     setCategory(value)
-    await dispatch(setAnimalCategory(value))
+    dispatch(setAnimalCategory(value))
   }
 
   function choosePay(value) {
@@ -262,7 +262,7 @@ function Filter() {
               <Option value='false'>false</Option>
             </Select>
           </Form.Item>
-          
+
           <Form.Item>
             <Button type="primary" htmlType="submit">
               Submit
