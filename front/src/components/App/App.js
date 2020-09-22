@@ -35,11 +35,9 @@ function App() {
 
         <Switch>
           <Route path="/" exact>
-            {/* <Main /> */}
             <ModalFilter/>
-            {/* <Filter/> */}
-            <Main />
-            <Filter />
+            {/* <Main /> */}
+            {/* <Filter /> */}
             <Anketa />
             <AnimalCard />
           </Route>
