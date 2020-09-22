@@ -167,13 +167,13 @@ router.post('/api/allAnimals', upload, async (req, res) => {
   const {
     bigType, kindDog, kindCat, kindOther, nickname, age, description, pay, price, adultSize, adultweight, possibleForAllergySufferers, longHaired, guideВog, serviceAnimal, warDog, pet, onlyInNonApartments, specialConditionsOfDetention, childrenInTheHouse, exotic, farmAnimal, gender, pedigree, vaccinationРistory,
   } = req.body;
-  if (bigType === 'Собака') {
+  if (bigType === 'dogs') {
     const newDog = await new Dog({
       kind: kindDog, nickname, gender, age, description, pay, price, pedigree, vaccinationРistory, adultSize, adultweight, pet, exotic, farmAnimal, serviceAnimal, warDog, guideВog, longHaired, possibleForAllergySufferers, onlyInNonApartments, specialConditionsOfDetention, childrenInTheHouse, photo, sellerID: req.session.user.id,
     }).save();
     return res.json(newDog);
   }
-  if (bigType === 'Кот') {
+  if (bigType === 'cats') {
     const newCat = await new Cat({
       kind: kindCat, nickname, gender, age, description, pay, price, pedigree, vaccinationРistory, adultSize, adultweight, pet, exotic, farmAnimal, serviceAnimal, warDog, guideВog, longHaired, possibleForAllergySufferers, onlyInNonApartments, specialConditionsOfDetention, childrenInTheHouse, photo, sellerID: req.session.user.id,
     }).save();

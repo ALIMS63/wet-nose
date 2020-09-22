@@ -1,5 +1,5 @@
 
-import { SET_USER, DELETE_USER, AUTHENTICATED_SUCCESSFULLY, SET_ANIMALS, ANIMAL_CATEGORY, PAY_FILTER, SET_FILTERED_ANIMALS, ADD_ANIMAL, AGE_FILTER } from "./action-types";
+import { SET_USER, DELETE_USER, AUTHENTICATED_SUCCESSFULLY, SET_ANIMALS, ANIMAL_CATEGORY, PAY_FILTER, ADD_ANIMAL, AGE_FILTER, GENDER_FILTER, PRICE_FILTER, HAIR_FILTER, WEIGHT_FILTER, GUIDE_FILTER, WAR_FILTER, CONDITION_FILTER, SUFFER_FILTER, APARTMENT_FILTER, CHILDREN_FILTER } from "./action-types";
 
 
 import axios from 'axios'
@@ -48,6 +48,83 @@ export function paymentFilter(payment) {
   }
 }
 
+export function ageFilter(age) {
+  return {
+    type: AGE_FILTER,
+    payload: age
+  }
+}
+
+export function priceFilter(price) {
+  return {
+    type: PRICE_FILTER,
+    payload: price
+  }
+}
+
+export function genderFilter(gender) {
+  return {
+    type: GENDER_FILTER,
+    payload: gender
+  }
+}
+
+export function hairFilter(haired) {
+  return {
+    type: HAIR_FILTER,
+    payload: haired
+  }
+}
+
+export function weightFilter(weight) {
+  return {
+    type: WEIGHT_FILTER,
+    payload: weight
+  }
+}
+
+export function warFilter(war) {
+  return {
+    type: WAR_FILTER,
+    payload: war
+  }
+}
+
+export function guideFilter(guide) {
+  return {
+    type: GUIDE_FILTER,
+    payload: guide
+  }
+}
+
+export function sufferFilter(suffer) {
+  return {
+    type: SUFFER_FILTER,
+    payload: suffer
+  }
+}
+
+export function conditionFilter(condition) {
+  return {
+    type: CONDITION_FILTER,
+    payload: condition
+  }
+}
+
+export function apartmentFilter(apartment) {
+  return {
+    type: APARTMENT_FILTER,
+    payload: apartment
+  }
+}
+
+export function childrenFilter(children) {
+  return {
+    type: CHILDREN_FILTER,
+    payload: children
+  }
+}
+
 export function addNewAnimal(typeAnimal, newAnimal) {
   return {
     type: ADD_ANIMAL,
@@ -57,9 +134,3 @@ export function addNewAnimal(typeAnimal, newAnimal) {
     }
   }
 }
-  export function ageFilter(age) {
-    return {
-      type: AGE_FILTER,
-      payload: age
-    }
-  }
