@@ -67,19 +67,7 @@ code {
   width: 70%;
   object-fit: cover;
 }
-.container-form{
-  display: flex;
-  width: 100vh;
-  height: 50%;
-  -webkit-backdrop-filter: blur(5px);
-  backdrop-filter: blur(5px);
-  background: rgba(157, 157, 158, 0.75);
-  border-radius: 2px;
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-  margin: 30px;
- 
- 
-}
+
 .form-button{
   margin-bottom: 10px;
   display: flex;
@@ -125,4 +113,41 @@ li{
   width: 700px;
   display: flex;
   justify-content: space-around;
+}
+/***img-anceta****/
+
+
+.img-anceta{
+  width: 150px;
+}
+
+
+.radio:checked + img {
+  border: 1px solid red;
+}
+
+
+.img-div{
+  background-color: inherit;
+  min-width: 500px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  border-radius: 2px;
+  margin: 20px;
+  padding: 20px;
+}
+.container-form{
+  display: flex;
+  flex-direction: column;
+  min-width: 50vh;
+
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  background: rgba(157, 157, 158, 0.75);
+  border-radius: 2px;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  margin: 30px;
+ 
 }
