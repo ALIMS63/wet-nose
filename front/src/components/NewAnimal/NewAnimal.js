@@ -140,13 +140,11 @@ function NewAnimal() {
     const newAnimal = response.data
     for (let typeAnimals in allAnimals) {
       if (typeAnimals === newAnimal.type) {
-        console.log(newAnimal.type, 'sjdvbrhjvbzhjvb')
-        return dispatch(addNewAnimal(newAnimal.type, newAnimal))
+        dispatch(addNewAnimal(newAnimal.type, newAnimal))
+        return history.push(`/oneAnimal/${newAnimal._id}`);
       }
-      return dispatch(addNewAnimal('other', newAnimal))
     }
-    console.log(newAnimal)
-    console.log(newAnimal._id)
+    dispatch(addNewAnimal('other', newAnimal))
     return history.push(`/oneAnimal/${newAnimal._id}`);
   }
 
