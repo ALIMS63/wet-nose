@@ -3,9 +3,9 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { useDispatch, useSelector } from 'react-redux';
-
+import {Button} from 'antd';
 import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+
 import {
   startAnimals,
   setAnimalCategory,
@@ -115,7 +115,7 @@ export default function Anketa(){
     return (
       <>
         <Button type="primary" style={{display: visible ? 'none' :'inline' }} onClick={handleAnketa}>
-        XXX
+        Подобрать
         </Button>
         <div className='container-form' style={{display: visible ? 'block' : 'none'}}>
             <div className='text-box'>
