@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { useParams } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -10,10 +11,16 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(1),
     },
   },
+  img: {
+    height: '250px',
+    width: '400px',
+    borderRadius: '30px 30px 30px 30px',
+  },
 }));
 
 
 function OneAnimal() {
+  const classes = useStyles();
   const data = useSelector(state => state.animals).animals;
 
   let obj;
@@ -29,7 +36,7 @@ function OneAnimal() {
     <section className='form-container'>
       <div className='wrap-content'>
         <div className='img-container'>
-          <img src={`/${obj.photo}`} />
+          <img className={classes.img} src={`/${obj.photo}`} />
         </div>
         <div className='text-wrap'>
           <h3>связаться с владельцем: {}</h3>
@@ -53,8 +60,8 @@ function OneAnimal() {
         </p>
       </div>
       <div className='end-button'>
-        <Button color="primary">Редактировать</Button>
-        <Button color="primary">Разместить</Button>
+        <Link to={`/update/${obj._id}`}><Button color="primary">Редактировать</Button></Link>
+        <Link to={`/delete/${obj._id}`}><Button color="primary">Удалить</Button></Link>
       </div>
 
     </section>
