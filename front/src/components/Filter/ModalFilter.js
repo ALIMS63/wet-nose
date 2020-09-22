@@ -1,98 +1,301 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import { useSpring, animated } from 'react-spring/web.cjs'; // web.cjs is required for IE 11 support
+import React, { useEffect, useState } from 'react';
+import 'antd/dist/antd.css';
+import { Modal, Button, Select, Form } from 'antd';
 import Filter from './Filter'
-import Login from '../Login/Login'
-import { Button} from '@material-ui/core';
+import { useDispatch, useSelector } from 'react-redux'
+import 'antd/dist/antd.css';
+import {
+  startAnimals,
+  setAnimalCategory,
+  paymentFilter,
+  ageFilter,
+  priceFilter,
+  genderFilter,
+  hairFilter,
+  weightFilter,
+  warFilter,
+  guideFilter,
+  sufferFilter,
+  conditionFilter,
+  apartmentFilter,
+  childrenFilter
+} from '../../redux/actions'
 
+const { Option } = Select;
 
-const useStyles = makeStyles((theme) => ({
-  modal: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  paper: {
-    backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
-  },
-}));
+function ModalFilter() {
+  const [visible, setVisible] = useState(false)
+  const [loading, setLoading] = useState(false)
 
-const Fade = React.forwardRef(function Fade(props, ref) {
-  const { in: open, children, onEnter, onExited, ...other } = props;
-  const style = useSpring({
-    from: { opacity: 0 },
-    to: { opacity: open ? 1 : 0 },
-    onStart: () => {
-      if (open && onEnter) {
-        onEnter();
-      }
-    },
-    onRest: () => {
-      if (!open && onExited) {
-        onExited();
-      }
-    },
-  });
-
-  return (
-    <animated.div ref={ref} style={style} {...other}>
-      {children}
-    </animated.div>
-  );
-});
-
-Fade.propTypes = {
-  children: PropTypes.element,
-  in: PropTypes.bool.isRequired,
-  onEnter: PropTypes.func,
-  onExited: PropTypes.func,
-};
-
-export default function SpringModal() {
-  const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
-
-  const handleOpen = () => {
-    setOpen(true);
+  function showModal() {
+    setVisible(true)
   };
 
-  const handleClose = () => {
-    setOpen(false);
+  function handleOk() {
+    setLoading(true)
+
+    let category = animalsFromState[filters.category]
+
+    for (let animal in category) {
+      if (String(category[animal].pay) === filters.pay) {
+        console.log('if', category[animal])
+      }
+    }
+
+    setTimeout(() => {
+      setVisible(false)
+      setLoading(false)
+    }, 2000);
   };
 
+  function handleCancel() {
+    setVisible(false)
+  };
+
+
+
+  const [category, setCategory] = useState()
+  const dispatch = useDispatch()
+  const animalsFromState = useSelector((state) => state.animals.animals)
+  const filters = useSelector((state) => state.animals.filters)
+  console.log('FILTERS===', filters);
+  
+
+  let animalCategory = animalsFromState[filters.category]
+
+  for (let animal in animalCategory) {
+    if (String(animalCategory[animal].pay) === filters.pay) {
+      console.log('pay filter', animalCategory[animal])
+    }
+  }
+
+  useEffect(() => {
+    dispatch(startAnimals())
+  }, [])
+
+  async function chooseCategory(value) {
+    setCategory(value)
+    await dispatch(setAnimalCategory(value))
+  }
+
+  function choosePay(value) {
+    dispatch(paymentFilter(value))
+  }
+
+  function chooseAge(value) {
+    dispatch(ageFilter(value))
+  }
+
+  function choosePrice(value) {
+    dispatch(priceFilter(value))
+  }
+
+  function chooseGender(value) {
+    dispatch(genderFilter(value))
+  }
+
+  function chooseHaired(value) {
+    dispatch(hairFilter(value))
+  }
+
+  function chooseWar(value) {
+    dispatch(warFilter(value))
+  }
+
+  function chooseWeight(value) {
+    dispatch(weightFilter(value))
+  }
+
+  function chooseGuide(value) {
+    dispatch(guideFilter(value))
+  }
+
+  function chooseSuffer(value) {
+    dispatch(sufferFilter(value))
+  }
+
+  function chooseCondition(value) {
+    dispatch(conditionFilter(value))
+  }
+
+  function chooseApartment(value) {
+    dispatch(apartmentFilter(value))
+  }
+
+  function chooseChildren(value) {
+    dispatch(childrenFilter(value))
+  }
+
   return (
-    <div>
-      {/* <button type="button" onClick={handleOpen}>
-        Login
-      </button> */}
-      <Button className={classes.button} onClick={handleOpen} color="inherit">
-       Login
-      </Button>
+    <>
+      <Button type="primary" onClick={showModal}>
+        Filters
+        </Button>
       <Modal
-        aria-labelledby="spring-modal-title"
-        aria-describedby="spring-modal-description"
-        className={classes.modal}
-        open={open}
-        onClose={handleClose}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
+        title="Find Your Animal"
+        visible={visible}
+        onOk={handleOk}
+        okText='Submit'
+        confirmLoading={loading}
+        onCancel={handleCancel}
       >
-        <Fade in={open}>
-          <div className={classes.paper}>
-            <Filter/>
-            <Login/>
-          </div>
-        </Fade>
+        <>
+          <Form>
+            <Form.Item name='Category'>
+              <Select defaultValue="Category" style={{ width: 120 }} onChange={chooseCategory}>
+                <Option value="cats">Cats</Option>
+                <Option value="dogs">Dogs</Option>
+                <Option value="other">Other</Option>
+              </Select>
+            </Form.Item>
+            {' '}
+            <Form.Item name='Pay'>
+              <Select
+                disabled={category ? false : true}
+                defaultValue="Pay"
+                style={{ width: 120 }}
+                onChange={choosePay}>
+                <Option value="true">True</Option>
+                <Option value="false">False</Option>
+              </Select>
+            </Form.Item>
+            {' '}
+            <Form.Item name='Age'>
+              <Select
+                disabled={category ? false : true}
+                defaultValue="Age"
+                style={{ width: 120 }}
+                onChange={chooseAge}>
+                <Option value="1">0-1</Option>
+                <Option value="1-3">1-3</Option>
+                <Option value="3-7">3-7</Option>
+              </Select>
+            </Form.Item>
+            {' '}
+            <Form.Item name='Price'>
+              <Select
+                disabled={category ? false : true}
+                defaultValue="Price"
+                style={{ width: 120 }}
+                onChange={choosePrice}>
+                <Option value="0-1000">0-1000</Option>
+                <Option value="1000-5000">1000-5000</Option>
+                <Option value="5000-10000">5000-10000</Option>
+                <Option value="10000-999999"> &gt;10000</Option>
+              </Select>
+            </Form.Item>
+            {' '}
+            <Form.Item name='Gender'>
+              <Select
+                disabled={category ? false : true}
+                defaultValue="Gender"
+                style={{ width: 120 }}
+                onChange={chooseGender}>
+                <Option value="Male">Male</Option>
+                <Option value="Female">Female</Option>
+              </Select>
+            </Form.Item>
+            {' '}
+            <Form.Item name='LongHaired'>
+              <Select
+                disabled={category ? false : true}
+                defaultValue="LongHaired"
+                style={{ width: 120 }}
+                onChange={chooseHaired}>
+                <Option value='true'>true</Option>
+                <Option value='false'>false</Option>
+              </Select>
+            </Form.Item>
+            {' '}
+            <Form.Item name='WarDog'>
+              <Select
+                disabled={category ? false : true}
+                defaultValue="WarDog"
+                style={{ width: 120 }}
+                onChange={chooseWar}>
+                <Option value='true'>true</Option>
+                <Option value='false'>false</Option>
+              </Select>
+            </Form.Item>
+            {' '}
+            <Form.Item name='Weight'>
+              <Select
+                disabled={category ? false : true}
+                defaultValue="Weight"
+                style={{ width: 120 }}
+                onChange={chooseWeight}>
+                <Option value='0-10'>0-10</Option>
+                <Option value='10-25'>10-25</Option>
+                <Option value='25-50'>25-50</Option>
+                <Option value='50-100'>50-100</Option>
+              </Select>
+            </Form.Item>
+            {' '}
+            <Form.Item name='Guide'>
+              <Select
+                disabled={category ? false : true}
+                defaultValue="Guide"
+                style={{ width: 120 }}
+                onChange={chooseGuide}>
+                <Option value='true'>true</Option>
+                <Option value='false'>false</Option>
+              </Select>
+            </Form.Item>
+            {' '}
+            <Form.Item name='Suffer'>
+              <Select
+                disabled={category ? false : true}
+                defaultValue="Suffer"
+                style={{ width: 120 }}
+                onChange={chooseSuffer}>
+                <Option value='true'>true</Option>
+                <Option value='false'>false</Option>
+              </Select>
+            </Form.Item>
+            {' '}
+            <Form.Item name='Condition'>
+              <Select
+                disabled={category ? false : true}
+                defaultValue="Condition"
+                style={{ width: 120 }}
+                onChange={chooseCondition}>
+                <Option value='true'>true</Option>
+                <Option value='false'>false</Option>
+              </Select>
+            </Form.Item>
+            {' '}
+            <Form.Item name='Apartment'>
+              <Select
+                disabled={category ? false : true}
+                defaultValue="Apartment"
+                style={{ width: 120 }}
+                onChange={chooseApartment}>
+                <Option value='true'>true</Option>
+                <Option value='false'>false</Option>
+              </Select>
+            </Form.Item>
+            {' '}
+            <Form.Item name='Children'>
+              <Select
+                disabled={category ? false : true}
+                defaultValue="Children"
+                style={{ width: 120 }}
+                onChange={chooseChildren}>
+                <Option value='true'>true</Option>
+                <Option value='false'>false</Option>
+              </Select>
+            </Form.Item>
+
+            {/* <Form.Item>
+          <Button type="primary" htmlType="submit">
+            Submit
+            </Button>
+        </Form.Item> */}
+          </Form>
+        </>
       </Modal>
-    </div>
+    </>
   );
 }
+
+export default ModalFilter
