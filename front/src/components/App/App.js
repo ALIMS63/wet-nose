@@ -36,8 +36,8 @@ function App() {
         <Switch>
           <Route path="/" exact>
             <ModalFilter/>
-            {/* <Main /> */}
-            {/* <Filter /> */}
+            {/* <Filter/> */}
+          
             <Anketa />
             <AnimalCard />
           </Route>
