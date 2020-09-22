@@ -160,10 +160,7 @@ router.get('/api/allAnimals', async (req, res) => {
 });
 
 router.post('/api/allAnimals', upload, async (req, res) => {
-  // console.log('Request file ---', req.file);
-  // console.log('1111111111111111111', req.body);
   const photo = req.file.path.slice(7);
-  // console.log(photo);
   const {
     bigType, kindDog, kindCat, kindOther, nickname, age, description, pay, price, adultSize, adultweight, possibleForAllergySufferers, longHaired, guideВog, serviceAnimal, warDog, pet, onlyInNonApartments, specialConditionsOfDetention, childrenInTheHouse, exotic, farmAnimal, gender, pedigree, vaccinationРistory,
   } = req.body;
