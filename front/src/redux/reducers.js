@@ -99,10 +99,22 @@ export function animalReducer(state = initialState, action) {
         filters: { ...state.filters, children: action.payload }
       }
     case ADD_ANIMAL:
-      // return {
-      //   ...state,
-      //   animals:{...state.animals[action.payload.typeAnimal], new: action.payload.newAnimal}
-      // }
+      console.log(state);
+      // const object = JSON.parse(JSON.stringify(state));
+      // console.log(object);
+      // object.animals.dogs.push(action.payload.newAnimal);
+      // return object;
+      console.log(action.payload.typeAnimal);
+      return {
+        ...state,
+        animals: {
+          ...state.animals,
+          [action.payload.typeAnimal]: [
+            ...state.animals[action.payload.typeAnimal],
+            action.payload.newAnimal
+          ]
+        }
+      }
     default:
       return state;
   }

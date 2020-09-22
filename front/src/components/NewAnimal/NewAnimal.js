@@ -140,8 +140,9 @@ function NewAnimal() {
     const newAnimal = response.data
     for (let typeAnimals in allAnimals) {
       if (typeAnimals === newAnimal.type) {
+        console.log(newAnimal.type, 'sjdvbrhjvbzhjvb')
         return dispatch(addNewAnimal(newAnimal.type, newAnimal))
-      } 
+      }
       return dispatch(addNewAnimal('other', newAnimal))
     }
     console.log(newAnimal)
@@ -409,7 +410,7 @@ function NewAnimal() {
         {/* отправить форму */}
         <div className={classes.root}>
           <Button type="submit" variant="contained" color="primary">Добавить животное</Button>
-          </div>
+        </div>
         {/* место для сообщения об ошибке */}
         {error && <div className="error">{error}</div>}
       </form>
