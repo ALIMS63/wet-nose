@@ -135,6 +135,33 @@ router.get('/api/allAnimals', async (req, res) => {
   res.json({ cats, dogs, other });
 });
 
+router.put('/api/allAnimals/:id', upload, async (req, res) => {
+  const { id } = req.params;
+  const photo = req.file.path.slice(7);
+  const {
+    bigType, kindDog, kindCat, kindOther, nickname, age, description, pay, price, adultSize, adultweight, possibleForAllergySufferers, longHaired, guideВog, serviceAnimal, warDog, pet, onlyInNonApartments, specialConditionsOfDetention, childrenInTheHouse, exotic, farmAnimal, gender, pedigree, vaccinationРistory,
+  } = req.body;
+  if (bigType === 'dogs') {
+    await Dog.updateOne({ _id: id }, {
+      kind: kindDog, nickname, gender, age, description, pay, price, pedigree, vaccinationРistory, adultSize, adultweight, pet, exotic, farmAnimal, serviceAnimal, warDog, guideВog, longHaired, possibleForAllergySufferers, onlyInNonApartments, specialConditionsOfDetention, childrenInTheHouse, photo, sellerID: req.session.user.id,
+    });
+    const newDog = await Dog.findById(id);
+    return res.json(newDog);
+  }
+  if (bigType === 'cats') {
+    await Cat.updateOne({ _id: id }, {
+      kind: kindCat, nickname, gender, age, description, pay, price, pedigree, vaccinationРistory, adultSize, adultweight, pet, exotic, farmAnimal, serviceAnimal, warDog, guideВog, longHaired, possibleForAllergySufferers, onlyInNonApartments, specialConditionsOfDetention, childrenInTheHouse, photo, sellerID: req.session.user.id,
+    });
+    const newCat = await Cat.findById(id);
+    return res.json(newCat);
+  }
+  await Other.updateOne({ _id: id }, {
+    type: bigType, kind: kindOther, nickname, gender, age, description, pay, price, pedigree, vaccinationРistory, adultSize, adultweight, pet, exotic, farmAnimal, serviceAnimal, warDog, guideВog, longHaired, possibleForAllergySufferers, onlyInNonApartments, specialConditionsOfDetention, childrenInTheHouse, photo, sellerID: req.session.user.id,
+  });
+  const newOtherAnimal = await Other.findById(id);
+  return res.json(newOtherAnimal);
+});
+
 router.post('/api/allAnimals', upload, async (req, res) => {
   const photo = req.file.path.slice(7);
   const {

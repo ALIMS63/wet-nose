@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
-import { addNewAnimal } from '../../redux/actions'
+import { startAnimals } from '../../redux/actions'
 // material-ui========================================
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -84,15 +84,15 @@ function UpdateAnimal() {
       newTypeAnimal = type;
     }
   })
-  console.log(findAnimal)
-  console.log(newTypeAnimal)
-  console.log(typeof newTypeAnimal)
+  // console.log(findAnimal)
+  // console.log(newTypeAnimal)
+  // console.log(typeof newTypeAnimal)
 
   const [inputs, setInputs] = useState({
-    bigType: 'bnmbnmbmbmbnmb',
-    kindDog: findAnimal.kindDog,
-    kindCat: findAnimal.kindCat,
-    kindOther: findAnimal.kindOther,
+    bigType: newTypeAnimal,
+    kindDog: findAnimal.kind,
+    kindCat: findAnimal.kind,
+    kindOther: findAnimal.kind,
     nickname: findAnimal.nickname,
     description: findAnimal.description,
     age: findAnimal.age,
@@ -135,7 +135,7 @@ function UpdateAnimal() {
       [name]: files[0],
     });;
   }
-  async function addAnimal(event) {
+  async function updateAnimal(event) {
     event.preventDefault();
     const formData = new FormData();
     Object.keys(inputs).forEach((key) => {
@@ -146,27 +146,21 @@ function UpdateAnimal() {
         'content-type': 'multipart/form-data'
       }
     };
-    const response = await axios.post('/api/allAnimals', formData, config);
-    const newAnimal = response.data
-    for (let typeAnimals in allAnimals) {
-      if (typeAnimals === newAnimal.type) {
-        dispatch(addNewAnimal(newAnimal.type, newAnimal))
-        return history.push(`/oneAnimal/${newAnimal._id}`);
-      }
-    }
-    dispatch(addNewAnimal('other', newAnimal))
-    return history.push(`/oneAnimal/${newAnimal._id}`);
+    await axios.put(`/api/allAnimals/${findAnimal._id}`, formData, config);
+    dispatch(startAnimals());
+    return history.push(`/oneAnimal/${findAnimal._id}`);
   }
 
   return (
     <>
-      <form onSubmit={addAnimal} encType="multipart/form-data">
+      <form onSubmit={updateAnimal} encType="multipart/form-data">
+        <input type="hidden" name="_method" value="put" />
         <div className={classes.root}>
           <Grid container spacing={5} >
             {/* Тип, порода, кличка */}
             <Grid container direction="row" justify="space-evenly" alignItems="center" >
               <div style={{ width: 300 }}>
-                <Autocomplete inputProps={{ 'aria-label': 'Without label' }} name="bigType" inputValue={inputs.bigType} id="free-solo-demo" freeSolo
+                <Autocomplete defaultValue={inputs.bigType} inputProps={{ 'aria-label': 'Without label' }} name="bigType" inputValue={inputs.bigType} id="free-solo-demo" freeSolo
                   options={typeAnimal.map((option) => option.type)}
                   onInputChange={(event, newInputValue) => {
                     changed({ target: { value: newInputValue, name: 'bigType' } })
@@ -179,7 +173,7 @@ function UpdateAnimal() {
               </div>
               {inputs.bigType === "dogs" ?
                 <div style={{ width: 300 }}>
-                  <Autocomplete name="kindDog" inputValue={inputs.kindDog} id="free-solo-demo" freeSolo
+                  <Autocomplete defaultValue={inputs.kindDog} name="kindDog" inputValue={inputs.kindDog} id="free-solo-demo" freeSolo
                     options={kindDog.map((option) => option.type)}
                     onInputChange={(event, newInputValue) => {
                       changed({ target: { value: newInputValue, name: 'kindDog' } })
@@ -192,7 +186,7 @@ function UpdateAnimal() {
                 </div>
                 : inputs.bigType === "cats" ?
                   <div style={{ width: 300 }}>
-                    <Autocomplete name="kindCat" inputValue={inputs.kindCat} id="free-solo-demo" freeSolo
+                    <Autocomplete defaultValue={inputs.kindCat} name="kindCat" inputValue={inputs.kindCat} id="free-solo-demo" freeSolo
                       options={kindCat.map((option) => option.type)}
                       onInputChange={(event, newInputValue) => {
                         changed({ target: { value: newInputValue, name: 'kindCat' } })
@@ -265,18 +259,18 @@ function UpdateAnimal() {
               <FormControl className={classes.formControl}>
                 <InputLabel className={classes.sel} id="demo-simple-select-label">Размер взрослого животного</InputLabel>
                 <Select
-
+                  defaultValue={inputs.adultSize}
                   name="adultSize"
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   value={inputs.adultSize}
                   onChange={changed}
                 >
-                  <MenuItem value="очень маленькое (хомяк и меньше)">Очень маленькое (хомяк и меньше)</MenuItem>
-                  <MenuItem value="маленькое (кошка)">Маленькое (кошка)</MenuItem>
-                  <MenuItem value="среднее (бульдог)">Среднее (бульдог)</MenuItem>
-                  <MenuItem value="большое (сенбернар)">Большое (сенбернар)</MenuItem>
-                  <MenuItem value="очень большое (лошадь и более)">Очень большое (лошадь и более)</MenuItem>
+                  <MenuItem value="Очень маленькое (ориентир: как хомяк и меньше)">Очень маленькое (хомяк и меньше)</MenuItem>
+                  <MenuItem value="Маленькое (ориентир: как кошка)">Маленькое (кошка)</MenuItem>
+                  <MenuItem value="Среднее (ориентир: как бульдог)">Среднее (бульдог)</MenuItem>
+                  <MenuItem value="Большое (ориентир: как сенбернар)">Большое (сенбернар)</MenuItem>
+                  <MenuItem value="Очень большое (ориентир: как лошадь и более)">Очень большое (лошадь и более)</MenuItem>
                 </Select>
               </FormControl>
               <TextField onChange={changed} name="adultweight" id="outlined-helperText" label="Вес взрослого животного" value={inputs.adultweight} helperText="" variant="outlined" />
