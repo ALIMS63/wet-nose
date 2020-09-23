@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -15,8 +15,9 @@ const useStyles = makeStyles((theme) => ({
   },
   img: {
     height: '250px',
-    width: '400px',
-    borderRadius: '30px 30px 30px 30px',
+    width: '250px',
+    borderRadius: '5px',
+    objectFit: 'cover',
   },
 }));
 
@@ -26,16 +27,26 @@ function OneAnimal() {
   const dispatch = useDispatch();
   const data = useSelector(state => state.animals).animals;
   const history = useHistory();
+  const [user, setUser] = useState({});
 
+  
   let obj;
   const { id } = useParams();
-
   for (let one of Object.keys(data)) {
     for (let two of data[one]) {
       if (two._id === id) obj = two;
     }
   }
+  console.log(obj.sellerID);
+  
+  useEffect(() => {
+    const userId = obj.sellerID
+    const findUser = fetch(`/api/user/${userId}`)
+      .then(response => response.json())
+      .then(result => setUser(result))
 
+  },[])
+  
   function handleDelete() {
     (async () => {
       const response = await fetch(`/api/delete/${id}`);
@@ -43,6 +54,7 @@ function OneAnimal() {
     dispatch(startAnimals());
     history.push('/');
   }
+  console.log('user front',user)
 
   return (
     <section className='form-container'>
@@ -51,7 +63,9 @@ function OneAnimal() {
           <img className={classes.img} src={`/${obj.photo}`} />
         </div>
         <div className='text-wrap'>
-          <h3>связаться с владельцем: {}</h3>
+          <h3>связаться с владельцем:{user && `${user.username} - 
+ ${user.phone}`}</h3>
+ <p>{user.whoAreYou}</p>
           <h2>{obj.kind} - {obj.nickname}</h2>
 
           <div>размер - {obj.adultSize}</div>

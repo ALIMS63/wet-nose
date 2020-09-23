@@ -6,28 +6,32 @@ import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles({
   block: {
-    marginLeft: '190px',
-
-    marginTop: '80px',
+    margin: 'auto',
+    width: '60%',
+    marginTop: '50px',
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     flexWrap: 'wrap',
 
   },
   img: {
-    height: '250px',
-    width: '400px',
-    borderRadius: '30px 30px 30px 30px',
+    height: '200px',
+    width: '200px',
+    borderRadius: '5px',
+    objectFit: 'cover',
   },
   onePet: {
     backgroundColor: '#39f250',
-    boxShadow: '0 0 5px 2px white',
+    // boxShadow: '0 0 5px 2px white',
     border: '1px solid white',
-    borderRadius: '30px 30px 30px 30px',
+    borderRadius: '5px',
     margin: '10px',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
+  },
+  onePetHover: {
+    boxShadow: '0 0 5px 2px white',
   }
 });
 
@@ -44,7 +48,7 @@ function AnimalCard() {
 
   return (
     <>
-      <container className='animal-card'>
+      <container className={classes.block}>
         {Object.keys(data) && Object.keys(data).map(key => {
           return (data[key] && data[key].map(obj => {
             return (

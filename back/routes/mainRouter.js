@@ -191,4 +191,12 @@ router.get('/api/delete/:id', async (req, res) => {
   else if (other) await Other.deleteOne({ _id: req.params.id });
 });
 
+router.get('/api/user/:id', async (req, res) => {
+  console.log('id from front',req.params.id);
+  const validUserId = await User.findOne({ _id: req.params.id });
+  console.log('user back find', validUserId);
+  res.json(validUserId)
+})
+
+
 export default router;
