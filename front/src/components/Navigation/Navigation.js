@@ -4,8 +4,6 @@ import { Container, AppBar, Button, CardActions, CardContent, CssBaseline, CardM
 import { makeStyles } from '@material-ui/core/styles';
 import { useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
-import ModalRegister from '../Registration/ModalRegister'
-import ModalLogin from '../Login/ModalLogin'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -89,6 +87,8 @@ function Navigation() {
           </div>
 
           <div className={classes.btns}>
+//             {isAuthenticated && <Link className={classes.link} to="/personalPage"><Button className={classes.button} color="inherit">Home</Button></Link>}
+//             {!isAuthenticated && <Link className={classes.link} to="/registration"><Button className={classes.button} color="inherit">Registration</Button></Link>}
             {isAuthenticated &&
               <Link className={classes.link} to="/privateHome">
                 <Button className={classes.button} color="inherit">

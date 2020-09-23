@@ -171,7 +171,7 @@ function UpdateAnimal() {
                   )}
                 />
               </div>
-              {inputs.bigType === "dogs" ?
+              {inputs.bigType === "собака" ?
                 <div style={{ width: 300 }}>
                   <Autocomplete defaultValue={inputs.kindDog} name="kindDog" inputValue={inputs.kindDog} id="free-solo-demo" freeSolo
                     options={kindDog.map((option) => option.type)}
@@ -184,7 +184,7 @@ function UpdateAnimal() {
                     )}
                   />
                 </div>
-                : inputs.bigType === "cats" ?
+                : inputs.bigType === "кот" ?
                   <div style={{ width: 300 }}>
                     <Autocomplete defaultValue={inputs.kindCat} name="kindCat" inputValue={inputs.kindCat} id="free-solo-demo" freeSolo
                       options={kindCat.map((option) => option.type)}
@@ -201,13 +201,13 @@ function UpdateAnimal() {
               }
               <TextField id="standard-required" name="nickname" label="Кличка" required value={inputs.nickname} onChange={changed} />
             </Grid>
-            {/* Гендер, возраст, Описание */}
+            {/* Пол, возраст, Описание */}
             <Grid container direction="row" justify="space-evenly" alignItems="center" className={classes.formControl}>
               <FormControl component="fieldset">
-                <FormLabel component="legend">Gender</FormLabel>
+                <FormLabel component="legend">Пол</FormLabel>
                 <RadioGroup aria-label="gender" name="gender" value={inputs.gender} onChange={changed}>
-                  <FormControlLabel value="female" control={<Radio />} label="Female" />
-                  <FormControlLabel value="male" control={<Radio />} label="Male" />
+                  <FormControlLabel value="девочка" control={<Radio />} label="Female" />
+                  <FormControlLabel value="мальчик" control={<Radio />} label="Male" />
                 </RadioGroup>
               </FormControl>
               <TextField id="outlined-number" label="Возраст" type="number" variant="outlined" name="age" required
@@ -420,8 +420,8 @@ function UpdateAnimal() {
 }
 
 const typeAnimal = [
-  { type: 'dogs' },
-  { type: 'cats' },
+  { type: 'собака' },
+  { type: 'кот' },
   { type: 'Впишите свой вариант' },
 ];
 const kindDog = [

@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const UserSchema = mongoose.Schema({
   // Имя пользователя
-  username: {
+  name: {
     type: String,
     required: true,
     unique: true,
@@ -31,6 +31,10 @@ const UserSchema = mongoose.Schema({
   whoAreYou: {
     type: String,
     required: true,
+  },
+  createdAt: {
+    type: String,
+    default: new Date().toLocaleDateString(),
   },
 });
 

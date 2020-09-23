@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -14,8 +14,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   img: {
-    height: '250px',
-    width: '250px',
+    height: '400px',
+    width: '400px',
     borderRadius: '5px',
     objectFit: 'cover',
   },
@@ -26,26 +26,49 @@ function OneAnimal() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const data = useSelector(state => state.animals).animals;
+  const user = useSelector(state => state.user);
+  const [flag, setFlag] = useState(false);
+
   const history = useHistory();
-  const [user, setUser] = useState({});
+  const [author, setAuthor] = useState(null)
+//   const [user, setUser] = useState({});
 
   
   let obj;
+  let authorId;
   const { id } = useParams();
   for (let one of Object.keys(data)) {
     for (let two of data[one]) {
-      if (two._id === id) obj = two;
+      if (two._id === id) {
+        obj = two;
+        authorId = two.sellerID;
+      }
     }
   }
-  console.log(obj.sellerID);
-  
   useEffect(() => {
-    const userId = obj.sellerID
-    const findUser = fetch(`/api/user/${userId}`)
-      .then(response => response.json())
-      .then(result => setUser(result))
+    if (user && authorId == user.id) setFlag(true);
+  }, [])
+  // console.log(authorId);
+  // console.log(user.id);
+  // console.log(flag);
+  // console.log('user--->', user);
+  useEffect(() => {
+    (async () => {
+      const response = await fetch(`/api/user/${authorId}`);
+      const json = await response.json();
+      console.log(json);
+      setAuthor(json.phone);
+    })()
+  }, author)
+//   console.log(obj.sellerID);
+  
+//   useEffect(() => {
+//     const userId = obj.sellerID
+//     const findUser = fetch(`/api/user/${userId}`)
+//       .then(response => response.json())
+//       .then(result => setUser(result))
 
-  },[])
+  // },[])
   
   function handleDelete() {
     (async () => {
@@ -63,9 +86,11 @@ function OneAnimal() {
           <img className={classes.img} src={`/${obj.photo}`} />
         </div>
         <div className='text-wrap'>
-          <h3>связаться с владельцем:{user && `${user.username} - 
- ${user.phone}`}</h3>
- <p>{user.whoAreYou}</p>
+          <h1>Контакты продавца: {author}</h1>
+          <h3>связаться с владельцем: {}</h3>
+//           <h3>связаться с владельцем:{user && `${user.username} - 
+//  ${user.phone}`}</h3>
+//  <p>{user.whoAreYou}</p>
           <h2>{obj.kind} - {obj.nickname}</h2>
 
           <div>размер - {obj.adultSize}</div>
@@ -85,10 +110,10 @@ function OneAnimal() {
           {obj.description}
         </p>
       </div>
-      <div className='end-button'>
+      {flag && <div className='end-button'>
         <Link to={`/update/${obj._id}`}><Button color="primary">Редактировать</Button></Link>
         <Button onClick={handleDelete} color="primary">Удалить</Button>
-      </div>
+      </div>}
 
     </section>
   )

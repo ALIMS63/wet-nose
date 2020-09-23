@@ -97,7 +97,7 @@ function NewAnimal() {
     exotic: false,
     farmAnimal: false,
     photo: null,
-    gender: 'female',
+    gender: 'девочка',
     pedigree: '',
     vaccinationРistory: '',
   });

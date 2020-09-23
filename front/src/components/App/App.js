@@ -4,16 +4,13 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Login from '../Login/Login';
 import Registration from '../Registration/Registration';
 import Navigation from '../Navigation/Navigation';
-import PrivateHome from '../PrivateHome/PrivateHome';
+import PersonalPage from '../PersonalPage/PersonalPage';
 import Logout from '../Logout/Logout';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import Secret from '../Secret/Secret';
 import Main from '../Main/Main';
-import ModalLogin from '../Login/ModalLogin';
-import ModalRegister from '../Registration/ModalRegister';
 import Filter from '../Filter/Filter'
 import NewAnimal from '../NewAnimal/NewAnimal';
-// import PetCart from '../PetCart';
 
 import PetCart from '../PetCart';
 import ModalFilter from '../Filter/ModalFilter';
@@ -26,20 +23,22 @@ import DeleteAnimal from '../DeleteAnimal/DeleteAnimal';
 import AnimalCard from '../AnimalCard/AnimalCard';
 import OneAnimal from '../OneAnimal/OneAnimal';
 
-import Nav from '../Navigation/Nav'
+import Nav from '../Navigation/Nav';
 
 
 function App() {
   return (
     <div className="App">
       <Router>
-        {/* <Navigation /> */}
-          <Nav/>
-          {/* <Main/> */}
+        <Navigation />
+        {/* <Nav /> */}
+        {/* <Main/> */}
 
         <Switch>
           <Route path="/" exact>
-            <ModalFilter/>
+            <ModalFilter />
+            {/* <Filter/> */}
+
             <Anketa />
             <AnimalCard />
           </Route>
@@ -56,8 +55,8 @@ function App() {
             <Logout />
           </Route>
 
-          <HomeRoute path="/privateHome" exact>
-            <PrivateHome />
+          <HomeRoute path="/personalPage" exact>
+            <PersonalPage />
           </HomeRoute>
 
           <Route path="/oneAnimal/:id" exact>
@@ -67,22 +66,10 @@ function App() {
           <Route path="/update/:id" exact>
             <UpdateAnimal />
           </Route>
-          {/* <Route path="/delete/:id" exact>
-            <DeleteAnimal />
-          </Route> */}
 
           <Route path="/secret">
             <NewAnimal />
           </Route>
-
-          {/* <PrivateRouter path="/user/:id" exact> */}
-
-          {/* <User></User> */}
-
-          {/* </PrivateRouter>
-          <PrivateRouter path="/user/:id/game" exact> */}
-
-          {/* <TableCards /> */}
 
         </Switch>
       </Router>
