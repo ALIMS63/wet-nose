@@ -258,11 +258,11 @@ function NewAnimal() {
                   value={inputs.adultSize}
                   onChange={changed}
                 >
-                  <MenuItem value="очень маленькое (хомяк и меньше)">Очень маленькое (хомяк и меньше)</MenuItem>
-                  <MenuItem value="маленькое (кошка)">Маленькое (кошка)</MenuItem>
-                  <MenuItem value="среднее (бульдог)">Среднее (бульдог)</MenuItem>
-                  <MenuItem value="большое (сенбернар)">Большое (сенбернар)</MenuItem>
-                  <MenuItem value="очень большое (лошадь и более)">Очень большое (лошадь и более)</MenuItem>
+                  <MenuItem value="Очень маленькое (ориентир: как хомяк и меньше)">Очень маленькое (хомяк и меньше)</MenuItem>
+                  <MenuItem value="Маленькое (ориентир: как кошка)">Маленькое (кошка)</MenuItem>
+                  <MenuItem value="Среднее (ориентир: как бульдог)">Среднее (бульдог)</MenuItem>
+                  <MenuItem value="Большое (ориентир: как сенбернар)">Большое (сенбернар)</MenuItem>
+                  <MenuItem value="Очень большое (ориентир: как лошадь и более)">Очень большое (лошадь и более)</MenuItem>
                 </Select>
               </FormControl>
               <TextField onChange={changed} name="adultweight" id="outlined-helperText" label="Вес взрослого животного" value={inputs.adultweight} helperText="" variant="outlined" />

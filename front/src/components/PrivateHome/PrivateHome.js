@@ -13,11 +13,11 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(2),
     margin: 'auto',
-    maxWidth: 500,
+    maxWidth: 700,
   },
   image: {
-    width: 128,
-    height: 128,
+    width: 300,
+    height: 500,
   },
   img: {
     margin: 'auto',
@@ -38,25 +38,25 @@ function PrivateHome() {
         <Grid container spacing={2}>
           <Grid item>
             <ButtonBase className={classes.image}>
-              <img className={classes.img} alt="complex" src="/static/images/grid/complex.jpg" />
+              <img className={classes.img} alt="complex" src="https://i.pinimg.com/originals/98/9f/e5/989fe5aa7178b758c265b1e665f4ebb7.jpg" />
             </ButtonBase>
           </Grid>
           <Grid item xs={12} sm container>
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
                 <Typography gutterBottom variant="subtitle1">
-                  Standard license
+                  {user.name}
                 </Typography>
                 <Typography variant="body2" gutterBottom>
-                  Full resolution 1920x1080 • JPEG
+                  {user.whoAreYou}
                 </Typography>
                 <Typography variant="body2" color="textSecondary">
-                  ID: 1030114
+                  {user.email}
                 </Typography>
               </Grid>
               <Grid item>
                 <Typography variant="body2" style={{ cursor: 'pointer' }}>
-                  Remove
+                  {user.phone}
                 </Typography>
               </Grid>
             </Grid>

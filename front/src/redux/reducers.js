@@ -8,6 +8,7 @@ export function userReducer(state = false, action) {
       return action.payload.user;
     case AUTHENTICATED_SUCCESSFULLY:
       return {
+        ...state,
         isAuthenticated: true,
       };
     case LOGOUT:
@@ -99,16 +100,16 @@ export function animalReducer(state = initialState, action) {
         filters: { ...state.filters, children: action.payload }
       }
     case ADD_ANIMAL:
-          return {
-            ...state,
-            animals: {
-              ...state.animals,
-              [action.payload.typeAnimal]: [
-                ...state.animals[action.payload.typeAnimal],
-                action.payload.newAnimal
-              ]
-            }
-          }
+      return {
+        ...state,
+        animals: {
+          ...state.animals,
+          [action.payload.typeAnimal]: [
+            ...state.animals[action.payload.typeAnimal],
+            action.payload.newAnimal
+          ]
+        }
+      }
     default:
       return state;
   }
