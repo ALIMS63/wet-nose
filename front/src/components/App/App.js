@@ -26,18 +26,19 @@ import DeleteAnimal from '../DeleteAnimal/DeleteAnimal';
 import AnimalCard from '../AnimalCard/AnimalCard';
 import OneAnimal from '../OneAnimal/OneAnimal';
 
+import Nav from '../Navigation/Nav'
+
 
 function App() {
   return (
     <div className="App">
       <Router>
-        <Navigation />
+        {/* <Navigation /> */}
+          <Nav/>
 
         <Switch>
           <Route path="/" exact>
             <ModalFilter/>
-            {/* <Filter/> */}
-          
             <Anketa />
             <AnimalCard />
           </Route>

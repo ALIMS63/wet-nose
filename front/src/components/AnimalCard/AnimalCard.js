@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom";
@@ -8,7 +8,6 @@ const useStyles = makeStyles({
   block: {
     marginLeft: '190px',
 
-    width: '1300px',
     marginTop: '80px',
     display: 'flex',
     justifyContent: 'space-between',
@@ -35,8 +34,13 @@ const useStyles = makeStyles({
 function AnimalCard() {
   const classes = useStyles();
   const data = useSelector(state => state.animals).animals;
+  const filters = useSelector(state => state.animals).filters;
   const history = useHistory();
 
+    useEffect(() => {
+      console.log(123);
+      
+    }, [filters])
 
   return (
     <>
