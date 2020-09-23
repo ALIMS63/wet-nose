@@ -35,6 +35,7 @@ function App() {
       <Router>
         {/* <Navigation /> */}
           <Nav/>
+          {/* <Main/> */}
 
         <Switch>
           <Route path="/" exact>
