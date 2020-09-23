@@ -29,7 +29,7 @@ const router = express.Router();
 function serializeUser(user) {
   return {
     id: user._id,
-    username: user.username,
+    name: user.name,
   };
 }
 
@@ -71,16 +71,21 @@ router.post('/api/login', async (req, res) => {
   res.status(200);
   console.log(user);
   return res.json({
-    id: user._id, name: user.name, email: user.email, phone: user.phone, whoAreYou: user.whoAreYou,
+    id: user._id,
+    name: user.name,
+    email: user.email,
+    phone: user.phone,
+    whoAreYou: user.whoAreYou,
+    createdAt: user.createdAt,
   });
 });
 
 router.post('/api/registration', async (req, res) => {
   const {
-    username, email, password, phone, whoAreYou,
+    name, email, password, phone, whoAreYou,
   } = req.body;
   let user;
-  const validUsername = await User.findOne({ username, email });
+  const validUsername = await User.findOne({ name, email });
   if (validUsername) {
     res.status(401);
     res.json({ message: 'The user with such email already exists' });
@@ -88,7 +93,7 @@ router.post('/api/registration', async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
     try {
       user = await User.create({
-        username,
+        name,
         email,
         password: hashedPassword,
         phone,
@@ -106,6 +111,7 @@ router.post('/api/registration', async (req, res) => {
       email: user.email,
       phone: user.phone,
       whoAreYou: user.whoAreYou,
+      createdAt: user.createdAt,
     });
   }
 });
@@ -137,14 +143,14 @@ router.put('/api/allAnimals/:id', upload, async (req, res) => {
   const {
     bigType, kindDog, kindCat, kindOther, nickname, age, description, pay, price, adultSize, adultweight, possibleForAllergySufferers, longHaired, guideВog, serviceAnimal, warDog, pet, onlyInNonApartments, specialConditionsOfDetention, childrenInTheHouse, exotic, farmAnimal, gender, pedigree, vaccinationРistory,
   } = req.body;
-  if (bigType === 'dogs') {
+  if (bigType === 'собака') {
     await Dog.updateOne({ _id: id }, {
       kind: kindDog, nickname, gender, age, description, pay, price, pedigree, vaccinationРistory, adultSize, adultweight, pet, exotic, farmAnimal, serviceAnimal, warDog, guideВog, longHaired, possibleForAllergySufferers, onlyInNonApartments, specialConditionsOfDetention, childrenInTheHouse, photo, sellerID: req.session.user.id,
     });
     const newDog = await Dog.findById(id);
     return res.json(newDog);
   }
-  if (bigType === 'cats') {
+  if (bigType === 'кот') {
     await Cat.updateOne({ _id: id }, {
       kind: kindCat, nickname, gender, age, description, pay, price, pedigree, vaccinationРistory, adultSize, adultweight, pet, exotic, farmAnimal, serviceAnimal, warDog, guideВog, longHaired, possibleForAllergySufferers, onlyInNonApartments, specialConditionsOfDetention, childrenInTheHouse, photo, sellerID: req.session.user.id,
     });
@@ -163,13 +169,13 @@ router.post('/api/allAnimals', upload, async (req, res) => {
   const {
     bigType, kindDog, kindCat, kindOther, nickname, age, description, pay, price, adultSize, adultweight, possibleForAllergySufferers, longHaired, guideВog, serviceAnimal, warDog, pet, onlyInNonApartments, specialConditionsOfDetention, childrenInTheHouse, exotic, farmAnimal, gender, pedigree, vaccinationРistory,
   } = req.body;
-  if (bigType === 'dogs') {
+  if (bigType === 'собака') {
     const newDog = await new Dog({
       kind: kindDog, nickname, gender, age, description, pay, price, pedigree, vaccinationРistory, adultSize, adultweight, pet, exotic, farmAnimal, serviceAnimal, warDog, guideВog, longHaired, possibleForAllergySufferers, onlyInNonApartments, specialConditionsOfDetention, childrenInTheHouse, photo, sellerID: req.session.user.id,
     }).save();
     return res.json(newDog);
   }
-  if (bigType === 'cats') {
+  if (bigType === 'кот') {
     const newCat = await new Cat({
       kind: kindCat, nickname, gender, age, description, pay, price, pedigree, vaccinationРistory, adultSize, adultweight, pet, exotic, farmAnimal, serviceAnimal, warDog, guideВog, longHaired, possibleForAllergySufferers, onlyInNonApartments, specialConditionsOfDetention, childrenInTheHouse, photo, sellerID: req.session.user.id,
     }).save();
@@ -192,11 +198,9 @@ router.get('/api/delete/:id', async (req, res) => {
 });
 
 router.get('/api/user/:id', async (req, res) => {
-  console.log('id from front',req.params.id);
-  const validUserId = await User.findOne({ _id: req.params.id });
-  console.log('user back find', validUserId);
-  res.json(validUserId)
-})
-
+  const oneUser = await User.findOne({ _id: req.params.id });
+  console.log(oneUser);
+  res.json(oneUser);
+});
 
 export default router;
