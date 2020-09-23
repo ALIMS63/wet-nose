@@ -12,7 +12,7 @@ import Main from '../Main/Main';
 import Filter from '../Filter/Filter'
 import NewAnimal from '../NewAnimal/NewAnimal';
 
-import PetCart from '../PetCart';
+// import PetCart from '../PetCart';
 import ModalFilter from '../Filter/ModalFilter';
 import Anketa from '../Anketa';
 import HomeRoute from '../HomeRoute/HomeRoute';
@@ -30,8 +30,8 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Navigation />
-        {/* <Nav /> */}
+        {/* <Navigation /> */}
+        <Nav />
         {/* <Main/> */}
 
         <Switch>
@@ -67,9 +67,9 @@ function App() {
             <UpdateAnimal />
           </Route>
 
-          <PrivateRoute path="/secret">
+          <Route path="/secret">
             <NewAnimal />
-          </PrivateRoute>
+          </Route>
 
         </Switch>
       </Router>
