@@ -1,14 +1,15 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable max-len */
 /* eslint-disable consistent-return */
 /* eslint-disable no-console */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable import/extensions */
+
 import express from 'express';
 import bcrypt from 'bcrypt';
 import multer from 'multer';
 import path from 'path';
 import User from '../models/user.js';
-// import Task from '../models/task.js';
 import Dog from '../models/dog.js';
 import Cat from '../models/cat.js';
 import Other from '../models/otherAnimal.js';
@@ -32,31 +33,6 @@ function serializeUser(user) {
   };
 }
 
-// router.get('/api', async (req, res) => {
-// let tasks = await Task.find();
-// res.json({ tasks });
-// });
-
-// router.post('/api/add', async (req, res) => {
-// console.log(req.body.inputValue);
-// const item = await Task.create({ text: req.body.inputValue });
-// res.json({ item });
-// });
-
-// router.post('/api/check', async (req, res) => {
-// console.log(req.body.id);
-// const item = await Task.findOne({ _id: req.body.id });
-// item.status = !item.status;
-// await item.save();
-// res.redirect('/api');
-// });
-
-// router.post('/api/delete', async (req, res) => {
-// console.log(req.body.id);
-// const item = await Task.findOneAndDelete({ _id: req.body.id });
-// res.redirect('/api');
-// });
-
 router.get('/api', (req, res) => {
   res.send('some text');
 });
@@ -64,15 +40,12 @@ router.get('/api', (req, res) => {
 router.get(
   '/api/secret',
   (req, res, next) => {
-    console.log('1apiLog');
     if (req.session.user) {
-      console.log('2apiLog');
       return next();
     }
     res.status(401).end();
   },
   (req, res) => {
-    console.log('3apiLog');
     res.json({
       email: req.session.user.email,
       yes: true,
@@ -82,7 +55,6 @@ router.get(
 
 router.post('/api/login', async (req, res) => {
   const { email, password } = req.body;
-  console.log(email, password);
 
   const user = await User.findOne({ email }).exec();
   if (!user) {
@@ -90,7 +62,6 @@ router.post('/api/login', async (req, res) => {
     res.json({ message: 'The email you provided is actually wrong' });
   }
   const isValidPassword = await bcrypt.compare(password, user.password);
-  console.log(isValidPassword);
   if (!isValidPassword) {
     res.status(401);
     res.json({ message: 'The password you provided is actually wrong' });
@@ -98,19 +69,20 @@ router.post('/api/login', async (req, res) => {
   console.log(serializeUser(user));
   req.session.user = serializeUser(user);
   res.status(200);
-  return res.json({ id: user._id, name: user.name, email: user.email });
+  console.log(user);
+  return res.json({
+    id: user._id, name: user.name, email: user.email, phone: user.phone, whoAreYou: user.whoAreYou,
+  });
 });
 
 router.post('/api/registration', async (req, res) => {
   const {
     username, email, password, phone, whoAreYou,
   } = req.body;
-  console.log(111);
   let user;
   const validUsername = await User.findOne({ username, email });
   if (validUsername) {
     res.status(401);
-    console.log('answer from back');
     res.json({ message: 'The user with such email already exists' });
   } else {
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -159,11 +131,35 @@ router.get('/api/allAnimals', async (req, res) => {
   res.json({ cats, dogs, other });
 });
 
-router.post('/api/allAnimals', upload, async (req, res) => {
-  // console.log('Request file ---', req.file);
-  // console.log('1111111111111111111', req.body);
+router.put('/api/allAnimals/:id', upload, async (req, res) => {
+  const { id } = req.params;
   const photo = req.file.path.slice(7);
-  // console.log(photo);
+  const {
+    bigType, kindDog, kindCat, kindOther, nickname, age, description, pay, price, adultSize, adultweight, possibleForAllergySufferers, longHaired, guideВog, serviceAnimal, warDog, pet, onlyInNonApartments, specialConditionsOfDetention, childrenInTheHouse, exotic, farmAnimal, gender, pedigree, vaccinationРistory,
+  } = req.body;
+  if (bigType === 'dogs') {
+    await Dog.updateOne({ _id: id }, {
+      kind: kindDog, nickname, gender, age, description, pay, price, pedigree, vaccinationРistory, adultSize, adultweight, pet, exotic, farmAnimal, serviceAnimal, warDog, guideВog, longHaired, possibleForAllergySufferers, onlyInNonApartments, specialConditionsOfDetention, childrenInTheHouse, photo, sellerID: req.session.user.id,
+    });
+    const newDog = await Dog.findById(id);
+    return res.json(newDog);
+  }
+  if (bigType === 'cats') {
+    await Cat.updateOne({ _id: id }, {
+      kind: kindCat, nickname, gender, age, description, pay, price, pedigree, vaccinationРistory, adultSize, adultweight, pet, exotic, farmAnimal, serviceAnimal, warDog, guideВog, longHaired, possibleForAllergySufferers, onlyInNonApartments, specialConditionsOfDetention, childrenInTheHouse, photo, sellerID: req.session.user.id,
+    });
+    const newCat = await Cat.findById(id);
+    return res.json(newCat);
+  }
+  await Other.updateOne({ _id: id }, {
+    type: bigType, kind: kindOther, nickname, gender, age, description, pay, price, pedigree, vaccinationРistory, adultSize, adultweight, pet, exotic, farmAnimal, serviceAnimal, warDog, guideВog, longHaired, possibleForAllergySufferers, onlyInNonApartments, specialConditionsOfDetention, childrenInTheHouse, photo, sellerID: req.session.user.id,
+  });
+  const newOtherAnimal = await Other.findById(id);
+  return res.json(newOtherAnimal);
+});
+
+router.post('/api/allAnimals', upload, async (req, res) => {
+  const photo = req.file.path.slice(7);
   const {
     bigType, kindDog, kindCat, kindOther, nickname, age, description, pay, price, adultSize, adultweight, possibleForAllergySufferers, longHaired, guideВog, serviceAnimal, warDog, pet, onlyInNonApartments, specialConditionsOfDetention, childrenInTheHouse, exotic, farmAnimal, gender, pedigree, vaccinationРistory,
   } = req.body;
@@ -183,6 +179,16 @@ router.post('/api/allAnimals', upload, async (req, res) => {
     type: bigType, kind: kindOther, nickname, gender, age, description, pay, price, pedigree, vaccinationРistory, adultSize, adultweight, pet, exotic, farmAnimal, serviceAnimal, warDog, guideВog, longHaired, possibleForAllergySufferers, onlyInNonApartments, specialConditionsOfDetention, childrenInTheHouse, photo, sellerID: req.session.user.id,
   }).save();
   return res.json(newOtherAnimal);
+});
+
+router.get('/api/delete/:id', async (req, res) => {
+  console.log(req.params);
+  const cat = await Cat.findOne({ _id: req.params.id }).exec();
+  const dog = await Dog.findOne({ _id: req.params.id }).exec();
+  const other = await Other.findOne({ _id: req.params.id }).exec();
+  if (cat) await Cat.deleteOne({ _id: req.params.id });
+  else if (dog) await Dog.deleteOne({ _id: req.params.id });
+  else if (other) await Other.deleteOne({ _id: req.params.id });
 });
 
 export default router;

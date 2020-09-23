@@ -40,7 +40,7 @@ function AnimalCard() {
 
   return (
     <>
-      <container className={classes.block}>
+      <container className='animal-card'>
         {Object.keys(data) && Object.keys(data).map(key => {
           return (data[key] && data[key].map(obj => {
             return (

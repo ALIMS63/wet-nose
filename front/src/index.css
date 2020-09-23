@@ -8,12 +8,18 @@
 body {
   /* background-color: #a3b949 */
   /* background: url('./components/App/images/leather-green.jpg'); */
-  background-image: linear-gradient(to right, rgba(255, 234, 116, 0.801), rgba(250, 155, 77, 0.7)), url('./components/App/images/кожа.jpg');
+  /* background-image: linear-gradient(to right, rgba(255, 234, 116, 0.801), rgba(250, 155, 77, 0.7)), url('./components/App/images/кожа.jpg'); */
   background-size: auto;
   /* background-size: cover; */
   min-height: 100%;
   min-width: 100%;
 }
+
+/* .animal-card{
+  width: 20%;
+  display: flex;
+  flex-wrap: wrap;
+} */
 
 p {
   margin-bottom: 0.1em;
