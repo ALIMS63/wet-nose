@@ -4,8 +4,6 @@ import { Container, AppBar, Button, CardActions, CardContent, CssBaseline, CardM
 import { makeStyles } from '@material-ui/core/styles';
 import { useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
-import ModalRegister from '../Registration/ModalRegister'
-import ModalLogin from '../Login/ModalLogin'
 
 
 const useStyles = makeStyles((theme) => ({
