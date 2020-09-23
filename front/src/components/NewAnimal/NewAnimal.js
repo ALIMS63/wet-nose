@@ -97,7 +97,7 @@ function NewAnimal() {
     exotic: false,
     farmAnimal: false,
     photo: null,
-    gender: 'female',
+    gender: 'девочка',
     pedigree: '',
     vaccinationРistory: '',
   });
@@ -151,7 +151,7 @@ function NewAnimal() {
             {/* Тип, порода, кличка */}
             <Grid container direction="row" justify="space-evenly" alignItems="center" >
               <div style={{ width: 300 }}>
-                <Autocomplete  inputProps={{ 'aria-label': 'Without label' }} name="bigType" inputValue={inputs.bigType} id="free-solo-demo" freeSolo
+                <Autocomplete inputProps={{ 'aria-label': 'Without label' }} name="bigType" inputValue={inputs.bigType} id="free-solo-demo" freeSolo
                   options={typeAnimal.map((option) => option.type)}
                   onInputChange={(event, newInputValue) => {
                     changed({ target: { value: newInputValue, name: 'bigType' } })
@@ -162,7 +162,7 @@ function NewAnimal() {
                   )}
                 />
               </div>
-              {inputs.bigType === "dogs" ?
+              {inputs.bigType === "собака" ?
                 <div style={{ width: 300 }}>
                   <Autocomplete name="kindDog" inputValue={inputs.kindDog} id="free-solo-demo" freeSolo
                     options={kindDog.map((option) => option.type)}
@@ -175,7 +175,7 @@ function NewAnimal() {
                     )}
                   />
                 </div>
-                : inputs.bigType === "cats" ?
+                : inputs.bigType === "кот" ?
                   <div style={{ width: 300 }}>
                     <Autocomplete name="kindCat" inputValue={inputs.kindCat} id="free-solo-demo" freeSolo
                       options={kindCat.map((option) => option.type)}
@@ -192,13 +192,13 @@ function NewAnimal() {
               }
               <TextField id="standard-required" name="nickname" label="Кличка" required value={inputs.nickname} onChange={changed} />
             </Grid>
-            {/* Гендер, возраст, Описание */}
+            {/* Пол, возраст, Описание */}
             <Grid container direction="row" justify="space-evenly" alignItems="center" className={classes.formControl}>
               <FormControl component="fieldset">
-                <FormLabel component="legend">Gender</FormLabel>
+                <FormLabel component="legend">Пол</FormLabel>
                 <RadioGroup aria-label="gender" name="gender" value={inputs.gender} onChange={changed}>
-                  <FormControlLabel value="female" control={<Radio />} label="Female" />
-                  <FormControlLabel value="male" control={<Radio />} label="Male" />
+                  <FormControlLabel value="девочка" control={<Radio />} label="Female" />
+                  <FormControlLabel value="мальчик" control={<Radio />} label="Male" />
                 </RadioGroup>
               </FormControl>
               <TextField id="outlined-number" label="Возраст" type="number" variant="outlined" name="age" required
@@ -412,8 +412,8 @@ function NewAnimal() {
 }
 
 const typeAnimal = [
-  { type: 'dogs' },
-  { type: 'cats' },
+  { type: 'собака' },
+  { type: 'кот' },
   { type: 'Впишите свой вариант' },
 ];
 const kindDog = [
