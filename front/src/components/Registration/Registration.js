@@ -61,7 +61,7 @@ function Registration() {
   const history = useHistory();
 
   const [inputs, setInputs] = useState({
-    username: '',
+    name: '',
     email: '',
     password: '',
     phone: '',
@@ -71,7 +71,7 @@ function Registration() {
   const [failed, setFailed] = useState(null);
 
   async function handleSubmit(event) {
-    const { username, email, password } = inputs
+    const { name, email, password } = inputs
     event.preventDefault();
     const response = await fetch("/api/registration", {
       method: "POST",
@@ -79,7 +79,7 @@ function Registration() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        username,
+        name,
         email,
         password,
         phone,
@@ -105,7 +105,7 @@ function Registration() {
     })
   }
 
-  const { username, email, password, phone, whoAreYou } = inputs;
+  const { name, email, password, phone, whoAreYou } = inputs;
 
 
 
@@ -124,16 +124,16 @@ function Registration() {
             <Grid item xs={12}>
               <TextField
                 className={classes.inp}
-                autoComplete="username"
-                name="username"
+                autoComplete="name"
+                name="name"
                 variant="outlined"
                 required
                 fullWidth
-                id="username"
-                label="Userame"
+                id="name"
+                label="Name"
                 autoFocus
                 onChange={handleChange}
-                value={username}
+                value={name}
               />
             </Grid>
             <Grid item xs={12}>

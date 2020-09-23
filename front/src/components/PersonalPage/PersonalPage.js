@@ -16,10 +16,11 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 700,
   },
   image: {
-    width: 300,
-    height: 500,
+    width: 200,
+    height: 200,
   },
   img: {
+    borderRadius: '100%',
     margin: 'auto',
     display: 'block',
     maxWidth: '100%',
@@ -27,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function PrivateHome() {
+function PersonalPage() {
   const classes = useStyles();
   const user = useSelector(state => state.user);
   console.log(user);
@@ -45,13 +46,16 @@ function PrivateHome() {
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
                 <Typography gutterBottom variant="subtitle1">
-                  {user.name}
+                  Имя: {user.name}
                 </Typography>
                 <Typography variant="body2" gutterBottom>
-                  {user.whoAreYou}
+                  Владелец: {user.whoAreYou}
                 </Typography>
                 <Typography variant="body2" color="textSecondary">
-                  {user.email}
+                  Электронная почта: {user.email}
+                </Typography>
+                <Typography variant="body2" color="textSecondary">
+                  Профиль создан: {user.createdAt}
                 </Typography>
               </Grid>
               <Grid item>
@@ -70,4 +74,4 @@ function PrivateHome() {
   );
 }
 
-export default PrivateHome;
+export default PersonalPage;

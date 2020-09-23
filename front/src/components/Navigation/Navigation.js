@@ -89,6 +89,8 @@ function Navigation() {
           </div>
 
           <div className={classes.btns}>
+//             {isAuthenticated && <Link className={classes.link} to="/personalPage"><Button className={classes.button} color="inherit">Home</Button></Link>}
+//             {!isAuthenticated && <Link className={classes.link} to="/registration"><Button className={classes.button} color="inherit">Registration</Button></Link>}
             {isAuthenticated &&
               <Link className={classes.link} to="/privateHome">
                 <Button className={classes.button} color="inherit">
