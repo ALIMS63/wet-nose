@@ -71,9 +71,9 @@ function App() {
             <DeleteAnimal />
           </Route> */}
 
-          <PrivateRoute path="/secret">
+          <Route path="/secret">
             <NewAnimal />
-          </PrivateRoute>
+          </Route>
 
           {/* <PrivateRouter path="/user/:id" exact> */}
 
