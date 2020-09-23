@@ -91,13 +91,13 @@ router.post('/api/registration', async (req, res) => {
     res.json({ message: 'The user with such email already exists' });
   } else {
     const hashedPassword = await bcrypt.hash(password, 10);
-      user = await User.create({
-        name,
-        email,
-        password: hashedPassword,
-        phone,
-        whoAreYou,
-      });
+    user = await User.create({
+      name,
+      email,
+      password: hashedPassword,
+      phone,
+      whoAreYou,
+    });
     req.session.user = serializeUser(user);
     res.status(200);
     return res.json({
@@ -193,9 +193,8 @@ router.get('/api/delete/:id', async (req, res) => {
 });
 
 router.get('/api/user/:id', async (req, res) => {
-
   const validUserId = await User.findOne({ _id: req.params.id });
-  res.json(validUserId)
-})
+  res.json(validUserId);
+});
 
 export default router;
