@@ -1,7 +1,9 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
+import 'antd/dist/antd.css';
+import { Tooltip, Popover, Button } from 'antd';
 
 
 const useStyles = makeStyles({
@@ -41,26 +43,53 @@ function AnimalCard() {
   const filters = useSelector(state => state.animals).filters;
   const history = useHistory();
 
-    useEffect(() => {
-      console.log(123);
-      
-    }, [filters])
+  useEffect(() => {
+    console.log(123);
+
+  }, [filters])
 
   return (
     <>
       <container className={classes.block}>
+
         {Object.keys(data) && Object.keys(data).map(key => {
           return (data[key] && data[key].map(obj => {
             return (
-              <div key={obj._id} onClick={() => history.push(`/oneAnimal/${obj._id}`)} className={classes.onePet}>
-                <div>
-                  <img className={classes.img} src={`/${obj.photo}`} alt="animal" />
+              <Popover
+                content={
+                  <div>
+                    <p>{obj.nickname}</p>
+                    <p>{obj.kind}</p>
+                    <p>{obj.adultSize}</p>
+                    <p>{obj.pedigree}</p>
+                    <p>{obj.description}</p>
+                  </div>
+                }
+                title={
+                  <Link to={`/oneAnimal/${obj._id}`} >
+                    Подробнее
+                  </Link>
+                }>
+                <div
+                  key={obj._id}
+                  onClick={
+                    () => history.push(`/oneAnimal/${obj._id}`)
+                  }
+                  className={classes.onePet}>
+                  <div>
+                    <img
+                      className={classes.img}
+                      src={`/${obj.photo}`}
+                      alt="animal"
+                    />
+                  </div>
                 </div>
-              </div>
+              </Popover>
             )
           }))
         })
         }
+
       </container>
     </>
   );
