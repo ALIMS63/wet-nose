@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Login from '../Login/Login';
 import Registration from '../Registration/Registration';
 import Navigation from '../Navigation/Navigation';
-import PrivateHome from '../PrivateHome/PrivateHome';
+import PersonalPage from '../PersonalPage/PersonalPage';
 import Logout from '../Logout/Logout';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import Secret from '../Secret/Secret';
@@ -35,9 +35,9 @@ function App() {
 
         <Switch>
           <Route path="/" exact>
-            <ModalFilter/>
+            <ModalFilter />
             {/* <Filter/> */}
-          
+
             <Anketa />
             <AnimalCard />
           </Route>
@@ -54,8 +54,8 @@ function App() {
             <Logout />
           </Route>
 
-          <HomeRoute path="/privateHome" exact>
-            <PrivateHome />
+          <HomeRoute path="/personalPage" exact>
+            <PersonalPage />
           </HomeRoute>
 
           <Route path="/oneAnimal/:id" exact>
