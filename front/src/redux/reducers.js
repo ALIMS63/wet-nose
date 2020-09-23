@@ -8,6 +8,7 @@ export function userReducer(state = false, action) {
       return action.payload.user;
     case AUTHENTICATED_SUCCESSFULLY:
       return {
+        ...state,
         isAuthenticated: true,
       };
     case LOGOUT:

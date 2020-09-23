@@ -40,15 +40,12 @@ router.get('/api', (req, res) => {
 router.get(
   '/api/secret',
   (req, res, next) => {
-    console.log('1apiLog');
     if (req.session.user) {
-      console.log('2apiLog');
       return next();
     }
     res.status(401).end();
   },
   (req, res) => {
-    console.log('3apiLog');
     res.json({
       email: req.session.user.email,
       yes: true,
@@ -58,7 +55,6 @@ router.get(
 
 router.post('/api/login', async (req, res) => {
   const { email, password } = req.body;
-  console.log(email, password);
 
   const user = await User.findOne({ email }).exec();
   if (!user) {
@@ -66,7 +62,6 @@ router.post('/api/login', async (req, res) => {
     res.json({ message: 'The email you provided is actually wrong' });
   }
   const isValidPassword = await bcrypt.compare(password, user.password);
-  console.log(isValidPassword);
   if (!isValidPassword) {
     res.status(401);
     res.json({ message: 'The password you provided is actually wrong' });
@@ -74,19 +69,20 @@ router.post('/api/login', async (req, res) => {
   console.log(serializeUser(user));
   req.session.user = serializeUser(user);
   res.status(200);
-  return res.json({ id: user._id, name: user.name, email: user.email });
+  console.log(user);
+  return res.json({
+    id: user._id, name: user.name, email: user.email, phone: user.phone, whoAreYou: user.whoAreYou,
+  });
 });
 
 router.post('/api/registration', async (req, res) => {
   const {
     username, email, password, phone, whoAreYou,
   } = req.body;
-  console.log(111);
   let user;
   const validUsername = await User.findOne({ username, email });
   if (validUsername) {
     res.status(401);
-    console.log('answer from back');
     res.json({ message: 'The user with such email already exists' });
   } else {
     const hashedPassword = await bcrypt.hash(password, 10);

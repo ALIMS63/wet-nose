@@ -71,7 +71,7 @@ function Login() {
     });
     const finalResult = await response.json();
     if (response.status === 200) {
-
+      console.log(finalResult);
       dispatch(setUser(finalResult));
       dispatch({
         type: 'AUTHENTICATED_SUCCESSFULLY'
