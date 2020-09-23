@@ -8,7 +8,6 @@ const useStyles = makeStyles({
   block: {
     marginLeft: '190px',
 
-    width: '1300px',
     marginTop: '80px',
     display: 'flex',
     justifyContent: 'space-between',
