@@ -8,6 +8,7 @@ import sessionFileStore from 'session-file-store';
 // import './misc/env.js';
 import './misc/db.js';
 import path from 'path';
+import methodOverride from 'method-override';
 // import cors from 'cors';
 import notFoundMiddleware from './middlewares/notfound.js';
 import errorMiddleware from './middlewares/error.js';
@@ -38,6 +39,15 @@ app.use(session({
     // В продакшне нужно "secure: true" для HTTPS
     secure: process.env.NODE_ENV === 'production',
   },
+}));
+
+app.use(methodOverride((req, res) => {
+  if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+    // look in urlencoded POST bodies and delete it
+    const method = req.body._method;
+    delete req.body._method;
+    return method;
+  }
 }));
 
 // -----------------------------------------Routers

@@ -1,5 +1,5 @@
 
-import { SET_USER, DELETE_USER, AUTHENTICATED_SUCCESSFULLY, SET_ANIMALS, ANIMAL_CATEGORY, PAY_FILTER, ADD_ANIMAL, AGE_FILTER, GENDER_FILTER, PRICE_FILTER, HAIR_FILTER, WEIGHT_FILTER, GUIDE_FILTER, WAR_FILTER, CONDITION_FILTER, SUFFER_FILTER, APARTMENT_FILTER, CHILDREN_FILTER } from "./action-types";
+import { SET_USER, DELETE_USER, AUTHENTICATED_SUCCESSFULLY, SET_ANIMALS, ANIMAL_CATEGORY, PAY_FILTER, ADD_ANIMAL, AGE_FILTER, GENDER_FILTER, PRICE_FILTER, HAIR_FILTER, WEIGHT_FILTER, GUIDE_FILTER, WAR_FILTER, CONDITION_FILTER, SUFFER_FILTER, APARTMENT_FILTER, CHILDREN_FILTER, UPDATE_ANIMAL } from "./action-types";
 
 
 import axios from 'axios'
@@ -134,3 +134,13 @@ export function addNewAnimal(typeAnimal, newAnimal) {
     }
   }
 }
+
+// export function updateMyAnimal(typeAnimal, updateAnimal) {
+//   return {
+//     type: UPDATE_ANIMAL,
+//     payload: {
+//       typeAnimal,
+//       updateAnimal,
+//     }
+//   }
+// }
