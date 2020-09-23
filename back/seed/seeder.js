@@ -24,7 +24,7 @@ async function createDog() {
       onlyInNonApartments: false,
       specialConditionsOfDetention: false,
       childrenInTheHouse: true,
-      sellerID: mongoose.Types.ObjectId('5f6b5dc66a5505607910d1e4'),
+      sellerID: mongoose.Types.ObjectId('5f6b65be497ef96ca88df446'),
       gender: 'мальчик',
       pedigree: 'нет',
       vaccinationРistory: 'нет',
@@ -49,7 +49,7 @@ async function createDog() {
       gender: 'девочка',
       pedigree: 'есть',
       vaccinationРistory: 'есть',
-      sellerID: mongoose.Types.ObjectId('5f6b5dc66a5505607910d1e4'),
+      sellerID: mongoose.Types.ObjectId('5f6b65be497ef96ca88df446'),
     },
     {
       kind: 'Босерон',
@@ -71,7 +71,7 @@ async function createDog() {
       gender: 'мальчик',
       pedigree: 'есть',
       vaccinationРistory: 'есть',
-      sellerID: mongoose.Types.ObjectId('5f6b5dc66a5505607910d1e4'),
+      sellerID: mongoose.Types.ObjectId('5f6b65be497ef96ca88df446'),
     },
   ]);
 }
@@ -95,7 +95,7 @@ async function createCat() {
       gender: 'девочка',
       pedigree: 'есть',
       vaccinationРistory: 'есть',
-      sellerID: mongoose.Types.ObjectId('5f6b5dc66a5505607910d1e4'),
+      sellerID: mongoose.Types.ObjectId('5f6b65be497ef96ca88df446'),
     },
     {
       kind: 'Мейн-кун',

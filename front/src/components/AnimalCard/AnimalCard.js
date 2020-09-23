@@ -17,8 +17,8 @@ const useStyles = makeStyles({
 
   },
   img: {
-    height: '200px',
-    width: '200px',
+    height: '300px',
+    width: '300px',
     borderRadius: '5px',
     objectFit: 'cover',
   },

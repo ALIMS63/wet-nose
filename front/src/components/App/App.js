@@ -84,7 +84,7 @@ function App() {
           {/* </PrivateRouter>
           <PrivateRouter path="/user/:id/game" exact> */}
 
-          {/* <TableCards /> */}
+          
 
         </Switch>
       </Router>
