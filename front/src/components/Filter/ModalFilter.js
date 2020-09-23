@@ -23,10 +23,17 @@ import {
 
 const { Option } = Select;
 
+
 function ModalFilter() {
   const [visible, setVisible] = useState(false)
   const [loading, setLoading] = useState(false)
-
+  
+  const [category, setCategory] = useState()
+  const dispatch = useDispatch()
+  const animalsFromState = useSelector((state) => state.animals.animals)
+  const filters = useSelector((state) => state.animals.filters)
+  console.log('FILTERS===', filters);
+  
   function showModal() {
     setVisible(true)
   };
@@ -54,12 +61,6 @@ function ModalFilter() {
 
 
 
-  const [category, setCategory] = useState()
-  const dispatch = useDispatch()
-  const animalsFromState = useSelector((state) => state.animals.animals)
-  const filters = useSelector((state) => state.animals.filters)
-  console.log('FILTERS===', filters);
-  
 
   let animalCategory = animalsFromState[filters.category]
 
