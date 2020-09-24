@@ -84,9 +84,6 @@ function UpdateAnimal() {
       newTypeAnimal = type;
     }
   })
-  // console.log(findAnimal)
-  // console.log(newTypeAnimal)
-  // console.log(typeof newTypeAnimal)
 
   const [inputs, setInputs] = useState({
     bigType: newTypeAnimal,
@@ -153,13 +150,13 @@ function UpdateAnimal() {
 
   return (
     <>
-      <form onSubmit={updateAnimal} encType="multipart/form-data">
+      <form onSubmit={updateAnimal} encType="multipart/form-data" style={{ margin: '7%', background: 'rgba(176,232,191, 0.8)', paddingRight: '4%' }}>
         <input type="hidden" name="_method" value="put" />
         <div className={classes.root}>
           <Grid container spacing={5} >
             {/* Тип, порода, кличка */}
             <Grid container direction="row" justify="space-evenly" alignItems="center" >
-              <div style={{ width: 300 }}>
+              <div className={classes.formControl}>
                 <Autocomplete defaultValue={inputs.bigType} inputProps={{ 'aria-label': 'Without label' }} name="bigType" inputValue={inputs.bigType} id="free-solo-demo" freeSolo
                   options={typeAnimal.map((option) => option.type)}
                   onInputChange={(event, newInputValue) => {
@@ -172,7 +169,7 @@ function UpdateAnimal() {
                 />
               </div>
               {inputs.bigType === "собака" ?
-                <div style={{ width: 300 }}>
+                <div className={classes.formControl}>
                   <Autocomplete defaultValue={inputs.kindDog} name="kindDog" inputValue={inputs.kindDog} id="free-solo-demo" freeSolo
                     options={kindDog.map((option) => option.type)}
                     onInputChange={(event, newInputValue) => {
@@ -185,7 +182,7 @@ function UpdateAnimal() {
                   />
                 </div>
                 : inputs.bigType === "кот" ?
-                  <div style={{ width: 300 }}>
+                  <div className={classes.formControl}>
                     <Autocomplete defaultValue={inputs.kindCat} name="kindCat" inputValue={inputs.kindCat} id="free-solo-demo" freeSolo
                       options={kindCat.map((option) => option.type)}
                       onInputChange={(event, newInputValue) => {
@@ -197,27 +194,27 @@ function UpdateAnimal() {
                       )}
                     />
                   </div>
-                  : <TextField id="standard-required" name="kindOther" label="Порода" value={inputs.kindOther} onChange={changed} />
+                  : <TextField className={classes.formControl} id="standard-required" name="kindOther" label="Порода" value={inputs.kindOther} onChange={changed} />
               }
-              <TextField id="standard-required" name="nickname" label="Кличка" required value={inputs.nickname} onChange={changed} />
+              <TextField className={classes.formControl} id="standard-required" name="nickname" label="Кличка" required value={inputs.nickname} onChange={changed} />
             </Grid>
             {/* Пол, возраст, Описание */}
             <Grid container direction="row" justify="space-evenly" alignItems="center" className={classes.formControl}>
-              <FormControl component="fieldset">
+              <FormControl component="fieldset" className={classes.formControl}>
                 <FormLabel component="legend">Пол</FormLabel>
                 <RadioGroup aria-label="gender" name="gender" value={inputs.gender} onChange={changed}>
                   <FormControlLabel value="девочка" control={<Radio />} label="Female" />
                   <FormControlLabel value="мальчик" control={<Radio />} label="Male" />
                 </RadioGroup>
               </FormControl>
-              <TextField id="outlined-number" label="Возраст" type="number" variant="outlined" name="age" required
+              <TextField className={classes.formControl} id="outlined-number" label="Возраст" type="number" variant="outlined" name="age" required
                 value={inputs.age} onChange={changed}
                 InputLabelProps={{
                   shrink: true,
                 }}
               />
               <TextField
-
+className={classes.formControl}
                 onChange={changed}
                 name="description"
                 id="outlined-multiline-static"
@@ -230,9 +227,9 @@ function UpdateAnimal() {
               />
             </Grid>
             {/* Даром, цена */}
-            <Grid container direction="row" justify="space-evenly" alignItems="center" className={classes.formControl}>
+            <Grid container direction="row" justify="center" alignItems="center" className={classes.formControl}>
               <label htmlFor="pay">Даром:
-          <Checkbox
+          <Checkbox className={classes.formControl}
                   name="pay"
                   color="primary"
                   inputProps={{ 'aria-label': 'secondary checkbox' }}
@@ -242,7 +239,7 @@ function UpdateAnimal() {
               </label>
               {inputs.pay ?
                 <TextField disabled id="filled-disabled" label="цена" defaultValue="-" variant="filled" />
-                : <TextField id="outlined-number" label="Цена" type="number" variant="outlined" name="price" required
+                : <TextField className={classes.formControl} id="outlined-number" label="Цена" type="number" variant="outlined" name="price" required
                   value={inputs.price} onChange={changed}
                   InputLabelProps={{
                     shrink: true,
@@ -250,19 +247,20 @@ function UpdateAnimal() {
                 />}
             </Grid>
             {/* Родословная, история прививок */}
-            <Grid container direction="row" justify="space-around" alignItems="center" className={classes.formControl}>
-              <TextField onChange={changed} name="pedigree" id="outlined-helperText" label="Родословная" value={inputs.pedigree} helperText="" variant="outlined" />
-              <TextField onChange={changed} name="vaccinationРistory" id="outlined-helperText" label="Имеются ли прививки?" value={inputs.vaccinationРistory} helperText="" variant="outlined" />
+            <Grid container direction="row" justify="center" alignItems="center" className={classes.formControl}>
+              <TextField className={classes.formControl} onChange={changed} name="pedigree" id="outlined-helperText" label="Родословная" value={inputs.pedigree} helperText="" variant="outlined" />
+              <TextField className={classes.formControl} onChange={changed} name="vaccinationРistory" id="outlined-helperText" label="Имеются ли прививки?" value={inputs.vaccinationРistory} helperText="" variant="outlined" />
             </Grid>
             {/* Размер взрослого животного, вес взрослого животного */}
-            <Grid container direction="row" justify="space-around" alignItems="center" className={classes.formControl}>
-              <FormControl className={classes.formControl}>
-                <InputLabel className={classes.sel} id="demo-simple-select-label">Размер взрослого животного</InputLabel>
+            <Grid container direction="row" justify="center" alignItems="center" className={classes.formControl}>
+              <FormControl  variant="outlined"
+                className={classes.formControl}>
+                <InputLabel id="demo-simple-select-outlined-label">Размер взрослого животного</InputLabel>
                 <Select
                   defaultValue={inputs.adultSize}
                   name="adultSize"
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
+                  labelId="demo-simple-select-outlined-label"
+                  id="demo-simple-select-outlined"
                   value={inputs.adultSize}
                   onChange={changed}
                 >
@@ -273,11 +271,11 @@ function UpdateAnimal() {
                   <MenuItem value="Очень большое (ориентир: как лошадь и более)">Очень большое (лошадь и более)</MenuItem>
                 </Select>
               </FormControl>
-              <TextField onChange={changed} name="adultweight" id="outlined-helperText" label="Вес взрослого животного" value={inputs.adultweight} helperText="" variant="outlined" />
+              <TextField className={classes.formControl} onChange={changed} name="adultweight" id="outlined-helperText" label="Вес взрослого животного" value={inputs.adultweight} helperText="" variant="outlined" />
             </Grid>
             {/* Домашнее, экзотическое, сельскохозяйственное */}
-            <Grid container direction="row" justify="space-evenly" alignItems="center" className={classes.ch}>
-              <label htmlFor="pet">Домашнее животное:
+            <Grid container direction="row" justify="center" alignItems="center" className={classes.ch}>
+              <label  className={classes.formControl} htmlFor="pet">Домашнее животное:
           <Checkbox
 
                   name="pet"
@@ -287,7 +285,7 @@ function UpdateAnimal() {
                   onChange={fooCheckbox}
                 />
               </label>
-              <label htmlFor="exotic">Экзотическое животное:
+              <label  className={classes.formControl} htmlFor="exotic">Экзотическое животное:
           <Checkbox
 
                   name="exotic"
@@ -297,7 +295,7 @@ function UpdateAnimal() {
                   onChange={fooCheckbox}
                 />
               </label>
-              <label htmlFor="farmAnimal">Сельскохозяйственное животное:
+              <label  className={classes.formControl} htmlFor="farmAnimal">Сельскохозяйственное животное:
           <Checkbox
 
                   name="farmAnimal"
@@ -310,7 +308,7 @@ function UpdateAnimal() {
             </Grid>
             {/* Служебное животное, служебная собака, собака-поводырь */}
             <Grid container direction="row" justify="space-around" alignItems="center" className={classes.ch}>
-              <label htmlFor="serviceAnimal">Cлужебное  животное:
+              <label  className={classes.formControl} htmlFor="serviceAnimal">Cлужебное  животное:
           <Checkbox
 
                   name="serviceAnimal"
@@ -320,7 +318,7 @@ function UpdateAnimal() {
                   onChange={fooCheckbox}
                 />
               </label>
-              <label htmlFor="warDog">Служебная собака:
+              <label  className={classes.formControl}  htmlFor="warDog">Служебная собака:
           <Checkbox
 
                   name="warDog"
@@ -330,7 +328,7 @@ function UpdateAnimal() {
                   onChange={fooCheckbox}
                 />
               </label>
-              <label htmlFor="guideВog">Собака-поводырь:
+              <label  className={classes.formControl} htmlFor="guideВog">Собака-поводырь:
           <Checkbox
 
                   name="guideВog"
@@ -342,8 +340,8 @@ function UpdateAnimal() {
               </label>
             </Grid>
             {/* Длинношерстное, хороший вариант для аллергиков */}
-            <Grid container direction="row" justify="space-evenly" alignItems="center" className={classes.ch}>
-              <label htmlFor="longHaired">Длинношерстное:
+            <Grid container direction="row" justify="center" alignItems="center" className={classes.ch}>
+              <label  className={classes.formControl} htmlFor="longHaired">Длинношерстное:
           <Checkbox
 
                   name="longHaired"
@@ -353,7 +351,7 @@ function UpdateAnimal() {
                   onChange={fooCheckbox}
                 />
               </label>
-              <label htmlFor="possibleForAllergySufferers">Хороший вариант для аллергиков:
+              <label  className={classes.formControl}htmlFor="possibleForAllergySufferers">Хороший вариант для аллергиков:
           <Checkbox
 
                   name="possibleForAllergySufferers"
@@ -365,8 +363,8 @@ function UpdateAnimal() {
               </label>
             </Grid>
             {/* Только в не квартиры, специальные условия содержания */}
-            <Grid container direction="row" justify="space-evenly" alignItems="center" className={classes.ch}>
-              <label htmlFor="onlyInNonApartments">Только в не квартиры:
+            <Grid container direction="row" justify="center" alignItems="center" className={classes.ch}>
+              <label  className={classes.formControl} htmlFor="onlyInNonApartments">Только в не квартиры:
           <Checkbox
 
                   name="onlyInNonApartments"
@@ -376,7 +374,7 @@ function UpdateAnimal() {
                   onChange={fooCheckbox}
                 />
               </label>
-              <label htmlFor="specialConditionsOfDetention">Специальные условия содержания:
+              <label className={classes.formControl} htmlFor="specialConditionsOfDetention">Специальные условия содержания:
           <Checkbox
 
                   name="specialConditionsOfDetention"

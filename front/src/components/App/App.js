@@ -12,8 +12,6 @@ import Main from '../Main/Main';
 import Filter from '../Filter/Filter'
 import NewAnimal from '../NewAnimal copy/NewAnimalCopy';
 // import PetCart from '../PetCart';
-
-import PetCart from '../PetCart';
 import ModalFilter from '../Filter/ModalFilter';
 import Anketa from '../Anketa';
 import HomeRoute from '../HomeRoute/HomeRoute';

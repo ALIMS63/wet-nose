@@ -146,7 +146,7 @@ function NewAnimal() {
 
   return (
     <>
-      <form onSubmit={addAnimal} encType="multipart/form-data" style={{ margin: '10%', background: 'rgba(250, 155, 77, 0.1)' }}>
+      <form onSubmit={addAnimal} encType="multipart/form-data" style={{ margin: '7%', background: 'rgba(176,232,191, 0.8)', paddingRight: '4%' }}>
         <div className={classes.root}>
           <Grid container spacing={5} >
             {/* Тип, порода, кличка */}
@@ -189,7 +189,7 @@ function NewAnimal() {
                       )}
                     />
                   </div>
-                  : <TextField className={classes.formControl}  name="kindOther" label="Порода" value={inputs.kindOther} onChange={changed} variant="outlined" id="outlined-basic"/>
+                  : <TextField className={classes.formControl} name="kindOther" label="Порода" value={inputs.kindOther} onChange={changed} variant="outlined" id="outlined-basic" />
               }
               <TextField className={classes.formControl} variant="outlined" id="outlined-basic" name="nickname" label="Кличка" required value={inputs.nickname} onChange={changed} />
             </Grid>
@@ -225,7 +225,7 @@ function NewAnimal() {
             <Grid container direction="row" justify="center" alignItems="center" className={classes.formControl}>
               <label className={classes.formControl} htmlFor="pay">Даром:
           <Checkbox
-className={classes.formControl}
+                  className={classes.formControl}
                   name="pay"
                   color="primary"
                   inputProps={{ 'aria-label': 'secondary checkbox' }}
@@ -249,9 +249,9 @@ className={classes.formControl}
             </Grid>
             {/* Размер взрослого животного, вес взрослого животного */}
             <Grid container direction="row" justify="center" alignItems="center" className={classes.formControl}>
-              <FormControl 
-              variant="outlined" 
-              className={classes.formControl}
+              <FormControl
+                variant="outlined"
+                className={classes.formControl}
               >
                 <InputLabel id="demo-simple-select-outlined-label">Размер взрослого животного</InputLabel>
                 <Select
@@ -266,9 +266,9 @@ className={classes.formControl}
                   <MenuItem value="Среднее (ориентир: как бульдог)">Среднее (бульдог)</MenuItem>
                   <MenuItem value="Большое (ориентир: как сенбернар)">Большое (сенбернар)</MenuItem>
                   <MenuItem value="Очень большое (ориентир: как лошадь и более)">Очень большое (лошадь и более)</MenuItem>
-                 
+
                 </Select>
-                
+
               </FormControl>
               <TextField className={classes.formControl} onChange={changed} name="adultweight" id="outlined-helperText" label="Вес взрослого животного" value={inputs.adultweight} helperText="" variant="outlined" />
             </Grid>
@@ -402,8 +402,6 @@ className={classes.formControl}
         {/* кнопка добавления животного */}
         <label htmlFor="photo">Загрузите фотографию животного: {' '}
           <input type="file" name="photo" id="photo" accept="image/*,image/jpeg" onChange={photoChanged} />
-          {/* <img src={inputs.photo} alt="альтернативный текст" />
-          <div>{inputs.photo}</div> */}
         </label>
         {/* отправить форму */}
         <div className={classes.root}>
@@ -468,23 +466,11 @@ const kindCat = [
 
 export default NewAnimal;
 
-{/* <div className={classes.root}>
-          <input
-            name="photo"
-            accept="image/*"
-            className={classes.input}
-            id="contained-button-file"
-            multiple
-            type="file"
-          />
-          <label htmlFor="contained-button-file">
-            <Button variant="contained" color="primary" component="span">Загрузите фотографии:</Button>
-          </label> */}
-
-{/* <input accept="image/*" className={classes.input} id="icon-button-file" type="file" /> */ }
-{/* <label htmlFor="icon-button-file">
+        {/* <div className={classes.root}>
+          <input accept="image/*" className={classes.input} id="icon-button-file" type="file"  name="photo" onChange={photoChanged}/>
+          <label htmlFor="icon-button-file">
             <IconButton color="primary" aria-label="upload picture" component="span">
               <PhotoCamera />
             </IconButton>
-          </label> */}
-{/* </div> */ }
+          </label>
+        </div> */}
