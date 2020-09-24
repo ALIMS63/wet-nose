@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Avatar, CssBaseline, Button, TextField, Grid, Box, Typography, Container } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import { makeStyles } from '@material-ui/core/styles';
+import { ThemeProvider, makeStyles, createMuiTheme, } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { setUser, deleteUser } from "../../redux/actions";
 import Copyright from '../Copyright/Copyright';
 import { Link } from "react-router-dom";
+import { green } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -40,9 +41,15 @@ const useStyles = makeStyles((theme) => ({
   inp: {
     backgroundColor: 'white',
     borderRadius: '5px',
-    opacity: '0.8'
+    opacity: '0.5'
   }
 }));
+
+const theme = createMuiTheme({
+  palette: {
+    primary: green,
+  },
+});
 
 function Login() {
   const classes = useStyles();
@@ -102,6 +109,8 @@ function Login() {
           Вход
         </Typography>
         <form onSubmit={handleSubmit} className={classes.form} noValidate>
+        <ThemeProvider theme={theme}>
+
           <TextField
             className={classes.inp}
             variant="outlined"
@@ -116,6 +125,7 @@ function Login() {
             onChange={handleChange}
             value={email}
           />
+          </ThemeProvider>
           <TextField
             className={classes.inp}
             variant="outlined"
