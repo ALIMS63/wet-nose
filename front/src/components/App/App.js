@@ -10,17 +10,15 @@ import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import Secret from '../Secret/Secret';
 import Main from '../Main/Main';
 import Filter from '../Filter/Filter'
-import NewAnimal from '../NewAnimal/NewAnimal';
+// import NewAnimal from '../NewAnimal/NewAnimal';
 import AddAnimal from '../NewAnimal/AddAnimal';
 
+import NewAnimal from '../NewAnimal copy/NewAnimalCopy';
 // import PetCart from '../PetCart';
 import ModalFilter from '../Filter/ModalFilter';
 import Anketa from '../Anketa';
 import HomeRoute from '../HomeRoute/HomeRoute';
 import UpdateAnimal from '../UpdateAnimal/UpdateAnimal';
-import DeleteAnimal from '../DeleteAnimal/DeleteAnimal';
-
-
 import AnimalCard from '../AnimalCard/AnimalCard';
 import OneAnimal from '../OneAnimal/OneAnimal';
 
