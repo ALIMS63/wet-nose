@@ -225,6 +225,21 @@ li {
   z-index: -1;
   object-fit: cover;
   filter: blur(10);
-  
+}
 
+#myVideo.video-toggle {
+  position: absolute;
+}
+.block {
+  margin: auto;
+  width: 60%;
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
+}
+
+.top {
+  margin-top: 1089px;
 }

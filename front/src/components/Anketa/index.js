@@ -5,6 +5,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { useDispatch, useSelector } from 'react-redux';
 import {Button} from 'antd';
 import { makeStyles } from '@material-ui/core/styles';
+import Waypoint from 'react-waypoint';
 
 import {
   startAnimals,
@@ -30,7 +31,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-
 
 
 
@@ -117,7 +117,7 @@ export default function Anketa(){
         <Button type="primary" style={{display: visible ? 'none' :'inline' }} onClick={handleAnketa}>
         Подобрать
         </Button>
-        <div className='container-form' style={{display: visible ? 'block' : 'none'}}>
+        {visible &&  <div className='container-form anketa'>
             <div className='text-box'>
               <div className='text-title'>Каое животное ты ищешь?</div>
             <div className='img-div'>
@@ -270,7 +270,8 @@ export default function Anketa(){
             
             </div>
 
-        </div>
+        </div>}
+       
         </>
     )
 }
