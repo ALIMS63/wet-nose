@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import 'antd/dist/antd.css';
-import { Menu, Button } from 'antd';
+import { Modal,Menu, Button, Select, Form } from 'antd';
+
 import { makeStyles } from '@material-ui/core/styles';
 import { useSelector } from 'react-redux';
+import Filter from '../Filter/Filter'
 import {
   MenuUnfoldOutlined,
   MenuOutlined,
@@ -13,12 +15,15 @@ import {
   SearchOutlined,
   FileAddOutlined,
   HomeOutlined,
-  SettingOutlined, 
+  SettingOutlined,
 } from '@ant-design/icons';
 
 import AnimalIcon from './AnimalIcon'
+import ModalFilter from '../Filter/ModalFilter';
 
 const { SubMenu } = Menu;
+const { Option } = Select;
+
 
 function Nav() {
 
@@ -176,8 +181,9 @@ function Nav() {
                   Add New
               </Link>
               </Menu.Item>
+              
             </SubMenu>
-          </SubMenu>
+            </SubMenu>
         </Menu>
       </div>
     </>);
