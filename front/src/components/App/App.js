@@ -25,8 +25,8 @@ function App() {
   return (
     <div className="App">
       <Router>
-        {/* <Navigation /> */}
-        <Nav />
+        <Navigation />
+        {/* <Nav /> */}
         {/* <Main/> */}
 
         <Switch>
@@ -45,7 +45,6 @@ function App() {
             <Registration />
           </Route>
 
-
           <Route path="/logout" exact>
             <Logout />
           </Route>
@@ -62,9 +61,9 @@ function App() {
             <UpdateAnimal />
           </Route>
 
-          <Route path="/secret">
+          <PrivateRoute path="/secret">
             <NewAnimal />
-          </Route>
+          </PrivateRoute>
 
         </Switch>
       </Router>
