@@ -81,7 +81,9 @@ function UpdateAnimal() {
   Object.keys(allAnimals).forEach(type => {
     if (allAnimals[type].find(obj => obj._id === id)) {
       findAnimal = allAnimals[type].find(obj => obj._id === id)
-      newTypeAnimal = type;
+      if (type === 'dogs') newTypeAnimal = 'собака';
+      else if (type === 'cats') newTypeAnimal = 'кот';
+      else newTypeAnimal = findAnimal.type;
     }
   })
 console.log(findAnimal);
@@ -113,7 +115,7 @@ console.log(findAnimal);
     pedigree: findAnimal.pedigree,
     vaccinationРistory: findAnimal.vaccinationРistory,
   });
-
+console.log(inputs.bigType)
   function changed({ target: { value, name } }) {
     setInputs({
       ...inputs,
