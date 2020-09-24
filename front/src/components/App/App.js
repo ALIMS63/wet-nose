@@ -15,7 +15,7 @@ import NewAnimal from '../NewAnimal copy/NewAnimalCopy';
 import ModalFilter from '../Filter/ModalFilter';
 import Anketa from '../Anketa';
 import HomeRoute from '../HomeRoute/HomeRoute';
-import UpdateAnimal from '../UpdateAnimal/UpdateAnimal';
+import UpdateAnimal from '../UpdateAnimal copy/UpdateAnimal copy';
 import AnimalCard from '../AnimalCard/AnimalCard';
 import OneAnimal from '../OneAnimal/OneAnimal';
 

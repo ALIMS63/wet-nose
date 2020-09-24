@@ -134,11 +134,14 @@ function NewAnimal() {
     };
     const response = await axios.post('/api/allAnimals', formData, config);
     const newAnimal = response.data
-    for (let typeAnimals in allAnimals) {
-      if (typeAnimals === newAnimal.type) {
-        dispatch(addNewAnimal(newAnimal.type, newAnimal))
-        return history.push(`/oneAnimal/${newAnimal._id}`);
-      }
+    console.log(inputs.bigType)
+    if (inputs.bigType === 'собака') {
+      dispatch(addNewAnimal('dogs', newAnimal))
+      return history.push(`/oneAnimal/${newAnimal._id}`);
+    }
+    if (inputs.bigType === 'кот') {
+      dispatch(addNewAnimal('cats', newAnimal))
+      return history.push(`/oneAnimal/${newAnimal._id}`);
     }
     dispatch(addNewAnimal('other', newAnimal))
     return history.push(`/oneAnimal/${newAnimal._id}`);
@@ -466,7 +469,7 @@ const kindCat = [
 
 export default NewAnimal;
 
-        {/* <div className={classes.root}>
+{/* <div className={classes.root}>
           <input accept="image/*" className={classes.input} id="icon-button-file" type="file"  name="photo" onChange={photoChanged}/>
           <label htmlFor="icon-button-file">
             <IconButton color="primary" aria-label="upload picture" component="span">
