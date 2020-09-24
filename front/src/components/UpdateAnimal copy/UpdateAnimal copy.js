@@ -96,7 +96,7 @@ console.log(findAnimal);
     description: findAnimal.description,
     age: findAnimal.age,
     pay: findAnimal.pay || false,
-    price: findAnimal.price,
+    price: findAnimal.price || '',
     adultSize: findAnimal.adultSize,
     adultweight: findAnimal.adultweight,
     possibleForAllergySufferers: findAnimal.possibleForAllergySufferers || false,
