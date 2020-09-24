@@ -14,6 +14,7 @@ import methodOverride from 'method-override';
 // import cors from 'cors';
 import notFoundMiddleware from './middlewares/notfound.js';
 import errorMiddleware from './middlewares/error.js';
+
 import mainRouter from './routes/mainRouter.js';
 
 const app = express();

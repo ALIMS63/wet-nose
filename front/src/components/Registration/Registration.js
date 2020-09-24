@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Select, InputLabel, FormControl, Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Container } from '@material-ui/core';
+import { Input, Select, InputLabel, FormControl, Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Container } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from "react-redux";
@@ -7,6 +7,8 @@ import { useHistory } from "react-router-dom";
 import { setUser, deleteUser } from "../../redux/actions";
 import Copyright from '../Copyright/Copyright';
 import { Link } from "react-router-dom";
+import MaskedInput from 'react-text-mask';
+import InputMask from "react-input-mask";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -52,6 +54,59 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: 'white',
     borderRadius: '5px',
     opacity: '0.8'
+  },
+  mask: {
+    // fontStyle: 'inherit',
+    // fontVariantLigatures: 'inherit',
+    // fontVariantCaps: 'inherit',
+    // fontVariantNumeric: 'inherit',
+    // fontVariantEastAsian: 'inherit',
+    // fontWeight: 'inherit',
+    // fontStretch: 'inherit',
+    // fontSize: 'inherit',
+    // lineHeight: 'inherit',
+    // fontFamily: 'inherit',
+    // color: 'currentColor',
+    // width: '100 %',
+    // borderTopColor: 'initial',
+    // borderTopStyle: 'initial',
+    // borderTopWidth: '0px',
+    // borderRightColor: 'initial',
+    // borderRightStyle: 'initial',
+    // borderRightWidth: '0px',
+    // borderBottomColor: 'initial',
+    // borderBottomStyle: 'initial',
+    // borderBottomWidth: '0px',
+    // borderLeftColor: 'initial',
+    // borderLeftStyle: 'initial',
+    // borderLeftWidth: '0px',
+    // borderImageSource: 'initial',
+    // borderImageSlice: 'initial',
+    // borderImageWidth: 'initial',
+    // borderImageOutset: 'initial',
+    // borderImageRepeat: 'initial',
+    // height: '1.1876em',
+    // marginTop: '0px',
+    // marginRight: '0px',
+    // marginBottom: '0px',
+    // marginLeft: '0px',
+    // display: 'block',
+    // minWidth: 0,
+    // backgroundImage: 'none',
+    // backgroundPosition - x: 'initial',
+    // backgroundPosition - y: 'initial',
+    // backgroundSize: 'initial',
+    // backgroundRepeat - x: 'initial',
+    // backgroundRepeat - y: 'initial',
+    // backgroundAttachment: 'initial',
+    // backgroundOrigin: 'initial',
+    // backgroundClip: 'initial',
+    // backgroundColor: 'initial',
+    // boxSizing: 'content - box',
+    // animationName: 'mui - auto - fill - cancel',
+    // letterSpacing: 'inherit',
+    // animationDuration: '10ms',
+    // '-webkit - tap - highlight - color': 'transparent',
   }
 }));
 
@@ -118,6 +173,7 @@ function Registration() {
         </Typography>
         <form onSubmit={handleSubmit} className={classes.form} noValidate>
           <Grid container spacing={2}>
+
             <Grid item xs={12}>
               <TextField
                 className={classes.inp}
@@ -172,11 +228,30 @@ function Registration() {
                 label="Номер телефона"
                 type="phone"
                 id="phone"
-                autoComplete="current-password"
+                autoComplete="current-phone"
                 onChange={handleChange}
                 value={phone}
               />
             </Grid>
+
+            <Grid item xs={12}>
+              <InputMask
+                mask="+7(999)999-99-99"
+                className={classes.mask}
+                variant="outlined"
+                required
+                fullWidth
+                name="phone"
+                label="Номер телефона"
+                type="phone"
+                id="phone"
+                autoComplete="current-phone"
+                onChange={handleChange}
+                value={phone}
+              ></InputMask>
+            </Grid>
+
+
             <Grid item xs={12}>
               <FormControl variant="outlined" className={classes.formControl}>
                 <InputLabel
