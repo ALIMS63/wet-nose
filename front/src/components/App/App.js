@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Login from '../Login/Login';
@@ -10,16 +10,24 @@ import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import Secret from '../Secret/Secret';
 import Main from '../Main/Main';
 import Filter from '../Filter/Filter'
+
+// import NewAnimal from '../NewAnimal/NewAnimal';
+import AddAnimal from '../NewAnimal/AddAnimal';
+
 import NewAnimal from '../NewAnimal copy/NewAnimalCopy';
 // import PetCart from '../PetCart';
+
 import ModalFilter from '../Filter/ModalFilter';
 import Anketa from '../Anketa';
 import HomeRoute from '../HomeRoute/HomeRoute';
 import UpdateAnimal from '../UpdateAnimal copy/UpdateAnimal copy';
 import AnimalCard from '../AnimalCard/AnimalCard';
 import OneAnimal from '../OneAnimal/OneAnimal';
+import CleanFilter from '../Filter/CleanFilter'
 
 import Nav from '../Navigation/Nav';
+import { useDispatch } from 'react-redux'
+import { startAnimals } from '../../redux/actions'
 
 import {Waypoint} from 'react-waypoint';
 
@@ -60,6 +68,12 @@ function handlePositionChange(pos) {
 }
 
 function App() {
+
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(startAnimals())
+  }, [])
+
   return (
     <div className="App">
       <Router>
@@ -71,7 +85,7 @@ function App() {
           <Route path="/" exact>
             <ModalFilter />
             {/* <Filter/> */}
-
+            <CleanFilter/>
             <Anketa />
             <Waypoint 
             onPositionChange={handlePositionChange}
@@ -103,9 +117,12 @@ function App() {
             <UpdateAnimal />
           </Route>
 
-          <PrivateRoute path="/secret">
+          <Route path="/secret">
             <NewAnimal />
-          </PrivateRoute>
+
+            {/* <AddAnimal/> */}
+          </Route>
+
 
         </Switch>
       </Router>

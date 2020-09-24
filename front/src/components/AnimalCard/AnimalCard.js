@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, Link } from "react-router-dom";
@@ -39,59 +39,129 @@ const useStyles = makeStyles({
 
 function AnimalCard() {
   const classes = useStyles();
-  const data = useSelector(state => state.animals).animals;
-  const filters = useSelector(state => state.animals).filters;
   const history = useHistory();
+  const filters = useSelector(state => state.animals).filters;
+  const data = useSelector(state => state.animals).animals;
 
-  useEffect(() => {
-    console.log(123);
-
-  }, [filters])
+  const filteredData = filters.category
+    ? data[filters.category].filter((item) => {
+      if (filters.pay && item.pay !== filters.pay) {
+        return false;
+      }
+      if (filters.war && item.war !== filters.war) {
+        return false
+      }
+      return true;
+    })
+    : Object.entries(data).reduce((acc, [key, value]) => {
+      return acc.concat(value);
+    }, [])
+      .filter((item) => {
+        if (filters.pay && item.pay !== filters.pay) {
+          return false;
+        }
+        if (filters.war && item.war !== filters.war) {
+          return false
+        }
+        return true;
+      });
 
   return (
+
     <>
       <container className='block'>
 
-        {Object.keys(data) && Object.keys(data).map(key => {
-          return (data[key] && data[key].map(obj => {
-            return (
-              <Popover
-                content={
-                  <div>
-                    <p>Кличка: {obj.nickname}</p>
-                    <p>Порода: {obj.kind}</p>
-                    <p>Размер: {obj.adultSize}</p>
-                    <p>Родословная: {obj.pedigree}</p>
-                    <p>Описание: {obj.description}</p>
-                  </div>
-                }
-                title={
-                  <Link to={`/oneAnimal/${obj._id}`} >
-                    Подробнее
-                  </Link>
-                }>
-                <div
-                  key={obj._id}
-                  onClick={
-                    () => history.push(`/oneAnimal/${obj._id}`)
-                  }
-                  className={classes.onePet}>
-                  <div>
-                    <img
-                      className={classes.img}
-                      src={`/${obj.photo}`}
-                      alt="animal"
-                    />
-                  </div>
+        {filteredData && filteredData.map(animal => (
+          (
+            <Popover
+              content={
+                <div>
+                  <p>Кличка: {animal.nickname}</p>
+                  <p>Порода: {animal.kind}</p>
+                  <p>Размер: {animal.adultSize}</p>
+                  <p>Родословная: {animal.pedigree}</p>
+                  <p>Описание: {animal.description}</p>
                 </div>
-              </Popover>
-            )
-          }))
-        })
+              }
+              title={
+                <Link to={`/oneAnimal/${animal._id}`} >
+                  Подробнее
+                  </Link>
+              }>
+              <div
+                key={animal._id}
+                onClick={
+                  () => history.push(`/oneAnimal/${animal._id}`)
+                }
+                className={classes.onePet}>
+                <div>
+                  <img
+                    className={classes.img}
+                    src={`/${animal.photo}`}
+                    alt="animal"
+                  />
+                </div>
+              </div>
+            </Popover>
+          )
+        ))
         }
 
       </container>
     </>
+
+
+
+
+
+
+
+
+
+
+    // <>
+    //   <container className={classes.block}>
+
+    //     {Object.keys(filteredData) && Object.keys(filteredData).map(key => {
+    //       return (filteredData[key] && filteredData[key].map(obj => {
+    //         return (
+    //           <Popover
+    //             content={
+    //               <div>
+    //                 <p>Кличка: {obj.nickname}</p>
+    //                 <p>Порода: {obj.kind}</p>
+    //                 <p>Размер: {obj.adultSize}</p>
+    //                 <p>Родословная: {obj.pedigree}</p>
+    //                 <p>Описание: {obj.description}</p>
+    //               </div>
+    //             }
+    //             title={
+    //               <Link to={`/oneAnimal/${obj._id}`} >
+    //                 Подробнее
+    //               </Link>
+    //             }>
+    //             <div
+    //               key={obj._id}
+    //               onClick={
+    //                 () => history.push(`/oneAnimal/${obj._id}`)
+    //               }
+    //               className={classes.onePet}>
+    //               <div>
+    //                 <img
+    //                   className={classes.img}
+    //                   src={`/${obj.photo}`}
+    //                   alt="animal"
+    //                 />
+    //               </div>
+    //             </div>
+    //           </Popover>
+    //         )
+    //       }))
+    //     })
+    //     }
+
+    //   </container>
+    // </>
   );
 }
 
