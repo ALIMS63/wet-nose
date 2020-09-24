@@ -104,7 +104,7 @@ function Registration() {
       dispatch({
         type: 'AUTHENTICATED_SUCCESSFULLY'
       });
-      return history.push('/secret');
+      return history.push('/');
     } else {
       setFailed(finalResult.message);
     }
@@ -176,25 +176,6 @@ function Registration() {
                 value={password}
               />
             </Grid>
-
-            {/* <Grid item xs={12}>
-
-              <TextField
-                className={classes.inp}
-                variant="outlined"
-                required
-                fullWidth
-                name="phone"
-                label="Номер телефона"
-                type="phone"
-                id="phone"
-                autoComplete="current-phone"
-                onChange={handleChange}
-                value={phone}
-              />
-
-            </Grid> */}
-
             <Grid item xs={12}>
               <InputMask
                 mask="+7(999)999-99-99"
