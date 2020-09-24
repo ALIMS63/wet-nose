@@ -61,6 +61,9 @@ const useStyles = makeStyles((theme) => ({
     margin: '0px',
     height: '50px',
     width: '397px',
+    backgroundColor: 'white',
+    boxShadow: 'none',
+    backgroundImage: 'none',
   }
 }));
 
@@ -101,7 +104,7 @@ function Registration() {
       dispatch({
         type: 'AUTHENTICATED_SUCCESSFULLY'
       });
-      return history.push('/secret');
+      return history.push('/');
     } else {
       setFailed(finalResult.message);
     }
@@ -115,6 +118,7 @@ function Registration() {
   }
 
   const { name, email, password, phone, whoAreYou } = inputs;
+  console.log(name, email, password, phone, whoAreYou);
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -173,22 +177,6 @@ function Registration() {
               />
             </Grid>
             <Grid item xs={12}>
-              <TextField
-                className={classes.inp}
-                variant="outlined"
-                required
-                fullWidth
-                name="phone"
-                label="Номер телефона"
-                type="phone"
-                id="phone"
-                autoComplete="current-phone"
-                onChange={handleChange}
-                value={phone}
-              />
-            </Grid>
-
-            <Grid item xs={12}>
               <InputMask
                 mask="+7(999)999-99-99"
                 className={classes.mask}
@@ -202,9 +190,22 @@ function Registration() {
                 autoComplete="current-phone"
                 onChange={handleChange}
                 value={phone}
-              ></InputMask>
+              >{(props) => {
+                return <TextField
+                  className={classes.inp}
+                  variant="outlined"
+                  required
+                  fullWidth
+                  name="phone"
+                  label="Номер телефона"
+                  type="phone"
+                  id="phone"
+                  autoComplete="current-phone"
+                  onChange={handleChange}
+                  value={phone}
+                />
+              }}</InputMask>
             </Grid>
-
 
             <Grid item xs={12}>
               <FormControl variant="outlined" className={classes.formControl}>

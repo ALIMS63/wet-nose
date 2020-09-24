@@ -59,12 +59,12 @@ router.post('/api/login', async (req, res) => {
   const user = await User.findOne({ email }).exec();
   if (!user) {
     res.status(401);
-    res.json({ message: 'Указанная электронная почта неверная' });
+    res.json({ message: 'Указана неверная электронная почта' });
   }
   const isValidPassword = await bcrypt.compare(password, user.password);
   if (!isValidPassword) {
     res.status(401);
-    res.json({ message: 'Указанный пароль неверный' });
+    res.json({ message: 'Указан неверный пароль' });
   }
   req.session.user = serializeUser(user);
   res.status(200);
@@ -82,6 +82,7 @@ router.post('/api/registration', async (req, res) => {
   const {
     name, email, password, phone, whoAreYou,
   } = req.body;
+  console.log(name, email, password, phone, whoAreYou);
   let user;
   const validUsername = await User.findOne({ name, email });
   if (validUsername) {
@@ -131,38 +132,38 @@ router.get('/api/allAnimals', async (req, res) => {
 });
 
 router.put('/api/allAnimals/:id', upload, async (req, res) => {
-  console.log('зашли на ручку put')
+  console.log('зашли на ручку put');
   const { id } = req.params;
-  console.log(id)
+  console.log(id);
   const photo = req.file.path.slice(7);
   const {
     bigType, kindDog, kindCat, kindOther, nickname, age, description, pay, price, adultSize, adultweight, possibleForAllergySufferers, longHaired, guideВog, serviceAnimal, warDog, pet, onlyInNonApartments, specialConditionsOfDetention, childrenInTheHouse, exotic, farmAnimal, gender, pedigree, vaccinationРistory,
   } = req.body;
   if (bigType === 'собака') {
-    console.log('if 1')
+    console.log('if 1');
     await Dog.updateOne({ _id: id }, {
       kind: kindDog, nickname, gender, age, description, pay, price, pedigree, vaccinationРistory, adultSize, adultweight, pet, exotic, farmAnimal, serviceAnimal, warDog, guideВog, longHaired, possibleForAllergySufferers, onlyInNonApartments, specialConditionsOfDetention, childrenInTheHouse, photo, sellerID: req.session.user.id,
     });
-    
+
     const newUpdateAnimal = await Dog.findById(id);
-    console.log(newUpdateAnimal)
+    console.log(newUpdateAnimal);
     return res.json(newUpdateAnimal);
   }
   if (bigType === 'кот') {
-    console.log('if 2')
+    console.log('if 2');
     await Cat.updateOne({ _id: id }, {
       kind: kindCat, nickname, gender, age, description, pay, price, pedigree, vaccinationРistory, adultSize, adultweight, pet, exotic, farmAnimal, serviceAnimal, warDog, guideВog, longHaired, possibleForAllergySufferers, onlyInNonApartments, specialConditionsOfDetention, childrenInTheHouse, photo, sellerID: req.session.user.id,
     });
     const newUpdateAnimal = await Cat.findById(id);
-    console.log(newUpdateAnimal)
+    console.log(newUpdateAnimal);
     return res.json(newUpdateAnimal);
   }
-  console.log('if 3')
+  console.log('if 3');
   await Other.updateOne({ _id: id }, {
     type: bigType, kind: kindOther, nickname, gender, age, description, pay, price, pedigree, vaccinationРistory, adultSize, adultweight, pet, exotic, farmAnimal, serviceAnimal, warDog, guideВog, longHaired, possibleForAllergySufferers, onlyInNonApartments, specialConditionsOfDetention, childrenInTheHouse, photo, sellerID: req.session.user.id,
   });
   const newUpdateAnimal = await Other.findById(id);
-  console.log(newUpdateAnimal)
+  console.log(newUpdateAnimal);
   return res.json(newUpdateAnimal);
 });
 
@@ -204,6 +205,6 @@ router.get('/api/user/:id', async (req, res) => {
   res.json(oneUser);
 });
 
-router.post('/api/addPhoto')
+// router.post('/api/addPhoto')
 
 export default router;

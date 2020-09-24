@@ -84,6 +84,8 @@ function App() {
         <Switch>
           <Route path="/" exact>
             <br/>
+            <div style={{display: 'flex', justifyContent: 'space-between', width: '400px', margin: '0 auto'}}>
+
             <ModalFilter />
             {/* <Filter/> */}
             <CleanFilter/>
@@ -92,6 +94,7 @@ function App() {
             onPositionChange={handlePositionChange}
             
                       />
+            </div>
             <AnimalCard />
           </Route>
           <Route path="/login" exact>
