@@ -82,6 +82,7 @@ router.post('/api/registration', async (req, res) => {
   const {
     name, email, password, phone, whoAreYou,
   } = req.body;
+  console.log(name, email, password, phone, whoAreYou);
   let user;
   const validUsername = await User.findOne({ name, email });
   if (validUsername) {
@@ -143,7 +144,7 @@ router.put('/api/allAnimals/:id', upload, async (req, res) => {
     await Dog.updateOne({ _id: id }, {
       kind: kindDog, nickname, gender, age, description, pay, price, pedigree, vaccinationРistory, adultSize, adultweight, pet, exotic, farmAnimal, serviceAnimal, warDog, guideВog, longHaired, possibleForAllergySufferers, onlyInNonApartments, specialConditionsOfDetention, childrenInTheHouse, photo, sellerID: req.session.user.id,
     });
-    
+
     const newUpdateAnimal = await Dog.findById(id);
     console.log(newUpdateAnimal)
     return res.json(newUpdateAnimal);
@@ -204,6 +205,6 @@ router.get('/api/user/:id', async (req, res) => {
   res.json(oneUser);
 });
 
-router.post('/api/addPhoto')
+// router.post('/api/addPhoto')
 
 export default router;
