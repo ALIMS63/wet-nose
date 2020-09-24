@@ -131,43 +131,33 @@ router.get('/api/allAnimals', async (req, res) => {
 });
 
 router.put('/api/allAnimals/:id', upload, async (req, res) => {
-  console.log('зашли на ручку put')
   const { id } = req.params;
-  console.log(id)
   const photo = req.file.path.slice(7);
   const {
     bigType, kindDog, kindCat, kindOther, nickname, age, description, pay, price, adultSize, adultweight, possibleForAllergySufferers, longHaired, guideВog, serviceAnimal, warDog, pet, onlyInNonApartments, specialConditionsOfDetention, childrenInTheHouse, exotic, farmAnimal, gender, pedigree, vaccinationРistory,
   } = req.body;
   if (bigType === 'собака') {
-    console.log('if 1')
     await Dog.updateOne({ _id: id }, {
       kind: kindDog, nickname, gender, age, description, pay, price, pedigree, vaccinationРistory, adultSize, adultweight, pet, exotic, farmAnimal, serviceAnimal, warDog, guideВog, longHaired, possibleForAllergySufferers, onlyInNonApartments, specialConditionsOfDetention, childrenInTheHouse, photo, sellerID: req.session.user.id,
     });
-    
-    const newUpdateAnimal = await Dog.findById(id);
-    console.log(newUpdateAnimal)
-    return res.json(newUpdateAnimal);
+    const newDog = await Dog.findById(id);
+    return res.json(newDog);
   }
   if (bigType === 'кот') {
-    console.log('if 2')
     await Cat.updateOne({ _id: id }, {
       kind: kindCat, nickname, gender, age, description, pay, price, pedigree, vaccinationРistory, adultSize, adultweight, pet, exotic, farmAnimal, serviceAnimal, warDog, guideВog, longHaired, possibleForAllergySufferers, onlyInNonApartments, specialConditionsOfDetention, childrenInTheHouse, photo, sellerID: req.session.user.id,
     });
-    const newUpdateAnimal = await Cat.findById(id);
-    console.log(newUpdateAnimal)
-    return res.json(newUpdateAnimal);
+    const newCat = await Cat.findById(id);
+    return res.json(newCat);
   }
-  console.log('if 3')
   await Other.updateOne({ _id: id }, {
     type: bigType, kind: kindOther, nickname, gender, age, description, pay, price, pedigree, vaccinationРistory, adultSize, adultweight, pet, exotic, farmAnimal, serviceAnimal, warDog, guideВog, longHaired, possibleForAllergySufferers, onlyInNonApartments, specialConditionsOfDetention, childrenInTheHouse, photo, sellerID: req.session.user.id,
   });
-  const newUpdateAnimal = await Other.findById(id);
-  console.log(newUpdateAnimal)
-  return res.json(newUpdateAnimal);
+  const newOtherAnimal = await Other.findById(id);
+  return res.json(newOtherAnimal);
 });
 
 router.post('/api/allAnimals', upload, async (req, res) => {
-  console.log(req.body);
   const photo = req.file.path.slice(7);
   const {
     bigType, kindDog, kindCat, kindOther, nickname, age, description, pay, price, adultSize, adultweight, possibleForAllergySufferers, longHaired, guideВog, serviceAnimal, warDog, pet, onlyInNonApartments, specialConditionsOfDetention, childrenInTheHouse, exotic, farmAnimal, gender, pedigree, vaccinationРistory,
@@ -203,7 +193,5 @@ router.get('/api/user/:id', async (req, res) => {
   const oneUser = await User.findOne({ _id: req.params.id });
   res.json(oneUser);
 });
-
-router.post('/api/addPhoto')
 
 export default router;

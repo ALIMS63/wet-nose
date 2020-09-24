@@ -37,12 +37,34 @@ import {
   Row,
   Col,
   Input,
+  message, 
+  Modal
 } from "antd";
 import { UploadOutlined, InboxOutlined } from "@ant-design/icons";
-import { CloseOutlined, CheckOutlined } from '@ant-design/icons';
+import { CloseOutlined, CheckOutlined, PlusOutlined } from '@ant-design/icons';
 
 
 const { Option } = Select;
+
+const { Dragger } = Upload;
+
+const props = {
+  name: 'file',
+  multiple: true,
+  action: '/api/allAnimals',
+
+  onChange(info) {
+    const { status } = info.file;
+    if (status !== 'uploading') {
+      console.log(info.file, info.fileList);
+    }
+    if (status === 'done') {
+      message.success(`${info.file.name} file uploaded successfully.`);
+    } else if (status === 'error') {
+      message.error(`${info.file.name} file upload failed.`);
+    }
+  },
+};
 
 const formItemLayout = {
   labelCol: {
@@ -109,7 +131,63 @@ const normFile = (e) => {
 //======================================
 
 
+function getBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+  });
+}
+
 function NewAnimal() {
+
+const [previewVisible, setPreviewVisible] = useState(false)
+const [previewImage, setPreviewImage] = useState('')
+const [previewTitle, setPreviewTitle] = useState('')
+const [fileList, setFileList] = useState([])
+
+
+const uploadButton = (
+  <div>
+    <PlusOutlined />
+    <div style={{ marginTop: 8 }}>Upload</div>
+  </div>
+);
+
+function handleCancel () {
+  setPreviewVisible( false );
+}
+
+
+async function handlePreview(file) {
+  if (!file.url && !file.preview) {
+    file.preview = await getBase64(file.originFileObj);
+  }
+
+  setPreviewImage(file.url || file.preview)
+  setPreviewVisible(true)
+  setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf('/') + 1))
+};
+
+function handleChange({ fileList }) {
+  setFileList({ fileList });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   const dispatch = useDispatch();
   const allAnimals = useSelector((state) => state.animals.animals)
   // const classes = useStyles();  //material-ui button
@@ -162,8 +240,9 @@ function NewAnimal() {
       [name]: files[0],
     });;
   }
-  async function addAnimal(event) {
-    event.preventDefault();
+
+  async function onFinish(event) {
+    // event.preventDefault();
     const formData = new FormData();
     Object.keys(inputs).forEach((key) => {
       formData.append(key, inputs[key])
@@ -186,14 +265,14 @@ function NewAnimal() {
   }
 
   function onFinish(newAnimal) {
-    console.log("New", newAnimal);
+    console.log("New", newAnimal.type);
     dispatch(addNewAnimal(newAnimal.type, newAnimal))
-
   };
 
   return (
 
     <Form
+      encType="multipart/form-data"
       name="validate_other"
       {...formItemLayout}
       onFinish={onFinish}
@@ -455,6 +534,39 @@ function NewAnimal() {
       <br />
       <br />
 
+      <>
+        <Upload
+          // action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+          listType="picture-card"
+          name='photo'
+          fileList={fileList}
+          accept="image/*,image/jpeg"
+          onPreview={handlePreview}
+          onChange={handleChange}
+        >
+          {fileList.length >= 8 ? null : uploadButton}
+        </Upload>
+        <Modal
+          visible={previewVisible}
+          title={previewTitle}
+          footer={null}
+          onCancel={handleCancel}
+        >
+          <img alt="example" style={{ width: '100%' }} src={previewImage} />
+        </Modal>
+      </>
+
+      {/* <Dragger {...props}>
+        <p className="ant-upload-drag-icon">
+          <InboxOutlined />
+        </p>
+        <p className="ant-upload-text">Click or drag file to this area to upload</p>
+        <p className="ant-upload-hint">
+          Support for a single or bulk upload. Strictly prohibit from uploading company data or other
+          band files
+    </p>
+      </Dragger> */}
+
       {/* <label htmlFor="photo">Загрузите фотографию животного: {' '}
         <input
           type="file"
@@ -462,41 +574,42 @@ function NewAnimal() {
           id="photo"
           accept="image/*,image/jpeg"
           onChange={photoChanged} />
-        {/* <img src={inputs.photo} alt="альтернативный текст" />
-          <div>{inputs.photo}</div> */}
-      {/* </label>  */}
-      {/* отправить форму */}
-      {/* <div 
-      // className={classes.root}
-      > */}
-      <Button
-        type="submit"
-        variant="contained"
-        color="primary">
-        Добавить Фото животного
+        <img src={inputs.photo} alt="альтернативный текст" />
+        <div>{inputs.photo}</div>
+      </label>
+      отправить форму
+      <div
+      >
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary">
+          Добавить Фото животного
       </Button>
-      {/* </div> */}
+      </div> */}
 
-      {/* <Form.Item label="Dragger">
-        <Form.Item
-          name="dragger"
-          valuePropName="fileList"
-          getValueFromEvent={normFile}
-          noStyle
-        >
-          <Upload.Dragger name="files" action="/upload.do">
-            <p className="ant-upload-drag-icon">
-              <InboxOutlined />
-            </p>
-            <p className="ant-upload-text">
-              Click or drag file to this area to upload
+      {/* <div>
+        <Form.Item>
+          <Form.Item
+            name="dragger"
+            valuePropName="fileList"
+            getValueFromEvent={normFile}
+            noStyle
+          >
+            <Upload.Dragger name="files" action="/upload.do">
+              <p className="ant-upload-drag-icon">
+                <InboxOutlined />
               </p>
-            <p className="ant-upload-hint">
-              Support for a single or bulk upload.
+              <p className="ant-upload-text">
+                Click or drag file to this area to upload
               </p>
-          </Upload.Dragger>
+              <p className="ant-upload-hint">
+                Support for a single or bulk upload.
+              </p>
+            </Upload.Dragger>
+          </Form.Item>
         </Form.Item>
-      </Form.Item> */}
+      </div> */}
 
       <Form.Item
         wrapperCol={{
@@ -504,12 +617,24 @@ function NewAnimal() {
           offset: 6
         }}
       >
-        <br/>
+        <br />
         <Button type="primary" htmlType="submit">
           Submit
           </Button>
       </Form.Item>
     </Form>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

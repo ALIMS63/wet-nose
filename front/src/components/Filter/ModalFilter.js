@@ -39,6 +39,7 @@ function ModalFilter() {
   };
 
   function handleOk() {
+    console.log('submit');
     setLoading(true)
 
     let category = animalsFromState[filters.category]
@@ -132,6 +133,8 @@ function ModalFilter() {
       <Button type="primary" onClick={showModal}>
         Фильтры
         </Button>
+        <br/>
+        <br/>
       <Modal
         title="Find Your Animal"
         visible={visible}

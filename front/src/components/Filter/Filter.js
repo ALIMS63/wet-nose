@@ -95,6 +95,7 @@ function Filter({visible}) {
   }
 
   function filter() {
+    console.log('submit');
     let category = animalsFromState[filters.category]
    console.log('before',visible) 
    visible = false
@@ -256,7 +257,7 @@ function Filter({visible}) {
           </Select>
         </Form.Item>
 
-          <Form.Item name='Category'>
+          {/* <Form.Item name='Category'>
             <Select defaultValue="Category" style={{ width: 120 }} onChange={chooseCategory}>
               <Option value="cats">Cats</Option>
               <Option value="dogs">Dogs</Option>
@@ -399,12 +400,11 @@ function Filter({visible}) {
               <Option value='true'>true</Option>
               <Option value='false'>false</Option>
             </Select>
-          </Form.Item>
+          </Form.Item> */}
 
           <Form.Item>
             <Button type="primary" htmlType="submit">
               Submit
-
             </Button>
         </Form.Item>
       </Form>
