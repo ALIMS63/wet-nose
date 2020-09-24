@@ -4,8 +4,6 @@ import { Container, AppBar, Button, CardActions, CardContent, CssBaseline, CardM
 import { makeStyles } from '@material-ui/core/styles';
 import { useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
-import ModalRegister from '../Registration/ModalRegister'
-import ModalLogin from '../Login/ModalLogin'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -84,45 +82,38 @@ function Navigation() {
           <div className={classes.appName}>
             <CameraIcon className={classes.icon} />
             <Typography variant="h6" color="inherit" noWrap>
-              Your Pet App
+              Твой Питомец
           </Typography>
           </div>
 
           <div className={classes.btns}>
-//             {isAuthenticated && <Link className={classes.link} to="/personalPage"><Button className={classes.button} color="inherit">Home</Button></Link>}
-//             {!isAuthenticated && <Link className={classes.link} to="/registration"><Button className={classes.button} color="inherit">Registration</Button></Link>}
-            {isAuthenticated &&
-              <Link className={classes.link} to="/privateHome">
-                <Button className={classes.button} color="inherit">
-                  Home
-                </Button>
-              </Link>}
-
-            {!isAuthenticated &&
-              <Link className={classes.link} to="/registration">
-                <Button className={classes.button} color="inherit">
-                  Registration
-                </Button>
-              </Link>}
-
-            {/* {!isAuthenticated && <Link className={classes.link} to="/login"><Button className={classes.button} color="inherit">Login</Button></Link>} */}
-
-            <Link className={classes.link} to="/secret">
+            {!isAuthenticated && <Link className={classes.link} to="/login">
               <Button className={classes.button} color="inherit">
-                ADD NEW
-              </Button>
-            </Link>
-
+                Вход и регистрация
+                </Button>
+            </Link>}
             <Link className={classes.link} to="/">
               <Button className={classes.button} color="inherit">
-                Main
+                Главная
               </Button>
             </Link>
+            {isAuthenticated && <Link className={classes.link} to="/personalPage">
+              <Button className={classes.button} color="inherit">
+                Личный кабинет
+                </Button>
+            </Link>}
+            {/* {!isAuthenticated && <Link className={classes.link} to="/registration"><Button className={classes.button} color="inherit">Регистрация</Button></Link>} */}
+            <Link className={classes.link} to="/secret">
+              <Button className={classes.button} color="inherit">
+                Добавить объявление
+              </Button>
+            </Link>
+
 
             {isAuthenticated &&
               <Link className={classes.link} to="/logout">
                 <Button className={classes.button} color="inherit">
-                  Logout
+                  Выход
                 </Button>
               </Link>}
 

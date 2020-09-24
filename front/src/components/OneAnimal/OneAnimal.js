@@ -14,8 +14,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   img: {
-    height: '250px',
-    width: '250px',
+    height: '400px',
+    width: '400px',
     borderRadius: '5px',
     objectFit: 'cover',
   },

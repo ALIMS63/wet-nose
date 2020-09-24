@@ -106,9 +106,6 @@ function Registration() {
   }
 
   const { name, email, password, phone, whoAreYou } = inputs;
-
-
-
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -117,7 +114,7 @@ function Registration() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Registration
+          Регистрация
         </Typography>
         <form onSubmit={handleSubmit} className={classes.form} noValidate>
           <Grid container spacing={2}>
@@ -130,7 +127,7 @@ function Registration() {
                 required
                 fullWidth
                 id="name"
-                label="Name"
+                label="Имя"
                 autoFocus
                 onChange={handleChange}
                 value={name}
@@ -143,7 +140,7 @@ function Registration() {
                 required
                 fullWidth
                 id="email"
-                label="Email Address"
+                label="Электронная почта"
                 name="email"
                 autoComplete="email"
                 onChange={handleChange}
@@ -157,7 +154,7 @@ function Registration() {
                 required
                 fullWidth
                 name="password"
-                label="Password"
+                label="Пароль"
                 type="password"
                 id="password"
                 autoComplete="current-password"
@@ -172,7 +169,7 @@ function Registration() {
                 required
                 fullWidth
                 name="phone"
-                label="Phone Number"
+                label="Номер телефона"
                 type="phone"
                 id="phone"
                 autoComplete="current-password"
@@ -185,26 +182,25 @@ function Registration() {
                 <InputLabel
                   htmlFor="outlined-native-simple"
                   required
-                >Who are you?</InputLabel>
+                >Кто вы?</InputLabel>
                 <Select
                   className={classes.inp}
                   native
                   value={whoAreYou}
                   onChange={handleChange}
-                  label="Who are you?"
+                  label="Кто вы?"
                   inputProps={{
                     name: "whoAreYou",
                     id: "outlined-native-simple"
                   }}
                 >
                   <option aria-label="None" value="" />
-                  <option value={'Professional Breeder'}>Professional Breeder</option>
-                  <option value={'Animal Shelter'}>Animal Shelter</option>
-                  <option value={'Private Person'}>Private Person</option>
+                  <option value={'Профессиональный заводчик'}>Профессиональный заводчик</option>
+                  <option value={'Приют для животных'}>Приют для животных</option>
+                  <option value={'Частное лицо'}>Частное лицо</option>
                 </Select>
               </FormControl>
             </Grid>
-
 
           </Grid>
           <Button
@@ -214,7 +210,7 @@ function Registration() {
             color="primary"
             className={classes.submit}
           >
-            Register
+            Зарегистрироваться
           </Button>
           {failed && <Box className={classes.failedBox}>
             <h4 className={classes.failed}>{failed}</h4>
@@ -222,7 +218,8 @@ function Registration() {
           <Grid container justify="center">
             <Grid item>
               <Link to="/login" variant="body2">
-                Already have an account? Login
+                {/* Already have an account? Login */}
+                Есть аккаунт? Войдите.
               </Link>
             </Grid>
           </Grid>

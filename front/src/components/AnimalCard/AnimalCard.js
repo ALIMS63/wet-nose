@@ -17,8 +17,8 @@ const useStyles = makeStyles({
 
   },
   img: {
-    height: '200px',
-    width: '200px',
+    height: '300px',
+    width: '300px',
     borderRadius: '5px',
     objectFit: 'cover',
   },
@@ -58,11 +58,11 @@ function AnimalCard() {
               <Popover
                 content={
                   <div>
-                    <p>{obj.nickname}</p>
-                    <p>{obj.kind}</p>
-                    <p>{obj.adultSize}</p>
-                    <p>{obj.pedigree}</p>
-                    <p>{obj.description}</p>
+                    <p>Кличка: {obj.nickname}</p>
+                    <p>Порода: {obj.kind}</p>
+                    <p>Размер: {obj.adultSize}</p>
+                    <p>Родословная: {obj.pedigree}</p>
+                    <p>Описание: {obj.description}</p>
                   </div>
                 }
                 title={
