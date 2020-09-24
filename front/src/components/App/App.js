@@ -10,11 +10,13 @@ import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import Secret from '../Secret/Secret';
 import Main from '../Main/Main';
 import Filter from '../Filter/Filter'
+
 // import NewAnimal from '../NewAnimal/NewAnimal';
 import AddAnimal from '../NewAnimal/AddAnimal';
 
 import NewAnimal from '../NewAnimal copy/NewAnimalCopy';
 // import PetCart from '../PetCart';
+
 import ModalFilter from '../Filter/ModalFilter';
 import Anketa from '../Anketa';
 import HomeRoute from '../HomeRoute/HomeRoute';
@@ -38,8 +40,8 @@ function App() {
   return (
     <div className="App">
       <Router>
-        {/* <Navigation /> */}
-        <Nav />
+        <Navigation />
+        {/* <Nav /> */}
         {/* <Main/> */}
 
         <Switch>
@@ -57,7 +59,6 @@ function App() {
           <Route path="/registration" exact>
             <Registration />
           </Route>
-
 
           <Route path="/logout" exact>
             <Logout />
@@ -77,8 +78,10 @@ function App() {
 
           <Route path="/secret">
             <NewAnimal />
+
             {/* <AddAnimal/> */}
           </Route>
+
 
         </Switch>
       </Router>
