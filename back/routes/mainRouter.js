@@ -160,6 +160,7 @@ router.put('/api/allAnimals/:id', upload, async (req, res) => {
 });
 
 router.post('/api/allAnimals', upload, async (req, res) => {
+  console.log(req.body);
   const photo = req.file.path.slice(7);
   const {
     bigType, kindDog, kindCat, kindOther, nickname, age, description, pay, price, adultSize, adultweight, possibleForAllergySufferers, longHaired, guideВog, serviceAnimal, warDog, pet, onlyInNonApartments, specialConditionsOfDetention, childrenInTheHouse, exotic, farmAnimal, gender, pedigree, vaccinationРistory,
@@ -196,5 +197,7 @@ router.get('/api/user/:id', async (req, res) => {
   const validUserId = await User.findOne({ _id: req.params.id });
   res.json(validUserId);
 });
+
+router.post('/api/addPhoto')
 
 export default router;
