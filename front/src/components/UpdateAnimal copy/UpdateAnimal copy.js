@@ -84,7 +84,7 @@ function UpdateAnimal() {
       newTypeAnimal = type;
     }
   })
-
+console.log(findAnimal);
   const [inputs, setInputs] = useState({
     bigType: newTypeAnimal,
     kindDog: findAnimal.kind,
@@ -93,21 +93,21 @@ function UpdateAnimal() {
     nickname: findAnimal.nickname,
     description: findAnimal.description,
     age: findAnimal.age,
-    pay: findAnimal.pay,
+    pay: findAnimal.pay || false,
     price: findAnimal.price,
     adultSize: findAnimal.adultSize,
     adultweight: findAnimal.adultweight,
-    possibleForAllergySufferers: findAnimal.possibleForAllergySufferers,
-    longHaired: findAnimal.longHaired,
-    guideВog: findAnimal.guideВog,
-    serviceAnimal: findAnimal.serviceAnimal,
-    warDog: findAnimal.warDog,
-    pet: findAnimal.pet,
-    onlyInNonApartments: findAnimal.onlyInNonApartments,
-    specialConditionsOfDetention: findAnimal.specialConditionsOfDetention,
-    childrenInTheHouse: findAnimal.childrenInTheHouse,
-    exotic: findAnimal.exotic,
-    farmAnimal: findAnimal.farmAnimal,
+    possibleForAllergySufferers: findAnimal.possibleForAllergySufferers || false,
+    longHaired: findAnimal.longHaired || false,
+    guideВog: findAnimal.guideВog || false,
+    serviceAnimal: findAnimal.serviceAnimal || false,
+    warDog: findAnimal.warDog || false,
+    pet: findAnimal.pet || false,
+    onlyInNonApartments: findAnimal.onlyInNonApartments || false,
+    specialConditionsOfDetention: findAnimal.specialConditionsOfDetention || false,
+    childrenInTheHouse: findAnimal.childrenInTheHouse || false,
+    exotic: findAnimal.exotic || false,
+    farmAnimal: findAnimal.farmAnimal || false,
     photo: findAnimal.photo,
     gender: findAnimal.gender,
     pedigree: findAnimal.pedigree,
@@ -143,6 +143,7 @@ function UpdateAnimal() {
         'content-type': 'multipart/form-data'
       }
     };
+    console.log(formData)
     await axios.put(`/api/allAnimals/${findAnimal._id}`, formData, config);
     dispatch(startAnimals());
     return history.push(`/oneAnimal/${findAnimal._id}`);
@@ -194,9 +195,9 @@ function UpdateAnimal() {
                       )}
                     />
                   </div>
-                  : <TextField className={classes.formControl} id="standard-required" name="kindOther" label="Порода" value={inputs.kindOther} onChange={changed} />
+                  : <TextField className={classes.formControl} id="outlined-basic" name="kindOther" label="Порода" value={inputs.kindOther} onChange={changed} variant="outlined"/>
               }
-              <TextField className={classes.formControl} id="standard-required" name="nickname" label="Кличка" required value={inputs.nickname} onChange={changed} />
+              <TextField className={classes.formControl} variant="outlined" id="outlined-basic" name="nickname" label="Кличка" required value={inputs.nickname} onChange={changed} />
             </Grid>
             {/* Пол, возраст, Описание */}
             <Grid container direction="row" justify="space-evenly" alignItems="center" className={classes.formControl}>

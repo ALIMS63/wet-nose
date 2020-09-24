@@ -7,15 +7,15 @@ import { Tooltip, Popover, Button } from 'antd';
 
 
 const useStyles = makeStyles({
-  block: {
-    margin: 'auto',
-    width: '60%',
-    marginTop: '50px',
-    display: 'flex',
-    justifyContent: 'space-around',
-    flexWrap: 'wrap',
+  // block: {
+  //   margin: 'auto',
+  //   width: '60%',
+  //   marginTop: '50px',
+  //   display: 'flex',
+  //   justifyContent: 'space-around',
+  //   flexWrap: 'wrap',
 
-  },
+  // },
   img: {
     height: '300px',
     width: '300px',
@@ -69,7 +69,7 @@ function AnimalCard() {
   return (
 
     <>
-      <container className={classes.block}>
+      <container className='block'>
 
         {filteredData && filteredData.map(animal => (
           (

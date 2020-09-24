@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Select, InputLabel, FormControl, Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Container } from '@material-ui/core';
+import { Input, Select, InputLabel, FormControl, Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Container } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from "react-redux";
@@ -7,6 +7,8 @@ import { useHistory } from "react-router-dom";
 import { setUser, deleteUser } from "../../redux/actions";
 import Copyright from '../Copyright/Copyright';
 import { Link } from "react-router-dom";
+import MaskedInput from 'react-text-mask';
+import InputMask from "react-input-mask";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -52,6 +54,13 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: 'white',
     borderRadius: '5px',
     opacity: '0.8'
+  },
+  mask: {
+    margin: theme.spacing(1),
+    padding: '0px',
+    margin: '0px',
+    height: '50px',
+    width: '397px',
   }
 }));
 
@@ -118,6 +127,7 @@ function Registration() {
         </Typography>
         <form onSubmit={handleSubmit} className={classes.form} noValidate>
           <Grid container spacing={2}>
+
             <Grid item xs={12}>
               <TextField
                 className={classes.inp}
@@ -172,11 +182,30 @@ function Registration() {
                 label="Номер телефона"
                 type="phone"
                 id="phone"
-                autoComplete="current-password"
+                autoComplete="current-phone"
                 onChange={handleChange}
                 value={phone}
               />
             </Grid>
+
+            <Grid item xs={12}>
+              <InputMask
+                mask="+7(999)999-99-99"
+                className={classes.mask}
+                variant="outlined"
+                required
+                fullWidth
+                name="phone"
+                label="Номер телефона"
+                type="phone"
+                id="phone"
+                autoComplete="current-phone"
+                onChange={handleChange}
+                value={phone}
+              ></InputMask>
+            </Grid>
+
+
             <Grid item xs={12}>
               <FormControl variant="outlined" className={classes.formControl}>
                 <InputLabel
