@@ -67,8 +67,8 @@ function App() {
           </Route>
 
           <Route path="/secret">
-            {/* <NewAnimal /> */}
-            <AddAnimal/>
+            <NewAnimal />
+            {/* <AddAnimal/> */}
           </Route>
 
         </Switch>
