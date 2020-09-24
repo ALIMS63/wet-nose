@@ -80,7 +80,6 @@ function AnimalCard() {
                   <p>Порода: {animal.kind}</p>
                   <p>Размер: {animal.adultSize}</p>
                   <p>Родословная: {animal.pedigree}</p>
-                  <p>Описание: {animal.description}</p>
                 </div>
               }
               title={
