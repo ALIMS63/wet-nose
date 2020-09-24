@@ -96,8 +96,16 @@ code {
   border-radius: 2px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   margin: 30px;
+}
 
-  
+.form-add {
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  background:  whitesmoke;
+  opacity: .9;
+  border-radius: 2px;
+  margin: 7%;
+  padding-right: 4%;
 }
 
 .form-button {
