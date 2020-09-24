@@ -25,8 +25,8 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Navigation />
-        {/* <Nav /> */}
+        {/* <Navigation /> */}
+        <Nav />
         {/* <Main/> */}
 
         <Switch>
@@ -62,9 +62,9 @@ function App() {
             <UpdateAnimal />
           </Route>
 
-          <PrivateRoute path="/secret">
+          <Route path="/secret">
             <NewAnimal />
-          </PrivateRoute>
+          </Route>
 
         </Switch>
       </Router>

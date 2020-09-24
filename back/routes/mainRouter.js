@@ -89,18 +89,13 @@ router.post('/api/registration', async (req, res) => {
     res.json({ message: 'Пожалуйста, попробуйте изменить введенные данные и повторите регистрацию' });
   } else {
     const hashedPassword = await bcrypt.hash(password, 10);
-    try {
-      user = await User.create({
-        name,
-        email,
-        password: hashedPassword,
-        phone,
-        whoAreYou,
-      });
-    } catch (err) {
-      res.status(401);
-      return res.json(err);
-    }
+    user = await User.create({
+      name,
+      email,
+      password: hashedPassword,
+      phone,
+      whoAreYou,
+    });
     req.session.user = serializeUser(user);
     res.status(200);
     return res.json({
