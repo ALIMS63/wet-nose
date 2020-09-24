@@ -9,7 +9,7 @@ function CleanFilter() {
   
   function clean (){
     window.localStorage.removeItem('redux');
-    dispatch(startAnimals())
+    // dispatch(startAnimals())
   }
 
   return (<>
