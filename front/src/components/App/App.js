@@ -83,6 +83,7 @@ function App() {
 
         <Switch>
           <Route path="/" exact>
+            <br/>
             <ModalFilter />
             {/* <Filter/> */}
             <CleanFilter/>
