@@ -150,6 +150,7 @@ function NewAnimal() {
         <div className={classes.root}>
           <Grid container spacing={5} >
             {/* Тип, порода, кличка */}
+            
             <Grid container direction="row" justify="space-evenly" alignItems="center" >
               <div className={classes.formControl}>
                 <Autocomplete inputProps={{ 'aria-label': 'Without label' }} name="bigType" inputValue={inputs.bigType} id="free-solo-demo" freeSolo
