@@ -59,17 +59,15 @@ router.post('/api/login', async (req, res) => {
   const user = await User.findOne({ email }).exec();
   if (!user) {
     res.status(401);
-    res.json({ message: 'The email you provided is actually wrong' });
+    res.json({ message: 'Указанная электронная почта неверная' });
   }
   const isValidPassword = await bcrypt.compare(password, user.password);
   if (!isValidPassword) {
     res.status(401);
-    res.json({ message: 'The password you provided is actually wrong' });
+    res.json({ message: 'Указанный пароль неверный' });
   }
-  console.log(serializeUser(user));
   req.session.user = serializeUser(user);
   res.status(200);
-  console.log(user);
   return res.json({
     id: user._id,
     name: user.name,
@@ -88,7 +86,7 @@ router.post('/api/registration', async (req, res) => {
   const validUsername = await User.findOne({ name, email });
   if (validUsername) {
     res.status(401);
-    res.json({ message: 'The user with such email already exists' });
+    res.json({ message: 'Пожалуйста, попробуйте изменить введенные данные и повторите регистрацию' });
   } else {
     const hashedPassword = await bcrypt.hash(password, 10);
     user = await User.create({
@@ -183,7 +181,6 @@ router.post('/api/allAnimals', upload, async (req, res) => {
 });
 
 router.get('/api/delete/:id', async (req, res) => {
-  console.log(req.params);
   const cat = await Cat.findOne({ _id: req.params.id }).exec();
   const dog = await Dog.findOne({ _id: req.params.id }).exec();
   const other = await Other.findOne({ _id: req.params.id }).exec();
@@ -193,8 +190,8 @@ router.get('/api/delete/:id', async (req, res) => {
 });
 
 router.get('/api/user/:id', async (req, res) => {
-  const validUserId = await User.findOne({ _id: req.params.id });
-  res.json(validUserId);
+  const oneUser = await User.findOne({ _id: req.params.id });
+  res.json(oneUser);
 });
 
 export default router;
