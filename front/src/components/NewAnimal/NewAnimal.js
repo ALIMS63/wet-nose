@@ -39,6 +39,8 @@ import {
   Input,
 } from "antd";
 import { UploadOutlined, InboxOutlined } from "@ant-design/icons";
+import { CloseOutlined, CheckOutlined } from '@ant-design/icons';
+
 
 const { Option } = Select;
 
@@ -105,6 +107,8 @@ const normFile = (e) => {
 //   }
 // }));
 //======================================
+
+
 function NewAnimal() {
   const dispatch = useDispatch();
   const allAnimals = useSelector((state) => state.animals.animals)
@@ -181,8 +185,10 @@ function NewAnimal() {
     return history.push(`/oneAnimal/${newAnimal._id}`);
   }
 
-  function onFinish(values) {
-    console.log("Received values of form: ", values);
+  function onFinish(newAnimal) {
+    console.log("New", newAnimal);
+    dispatch(addNewAnimal(newAnimal.type, newAnimal))
+
   };
 
   return (
@@ -192,13 +198,11 @@ function NewAnimal() {
       {...formItemLayout}
       onFinish={onFinish}
     >
-      <Form.Item>
-        <span className="ant-form-text">
-          Подробная информация вашего животного:
-        </span>
-      </Form.Item>
-
-      <Form.Item name="select" label="Вид животного:"
+      <div className='title'>
+        <h2>Подробная информация вашего животного:</h2>
+      </div>
+      <br />
+      <Form.Item label="Вид животного:" name="type"
         hasFeedback
         rules={[
           {
@@ -214,33 +218,40 @@ function NewAnimal() {
         </Select>
       </Form.Item>
 
-      <Form.Item label="Порода:">
+      <Form.Item label="Порода:" name='kind'>
         <Input placeholder="Укажите породу" />
       </Form.Item>
 
-      <Form.Item label="Кличка:">
+      <Form.Item label="Кличка:" name='nickname'>
         <Input placeholder="Укажите кличку" />
       </Form.Item>
 
-      <Form.Item name="radio-button" label="Пол">
+      <Form.Item label="Пол" name="gender"
+        rules={[
+          {
+            required: true,
+            message: "Выберите Пол!"
+          }
+        ]}
+      >
         <Radio.Group>
           <Radio.Button value="male">Мальчик</Radio.Button>
           <Radio.Button value="female">Девочка</Radio.Button>
         </Radio.Group>
       </Form.Item>
 
-      <Form.Item label="Возраст:">
-        <Form.Item name="input-number" noStyle>
+      <Form.Item label="Возраст:" name='age'>
+        <Form.Item name="input-age" noStyle>
           <InputNumber min={0} max={99} />
         </Form.Item>
         <span className="ant-form-text"> годов</span>
       </Form.Item>
 
-      <Form.Item label="Описание:">
+      <Form.Item label="Описание:" name='description'>
         <Input placeholder="Дополнительная информация" />
       </Form.Item>
 
-      <Form.Item name="type" label="Форма оплаты">
+      <Form.Item label="Форма оплаты" name="pay" >
         <Checkbox.Group>
           <Row>
             <Col span={24}>
@@ -259,62 +270,52 @@ function NewAnimal() {
       </Form.Item>
 
       <Form.Item label="Цена:">
-        <Form.Item name="input-number" noStyle>
+        <Form.Item name="price" noStyle>
           <InputNumber min={0} max={99999999} />
         </Form.Item>
         <span className="ant-form-text"> Руб</span>
       </Form.Item>
 
-      <Form.Item
-        label="Родословная:"
-      >
+      <Form.Item label="Родословная:" name='pedigree'>
         <Input placeholder="Укажите родословную" />
       </Form.Item>
 
-      <Form.Item
-        name="select"
-        label="Имеются ли прививки?"
+      <Form.Item label="Имеются ли прививки?"
+        name="vaccin"
         hasFeedback
       >
-        <Select placeholder="Выберите размер:">
+        <Select placeholder="Наличие прививок:">
           <Option value="Yes">Да</Option>
           <Option value="No">Нет</Option>
         </Select>
       </Form.Item>
 
       <Form.Item label="Вес взрослого животного:">
-        <Form.Item name="input-number" noStyle>
+        <Form.Item name="adultWeight" noStyle>
           <InputNumber min={0} max={999} />
         </Form.Item>
         <span className="ant-form-text">кг</span>
       </Form.Item>
 
-      <Form.Item
-        name="select"
-        label="Размер взрослого животного:"
+      <Form.Item label="Размер взрослого животного:"
+        name="adultSize"
         hasFeedback
-        rules={[
-          {
-            required: true,
-            message: "Выберите породу!"
-          }
-        ]}
       >
         <Select placeholder="Выберите размер:">
-          <Option value="xs">Очень маленькое (хомяк и меньше)</Option>
-          <Option value="s">Маленькое (кошка)</Option>
-          <Option value="m">Среднее (бульдог)</Option>
-          <Option value="l">Большое (сенбернар)</Option>
-          <Option value="xl">Очень большое (лошадь и более)</Option>
+          <Option value="Очень маленькое (хомяк и меньше)">Очень маленькое (хомяк и меньше)</Option>
+          <Option value="Маленькое (кошка)">Маленькое (кошка)</Option>
+          <Option value="Среднее (бульдог)">Среднее (бульдог)</Option>
+          <Option value="Большое (сенбернар)">Большое (сенбернар)</Option>
+          <Option value="Очень большое (лошадь и более)">Очень большое (лошадь и более)</Option>
         </Select>
       </Form.Item>
 
-      <Form.Item name="type" label="Вид животного">
+      <Form.Item label="Вид животного" name="uniq" >
         <Checkbox.Group>
           <Row>
             <Col span={14}>
               <Checkbox
-                value="D"
+                value="Домашнее животное"
                 style={{
                   lineHeight: "32px"
                 }}
@@ -324,7 +325,7 @@ function NewAnimal() {
             </Col>
             <Col span={14}>
               <Checkbox
-                value="E"
+                value="Экзотическое животное"
                 style={{
                   lineHeight: "32px"
                 }}
@@ -334,7 +335,7 @@ function NewAnimal() {
             </Col>
             <Col span={14}>
               <Checkbox
-                value="F"
+                value="Сельскохозяйственное животное"
                 style={{
                   lineHeight: "32px"
                 }}
@@ -346,12 +347,12 @@ function NewAnimal() {
         </Checkbox.Group>
       </Form.Item>
 
-      <Form.Item name="forWhat" label="С какой целью">
+      <Form.Item label="С какой целью" name="forWhat" >
         <Checkbox.Group>
           <Row>
             <Col span={14}>
               <Checkbox
-                value="D"
+                value="Cлужебное животное"
                 style={{
                   lineHeight: "32px"
                 }}
@@ -361,7 +362,7 @@ function NewAnimal() {
             </Col>
             <Col span={14}>
               <Checkbox
-                value="E"
+                value="Служебная собака"
                 style={{
                   lineHeight: "32px"
                 }}
@@ -371,7 +372,7 @@ function NewAnimal() {
             </Col>
             <Col span={14}>
               <Checkbox
-                value="F"
+                value="Собака-поводырь"
                 style={{
                   lineHeight: "32px"
                 }}
@@ -383,12 +384,12 @@ function NewAnimal() {
         </Checkbox.Group>
       </Form.Item>
 
-      <Form.Item name="environment" label="Среда обитания">
+      <Form.Item label="Среда обитания" name="environment" >
         <Checkbox.Group>
           <Row>
             <Col span={14}>
               <Checkbox
-                value="D"
+                value="Только вне квартиры"
                 style={{
                   lineHeight: "32px"
                 }}
@@ -398,7 +399,7 @@ function NewAnimal() {
             </Col>
             <Col span={14}>
               <Checkbox
-                value="E"
+                value="Специальные условия содержания"
                 style={{
                   lineHeight: "32px"
                 }}
@@ -408,7 +409,7 @@ function NewAnimal() {
             </Col>
             <Col span={14}>
               <Checkbox
-                value="F"
+                value="Подходит для дома"
                 style={{
                   lineHeight: "32px"
                 }}
@@ -420,12 +421,12 @@ function NewAnimal() {
         </Checkbox.Group>
       </Form.Item>
 
-      <Form.Item name="suffer" label="Шерсть \ Аллергия">
+      <Form.Item label="Шерсть \ Аллергия" name="suffer" >
         <Checkbox.Group>
           <Row>
             <Col span={14}>
               <Checkbox
-                value="D"
+                value="Длинношерстное"
                 style={{
                   lineHeight: "32px"
                 }}
@@ -435,7 +436,7 @@ function NewAnimal() {
             </Col>
             <Col span={14}>
               <Checkbox
-                value="E"
+                value="Не навредит аллергикам"
                 style={{
                   lineHeight: "32px"
                 }}
@@ -447,11 +448,36 @@ function NewAnimal() {
         </Checkbox.Group>
       </Form.Item>
 
-      <Form.Item name="switch" label="Дети в доме" valuePropName="checked">
-        <Switch />
-      </Form.Item>
+      <Switch name='children'
+        checkedChildren="Есть дети"
+        unCheckedChildren="Нет детей"
+      />
+      <br />
+      <br />
 
-      <Form.Item label="Dragger">
+      {/* <label htmlFor="photo">Загрузите фотографию животного: {' '}
+        <input
+          type="file"
+          name="photo"
+          id="photo"
+          accept="image/*,image/jpeg"
+          onChange={photoChanged} />
+        {/* <img src={inputs.photo} alt="альтернативный текст" />
+          <div>{inputs.photo}</div> */}
+      {/* </label>  */}
+      {/* отправить форму */}
+      {/* <div 
+      // className={classes.root}
+      > */}
+      <Button
+        type="submit"
+        variant="contained"
+        color="primary">
+        Добавить Фото животного
+      </Button>
+      {/* </div> */}
+
+      {/* <Form.Item label="Dragger">
         <Form.Item
           name="dragger"
           valuePropName="fileList"
@@ -470,7 +496,7 @@ function NewAnimal() {
               </p>
           </Upload.Dragger>
         </Form.Item>
-      </Form.Item>
+      </Form.Item> */}
 
       <Form.Item
         wrapperCol={{
@@ -478,11 +504,14 @@ function NewAnimal() {
           offset: 6
         }}
       >
+        <br/>
         <Button type="primary" htmlType="submit">
           Submit
           </Button>
       </Form.Item>
     </Form>
+
+
 
     // <>
     //   <form onSubmit={addAnimal} encType="multipart/form-data">
@@ -907,6 +936,7 @@ function NewAnimal() {
     //       </Grid>
     //     </div>
     //     {/* кнопка добавления животного */}
+
     //     <label htmlFor="photo">Загрузите фотографию животного: {' '}
     //       <input
     //         type="file"
@@ -926,6 +956,7 @@ function NewAnimal() {
     //         Добавить животное
     //       </Button>
     //     </div>
+
     //     {/* место для сообщения об ошибке */}
     //     {error && <div className="error">{error}</div>}
     //   </form>
