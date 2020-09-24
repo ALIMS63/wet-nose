@@ -104,12 +104,12 @@ function OneAnimal() {
 
 
       </div>
-
       <div className='text-pet'>
         <p>
           {obj.description}
         </p>
       </div>
+
       {flag && <div className='end-button'>
         <Link to={`/update/${obj._id}`}><Button color="primary">Редактировать</Button></Link>
         <Button onClick={handleDelete} color="primary">Удалить</Button>
