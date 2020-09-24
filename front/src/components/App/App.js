@@ -12,7 +12,7 @@ import Main from '../Main/Main';
 import ModalLogin from '../Login/ModalLogin';
 import ModalRegister from '../Registration/ModalRegister';
 import Filter from '../Filter/Filter'
-import NewAnimal from '../NewAnimal/NewAnimal';
+import NewAnimal from '../NewAnimal copy/NewAnimalCopy';
 // import PetCart from '../PetCart';
 
 import PetCart from '../PetCart';
