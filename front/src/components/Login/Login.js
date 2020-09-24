@@ -76,7 +76,7 @@ function Login() {
       dispatch({
         type: 'AUTHENTICATED_SUCCESSFULLY'
       });
-      return history.push('/secret');
+      return history.push('/');
     } else {
       setFailed(finalResult.message);
     }
@@ -99,7 +99,7 @@ function Login() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Login
+          Вход
         </Typography>
         <form onSubmit={handleSubmit} className={classes.form} noValidate>
           <TextField
@@ -109,7 +109,7 @@ function Login() {
             required
             fullWidth
             id="email"
-            label="Email Address"
+            label="Электронная почта"
             name="email"
             autoComplete="email"
             autoFocus
@@ -123,7 +123,7 @@ function Login() {
             required
             fullWidth
             name="password"
-            label="Password"
+            label="Пароль"
             type="password"
             id="password"
             autoComplete="current-password"
@@ -137,7 +137,7 @@ function Login() {
             color="primary"
             className={classes.submit}
           >
-            Login
+            Войти
           </Button>
           {failed && <Box className={classes.failedBox}>
             <h4 className={classes.failed}>{failed}</h4>
@@ -145,7 +145,9 @@ function Login() {
           <Grid container justify="center">
             <Grid item>
               <Link to="/registration" variant="body2">
-                {"Don't have an account? Register"}
+                {/* {"Don't have an account? Register"} */}
+                {"Нет аккаунта? Зарегистрируйтесь."}
+
               </Link>
             </Grid>
           </Grid>

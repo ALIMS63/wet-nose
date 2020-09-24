@@ -9,24 +9,16 @@ import Logout from '../Logout/Logout';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import Secret from '../Secret/Secret';
 import Main from '../Main/Main';
-import ModalLogin from '../Login/ModalLogin';
-import ModalRegister from '../Registration/ModalRegister';
 import Filter from '../Filter/Filter'
 import NewAnimal from '../NewAnimal/NewAnimal';
-// import PetCart from '../PetCart';
-
-import PetCart from '../PetCart';
 import ModalFilter from '../Filter/ModalFilter';
 import Anketa from '../Anketa';
 import HomeRoute from '../HomeRoute/HomeRoute';
 import UpdateAnimal from '../UpdateAnimal/UpdateAnimal';
-import DeleteAnimal from '../DeleteAnimal/DeleteAnimal';
-
-
 import AnimalCard from '../AnimalCard/AnimalCard';
 import OneAnimal from '../OneAnimal/OneAnimal';
 
-import Nav from '../Navigation/Nav'
+import Nav from '../Navigation/Nav';
 
 import {Waypoint} from 'react-waypoint';
 
@@ -70,9 +62,9 @@ function App() {
   return (
     <div className="App">
       <Router>
-        {/* <Navigation /> */}
-          <Nav/>
-          {/* <Main/> */}
+        <Navigation />
+        {/* <Nav /> */}
+        {/* <Main/> */}
 
         <Switch>
           <Route path="/" exact>
@@ -94,7 +86,6 @@ function App() {
             <Registration />
           </Route>
 
-
           <Route path="/logout" exact>
             <Logout />
           </Route>
@@ -110,22 +101,10 @@ function App() {
           <Route path="/update/:id" exact>
             <UpdateAnimal />
           </Route>
-          {/* <Route path="/delete/:id" exact>
-            <DeleteAnimal />
-          </Route> */}
 
-          <Route path="/secret">
+          <PrivateRoute path="/secret">
             <NewAnimal />
-          </Route>
-
-          {/* <PrivateRouter path="/user/:id" exact> */}
-
-          {/* <User></User> */}
-
-          {/* </PrivateRouter>
-          <PrivateRouter path="/user/:id/game" exact> */}
-
-          
+          </PrivateRoute>
 
         </Switch>
       </Router>

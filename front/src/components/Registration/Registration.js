@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Select, InputLabel, FormControl, Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Container } from '@material-ui/core';
+import { Input, Select, InputLabel, FormControl, Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Container } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from "react-redux";
@@ -7,6 +7,8 @@ import { useHistory } from "react-router-dom";
 import { setUser, deleteUser } from "../../redux/actions";
 import Copyright from '../Copyright/Copyright';
 import { Link } from "react-router-dom";
+import MaskedInput from 'react-text-mask';
+import InputMask from "react-input-mask";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -52,6 +54,59 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: 'white',
     borderRadius: '5px',
     opacity: '0.8'
+  },
+  mask: {
+    // fontStyle: 'inherit',
+    // fontVariantLigatures: 'inherit',
+    // fontVariantCaps: 'inherit',
+    // fontVariantNumeric: 'inherit',
+    // fontVariantEastAsian: 'inherit',
+    // fontWeight: 'inherit',
+    // fontStretch: 'inherit',
+    // fontSize: 'inherit',
+    // lineHeight: 'inherit',
+    // fontFamily: 'inherit',
+    // color: 'currentColor',
+    // width: '100 %',
+    // borderTopColor: 'initial',
+    // borderTopStyle: 'initial',
+    // borderTopWidth: '0px',
+    // borderRightColor: 'initial',
+    // borderRightStyle: 'initial',
+    // borderRightWidth: '0px',
+    // borderBottomColor: 'initial',
+    // borderBottomStyle: 'initial',
+    // borderBottomWidth: '0px',
+    // borderLeftColor: 'initial',
+    // borderLeftStyle: 'initial',
+    // borderLeftWidth: '0px',
+    // borderImageSource: 'initial',
+    // borderImageSlice: 'initial',
+    // borderImageWidth: 'initial',
+    // borderImageOutset: 'initial',
+    // borderImageRepeat: 'initial',
+    // height: '1.1876em',
+    // marginTop: '0px',
+    // marginRight: '0px',
+    // marginBottom: '0px',
+    // marginLeft: '0px',
+    // display: 'block',
+    // minWidth: 0,
+    // backgroundImage: 'none',
+    // backgroundPosition - x: 'initial',
+    // backgroundPosition - y: 'initial',
+    // backgroundSize: 'initial',
+    // backgroundRepeat - x: 'initial',
+    // backgroundRepeat - y: 'initial',
+    // backgroundAttachment: 'initial',
+    // backgroundOrigin: 'initial',
+    // backgroundClip: 'initial',
+    // backgroundColor: 'initial',
+    // boxSizing: 'content - box',
+    // animationName: 'mui - auto - fill - cancel',
+    // letterSpacing: 'inherit',
+    // animationDuration: '10ms',
+    // '-webkit - tap - highlight - color': 'transparent',
   }
 }));
 
@@ -106,9 +161,6 @@ function Registration() {
   }
 
   const { name, email, password, phone, whoAreYou } = inputs;
-
-
-
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -117,10 +169,11 @@ function Registration() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Registration
+          Регистрация
         </Typography>
         <form onSubmit={handleSubmit} className={classes.form} noValidate>
           <Grid container spacing={2}>
+
             <Grid item xs={12}>
               <TextField
                 className={classes.inp}
@@ -130,7 +183,7 @@ function Registration() {
                 required
                 fullWidth
                 id="name"
-                label="Name"
+                label="Имя"
                 autoFocus
                 onChange={handleChange}
                 value={name}
@@ -143,7 +196,7 @@ function Registration() {
                 required
                 fullWidth
                 id="email"
-                label="Email Address"
+                label="Электронная почта"
                 name="email"
                 autoComplete="email"
                 onChange={handleChange}
@@ -157,7 +210,7 @@ function Registration() {
                 required
                 fullWidth
                 name="password"
-                label="Password"
+                label="Пароль"
                 type="password"
                 id="password"
                 autoComplete="current-password"
@@ -172,39 +225,57 @@ function Registration() {
                 required
                 fullWidth
                 name="phone"
-                label="Phone Number"
+                label="Номер телефона"
                 type="phone"
                 id="phone"
-                autoComplete="current-password"
+                autoComplete="current-phone"
                 onChange={handleChange}
                 value={phone}
               />
             </Grid>
+
+            <Grid item xs={12}>
+              <InputMask
+                mask="+7(999)999-99-99"
+                className={classes.mask}
+                variant="outlined"
+                required
+                fullWidth
+                name="phone"
+                label="Номер телефона"
+                type="phone"
+                id="phone"
+                autoComplete="current-phone"
+                onChange={handleChange}
+                value={phone}
+              ></InputMask>
+            </Grid>
+
+
             <Grid item xs={12}>
               <FormControl variant="outlined" className={classes.formControl}>
                 <InputLabel
                   htmlFor="outlined-native-simple"
                   required
-                >Who are you?</InputLabel>
+                >Кто вы?</InputLabel>
                 <Select
                   className={classes.inp}
                   native
                   value={whoAreYou}
                   onChange={handleChange}
-                  label="Who are you?"
+                  label="Кто вы?"
                   inputProps={{
                     name: "whoAreYou",
                     id: "outlined-native-simple"
                   }}
                 >
                   <option aria-label="None" value="" />
-                  <option value={'Professional Breeder'}>Professional Breeder</option>
-                  <option value={'Animal Shelter'}>Animal Shelter</option>
-                  <option value={'Private Person'}>Private Person</option>
+                  <option value={'Профессиональный заводчик'}>Профессиональный заводчик</option>
+                  <option value={'Приют для животных'}>Приют для животных</option>
+                  <option value={'Частное лицо'}>Частное лицо</option>
                 </Select>
               </FormControl>
             </Grid>
-
 
           </Grid>
           <Button
@@ -214,7 +285,7 @@ function Registration() {
             color="primary"
             className={classes.submit}
           >
-            Register
+            Зарегистрироваться
           </Button>
           {failed && <Box className={classes.failedBox}>
             <h4 className={classes.failed}>{failed}</h4>
@@ -222,7 +293,8 @@ function Registration() {
           <Grid container justify="center">
             <Grid item>
               <Link to="/login" variant="body2">
-                Already have an account? Login
+                {/* Already have an account? Login */}
+                Есть аккаунт? Войдите.
               </Link>
             </Grid>
           </Grid>
