@@ -23,8 +23,15 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormLabel from '@material-ui/core/FormLabel';
 import { useHistory } from "react-router-dom";
 import { red } from '@material-ui/core/colors';
+import { green } from '@material-ui/core/colors';
+
 
 const useStyles = makeStyles((theme) => ({
+  color: {
+    color: 'green',
+    borderColor: 'green',
+    background: 'white',
+  },
   root: {
     //button
     '& > *': {
@@ -44,6 +51,8 @@ const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: "20px",
     minWidth: 300,
+    
+    
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
@@ -149,20 +158,20 @@ function NewAnimal() {
 
   return (
     <>
-      <form onSubmit={addAnimal} encType="multipart/form-data" style={{ margin: '7%', background: 'rgba(176,232,191, 0.8)', paddingRight: '4%' }}>
+      <form onSubmit={addAnimal} encType="multipart/form-data" className='form-add'>
         <div className={classes.root}>
           <Grid container spacing={5} >
             {/* Тип, порода, кличка */}
             
             <Grid container direction="row" justify="space-evenly" alignItems="center" >
               <div className={classes.formControl}>
-                <Autocomplete inputProps={{ 'aria-label': 'Without label' }} name="bigType" inputValue={inputs.bigType} id="free-solo-demo" freeSolo
+                <Autocomplete  inputProps={{ 'aria-label': 'Without label' }} name="bigType" inputValue={inputs.bigType} id="free-solo-demo" freeSolo
                   options={typeAnimal.map((option) => option.type)}
                   onInputChange={(event, newInputValue) => {
                     changed({ target: { value: newInputValue, name: 'bigType' } })
                   }}
                   renderInput={(params) => (
-                    <TextField {...params} label="Тип животного" margin="normal" variant="outlined"
+                    <TextField className={classes.color}  {...params} label="Тип животного" margin="normal" variant="outlined"
                       required />
                   )}
                 />
@@ -175,7 +184,7 @@ function NewAnimal() {
                       changed({ target: { value: newInputValue, name: 'kindDog' } })
                     }}
                     renderInput={(params) => (
-                      <TextField {...params} label="Порода" margin="normal" variant="outlined"
+                      <TextField className={classes.color} {...params} label="Порода" margin="normal" variant="outlined"
                         required />
                     )}
                   />
@@ -188,14 +197,14 @@ function NewAnimal() {
                         changed({ target: { value: newInputValue, name: 'kindCat' } })
                       }}
                       renderInput={(params) => (
-                        <TextField {...params} label="Порода" margin="normal" variant="outlined"
+                        <TextField className={classes.color} {...params} label="Порода" margin="normal" variant="outlined"
                           required />
                       )}
                     />
                   </div>
-                  : <TextField className={classes.formControl} name="kindOther" label="Порода" value={inputs.kindOther} onChange={changed} variant="outlined" id="outlined-basic" />
+                  : <TextField  style={{background: 'white', minWidth: '300px', margin: "20px"}} name="kindOther" label="Порода" value={inputs.kindOther} onChange={changed} variant="outlined" id="outlined-basic" />
               }
-              <TextField className={classes.formControl} variant="outlined" id="outlined-basic" name="nickname" label="Кличка" required value={inputs.nickname} onChange={changed} />
+              <TextField style={{background: 'white', minWidth: '300px', margin: "20px"}} variant="outlined" id="outlined-basic" name="nickname" label="Кличка" required value={inputs.nickname} onChange={changed} />
             </Grid>
             {/* Пол, возраст, Описание */}
             <Grid container direction="row" justify="space-evenly" alignItems="center" className={classes.formControl}>
@@ -206,14 +215,14 @@ function NewAnimal() {
                   <FormControlLabel value="мальчик" control={<Radio />} label="Male" />
                 </RadioGroup>
               </FormControl>
-              <TextField className={classes.formControl} id="outlined-number" label="Возраст" type="number" variant="outlined" name="age" required
+              <TextField style={{background: 'white', minWidth: '300px', margin: "20px"}} id="outlined-number" label="Возраст" type="number" variant="outlined" name="age" required
                 value={inputs.age} onChange={changed}
                 InputLabelProps={{
                   shrink: true,
                 }}
               />
               <TextField
-                className={classes.formControl}
+                style={{background: 'white', minWidth: '300px', margin: "20px"}}
                 onChange={changed}
                 name="description"
                 id="outlined-multiline-static"
@@ -239,7 +248,7 @@ function NewAnimal() {
               </label>
               {inputs.pay ?
                 <TextField disabled id="filled-disabled" label="цена" defaultValue="-" variant="filled" />
-                : <TextField className={classes.formControl} id="outlined-number" label="Цена" type="number" variant="outlined" name="price" required
+                : <TextField style={{background: 'white', minWidth: '300px', margin: "20px"}} id="outlined-number" label="Цена" type="number" variant="outlined" name="price" required
                   value={inputs.price} onChange={changed}
                   InputLabelProps={{
                     shrink: true,
@@ -248,8 +257,8 @@ function NewAnimal() {
             </Grid>
             {/* Родословная, история прививок */}
             <Grid container direction="row" justify="center" alignItems="center" className={classes.formControl}>
-              <TextField className={classes.formControl} onChange={changed} name="pedigree" id="outlined-helperText" label="Родословная" value={inputs.pedigree} helperText="" variant="outlined" />
-              <TextField className={classes.formControl} onChange={changed} name="vaccinationРistory" id="outlined-helperText" label="Имеются ли прививки?" value={inputs.vaccinationРistory} helperText="" variant="outlined" />
+              <TextField style={{background: 'white', minWidth: '300px', margin: "20px"}} onChange={changed} name="pedigree" id="outlined-helperText" label="Родословная" value={inputs.pedigree} helperText="" variant="outlined" />
+              <TextField style={{background: 'white', minWidth: '300px', margin: "20px"}} onChange={changed} name="vaccinationРistory" id="outlined-helperText" label="Имеются ли прививки?" value={inputs.vaccinationРistory} helperText="" variant="outlined" />
             </Grid>
             {/* Размер взрослого животного, вес взрослого животного */}
             <Grid container direction="row" justify="center" alignItems="center" className={classes.formControl}>
@@ -259,6 +268,7 @@ function NewAnimal() {
               >
                 <InputLabel id="demo-simple-select-outlined-label">Размер взрослого животного</InputLabel>
                 <Select
+                  style={{background: 'white'}}
                   name="adultSize"
                   labelId="demo-simple-select-outlined-label"
                   id="demo-simple-select-outlined"
@@ -274,7 +284,7 @@ function NewAnimal() {
                 </Select>
 
               </FormControl>
-              <TextField className={classes.formControl} onChange={changed} name="adultweight" id="outlined-helperText" label="Вес взрослого животного" value={inputs.adultweight} helperText="" variant="outlined" />
+              <TextField style={{background: 'white', minWidth: '300px', margin: "20px"}} onChange={changed} name="adultweight" id="outlined-helperText" label="Вес взрослого животного" value={inputs.adultweight} helperText="" variant="outlined" />
             </Grid>
             {/* Домашнее, экзотическое, сельскохозяйственное */}
             <Grid container direction="row" justify="space-evenly" alignItems="center" className={classes.ch}>

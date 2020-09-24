@@ -153,7 +153,7 @@ console.log(inputs.bigType)
 
   return (
     <>
-      <form onSubmit={updateAnimal} encType="multipart/form-data" style={{ margin: '7%', background: 'rgba(176,232,191, 0.8)', paddingRight: '4%' }}>
+      <form onSubmit={updateAnimal} encType="multipart/form-data" className='form-add'>
         <input type="hidden" name="_method" value="put" />
         <div className={classes.root}>
           <Grid container spacing={5} >
@@ -166,7 +166,7 @@ console.log(inputs.bigType)
                     changed({ target: { value: newInputValue, name: 'bigType' } })
                   }}
                   renderInput={(params) => (
-                    <TextField {...params} label="Тип животного" margin="normal" variant="outlined"
+                    <TextField  style={{background: 'white', minWidth: '300px', margin: "20px"}}{...params} label="Тип животного" margin="normal" variant="outlined"
                       required />
                   )}
                 />
@@ -179,7 +179,7 @@ console.log(inputs.bigType)
                       changed({ target: { value: newInputValue, name: 'kindDog' } })
                     }}
                     renderInput={(params) => (
-                      <TextField {...params} label="Порода" margin="normal" variant="outlined"
+                      <TextField style={{background: 'white', minWidth: '300px', margin: "20px"}} {...params} label="Порода" margin="normal" variant="outlined"
                         required />
                     )}
                   />
@@ -192,14 +192,14 @@ console.log(inputs.bigType)
                         changed({ target: { value: newInputValue, name: 'kindCat' } })
                       }}
                       renderInput={(params) => (
-                        <TextField {...params} label="Порода" margin="normal" variant="outlined"
+                        <TextField style={{background: 'white', minWidth: '300px', margin: "20px"}} {...params} label="Порода" margin="normal" variant="outlined"
                           required />
                       )}
                     />
                   </div>
-                  : <TextField className={classes.formControl} id="outlined-basic" name="kindOther" label="Порода" value={inputs.kindOther} onChange={changed} variant="outlined"/>
+                  : <TextField style={{background: 'white', minWidth: '300px', margin: "20px"}} id="outlined-basic" name="kindOther" label="Порода" value={inputs.kindOther} onChange={changed} variant="outlined"/>
               }
-              <TextField className={classes.formControl} variant="outlined" id="outlined-basic" name="nickname" label="Кличка" required value={inputs.nickname} onChange={changed} />
+              <TextField style={{background: 'white', minWidth: '300px', margin: "20px"}} variant="outlined" id="outlined-basic" name="nickname" label="Кличка" required value={inputs.nickname} onChange={changed} />
             </Grid>
             {/* Пол, возраст, Описание */}
             <Grid container direction="row" justify="space-evenly" alignItems="center" className={classes.formControl}>
@@ -210,14 +210,14 @@ console.log(inputs.bigType)
                   <FormControlLabel value="мальчик" control={<Radio />} label="Male" />
                 </RadioGroup>
               </FormControl>
-              <TextField className={classes.formControl} id="outlined-number" label="Возраст" type="number" variant="outlined" name="age" required
+              <TextField style={{background: 'white', minWidth: '300px', margin: "20px"}} id="outlined-number" label="Возраст" type="number" variant="outlined" name="age" required
                 value={inputs.age} onChange={changed}
                 InputLabelProps={{
                   shrink: true,
                 }}
               />
               <TextField
-className={classes.formControl}
+                style={{background: 'white', minWidth: '300px', margin: "20px"}}
                 onChange={changed}
                 name="description"
                 id="outlined-multiline-static"
@@ -242,7 +242,7 @@ className={classes.formControl}
               </label>
               {inputs.pay ?
                 <TextField disabled id="filled-disabled" label="цена" defaultValue="-" variant="filled" />
-                : <TextField className={classes.formControl} id="outlined-number" label="Цена" type="number" variant="outlined" name="price" required
+                : <TextField style={{background: 'white', minWidth: '300px', margin: "20px"}} id="outlined-number" label="Цена" type="number" variant="outlined" name="price" required
                   value={inputs.price} onChange={changed}
                   InputLabelProps={{
                     shrink: true,
@@ -251,8 +251,8 @@ className={classes.formControl}
             </Grid>
             {/* Родословная, история прививок */}
             <Grid container direction="row" justify="center" alignItems="center" className={classes.formControl}>
-              <TextField className={classes.formControl} onChange={changed} name="pedigree" id="outlined-helperText" label="Родословная" value={inputs.pedigree} helperText="" variant="outlined" />
-              <TextField className={classes.formControl} onChange={changed} name="vaccinationРistory" id="outlined-helperText" label="Имеются ли прививки?" value={inputs.vaccinationРistory} helperText="" variant="outlined" />
+              <TextField style={{background: 'white', minWidth: '300px', margin: "20px"}}onChange={changed} name="pedigree" id="outlined-helperText" label="Родословная" value={inputs.pedigree} helperText="" variant="outlined" />
+              <TextField style={{background: 'white', minWidth: '300px', margin: "20px"}} onChange={changed} name="vaccinationРistory" id="outlined-helperText" label="Имеются ли прививки?" value={inputs.vaccinationРistory} helperText="" variant="outlined" />
             </Grid>
             {/* Размер взрослого животного, вес взрослого животного */}
             <Grid container direction="row" justify="center" alignItems="center" className={classes.formControl}>
@@ -260,6 +260,7 @@ className={classes.formControl}
                 className={classes.formControl}>
                 <InputLabel id="demo-simple-select-outlined-label">Размер взрослого животного</InputLabel>
                 <Select
+                style={{background: 'white'}}
                   defaultValue={inputs.adultSize}
                   name="adultSize"
                   labelId="demo-simple-select-outlined-label"
@@ -274,7 +275,7 @@ className={classes.formControl}
                   <MenuItem value="Очень большое (ориентир: как лошадь и более)">Очень большое (лошадь и более)</MenuItem>
                 </Select>
               </FormControl>
-              <TextField className={classes.formControl} onChange={changed} name="adultweight" id="outlined-helperText" label="Вес взрослого животного" value={inputs.adultweight} helperText="" variant="outlined" />
+              <TextField style={{background: 'white', minWidth: '300px', margin: "20px"}} onChange={changed} name="adultweight" id="outlined-helperText" label="Вес взрослого животного" value={inputs.adultweight} helperText="" variant="outlined" />
             </Grid>
             {/* Домашнее, экзотическое, сельскохозяйственное */}
             <Grid container direction="row" justify="center" alignItems="center" className={classes.ch}>
