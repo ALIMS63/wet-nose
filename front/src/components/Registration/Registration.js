@@ -61,6 +61,9 @@ const useStyles = makeStyles((theme) => ({
     margin: '0px',
     height: '50px',
     width: '397px',
+    backgroundColor: 'white',
+    boxShadow: 'none',
+    backgroundImage: 'none',
   }
 }));
 
@@ -115,6 +118,7 @@ function Registration() {
   }
 
   const { name, email, password, phone, whoAreYou } = inputs;
+  console.log(name, email, password, phone, whoAreYou);
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -172,7 +176,9 @@ function Registration() {
                 value={password}
               />
             </Grid>
-            <Grid item xs={12}>
+
+            {/* <Grid item xs={12}>
+
               <TextField
                 className={classes.inp}
                 variant="outlined"
@@ -186,7 +192,8 @@ function Registration() {
                 onChange={handleChange}
                 value={phone}
               />
-            </Grid>
+
+            </Grid> */}
 
             <Grid item xs={12}>
               <InputMask
@@ -202,9 +209,22 @@ function Registration() {
                 autoComplete="current-phone"
                 onChange={handleChange}
                 value={phone}
-              ></InputMask>
+              >{(props) => {
+                return <TextField
+                  className={classes.inp}
+                  variant="outlined"
+                  required
+                  fullWidth
+                  name="phone"
+                  label="Номер телефона"
+                  type="phone"
+                  id="phone"
+                  autoComplete="current-phone"
+                  onChange={handleChange}
+                  value={phone}
+                />
+              }}</InputMask>
             </Grid>
-
 
             <Grid item xs={12}>
               <FormControl variant="outlined" className={classes.formControl}>

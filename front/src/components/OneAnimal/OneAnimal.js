@@ -31,7 +31,6 @@ function OneAnimal() {
 
   const history = useHistory();
   const [author, setAuthor] = useState(null)
-  //   const [user, setUser] = useState({});
 
 
   let obj;
@@ -48,10 +47,7 @@ function OneAnimal() {
   useEffect(() => {
     if (user && authorId == user.id) setFlag(true);
   }, [])
-  // console.log(authorId);
-  // console.log(user.id);
-  // console.log(flag);
-  // console.log('user--->', user);
+
   useEffect(() => {
     (async () => {
       const response = await fetch(`/api/user/${authorId}`);
@@ -60,15 +56,6 @@ function OneAnimal() {
       setAuthor(json.phone);
     })()
   }, author)
-  //   console.log(obj.sellerID);
-
-  //   useEffect(() => {
-  //     const userId = obj.sellerID
-  //     const findUser = fetch(`/api/user/${userId}`)
-  //       .then(response => response.json())
-  //       .then(result => setUser(result))
-
-  // },[])
 
   function handleDelete() {
     (async () => {
@@ -77,8 +64,7 @@ function OneAnimal() {
     dispatch(startAnimals());
     history.push('/');
   }
-  console.log('user front', user)
-
+  console.log(author);
   return (
     <section className='form-container'>
       <div className='wrap-content'>
@@ -88,9 +74,9 @@ function OneAnimal() {
         <div className='text-wrap'>
           <h1>Контакты продавца: {author}</h1>
           <h3>связаться с владельцем: {}</h3>
-          <h3>связаться с владельцем:{user && `${user.username} - 
-  ${user.phone}`}</h3>
-          <p>{user.whoAreYou}</p>
+          <h3>связаться с владельцем:{author && `${author.name} - 
+  ${author.phone}`}</h3>
+          <p>user{user.whoAreYou}</p>
           <h2>{obj.kind} - {obj.nickname}</h2>
 
           <div>размер - {obj.adultSize}</div>
