@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button } from 'antd'
 import {useDispatch} from 'react-redux'
-import {startAnimals} from '../../redux/actions'
+import {cleanFilters} from '../../redux/actions'
 
 
 function CleanFilter() {
@@ -9,7 +9,8 @@ function CleanFilter() {
   
   function clean (){
     window.localStorage.removeItem('redux');
-    // dispatch(startAnimals())
+    // dispatch(cleanFilters())
+    document.location.reload()
   }
 
   return (<>

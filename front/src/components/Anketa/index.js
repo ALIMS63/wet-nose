@@ -59,10 +59,10 @@ export default function Anketa(){
       case 'otheranimals':
         dispatch(setAnimalCategory('other'))
         break;
-      case 'female':
+      case 'девочка':
         dispatch(genderFilter(key))
         break;
-      case 'male':
+      case 'мальчик':
         dispatch(genderFilter(key))
         break;
       case '0-10':

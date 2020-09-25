@@ -42,25 +42,59 @@ function AnimalCard() {
   const history = useHistory();
   const filters = useSelector(state => state.animals).filters;
   const data = useSelector(state => state.animals).animals;
+  // console.log('filter age===',filters.age[0]);
+  // console.log('filter age===',filters.age[2]);
+  // console.log('filters price===',filters.price[0]);
+  // console.log('filters price===',filters.price[2]);
+
 
   const filteredData = filters.category
-    ? data[filters.category].filter((item) => {
-      if (filters.pay && item.pay !== filters.pay) {
-        return false;
-      }
-      if (filters.war && item.war !== filters.war) {
-        return false
-      }
-      return true;
-    })
+    ? data[filters.category]
+      .filter((item) => {
+        console.log(filters.pay);
+        console.log(item.pay);
+        if (filters.pay && String(item.pay) !== String(filters.pay)) {
+          return false
+        }
+        if (filters.age) {
+          if (item.age < filters.age[0] || item.age > filters.age[2]) {
+            console.log('OK=====', item.age);
+            return false
+          }
+        }
+        if (filters.price) {
+          let price = filters.price.split('-')
+          if (item.price < price[0] || item.price > price[1]) {
+            return false
+          }
+        }
+        if (filters.gender && item.gender !== filters.gender) {
+          return false
+        }
+        return true;
+      })
     : Object.entries(data).reduce((acc, [key, value]) => {
       return acc.concat(value);
     }, [])
       .filter((item) => {
-        if (filters.pay && item.pay !== filters.pay) {
-          return false;
+        console.log(filters.age);
+        console.log(item.age);
+        if (filters.pay && String(item.pay) !== String(filters.pay)) {
+          return false
         }
-        if (filters.war && item.war !== filters.war) {
+        if (filters.age) {
+          let animalAge = filters.age.split('-')
+          if (item.age < animalAge[0] || item.age > animalAge[1]) {
+            return false
+          }
+        }
+        if (filters.price) {
+          let price = filters.price.split('-')
+          if (item.price < price[0] || item.price > price[1]) {
+            return false
+          }
+        }
+        if (filters.gender && String(item.gender) !== String(filters.gender)) {
           return false
         }
         return true;
@@ -80,7 +114,8 @@ function AnimalCard() {
                   <p>Порода: {animal.kind}</p>
                   <p>Размер: {animal.adultSize}</p>
                   <p>Родословная: {animal.pedigree}</p>
-                  <p>Описание: {animal.description}</p>
+                  <p>Цена: {animal.price}</p>
+                  <p>Возраст: {animal.age}</p>
                 </div>
               }
               title={

@@ -23,7 +23,7 @@ const UserSchema = mongoose.Schema({
   },
   // Phone
   phone: {
-    type: Number,
+    type: String,
     required: true,
   },
   // Who is the seller
