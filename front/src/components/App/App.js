@@ -1,4 +1,7 @@
+
 import React, {useEffect, useState} from 'react';
+
+
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Login from '../Login/Login';
@@ -30,16 +33,16 @@ import Nav from '../Navigation/Nav';
 import { useDispatch } from 'react-redux'
 import { startAnimals } from '../../redux/actions'
 
-import {Waypoint} from 'react-waypoint';
+import { Waypoint } from 'react-waypoint';
 
 let video = document.getElementById('myVideo')
 
 let animals = document.querySelector('.block')
-console.log('>>>>>>>>>',animals);
+console.log('>>>>>>>>>', animals);
 
 let waypointScrollY;
 let scrollHandler = (event) => {
-  
+
   if (waypointScrollY) {
     const diff = window.scrollY - waypointScrollY;
     const opacity = (window.innerHeight - diff) / (2 * window.innerHeight);
@@ -61,7 +64,7 @@ function handlePositionChange(pos) {
       video.classList.remove('video-toggle')
       video.style.top = 0;
     }
-  
+
   } else {
     //animals.classList.add('top')
   }
