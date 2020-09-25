@@ -153,7 +153,6 @@ function NewAnimal() {
         <div className={classes.root}>
           <Grid container spacing={5} >
             {/* Тип, порода, кличка */}
-            
             <Grid container direction="row" justify="space-evenly" alignItems="center" >
               <div className={classes.formControl}>
                 <Autocomplete inputProps={{ 'aria-label': 'Without label' }} name="bigType" inputValue={inputs.bigType} id="free-solo-demo" freeSolo
@@ -280,7 +279,6 @@ function NewAnimal() {
             <Grid container direction="row" justify="space-evenly" alignItems="center" className={classes.ch}>
               <label className={classes.formControl} htmlFor="pet">Домашнее животное:
           <Checkbox
-
                   name="pet"
                   color="primary"
                   inputProps={{ 'aria-label': 'secondary checkbox' }}
@@ -313,7 +311,6 @@ function NewAnimal() {
             <Grid container direction="row" justify="space-around" alignItems="center" className={classes.ch}>
               <label className={classes.formControl} htmlFor="serviceAnimal">Cлужебное  животное:
           <Checkbox
-
                   name="serviceAnimal"
                   color="primary"
                   inputProps={{ 'aria-label': 'secondary checkbox' }}
@@ -346,7 +343,6 @@ function NewAnimal() {
             <Grid container direction="row" justify="center" alignItems="center" className={classes.ch}>
               <label className={classes.formControl} htmlFor="longHaired">Длинношерстное:
           <Checkbox
-
                   name="longHaired"
                   color="primary"
                   inputProps={{ 'aria-label': 'secondary checkbox' }}
@@ -369,7 +365,6 @@ function NewAnimal() {
             <Grid container direction="row" justify="center" alignItems="center" className={classes.ch}>
               <label className={classes.formControl} htmlFor="onlyInNonApartments">Только в не квартиры:
           <Checkbox
-
                   name="onlyInNonApartments"
                   color="primary"
                   inputProps={{ 'aria-label': 'secondary checkbox' }}
@@ -392,7 +387,6 @@ function NewAnimal() {
             <Grid container direction="row" justify="space-around" alignItems="center" className={classes.ch}>
               <label htmlFor="childrenInTheHouse">Дети в доме:
           <Checkbox
-
                   name="childrenInTheHouse"
                   color="primary"
                   inputProps={{ 'aria-label': 'secondary checkbox' }}
@@ -470,11 +464,13 @@ const kindCat = [
 
 export default NewAnimal;
 
+
 {/* <div className={classes.root}>
-          <input accept="image/*" className={classes.input} id="icon-button-file" type="file"  name="photo" onChange={photoChanged}/>
-          <label htmlFor="icon-button-file">
-            <IconButton color="primary" aria-label="upload picture" component="span">
-              <PhotoCamera />
-            </IconButton>
-          </label>
-        </div> */}
+<input accept="image/*" className={classes.input} id="icon-button-file" type="file" name="photo" onChange={photoChanged} />
+<label htmlFor="icon-button-file">
+  <IconButton color="primary" aria-label="upload picture" component="span">
+    <PhotoCamera />
+  </IconButton>
+</label>
+</div> */}
+  {/* <div>{inputs.photo}</div> */}
