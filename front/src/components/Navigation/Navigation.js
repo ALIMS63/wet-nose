@@ -10,6 +10,7 @@ import Anketa from '../Anketa';
 const useStyles = makeStyles((theme) => ({
   icon: {
     marginRight: theme.spacing(2),
+    // marginTop: theme.spacing(2)
   },
   heroContent: {
     backgroundColor: theme.palette.background.paper,
@@ -56,15 +57,26 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'end',
-    backgroundColor: '#3a9207',
+    // backgroundColor: '#3a9207',
+    backgroundColor: '#34C924',
+
+
     // background: url('../App/images/leather-green.jpg'),
     color: 'white',
   },
   btns: {
-    marginTop: '13px',
+    marginTop: '15px',
+    color: '#00538A'
   },
   appName: {
-    marginLeft: '30px'
+    marginLeft: '30px',
+    fontFamily: 'Raleway, Arial',
+    fontStyle: 'italic',
+  },
+  img: {
+    marginTop: '5px',
+    height: '35px',
+    // borderRadius: '50px',
   }
 }));
 
@@ -81,8 +93,9 @@ function Navigation() {
         <Toolbar className={classes.auth}>
 
           <div className={classes.appName}>
-            <CameraIcon className={classes.icon} />
-            <Typography variant="h6" color="inherit" noWrap>
+            {/* <CameraIcon className={classes.icon} /> */}
+            <img className={classes.img} src="https://img2.pngio.com/cat-dog-paw-printing-clip-art-husky-paw-cliparts-png-download-husky-paw-png-1024_1024.png" alt="" />
+            <Typography className={classes.icon} variant="h6" color="inherit" noWrap>
               Твой Питомец
           </Typography>
           </div>

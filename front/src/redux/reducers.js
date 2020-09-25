@@ -1,4 +1,4 @@
-import { SET_USER, AUTHENTICATED_SUCCESSFULLY, LOGOUT, DELETE_USER, SET_ANIMALS, ANIMAL_CATEGORY, PAY_FILTER, ADD_ANIMAL, AGE_FILTER, PRICE_FILTER, GENDER_FILTER, HAIR_FILTER, WEIGHT_FILTER, WAR_FILTER, SUFFER_FILTER, CONDITION_FILTER, APARTMENT_FILTER, GUIDE_FILTER, CHILDREN_FILTER } from "./action-types";
+import { SET_USER, AUTHENTICATED_SUCCESSFULLY, LOGOUT, DELETE_USER, SET_ANIMALS, ANIMAL_CATEGORY, PAY_FILTER, ADD_ANIMAL, AGE_FILTER, PRICE_FILTER, GENDER_FILTER, HAIR_FILTER, WEIGHT_FILTER, WAR_FILTER, SUFFER_FILTER, CONDITION_FILTER, APARTMENT_FILTER, GUIDE_FILTER, CHILDREN_FILTER, CLEAN_FILTER } from "./action-types";
 
 
 
@@ -98,6 +98,11 @@ export function animalReducer(state = initialState, action) {
       return {
         ...state,
         filters: { ...state.filters, children: action.payload }
+      }
+    case CLEAN_FILTER:
+      return {
+        ...state,
+        filters: {}
       }
     case ADD_ANIMAL:
       return {

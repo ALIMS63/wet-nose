@@ -59,10 +59,10 @@ export default function Anketa({handleAnketa}){
       case 'otheranimals':
         dispatch(setAnimalCategory('other'))
         break;
-      case 'female':
+      case 'девочка':
         dispatch(genderFilter(key))
         break;
-      case 'male':
+      case 'мальчик':
         dispatch(genderFilter(key))
         break;
       case '0-10':
@@ -75,10 +75,10 @@ export default function Anketa({handleAnketa}){
         dispatch(weightFilter(key))
         break;
       case '0-1':
-        dispatch(ageFilter(key))
+        dispatch(ageFilter('0-1'))
         break;
-      case '3-7':
-        dispatch(ageFilter(key))
+      case ('1-3' || "3-7" || "7-999"):
+        dispatch(ageFilter("3-7"))
         break;
       case 'дом':
         dispatch(apartmentFilter(false))
@@ -94,6 +94,12 @@ export default function Anketa({handleAnketa}){
         break;
       case 'нет':
         dispatch(sufferFilter(false))
+        break;
+      case 'дети':
+        dispatch(childrenFilter(true))
+        break;
+      case 'недети':
+        dispatch(childrenFilter(false))
         break;
     
       default:
@@ -173,7 +179,7 @@ export default function Anketa({handleAnketa}){
                 </div>
                 <div>
                   <label for='5'>
-                  <input className='radio' style={{visibility: 'hidden'}} id='5' name='3' value='3-7' onClick={handleActive} type='radio'/>
+                  <input className='radio' style={{visibility: 'hidden'}} id='5' name='3' value={'1-3' || "3-7" || "7-999"} onClick={handleActive} type='radio'/>
                   <img className='img-anceta'    src='https://cdn1.lockerdome.com/uploads/db3ad97fe20d263f40e1765e741b0794b048a87bac8f5a3aae77978da1f57982_facebook' />
                   <div>взрослого</div>
                   </label>
@@ -184,63 +190,57 @@ export default function Anketa({handleAnketa}){
             <div className='img-div'>
               <div>
                   <label for='7'>
-                  <input className='radio' style={{visibility: 'hidden'}} id='7' value='female' onClick={handleActive} name='4' type='radio'/>
+                  <input className='radio' style={{visibility: 'hidden'}} id='7' value='девочка' onClick={handleActive} name='4' type='radio'/>
                   <img className='img-anceta'   src='https://img.welt.de/img/wissenschaft/umwelt/mobile146299618/0912502047-ci102l-w1024/Bonobo-2.jpg' />
                   <div>самка</div>
                   </label>
                 </div>
                 <div>
                   <label for='8'>
-                  <input className='radio' style={{visibility: 'hidden'}} id='8' name='4' value='male' onClick={handleActive} type='radio'/>
+                  <input className='radio' style={{visibility: 'hidden'}} id='8' name='4' value='мальчик' onClick={handleActive} type='radio'/>
                   <img className='img-anceta'    src='https://i.sunhome.ru/journal/41/samci-v2.orig.jpg' />
                   <div>самец</div>
                   </label>
               </div>
             </div>
 
-            <div className='text-title'>где будет жить питомец</div>
+            <div className='text-title'>маленькие дети в доме</div>
             <div className='img-div'>
               <div>
                   <label for='9'>
-                  <input className='radio' style={{visibility: 'hidden'}} id='9' value='квартира' onClick={handleActive} name='5' type='radio'/>
+                  <input className='radio' style={{visibility: 'hidden'}} id='9' value='дети' onClick={handleActive} name='5' type='radio'/>
                   <img className='img-anceta'   src='https://om-saratov.ru/files/pages/55720/1512477549general_pages_05_december_2017_i55720_saratovskii_zastroishchik.jpg' />
-                  <div>квартира</div>
+                  <div>есть</div>
                   </label>
                 </div>
                 <div>
                   <label for='10'>
-                  <input className='radio' style={{visibility: 'hidden'}} id='10' name='5' value='дом' onClick={handleActive} type='radio'/>
+                  <input className='radio' style={{visibility: 'hidden'}} id='10' name='5' value='недети' onClick={handleActive} type='radio'/>
                   <img className='img-anceta'    src='https://miriadagroup.ru/wp-content/uploads/2017/05/orlovka_05_Post_resize-1333x1000.jpg' />
-                  <div>дом</div>
+                  <div>нет</div>
                   </label>
               </div>
-                <div>
-                  <label for='11'>
-                  <input className='radio' style={{visibility: 'hidden'}} id='11' name='5' value='специальные условия' onClick={handleActive} type='radio'/>
-                  <img className='img-anceta'    src='https://images.ru.prom.st/584715521_w640_h640_voler-kletka-dlya.jpg' />
-                  <div>специальные условия</div>
-                  </label>
-              </div>
+                
             </div>
             <div className='text-title'>Какого размера будет животное когда вырастет</div>
             <div className='img-div'>
               <div>
                   <label for='12'>
-                  <input className='radio' style={{visibility: 'hidden'}} id='12' value='0-10' onClick={handleActive} name='6' type='radio'/>
+                  <input className='radio' style={{visibility: 'hidden'}} id='12' value='Маленькое (ориентир: как кошка)' onClick={handleActive} name='6' type='radio'/>
                   <img className='img-anceta'  src='https://i.ucrazy.ru/files/pics/2016.01/zabavnieeopposum1.jpg' />
                   <div>маленькое</div>
                   </label>
                 </div>
                 <div>
                   <label for='13'>
-                  <input className='radio' style={{visibility: 'hidden'}} id='13' name='6' value='10-25' onClick={handleActive} type='radio'/>
+                  <input className='radio' style={{visibility: 'hidden'}} id='13' name='6' value='Среднее (ориентир: как бульдог)' onClick={handleActive} type='radio'/>
                   <img className='img-anceta'   src='http://mywishlist.ru/pic/i/wish/orig/009/795/310.jpeg' />
                   <div>среднее</div>
                   </label>
               </div>
                 <div>
                   <label for='14'>
-                  <input className='radio' style={{visibility: 'hidden'}} id='14' name='6' value='25-50' onClick={handleActive} type='radio'/>
+                  <input className='radio' style={{visibility: 'hidden'}} id='14' name='6' value='Большое (ориентир: как сенбернар)' onClick={handleActive} type='radio'/>
                   <img className='img-anceta'   src='https://mtdata.ru/u15/photo5AE3/20579548563-0/original.jpg' />
                   <div>большое</div>
                   </label>
@@ -250,14 +250,14 @@ export default function Anketa({handleAnketa}){
             <div className='img-div'>
               <div>
                   <label for='15'>
-                  <input className='radio' style={{visibility: 'hidden'}} id='15' value='есть' onClick={handleActive} name='7' type='radio'/>
+                  <input className='radio' style={{visibility: 'hidden'}} id='15' value='true' onClick={handleActive} name='7' type='radio'/>
                   <img className='img-anceta'  src='https://www.zg66.ru/images/2019/12/03/allergia.jpg' />
                   <div>есть</div>
                   </label>
                 </div>
                 <div>
                   <label for='16'>
-                  <input className='radio' style={{visibility: 'hidden'}} id='16' name='7' value='нет' onClick={handleActive} type='radio'/>
+                  <input className='radio' style={{visibility: 'hidden'}} id='16' name='7' value='false' onClick={handleActive} type='radio'/>
                   <img className='img-anceta'   src='https://laralitvinova.ru/wp-content/uploads/2019/12/wallpapersden.com_jim-carrey-smile-images_2048x1152.jpg' />
                   <div>нет</div>
                   </label>
