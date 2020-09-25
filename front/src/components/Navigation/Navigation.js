@@ -4,6 +4,7 @@ import { Container, AppBar, Button, CardActions, CardContent, CssBaseline, CardM
 import { makeStyles } from '@material-ui/core/styles';
 import { useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
+import Anketa from '../Anketa';
 
 
 const useStyles = makeStyles((theme) => ({

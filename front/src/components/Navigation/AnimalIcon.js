@@ -55,6 +55,7 @@ function AnimalIcon() {
   return (<>
       {/* <PandaIcon style={{ fontSize: '16px' }} /> */}
       <i class='myIcon fas fa-dog' style={{color:'#ccc'}}></i>
+     
   </>)
 }
 

@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function Anketa(){
+export default function Anketa({handleAnketa}){
   const data = useSelector(state => state.animals).animals;
   const [active, setActive] = useState(true)
   const filters = useSelector((state) => state.animals.filters)
