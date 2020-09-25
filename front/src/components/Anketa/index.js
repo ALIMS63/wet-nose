@@ -89,18 +89,18 @@ export default function Anketa({handleAnketa}){
       case 'квартира':
         dispatch(apartmentFilter(true))
         break;
-      case 'есть':
-        dispatch(sufferFilter(true))
-        break;
-      case 'нет':
-        dispatch(sufferFilter(false))
-        break;
-      case 'дети':
-        dispatch(childrenFilter(true))
-        break;
-      case 'недети':
-        dispatch(childrenFilter(false))
-        break;
+      // case 'true':
+      //   dispatch(sufferFilter(true))
+      //   break;
+      // case 'false':
+      //   dispatch(sufferFilter(false))
+      //   break;
+      // case 'дети':
+      //   dispatch(childrenFilter(true))
+      //   break;
+      // case 'недети':
+      //   dispatch(childrenFilter(false))
+      //   break;
     
       default:
         break;
@@ -204,7 +204,7 @@ export default function Anketa({handleAnketa}){
               </div>
             </div>
 
-            <div className='text-title'>маленькие дети в доме</div>
+            {/* <div className='text-title'>маленькие дети в доме</div>
             <div className='img-div'>
               <div>
                   <label for='9'>
@@ -219,10 +219,10 @@ export default function Anketa({handleAnketa}){
                   <img className='img-anceta'    src='https://miriadagroup.ru/wp-content/uploads/2017/05/orlovka_05_Post_resize-1333x1000.jpg' />
                   <div>нет</div>
                   </label>
-              </div>
+              </div> */}
                 
-            </div>
-            <div className='text-title'>Какого размера будет животное когда вырастет</div>
+            {/* </div> */}
+            {/* <div className='text-title'>Какого размера будет животное когда вырастет</div>
             <div className='img-div'>
               <div>
                   <label for='12'>
@@ -245,8 +245,8 @@ export default function Anketa({handleAnketa}){
                   <div>большое</div>
                   </label>
               </div>
-            </div>
-            <div className='text-title'>Есть ли у тебя или членов твоей семьи аллергия на животных</div>
+            </div> */}
+            {/* <div className='text-title'>Есть ли у тебя или членов твоей семьи аллергия на животных</div>
             <div className='img-div'>
               <div>
                   <label for='15'>
@@ -262,11 +262,11 @@ export default function Anketa({handleAnketa}){
                   <div>нет</div>
                   </label>
               </div>
-            </div>
+            </div> */}
             
-            <div className='form-button'>
+            {/* <div className='form-button'>
                <Button variant="outlined" onClick={handleSubmit} color="inherit">Подобрать</Button> 
-            </div>
+            </div> */}
             
             </div>
 

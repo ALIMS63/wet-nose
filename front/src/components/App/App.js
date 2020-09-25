@@ -124,11 +124,11 @@ function App() {
             <UpdateAnimal />
           </Route>
 
-          <Route path="/secret">
+          <PrivateRoute path="/secret">
             <NewAnimal />
 
             {/* <AddAnimal/> */}
-          </Route>
+          </PrivateRoute>
 
 
         </Switch>
