@@ -53,7 +53,7 @@ function OneAnimal() {
       const response = await fetch(`/api/user/${authorId}`);
       const json = await response.json();
       console.log(json);
-      setAuthor(json.phone);
+      setAuthor(json);
     })()
   }, author)
 
@@ -72,10 +72,10 @@ function OneAnimal() {
           <img className={classes.img} src={`/${obj.photo}`} />
         </div>
         <div className='text-wrap'>
-          <h1>Имя хозяина: {user.name}</h1>
-          <h3>Кем является продавец: {user.whoAreYou}</h3>
-          <h3>Номер телефона: {user && `${user.phone}`}</h3>
-          <h3>Электронная почта: {user && `${user.email}`}</h3>
+          <h1>Имя хозяина: {author && author.name}</h1>
+          <h3>Кем является продавец: {author && author.whoAreYou}</h3>
+          <h3>Номер телефона: {author && `${author.phone}`}</h3>
+          <h3>Электронная почта: {author && `${author.email}`}</h3>
           <h2>{obj.kind} - {obj.nickname}</h2>
 
           <div>Размер взрослого животного - {obj.adultSize}</div>
