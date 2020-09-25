@@ -30,7 +30,6 @@ function ModalFilter() {
   const dispatch = useDispatch()
   const animalsFromState = useSelector((state) => state.animals.animals)
   const filters = useSelector((state) => state.animals.filters)
-  console.log('FILTERS===', filters);
 
   function showModal() {
     setVisible(true)
@@ -125,6 +124,7 @@ function ModalFilter() {
                 <Form.Item name='Category' label='Животное'>
                   <Col span={12}>
                     <Select
+                      defaultValue=''
                       style={{ width: 120 }}
                       onChange={chooseCategory}>
                       <Option value="cats">Кошка</Option>
@@ -137,6 +137,7 @@ function ModalFilter() {
                 <Form.Item name='Pay' label='Оплата'>
                   <Col span={12}>
                     <Select
+                      defaultValue=''
                       style={{ width: 120 }}
                       onChange={choosePay}>
                       <Option value="true">Платно</Option>
@@ -152,6 +153,7 @@ function ModalFilter() {
                 <Form.Item name='Age' label='Возраст'>
                   <Col span={12}>
                     <Select
+                      defaultValue=''
                       style={{ width: 120 }}
                       onChange={chooseAge}>
                       <Option value="0-1">0-1</Option>
@@ -165,6 +167,7 @@ function ModalFilter() {
                 <Form.Item name='Price' label='Стоимость'>
                   <Col span={12}>
                     <Select
+                      defaultValue=''
                       style={{ width: 120 }}
                       onChange={choosePrice}>
                       <Option value="0-1000">0-1000</Option>
@@ -180,18 +183,19 @@ function ModalFilter() {
             {' '}
             {/* <Row>
               <Space> */}
-                <Form.Item name='Gender' label='Пол'>
-                  <Col span={12}>
-                    <Select
-                      style={{ width: 120 }}
-                      onChange={chooseGender}>
-                      <Option value="мальчик">Муж</Option>
-                      <Option value="девочка">Жен</Option>
-                    </Select>
-                  </Col>
-                </Form.Item>
-                {' '}
-                {/* <Form.Item name='LongHaired' label='Длинношерстность'>
+            <Form.Item name='Gender' label='Пол'>
+              <Col span={12}>
+                <Select
+                  defaultValue=''
+                  style={{ width: 120 }}
+                  onChange={chooseGender}>
+                  <Option value="мальчик">Муж</Option>
+                  <Option value="девочка">Жен</Option>
+                </Select>
+              </Col>
+            </Form.Item>
+            {' '}
+            {/* <Form.Item name='LongHaired' label='Длинношерстность'>
                   <Col span={12}>
                     <Select
                       style={{ width: 120 }}
