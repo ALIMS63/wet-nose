@@ -72,20 +72,20 @@ function OneAnimal() {
           <img className={classes.img} src={`/${obj.photo}`} />
         </div>
         <div className='text-wrap'>
-          <h1>Контакты продавца: {author}</h1>
-          <p>Продавец: {user.whoAreYou}</p>
+          <h1>Имя хозяина: {user.name}</h1>
+          <h3>Кем является продавец: {user.whoAreYou}</h3>
+          <h3>Номер телефона: {user && `${user.phone}`}</h3>
+          <h3>Электронная почта: {user && `${user.email}`}</h3>
           <h2>{obj.kind} - {obj.nickname}</h2>
 
-          <div>Размер - {obj.adultSize}</div>
-          <div>Вес - {obj.adultweight}</div>
+          <div>Размер взрослого животного - {obj.adultSize}</div>
+          <div>Вес взрослого животного - {obj.adultweight}</div>
           <div>Возраст - {obj.age}</div>
           <div>Тип шерсти - {obj.longHaired === true ? 'длинношерстный' : 'короткошерстный'}</div>
           <div>Антиаллергенное животное - {obj.possibleForAllergySufferers === true ? 'да' : 'нет'}</div>
-          <div>Специальные условия содержания  - {obj.specialConditionsOfDetention === true ? 'тренбует' : "не требует"}</div>
+          <div>Специальные условия содержания  - {obj.specialConditionsOfDetention === true ? 'требует' : "не требует"}</div>
           <div>Цена - {obj.price} руб.</div>
         </div>
-
-
       </div>
       <div className='text-pet'>
         <p>

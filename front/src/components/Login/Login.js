@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   inp: {
     backgroundColor: 'white',
     borderRadius: '5px',
-    opacity: '0.5'
+    opacity: '0.8'
   }
 }));
 
