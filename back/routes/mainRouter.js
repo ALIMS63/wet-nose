@@ -12,7 +12,7 @@ import path from 'path';
 import User from '../models/user.js';
 import Dog from '../models/dog.js';
 import Cat from '../models/cat.js';
-import Other from '../models/otherAnimal.js';
+import Other from '../models/other.js';
 
 const storage = multer.diskStorage({
   destination: './public/',

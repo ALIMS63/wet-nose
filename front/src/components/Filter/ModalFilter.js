@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import 'antd/dist/antd.css';
 import { Modal, Button, Select, Form, Row, Col, Space } from 'antd';
-import Filter from './Filter'
+// import Filter from './Filter'
 import { useDispatch, useSelector } from 'react-redux'
 import 'antd/dist/antd.css';
 import {
@@ -45,7 +45,7 @@ function ModalFilter() {
 
   useEffect(() => {
     dispatch(startAnimals())
-  }, [])
+  }, [dispatch])
 
   function handleCancel() {
     setVisible(false)

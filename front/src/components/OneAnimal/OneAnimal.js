@@ -52,7 +52,6 @@ function OneAnimal() {
     (async () => {
       const response = await fetch(`/api/user/${authorId}`);
       const json = await response.json();
-      console.log(json);
       setAuthor(json);
     })()
   }, author)
@@ -64,7 +63,6 @@ function OneAnimal() {
     dispatch(startAnimals());
     history.push('/');
   }
-  console.log(author);
   return (
     <section className='form-container'>
       <div className='wrap-content'>

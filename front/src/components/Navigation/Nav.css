@@ -1,3 +1,26 @@
-.myIcon{
+.myIcon {
     margin-right: 10px;
+}
+.navBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; 
+  align-items: end;
+  background: linear-gradient(#3f6600,#d3f261);
+  box-shadow: 0 0 8px 8px #d3f261;
+}
+.appName{
+  margin-left: 30px;
+  font-family: 'Comfortaa', cursive;
+  font-weight: 700;
+}
+.navButton{
+  color: white;
+  font-family: 'Comfortaa', cursive;
+  font-weight: 700;
+  margin-right: 50px;
+}
+.buttonClick{
+  font-family: 'Comfortaa', cursive;
+  font-weight: 700;
 }

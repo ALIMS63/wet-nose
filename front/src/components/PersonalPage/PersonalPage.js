@@ -1,9 +1,9 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import ButtonBase from '@material-ui/core/ButtonBase';
+// import Grid from '@material-ui/core/Grid';
+// import Paper from '@material-ui/core/Paper';
+// import Typography from '@material-ui/core/Typography';
+// import ButtonBase from '@material-ui/core/ButtonBase';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 import Button from '@material-ui/core/Button';
@@ -68,7 +68,7 @@ function PersonalPage() {
     <>
       {arr.map(obj => {
         return (
-          <section className='form-container'>
+          <section key={Math.random()} className='form-container'>
             <div className='wrap-content'>
               <div className='img-container'>
                 <img className={classes.img} src={`/${obj.photo}`} />
