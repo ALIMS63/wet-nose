@@ -483,6 +483,6 @@ async function createOtherAnimal() {
   ]);
 }
 
-createDog();
-createCat();
-createOtherAnimal();
+// createDog();
+// createCat();
+// createOtherAnimal();
