@@ -65,43 +65,6 @@ function PersonalPage() {
   }
 
   return (
-    // <div className={classes.root}>
-    //   <Paper className={classes.paper}>
-    //     <Grid container spacing={2}>
-    //       <Grid item>
-    //         <ButtonBase className={classes.image}>
-    //           <img className={classes.img} alt="complex" src="https://i.pinimg.com/originals/98/9f/e5/989fe5aa7178b758c265b1e665f4ebb7.jpg" />
-    //         </ButtonBase>
-    //       </Grid>
-    //       <Grid item xs={12} sm container>
-    //         <Grid item xs container direction="column" spacing={2}>
-    //           <Grid item xs>
-    //             <Typography gutterBottom variant="subtitle1">
-    //               Имя: {user.name}
-    //             </Typography>
-    //             <Typography variant="body2" gutterBottom>
-    //               Владелец: {user.whoAreYou}
-    //             </Typography>
-    //             <Typography variant="body2" color="textSecondary">
-    //               Электронная почта: {user.email}
-    //             </Typography>
-    //             <Typography variant="body2" color="textSecondary">
-    //               Профиль создан: {user.createdAt}
-    //             </Typography>
-    //           </Grid>
-    //           <Grid item>
-    //             <Typography variant="body2" style={{ cursor: 'pointer' }}>
-    //               {user.phone}
-    //             </Typography>
-    //           </Grid>
-    //         </Grid>
-    //         <Grid item>
-    //           <Typography variant="subtitle1">$19.00</Typography>
-    //         </Grid>
-    //       </Grid>
-    //     </Grid>
-    //   </Paper>
-    // </div>
     <>
       {arr.map(obj => {
         return (
@@ -111,25 +74,21 @@ function PersonalPage() {
                 <img className={classes.img} src={`/${obj.photo}`} />
               </div>
               <div className='text-wrap'>
-                <h1>Контакты продавца: {user.name}</h1>
-                <h3>связаться с владельцем: {}</h3>
-                <h3>связаться с владельцем:{user && `${user.username} - 
-    ${user.phone}`}</h3>
-                <p>{user.whoAreYou}</p>
+                <h1>Имя хозяина: {user.name}</h1>
+                <h3>Кем является продавец: {user.whoAreYou}</h3>
+                <h3>Номер телефона: {user && `${user.phone}`}</h3>
+                <h3>Электронная почта: {user && `${user.email}`}</h3>
                 <h2>{obj.kind} - {obj.nickname}</h2>
 
-                <div>размер - {obj.adultSize}</div>
-                <div>вес - {obj.adultweight}</div>
-                <div>возраст - {obj.age}</div>
-                <div>тип шерсти - {obj.longHaired === true ? 'длинношерстный' : 'короткошерстный'}</div>
-                <div>антиаллергенное животное - {obj.possibleForAllergySufferers === true ? 'да' : 'нет'}</div>
-                <div>специальные условия содержания  - {obj.specialConditionsOfDetention === true ? 'тренбует' : "не требует"}</div>
-                <div>цена - {obj.price} руб.</div>
+                <div>Размер взрослого животного - {obj.adultSize}</div>
+                <div>Вес взрослого животного - {obj.adultweight}</div>
+                <div>Возраст - {obj.age}</div>
+                <div>Тип шерсти - {obj.longHaired === true ? 'длинношерстный' : 'короткошерстный'}</div>
+                <div>Антиаллергенное животное - {obj.possibleForAllergySufferers === true ? 'да' : 'нет'}</div>
+                <div>Специальные условия содержания  - {obj.specialConditionsOfDetention === true ? 'требует' : "не требует"}</div>
+                <div>Цена - {obj.price} руб.</div>
               </div>
-
-
             </div>
-
             <div className='text-pet'>
               <p>
                 {obj.description}
@@ -139,7 +98,6 @@ function PersonalPage() {
               <Link to={`/update/${obj._id}`}><Button color="primary">Редактировать</Button></Link>
               <Button onClick={() => handleDelete(obj._id)} color="primary">Удалить</Button>
             </div>
-
           </section>
         )
       })}

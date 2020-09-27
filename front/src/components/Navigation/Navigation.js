@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   icon: {
     marginRight: theme.spacing(2),
+    marginLeft: '20px'
     // marginTop: theme.spacing(2)
   },
   heroContent: {
@@ -64,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
     color: 'white',
   },
   btns: {
-    marginTop: '15px',
+    marginTop: '18px',
     color: '#00538A'
   },
   appName: {
@@ -95,7 +96,7 @@ function Navigation() {
             {/* <CameraIcon className={classes.icon} /> */}
             <img className={classes.img} src="https://img2.pngio.com/cat-dog-paw-printing-clip-art-husky-paw-cliparts-png-download-husky-paw-png-1024_1024.png" alt="" />
             <Typography className={classes.icon} variant="h6" color="inherit" noWrap>
-              Твой Питомец
+              Мокрый Нос
           </Typography>
           </div>
 
