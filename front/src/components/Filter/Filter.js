@@ -39,7 +39,7 @@ function Filter({visible}) {
 
   useEffect(() => {
     dispatch(startAnimals())
-  }, [])
+  }, [dispatch])
 
   function chooseCategory(value) {
     setCategory(value)
