@@ -64,6 +64,9 @@ function AnimalCard() {
         if (filters.gender && item.gender !== filters.gender) {
           return false
         }
+        if (filters.suffer && item.suffer !== filters.suffer) {
+          return false
+        }
         return true;
       })
     : Object.entries(data).reduce((acc, [key, value]) => {
@@ -74,6 +77,7 @@ function AnimalCard() {
           return false
         }
         if (filters.age) {
+          console.log('>>>>',filters);
           let animalAge = filters.age.split('-')
           if (item.age < animalAge[0] || item.age > animalAge[1]) {
             return false
@@ -86,6 +90,9 @@ function AnimalCard() {
           }
         }
         if (filters.gender && String(item.gender) !== String(filters.gender)) {
+          return false
+        }
+        if (filters.suffer && item.suffer !== filters.suffer) {
           return false
         }
         return true;

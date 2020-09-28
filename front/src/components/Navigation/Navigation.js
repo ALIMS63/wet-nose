@@ -9,8 +9,12 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 import { useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
+
+import Anketa from '../Anketa';
+
 import './Nav.css'
 import { Affix } from 'antd'
+
 
 
 const useStyles = makeStyles((theme) => ({
