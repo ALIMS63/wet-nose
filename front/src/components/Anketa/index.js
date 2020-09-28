@@ -1,27 +1,19 @@
 import React,{useState} from "react"
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+// import Radio from '@material-ui/core/Radio';
+// import RadioGroup from '@material-ui/core/RadioGroup';
+// import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { useDispatch, useSelector } from 'react-redux';
 import {Button} from 'antd';
 import { makeStyles } from '@material-ui/core/styles';
-import Waypoint from 'react-waypoint';
+// import Waypoint from 'react-waypoint';
 
 import {
-  startAnimals,
   setAnimalCategory,
-  paymentFilter,
   ageFilter,
-  priceFilter,
   genderFilter,
-  hairFilter,
   weightFilter,
-  warFilter,
-  guideFilter,
   sufferFilter,
-  conditionFilter,
   apartmentFilter,
-  childrenFilter
 } from '../../redux/actions'
 
 const useStyles = makeStyles((theme) => ({
@@ -34,9 +26,11 @@ const useStyles = makeStyles((theme) => ({
 
 
 
+
 export default function Anketa({handleAnketa}){
   const data = useSelector(state => state.animals).animals;
   const [active, setActive] = useState(true)
+
   const filters = useSelector((state) => state.animals.filters)
   const animalsFromState = useSelector((state) => state.animals.animals)
 

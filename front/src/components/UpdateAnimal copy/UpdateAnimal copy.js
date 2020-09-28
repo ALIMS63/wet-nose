@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import { startAnimals } from '../../redux/actions'
 // material-ui========================================
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Checkbox from '@material-ui/core/Checkbox';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
+// import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
-import Paper from '@material-ui/core/Paper';
+// import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import IconButton from '@material-ui/core/IconButton';
-import PhotoCamera from '@material-ui/icons/PhotoCamera';
+// import IconButton from '@material-ui/core/IconButton';
+// import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -86,7 +86,6 @@ function UpdateAnimal() {
       else newTypeAnimal = findAnimal.type;
     }
   })
-console.log(findAnimal);
   const [inputs, setInputs] = useState({
     bigType: newTypeAnimal,
     kindDog: findAnimal.kind,
@@ -115,7 +114,6 @@ console.log(findAnimal);
     pedigree: findAnimal.pedigree,
     vaccinationРistory: findAnimal.vaccinationРistory,
   });
-console.log(inputs.bigType)
   function changed({ target: { value, name } }) {
     setInputs({
       ...inputs,
@@ -145,7 +143,6 @@ console.log(inputs.bigType)
         'content-type': 'multipart/form-data'
       }
     };
-    console.log(formData)
     await axios.put(`/api/allAnimals/${findAnimal._id}`, formData, config);
     dispatch(startAnimals());
     return history.push(`/oneAnimal/${findAnimal._id}`);

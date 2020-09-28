@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import '../misc/db.js';
 import CatModel from '../models/cat.js';
 import DogModel from '../models/dog.js';
-import OtherAnimalModel from '../models/otherAnimal.js';
+import OtherModel from '../models/other.js';
 
 async function createDog() {
   await DogModel.insertMany([
@@ -429,7 +429,7 @@ async function createCat() {
 }
 
 async function createOtherAnimal() {
-  await OtherAnimalModel.insertMany([
+  await OtherModel.insertMany([
     {
       type: 'Бык',
       kind: 'Красный горбатовский',

@@ -1,4 +1,3 @@
-import { useSelector } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { userReducer, animalReducer } from './reducers.js';
 import { composeWithDevTools } from 'redux-devtools-extension';

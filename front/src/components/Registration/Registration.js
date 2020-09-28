@@ -1,13 +1,24 @@
 import React, { useState } from 'react';
-import { Input, Select, InputLabel, FormControl, Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Container } from '@material-ui/core';
+import {
+  Select,
+  InputLabel,
+  FormControl,
+  Avatar, Button,
+  CssBaseline,
+  TextField,
+  Grid,
+  Box,
+  Typography,
+  Container
+} from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { makeStyles } from '@material-ui/core/styles';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { setUser, deleteUser } from "../../redux/actions";
+import { setUser } from "../../redux/actions";
 import Copyright from '../Copyright/Copyright';
 import { Link } from "react-router-dom";
-import MaskedInput from 'react-text-mask';
+// import MaskedInput from 'react-text-mask';
 import InputMask from "react-input-mask";
 
 

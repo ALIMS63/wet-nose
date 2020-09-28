@@ -10,13 +10,15 @@ import Navigation from '../Navigation/Navigation';
 import PersonalPage from '../PersonalPage/PersonalPage';
 import Logout from '../Logout/Logout';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
+
 import Secret from '../Secret/Secret';
 import Main from '../Main/Main';
 import Filter from '../Filter/Filter'
 import {Button} from 'antd';
 
+
 // import NewAnimal from '../NewAnimal/NewAnimal';
-import AddAnimal from '../NewAnimal/AddAnimal';
+// import AddAnimal from '../NewAnimal/AddAnimal';
 
 import NewAnimal from '../NewAnimal copy/NewAnimalCopy';
 // import PetCart from '../PetCart';
@@ -29,7 +31,7 @@ import AnimalCard from '../AnimalCard/AnimalCard';
 import OneAnimal from '../OneAnimal/OneAnimal';
 import CleanFilter from '../Filter/CleanFilter'
 
-import Nav from '../Navigation/Nav';
+// import Nav from '../Navigation/Nav';
 import { useDispatch } from 'react-redux'
 import { startAnimals } from '../../redux/actions'
 
@@ -37,8 +39,7 @@ import { Waypoint } from 'react-waypoint';
 
 let video = document.getElementById('myVideo')
 
-let animals = document.querySelector('.block')
-console.log('>>>>>>>>>', animals);
+// let animals = document.querySelector('.block')
 
 let waypointScrollY;
 let scrollHandler = (event) => {
