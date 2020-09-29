@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useHistory, Link } from "react-router-dom";
 import 'antd/dist/antd.css';
-import { Tooltip, Popover, Button } from 'antd';
+import { Popover } from 'antd';
 
 
 const useStyles = makeStyles({
@@ -42,23 +42,16 @@ function AnimalCard() {
   const history = useHistory();
   const filters = useSelector(state => state.animals).filters;
   const data = useSelector(state => state.animals).animals;
-  // console.log('filter age===',filters.age[0]);
-  // console.log('filter age===',filters.age[2]);
-  // console.log('filters price===',filters.price[0]);
-  // console.log('filters price===',filters.price[2]);
 
 
   const filteredData = filters.category
     ? data[filters.category]
       .filter((item) => {
-        console.log(filters.pay);
-        console.log(item.pay);
         if (filters.pay && String(item.pay) !== String(filters.pay)) {
           return false
         }
         if (filters.age) {
           if (item.age < filters.age[0] || item.age > filters.age[2]) {
-            console.log('OK=====', item.age);
             return false
           }
         }
@@ -71,18 +64,20 @@ function AnimalCard() {
         if (filters.gender && item.gender !== filters.gender) {
           return false
         }
+        if (filters.suffer && item.suffer !== filters.suffer) {
+          return false
+        }
         return true;
       })
     : Object.entries(data).reduce((acc, [key, value]) => {
       return acc.concat(value);
     }, [])
       .filter((item) => {
-        console.log(filters.age);
-        console.log(item.age);
         if (filters.pay && String(item.pay) !== String(filters.pay)) {
           return false
         }
         if (filters.age) {
+          console.log('>>>>',filters);
           let animalAge = filters.age.split('-')
           if (item.age < animalAge[0] || item.age > animalAge[1]) {
             return false
@@ -97,17 +92,21 @@ function AnimalCard() {
         if (filters.gender && String(item.gender) !== String(filters.gender)) {
           return false
         }
+        if (filters.suffer && item.suffer !== filters.suffer) {
+          return false
+        }
         return true;
       });
 
   return (
 
     <>
-      <container className='block'>
+      <div className='block'>
 
         {filteredData && filteredData.map(animal => (
           (
             <Popover
+              key={Math.random()}
               content={
                 <div>
                   <p>Кличка: {animal.nickname}</p>
@@ -142,7 +141,7 @@ function AnimalCard() {
         ))
         }
 
-      </container>
+      </div>
     </>
 
 

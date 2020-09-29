@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import '../misc/db.js';
 import CatModel from '../models/cat.js';
 import DogModel from '../models/dog.js';
-import OtherAnimalModel from '../models/otherAnimal.js';
+import OtherModel from '../models/other.js';
 
 async function createDog() {
   await DogModel.insertMany([
@@ -24,7 +24,7 @@ async function createDog() {
       onlyInNonApartments: false,
       specialConditionsOfDetention: false,
       childrenInTheHouse: true,
-      sellerID: mongoose.Types.ObjectId('5f6dcc4bb25f063438386d3a'),
+      sellerID: mongoose.Types.ObjectId('5f6dcc52cf61e421bd891799'),
       gender: 'мальчик',
       pedigree: 'нет',
       vaccinationРistory: 'нет',
@@ -46,7 +46,7 @@ async function createDog() {
       onlyInNonApartments: false,
       specialConditionsOfDetention: false,
       childrenInTheHouse: true,
-      sellerID: mongoose.Types.ObjectId('5f6dcc4bb25f063438386d3a'),
+      sellerID: mongoose.Types.ObjectId('5f6dcbe56a8dce214c6f541b'),
       gender: 'male',
       pedigree: 'длиннющая',
       vaccinationРistory: 'проставлены',
@@ -71,7 +71,7 @@ async function createDog() {
       gender: 'мальчик',
       pedigree: 'не имеется',
       vaccinationРistory: 'не имеется',
-      sellerID: mongoose.Types.ObjectId('5f6dcc4bb25f063438386d3a'),
+      sellerID: mongoose.Types.ObjectId('5f6dcbe56a8dce214c6f541b'),
     },
     {
       kind: 'Бишон фризе',
@@ -90,7 +90,7 @@ async function createDog() {
       onlyInNonApartments: false,
       specialConditionsOfDetention: false,
       childrenInTheHouse: true,
-      sellerID: mongoose.Types.ObjectId('5f6dcc4bb25f063438386d3a'),
+      sellerID: mongoose.Types.ObjectId('5f6dcc52cf61e421bd891799'),
       gender: 'мальчик',
       pedigree: 'нет',
       vaccinationРistory: 'есть',
@@ -112,7 +112,7 @@ async function createDog() {
       onlyInNonApartments: false,
       specialConditionsOfDetention: false,
       childrenInTheHouse: false,
-      sellerID: mongoose.Types.ObjectId('5f6dcc4bb25f063438386d3a'),
+      sellerID: mongoose.Types.ObjectId('5f6dcc52cf61e421bd891799'),
       gender: 'мальчик',
       pedigree: 'нет',
       vaccinationРistory: 'есть',
@@ -134,7 +134,7 @@ async function createDog() {
       onlyInNonApartments: false,
       specialConditionsOfDetention: false,
       childrenInTheHouse: true,
-      sellerID: mongoose.Types.ObjectId('5f6dcc4bb25f063438386d3a'),
+      sellerID: mongoose.Types.ObjectId('5f6dcc52cf61e421bd891799'),
       gender: 'мальчик',
       pedigree: 'нет',
       vaccinationРistory: 'есть',
@@ -156,7 +156,7 @@ async function createDog() {
       onlyInNonApartments: false,
       specialConditionsOfDetention: false,
       childrenInTheHouse: true,
-      sellerID: mongoose.Types.ObjectId('5f6dcc4bb25f063438386d3a'),
+      sellerID: mongoose.Types.ObjectId('5f6dcc52cf61e421bd891799'),
       gender: 'девочка',
       pedigree: 'нет',
       vaccinationРistory: 'есть',
@@ -178,7 +178,7 @@ async function createDog() {
       onlyInNonApartments: false,
       specialConditionsOfDetention: false,
       childrenInTheHouse: true,
-      sellerID: mongoose.Types.ObjectId('5f6dccb916166a55de83dae7'),
+      sellerID: mongoose.Types.ObjectId('5f6dcc52cf61e421bd891799'),
       gender: 'девочка',
       pedigree: 'нет',
       vaccinationРistory: 'есть',
@@ -200,7 +200,7 @@ async function createDog() {
       onlyInNonApartments: false,
       specialConditionsOfDetention: false,
       childrenInTheHouse: true,
-      sellerID: mongoose.Types.ObjectId('5f6dccb916166a55de83dae7'),
+      sellerID: mongoose.Types.ObjectId('5f6dcc52cf61e421bd891799'),
       gender: 'девочка',
       pedigree: 'нет',
       vaccinationРistory: 'есть',
@@ -222,7 +222,7 @@ async function createDog() {
       onlyInNonApartments: false,
       specialConditionsOfDetention: false,
       childrenInTheHouse: true,
-      sellerID: mongoose.Types.ObjectId('5f6dccb916166a55de83dae7'),
+      sellerID: mongoose.Types.ObjectId('5f6dcbe56a8dce214c6f541b'),
       gender: 'девочка',
       pedigree: 'нет',
       vaccinationРistory: 'есть',
@@ -244,7 +244,7 @@ async function createDog() {
       onlyInNonApartments: false,
       specialConditionsOfDetention: false,
       childrenInTheHouse: true,
-      sellerID: mongoose.Types.ObjectId('5f6dccb916166a55de83dae7'),
+      sellerID: mongoose.Types.ObjectId('5f6dcc52cf61e421bd891799'),
       gender: 'мальчик',
       pedigree: 'нет',
       vaccinationРistory: 'есть',
@@ -271,7 +271,7 @@ async function createCat() {
       gender: 'девочка',
       pedigree: 'есть',
       vaccinationРistory: 'есть',
-      sellerID: mongoose.Types.ObjectId('5f6dccb916166a55de83dae7'),
+      sellerID: mongoose.Types.ObjectId('5f6dcc52cf61e421bd891799'),
     },
     {
       kind: 'Мейн-кун',
@@ -290,7 +290,7 @@ async function createCat() {
       gender: 'мальчик',
       pedigree: 'наследный принц',
       vaccinationРistory: 'все обязательные',
-      sellerID: mongoose.Types.ObjectId('5f6dccb916166a55de83dae7'),
+      sellerID: mongoose.Types.ObjectId('5f6dcc7acf61e421bd89179a'),
     },
     {
       kind: 'Невская маскарадная',
@@ -309,7 +309,7 @@ async function createCat() {
       gender: 'девочка',
       pedigree: '-',
       vaccinationРistory: 'нет',
-      sellerID: mongoose.Types.ObjectId('5f6dccb916166a55de83dae7'),
+      sellerID: mongoose.Types.ObjectId('5f6dcc7acf61e421bd89179a'),
     },
     {
       kind: 'Балинезийская кошка',
@@ -328,7 +328,7 @@ async function createCat() {
       gender: 'девочка',
       pedigree: 'нет',
       vaccinationРistory: 'есть',
-      sellerID: mongoose.Types.ObjectId('5f6dcd27ac4baa56d7e1a4d6'),
+      sellerID: mongoose.Types.ObjectId('5f6dcc52cf61e421bd891799'),
     },
     {
       kind: 'Яванская кошка',
@@ -347,7 +347,7 @@ async function createCat() {
       gender: 'девочка',
       pedigree: 'нет',
       vaccinationРistory: 'есть',
-      sellerID: mongoose.Types.ObjectId('5f6dcd27ac4baa56d7e1a4d6'),
+      sellerID: mongoose.Types.ObjectId('5f6dcc52cf61e421bd891799'),
     },
     {
       kind: 'Ориентальная кошка',
@@ -366,7 +366,7 @@ async function createCat() {
       gender: 'девочка',
       pedigree: 'нет',
       vaccinationРistory: 'есть',
-      sellerID: mongoose.Types.ObjectId('5f6dcd27ac4baa56d7e1a4d6'),
+      sellerID: mongoose.Types.ObjectId('5f6dcc52cf61e421bd891799'),
     },
     {
       kind: 'Сибирская кошка',
@@ -385,7 +385,7 @@ async function createCat() {
       gender: 'мальчик',
       pedigree: 'нет',
       vaccinationРistory: 'есть',
-      sellerID: mongoose.Types.ObjectId('5f6dcd27ac4baa56d7e1a4d6'),
+      sellerID: mongoose.Types.ObjectId('5f6dcc52cf61e421bd891799'),
     },
     {
       kind: 'Девон-рекс',
@@ -404,7 +404,7 @@ async function createCat() {
       gender: 'мальчик',
       pedigree: 'нет',
       vaccinationРistory: 'есть',
-      sellerID: mongoose.Types.ObjectId('5f6dcd27ac4baa56d7e1a4d6'),
+      sellerID: mongoose.Types.ObjectId('5f6dcc52cf61e421bd891799'),
     },
     {
       kind: 'Ликои',
@@ -423,13 +423,13 @@ async function createCat() {
       gender: 'мальчик',
       pedigree: 'нет',
       vaccinationРistory: 'есть',
-      sellerID: mongoose.Types.ObjectId('5f6dcd27ac4baa56d7e1a4d6'),
+      sellerID: mongoose.Types.ObjectId('5f6dcc52cf61e421bd891799'),
     },
   ]);
 }
 
 async function createOtherAnimal() {
-  await OtherAnimalModel.insertMany([
+  await OtherModel.insertMany([
     {
       type: 'Бык',
       kind: 'Красный горбатовский',
@@ -453,7 +453,7 @@ async function createOtherAnimal() {
       gender: 'мальчик',
       pedigree: 'в наличии',
       vaccinationРistory: 'есть',
-      sellerID: mongoose.Types.ObjectId('5f6dcd27ac4baa56d7e1a4d6'),
+      sellerID: mongoose.Types.ObjectId('5f6dcbe56a8dce214c6f541b'),
     },
     {
       type: 'Жираф',
@@ -478,7 +478,7 @@ async function createOtherAnimal() {
       gender: 'девочка',
       pedigree: 'отцы и деды призеры Нила',
       vaccinationРistory: 'нет',
-      sellerID: mongoose.Types.ObjectId('5f6dcd27ac4baa56d7e1a4d6'),
+      sellerID: mongoose.Types.ObjectId('5f6dcbe56a8dce214c6f541b'),
     },
   ]);
 }

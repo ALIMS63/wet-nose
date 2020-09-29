@@ -1,29 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux'
 import { addNewAnimal } from '../../redux/actions'
 // material-ui========================================
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { makeStyles,  } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Checkbox from '@material-ui/core/Checkbox';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
+// import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
-import Paper from '@material-ui/core/Paper';
+// import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import IconButton from '@material-ui/core/IconButton';
-import PhotoCamera from '@material-ui/icons/PhotoCamera';
+// import IconButton from '@material-ui/core/IconButton';
+// import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormLabel from '@material-ui/core/FormLabel';
 import { useHistory } from "react-router-dom";
-import { red } from '@material-ui/core/colors';
-import { green } from '@material-ui/core/colors';
+// import { red } from '@material-ui/core/colors';
+// import { green } from '@material-ui/core/colors';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -143,7 +143,6 @@ function NewAnimal() {
     };
     const response = await axios.post('/api/allAnimals', formData, config);
     const newAnimal = response.data
-    console.log(inputs.bigType)
     if (inputs.bigType === 'собака') {
       dispatch(addNewAnimal('dogs', newAnimal))
       return history.push(`/oneAnimal/${newAnimal._id}`);

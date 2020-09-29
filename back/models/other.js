@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const OtherAnimalSchema = new mongoose.Schema({
+const OtherSchema = new mongoose.Schema({
   type: { // вид животного
     type: String,
     required: true,
@@ -59,4 +59,4 @@ const OtherAnimalSchema = new mongoose.Schema({
   vaccinationРistory: String, // история прививок животного
 });
 
-export default mongoose.model('OtherAnimal', OtherAnimalSchema);
+export default mongoose.model('Other', OtherSchema);

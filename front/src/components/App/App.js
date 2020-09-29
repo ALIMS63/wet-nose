@@ -1,4 +1,7 @@
-import React, { useEffect } from 'react';
+
+import React, {useEffect, useState} from 'react';
+
+
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Login from '../Login/Login';
@@ -7,12 +10,15 @@ import Navigation from '../Navigation/Navigation';
 import PersonalPage from '../PersonalPage/PersonalPage';
 import Logout from '../Logout/Logout';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
+
 import Secret from '../Secret/Secret';
 import Main from '../Main/Main';
 import Filter from '../Filter/Filter'
+import {Button} from 'antd';
+
 
 // import NewAnimal from '../NewAnimal/NewAnimal';
-import AddAnimal from '../NewAnimal/AddAnimal';
+// import AddAnimal from '../NewAnimal/AddAnimal';
 
 import NewAnimal from '../NewAnimal copy/NewAnimalCopy';
 // import PetCart from '../PetCart';
@@ -25,7 +31,7 @@ import AnimalCard from '../AnimalCard/AnimalCard';
 import OneAnimal from '../OneAnimal/OneAnimal';
 import CleanFilter from '../Filter/CleanFilter'
 
-import Nav from '../Navigation/Nav';
+// import Nav from '../Navigation/Nav';
 import { useDispatch } from 'react-redux'
 import { startAnimals } from '../../redux/actions'
 
@@ -33,8 +39,7 @@ import { Waypoint } from 'react-waypoint';
 
 let video = document.getElementById('myVideo')
 
-let animals = document.querySelector('.block')
-console.log('>>>>>>>>>', animals);
+// let animals = document.querySelector('.block')
 
 let waypointScrollY;
 let scrollHandler = (event) => {
@@ -74,6 +79,7 @@ function App() {
     dispatch(startAnimals())
   }, [])
 
+
   return (
     <div className="App">
       <Router>
@@ -83,17 +89,19 @@ function App() {
 
         <Switch>
           <Route path="/" exact>
-            <br />
-            <div style={{ display: 'flex', justifyContent: 'space-between', width: '400px', margin: '0 auto' }}>
+            <br/>
+            {/* <div style={{display: 'flex', justifyContent: 'space-between', width: '400px', margin: '0 auto'}}> */}
 
-              <ModalFilter />
-              {/* <Filter/> */}
-              <CleanFilter />
-              <Anketa />
-              <Waypoint
-                onPositionChange={handlePositionChange}
-              />
-            </div>
+            <ModalFilter />
+            {/* <Filter/> */}
+            <CleanFilter/>
+           
+            <Anketa />
+            {/* </div> */}
+            <Waypoint 
+            onPositionChange={handlePositionChange}
+            
+                      />
             <AnimalCard />
           </Route>
           <Route path="/login" exact>
