@@ -15,7 +15,7 @@
 ![screenshot](readme-assets/specialFilter.gif)
 
 ### Установка и запуск приложения:
-> В папках client и server команда yarn
+> В папках client и server команда yarn <br/>
 > В папках client и server команда yarn start
 
 ### Планы развития приложения:
