@@ -15,8 +15,8 @@
 ![screenshot](readme-assets/specialFilter.gif)
 
 ### Установка и запуск приложения:
-> В папках client и server команда yarn <br/>
-> В папках client и server команда yarn start
+> В папках front и back команда yarn <br/>
+> В папках front и back команда yarn start
 
 ### Планы развития приложения:
 * Добавление авторизации через соцсети с помощью Passport.js
@@ -33,8 +33,8 @@
 
 
 ### Над проектом работали:
-* [Алим Шогенов](https://github.com/ALIMS63);
-* [Иван Каштанов](https://github.com/kashtn);
-* [Мария Багданова](https://github.com/Mariya-Bogdanova);
-* [Иван Олешко](https://github.com/ivan-olesko-JS20);
+* [Алим Шогенов](https://github.com/ALIMS63)
+* [Иван Каштанов](https://github.com/kashtn)
+* [Мария Багданова](https://github.com/Mariya-Bogdanova)
+* [Иван Олешко](https://github.com/ivan-olesko-JS20)
 
