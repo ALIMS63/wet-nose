@@ -10,7 +10,7 @@
 ### Возможность просмотра более подробной информации о животном:
 место для скрина
 ### Возможность добавления новых животных с их уникальными параметрами:
-![screenshot](readme-assets/add.gif)
+![screenshot](readme-assets/adding.gif)
 ### Подбор животного по индивидуальным параметрам:
 ![screenshot](readme-assets/specialFilter.gif)
 
