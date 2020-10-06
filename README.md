@@ -11,6 +11,7 @@
 ![screenshot](readme-assets/filter.gif)
 
 ### Установка и запуск приложения:
+> В папке back/seed команда node seeder.js <br/>
 > В папках front и back команда yarn <br/>
 > В папках front и back команда yarn start
 
