@@ -48,7 +48,7 @@ const DogSchema = new mongoose.Schema({
   },
   gender: { // пол животного
     type: String,
-    required: true,
+    // required: true,
   },
   pedigree: String, // родословная животного
   vaccinationРistory: String, // история прививок животного

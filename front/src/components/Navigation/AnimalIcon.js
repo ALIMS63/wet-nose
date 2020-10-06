@@ -1,7 +1,7 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import Icon from '@ant-design/icons';
-import './Nav.css'
+import './Navigation.css'
 
 
 const PandaSvg = () => (
@@ -53,10 +53,9 @@ const PandaIcon = props => <Icon component={PandaSvg} {...props} />;
 
 function AnimalIcon() {
   return (<>
-      {/* <PandaIcon style={{ fontSize: '16px' }} /> */}
       <i class='myIcon fas fa-dog' style={{color:'#ccc'}}></i>
      
   </>)
 }
 
-export default AnimalIcon
+export default AnimalIcon;

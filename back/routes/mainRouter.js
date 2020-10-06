@@ -205,6 +205,5 @@ router.get('/api/user/:id', async (req, res) => {
   res.json(oneUser);
 });
 
-// router.post('/api/addPhoto')
 
 export default router;

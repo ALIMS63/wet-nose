@@ -9,18 +9,13 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 import { useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
-
-import Anketa from '../Anketa';
-
-import './Nav.css'
+// import Anketa from '../Anketa';
+import './Navigation.css'
 import { Affix } from 'antd'
 
 
 
 const useStyles = makeStyles((theme) => ({
-  icon: {
-    // marginRight: theme.spacing(2),
-  },
   heroContent: {
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(8, 0, 6),
@@ -97,9 +92,7 @@ function Navigation() {
         <AppBar position="relative">
           <Toolbar className='navBar'
           >
-
             <div className='appName'>
-              {/* <CameraIcon className={classes.icon} /> */}
               <img className={classes.img} src="https://img2.pngio.com/cat-dog-paw-printing-clip-art-husky-paw-cliparts-png-download-husky-paw-png-1024_1024.png" alt="" />
               <Typography
                 className={classes.navButton} variant="h6"
@@ -142,13 +135,11 @@ function Navigation() {
                 </Button>
                 </Link>}
             </div>
-
           </Toolbar>
         </AppBar>
       </Affix>
     </>
   );
 }
-
 
 export default Navigation;

@@ -1,22 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import { startAnimals } from '../../redux/actions'
 // material-ui========================================
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Checkbox from '@material-ui/core/Checkbox';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import IconButton from '@material-ui/core/IconButton';
-import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -81,13 +77,11 @@ function UpdateAnimal() {
   Object.keys(allAnimals).forEach(type => {
     if (allAnimals[type].find(obj => obj._id === id)) {
       findAnimal = allAnimals[type].find(obj => obj._id === id)
-      newTypeAnimal = type;
+      if (type === 'dogs') newTypeAnimal = 'собака';
+      else if (type === 'cats') newTypeAnimal = 'кот';
+      else newTypeAnimal = findAnimal.type;
     }
   })
-  // console.log(findAnimal)
-  // console.log(newTypeAnimal)
-  // console.log(typeof newTypeAnimal)
-
   const [inputs, setInputs] = useState({
     bigType: newTypeAnimal,
     kindDog: findAnimal.kind,
@@ -96,27 +90,26 @@ function UpdateAnimal() {
     nickname: findAnimal.nickname,
     description: findAnimal.description,
     age: findAnimal.age,
-    pay: findAnimal.pay,
-    price: findAnimal.price,
+    pay: findAnimal.pay || false,
+    price: findAnimal.price || '',
     adultSize: findAnimal.adultSize,
     adultweight: findAnimal.adultweight,
-    possibleForAllergySufferers: findAnimal.possibleForAllergySufferers,
-    longHaired: findAnimal.longHaired,
-    guideВog: findAnimal.guideВog,
-    serviceAnimal: findAnimal.serviceAnimal,
-    warDog: findAnimal.warDog,
-    pet: findAnimal.pet,
-    onlyInNonApartments: findAnimal.onlyInNonApartments,
-    specialConditionsOfDetention: findAnimal.specialConditionsOfDetention,
-    childrenInTheHouse: findAnimal.childrenInTheHouse,
-    exotic: findAnimal.exotic,
-    farmAnimal: findAnimal.farmAnimal,
+    possibleForAllergySufferers: findAnimal.possibleForAllergySufferers || false,
+    longHaired: findAnimal.longHaired || false,
+    guideВog: findAnimal.guideВog || false,
+    serviceAnimal: findAnimal.serviceAnimal || false,
+    warDog: findAnimal.warDog || false,
+    pet: findAnimal.pet || false,
+    onlyInNonApartments: findAnimal.onlyInNonApartments || false,
+    specialConditionsOfDetention: findAnimal.specialConditionsOfDetention || false,
+    childrenInTheHouse: findAnimal.childrenInTheHouse || false,
+    exotic: findAnimal.exotic || false,
+    farmAnimal: findAnimal.farmAnimal || false,
     photo: findAnimal.photo,
     gender: findAnimal.gender,
     pedigree: findAnimal.pedigree,
     vaccinationРistory: findAnimal.vaccinationРistory,
   });
-
   function changed({ target: { value, name } }) {
     setInputs({
       ...inputs,
@@ -153,71 +146,71 @@ function UpdateAnimal() {
 
   return (
     <>
-      <form onSubmit={updateAnimal} encType="multipart/form-data">
+      <form onSubmit={updateAnimal} encType="multipart/form-data" className='form-add'>
         <input type="hidden" name="_method" value="put" />
         <div className={classes.root}>
           <Grid container spacing={5} >
             {/* Тип, порода, кличка */}
             <Grid container direction="row" justify="space-evenly" alignItems="center" >
-              <div style={{ width: 300 }}>
+              <div className={classes.formControl}>
                 <Autocomplete defaultValue={inputs.bigType} inputProps={{ 'aria-label': 'Without label' }} name="bigType" inputValue={inputs.bigType} id="free-solo-demo" freeSolo
                   options={typeAnimal.map((option) => option.type)}
                   onInputChange={(event, newInputValue) => {
                     changed({ target: { value: newInputValue, name: 'bigType' } })
                   }}
                   renderInput={(params) => (
-                    <TextField {...params} label="Тип животного" margin="normal" variant="outlined"
+                    <TextField  style={{background: 'white', minWidth: '300px', margin: "20px"}}{...params} label="Тип животного" margin="normal" variant="outlined"
                       required />
                   )}
                 />
               </div>
               {inputs.bigType === "собака" ?
-                <div style={{ width: 300 }}>
+                <div className={classes.formControl}>
                   <Autocomplete defaultValue={inputs.kindDog} name="kindDog" inputValue={inputs.kindDog} id="free-solo-demo" freeSolo
                     options={kindDog.map((option) => option.type)}
                     onInputChange={(event, newInputValue) => {
                       changed({ target: { value: newInputValue, name: 'kindDog' } })
                     }}
                     renderInput={(params) => (
-                      <TextField {...params} label="Порода" margin="normal" variant="outlined"
+                      <TextField style={{background: 'white', minWidth: '300px', margin: "20px"}} {...params} label="Порода" margin="normal" variant="outlined"
                         required />
                     )}
                   />
                 </div>
                 : inputs.bigType === "кот" ?
-                  <div style={{ width: 300 }}>
+                  <div className={classes.formControl}>
                     <Autocomplete defaultValue={inputs.kindCat} name="kindCat" inputValue={inputs.kindCat} id="free-solo-demo" freeSolo
                       options={kindCat.map((option) => option.type)}
                       onInputChange={(event, newInputValue) => {
                         changed({ target: { value: newInputValue, name: 'kindCat' } })
                       }}
                       renderInput={(params) => (
-                        <TextField {...params} label="Порода" margin="normal" variant="outlined"
+                        <TextField style={{background: 'white', minWidth: '300px', margin: "20px"}} {...params} label="Порода" margin="normal" variant="outlined"
                           required />
                       )}
                     />
                   </div>
-                  : <TextField id="standard-required" name="kindOther" label="Порода" value={inputs.kindOther} onChange={changed} />
+                  : <TextField style={{background: 'white', minWidth: '300px', margin: "20px"}} id="outlined-basic" name="kindOther" label="Порода" value={inputs.kindOther} onChange={changed} variant="outlined"/>
               }
-              <TextField id="standard-required" name="nickname" label="Кличка" required value={inputs.nickname} onChange={changed} />
+              <TextField style={{background: 'white', minWidth: '300px', margin: "20px"}} variant="outlined" id="outlined-basic" name="nickname" label="Кличка" required value={inputs.nickname} onChange={changed} />
             </Grid>
             {/* Пол, возраст, Описание */}
             <Grid container direction="row" justify="space-evenly" alignItems="center" className={classes.formControl}>
-              <FormControl component="fieldset">
+              <FormControl component="fieldset" className={classes.formControl}>
                 <FormLabel component="legend">Пол</FormLabel>
                 <RadioGroup aria-label="gender" name="gender" value={inputs.gender} onChange={changed}>
                   <FormControlLabel value="девочка" control={<Radio />} label="Female" />
                   <FormControlLabel value="мальчик" control={<Radio />} label="Male" />
                 </RadioGroup>
               </FormControl>
-              <TextField id="outlined-number" label="Возраст" type="number" variant="outlined" name="age" required
+              <TextField style={{background: 'white', minWidth: '300px', margin: "20px"}} id="outlined-number" label="Возраст" type="number" variant="outlined" name="age" required
                 value={inputs.age} onChange={changed}
                 InputLabelProps={{
                   shrink: true,
                 }}
               />
               <TextField
-
+                style={{background: 'white', minWidth: '300px', margin: "20px"}}
                 onChange={changed}
                 name="description"
                 id="outlined-multiline-static"
@@ -230,9 +223,9 @@ function UpdateAnimal() {
               />
             </Grid>
             {/* Даром, цена */}
-            <Grid container direction="row" justify="space-evenly" alignItems="center" className={classes.formControl}>
+            <Grid container direction="row" justify="center" alignItems="center" className={classes.formControl}>
               <label htmlFor="pay">Даром:
-          <Checkbox
+          <Checkbox className={classes.formControl}
                   name="pay"
                   color="primary"
                   inputProps={{ 'aria-label': 'secondary checkbox' }}
@@ -242,7 +235,7 @@ function UpdateAnimal() {
               </label>
               {inputs.pay ?
                 <TextField disabled id="filled-disabled" label="цена" defaultValue="-" variant="filled" />
-                : <TextField id="outlined-number" label="Цена" type="number" variant="outlined" name="price" required
+                : <TextField style={{background: 'white', minWidth: '300px', margin: "20px"}} id="outlined-number" label="Цена" type="number" variant="outlined" name="price" required
                   value={inputs.price} onChange={changed}
                   InputLabelProps={{
                     shrink: true,
@@ -250,19 +243,21 @@ function UpdateAnimal() {
                 />}
             </Grid>
             {/* Родословная, история прививок */}
-            <Grid container direction="row" justify="space-around" alignItems="center" className={classes.formControl}>
-              <TextField onChange={changed} name="pedigree" id="outlined-helperText" label="Родословная" value={inputs.pedigree} helperText="" variant="outlined" />
-              <TextField onChange={changed} name="vaccinationРistory" id="outlined-helperText" label="Имеются ли прививки?" value={inputs.vaccinationРistory} helperText="" variant="outlined" />
+            <Grid container direction="row" justify="center" alignItems="center" className={classes.formControl}>
+              <TextField style={{background: 'white', minWidth: '300px', margin: "20px"}}onChange={changed} name="pedigree" id="outlined-helperText" label="Родословная" value={inputs.pedigree} helperText="" variant="outlined" />
+              <TextField style={{background: 'white', minWidth: '300px', margin: "20px"}} onChange={changed} name="vaccinationРistory" id="outlined-helperText" label="Имеются ли прививки?" value={inputs.vaccinationРistory} helperText="" variant="outlined" />
             </Grid>
             {/* Размер взрослого животного, вес взрослого животного */}
-            <Grid container direction="row" justify="space-around" alignItems="center" className={classes.formControl}>
-              <FormControl className={classes.formControl}>
-                <InputLabel className={classes.sel} id="demo-simple-select-label">Размер взрослого животного</InputLabel>
+            <Grid container direction="row" justify="center" alignItems="center" className={classes.formControl}>
+              <FormControl  variant="outlined"
+                className={classes.formControl}>
+                <InputLabel id="demo-simple-select-outlined-label">Размер взрослого животного</InputLabel>
                 <Select
+                style={{background: 'white'}}
                   defaultValue={inputs.adultSize}
                   name="adultSize"
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
+                  labelId="demo-simple-select-outlined-label"
+                  id="demo-simple-select-outlined"
                   value={inputs.adultSize}
                   onChange={changed}
                 >
@@ -273,11 +268,11 @@ function UpdateAnimal() {
                   <MenuItem value="Очень большое (ориентир: как лошадь и более)">Очень большое (лошадь и более)</MenuItem>
                 </Select>
               </FormControl>
-              <TextField onChange={changed} name="adultweight" id="outlined-helperText" label="Вес взрослого животного" value={inputs.adultweight} helperText="" variant="outlined" />
+              <TextField style={{background: 'white', minWidth: '300px', margin: "20px"}} onChange={changed} name="adultweight" id="outlined-helperText" label="Вес взрослого животного" value={inputs.adultweight} helperText="" variant="outlined" />
             </Grid>
             {/* Домашнее, экзотическое, сельскохозяйственное */}
-            <Grid container direction="row" justify="space-evenly" alignItems="center" className={classes.ch}>
-              <label htmlFor="pet">Домашнее животное:
+            <Grid container direction="row" justify="center" alignItems="center" className={classes.ch}>
+              <label  className={classes.formControl} htmlFor="pet">Домашнее животное:
           <Checkbox
 
                   name="pet"
@@ -287,7 +282,7 @@ function UpdateAnimal() {
                   onChange={fooCheckbox}
                 />
               </label>
-              <label htmlFor="exotic">Экзотическое животное:
+              <label  className={classes.formControl} htmlFor="exotic">Экзотическое животное:
           <Checkbox
 
                   name="exotic"
@@ -297,7 +292,7 @@ function UpdateAnimal() {
                   onChange={fooCheckbox}
                 />
               </label>
-              <label htmlFor="farmAnimal">Сельскохозяйственное животное:
+              <label  className={classes.formControl} htmlFor="farmAnimal">Сельскохозяйственное животное:
           <Checkbox
 
                   name="farmAnimal"
@@ -310,7 +305,7 @@ function UpdateAnimal() {
             </Grid>
             {/* Служебное животное, служебная собака, собака-поводырь */}
             <Grid container direction="row" justify="space-around" alignItems="center" className={classes.ch}>
-              <label htmlFor="serviceAnimal">Cлужебное  животное:
+              <label  className={classes.formControl} htmlFor="serviceAnimal">Cлужебное  животное:
           <Checkbox
 
                   name="serviceAnimal"
@@ -320,7 +315,7 @@ function UpdateAnimal() {
                   onChange={fooCheckbox}
                 />
               </label>
-              <label htmlFor="warDog">Служебная собака:
+              <label  className={classes.formControl}  htmlFor="warDog">Служебная собака:
           <Checkbox
 
                   name="warDog"
@@ -330,7 +325,7 @@ function UpdateAnimal() {
                   onChange={fooCheckbox}
                 />
               </label>
-              <label htmlFor="guideВog">Собака-поводырь:
+              <label  className={classes.formControl} htmlFor="guideВog">Собака-поводырь:
           <Checkbox
 
                   name="guideВog"
@@ -342,8 +337,8 @@ function UpdateAnimal() {
               </label>
             </Grid>
             {/* Длинношерстное, хороший вариант для аллергиков */}
-            <Grid container direction="row" justify="space-evenly" alignItems="center" className={classes.ch}>
-              <label htmlFor="longHaired">Длинношерстное:
+            <Grid container direction="row" justify="center" alignItems="center" className={classes.ch}>
+              <label  className={classes.formControl} htmlFor="longHaired">Длинношерстное:
           <Checkbox
 
                   name="longHaired"
@@ -353,7 +348,7 @@ function UpdateAnimal() {
                   onChange={fooCheckbox}
                 />
               </label>
-              <label htmlFor="possibleForAllergySufferers">Хороший вариант для аллергиков:
+              <label  className={classes.formControl}htmlFor="possibleForAllergySufferers">Хороший вариант для аллергиков:
           <Checkbox
 
                   name="possibleForAllergySufferers"
@@ -365,8 +360,8 @@ function UpdateAnimal() {
               </label>
             </Grid>
             {/* Только в не квартиры, специальные условия содержания */}
-            <Grid container direction="row" justify="space-evenly" alignItems="center" className={classes.ch}>
-              <label htmlFor="onlyInNonApartments">Только в не квартиры:
+            <Grid container direction="row" justify="center" alignItems="center" className={classes.ch}>
+              <label  className={classes.formControl} htmlFor="onlyInNonApartments">Только в не квартиры:
           <Checkbox
 
                   name="onlyInNonApartments"
@@ -376,7 +371,7 @@ function UpdateAnimal() {
                   onChange={fooCheckbox}
                 />
               </label>
-              <label htmlFor="specialConditionsOfDetention">Специальные условия содержания:
+              <label className={classes.formControl} htmlFor="specialConditionsOfDetention">Специальные условия содержания:
           <Checkbox
 
                   name="specialConditionsOfDetention"
@@ -469,24 +464,3 @@ const kindCat = [
   { type: 'Впишите свой вариант' },
 ];
 export default UpdateAnimal;
-
-{/* <div className={classes.root}>
-          <input
-            name="photo"
-            accept="image/*"
-            className={classes.input}
-            id="contained-button-file"
-            multiple
-            type="file"
-          />
-          <label htmlFor="contained-button-file">
-            <Button variant="contained" color="primary" component="span">Загрузите фотографии:</Button>
-          </label> */}
-
-{/* <input accept="image/*" className={classes.input} id="icon-button-file" type="file" /> */ }
-{/* <label htmlFor="icon-button-file">
-            <IconButton color="primary" aria-label="upload picture" component="span">
-              <PhotoCamera />
-            </IconButton>
-          </label> */}
-{/* </div> */ }

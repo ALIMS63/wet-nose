@@ -7,11 +7,9 @@
 import express from 'express';
 import session from 'express-session';
 import sessionFileStore from 'session-file-store';
-// import './misc/env.js';
 import './misc/db.js';
 import path from 'path';
 import methodOverride from 'method-override';
-// import cors from 'cors';
 import notFoundMiddleware from './middlewares/notfound.js';
 import errorMiddleware from './middlewares/error.js';
 
@@ -19,8 +17,8 @@ import mainRouter from './routes/mainRouter.js';
 
 const app = express();
 const FileStore = sessionFileStore(session);
-// app.use(multer({ dest: 'uploads' }).single('photo'));// значение single обязательно должно совпадать с name inputa buttona и const filedata чему присваивается req.file
-// // Запоминаем название куки для сессий
+
+// Запоминаем название куки для сессий
 app.set('session cookie name', 'sid');
 // app.use(cors());
 app.use(express.json());

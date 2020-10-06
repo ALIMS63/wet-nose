@@ -7,15 +7,6 @@ import { Popover } from 'antd';
 
 
 const useStyles = makeStyles({
-  // block: {
-  //   margin: 'auto',
-  //   width: '60%',
-  //   marginTop: '50px',
-  //   display: 'flex',
-  //   justifyContent: 'space-around',
-  //   flexWrap: 'wrap',
-
-  // },
   img: {
     height: '300px',
     width: '300px',
@@ -24,7 +15,6 @@ const useStyles = makeStyles({
   },
   onePet: {
     backgroundColor: '#39f250',
-    // boxShadow: '0 0 5px 2px white',
     border: '1px solid white',
     borderRadius: '5px',
     margin: '10px',
@@ -77,7 +67,7 @@ function AnimalCard() {
           return false
         }
         if (filters.age) {
-          console.log('>>>>',filters);
+          console.log('>>>>', filters);
           let animalAge = filters.age.split('-')
           if (item.age < animalAge[0] || item.age > animalAge[1]) {
             return false
@@ -102,7 +92,6 @@ function AnimalCard() {
 
     <>
       <div className='block'>
-
         {filteredData && filteredData.map(animal => (
           (
             <Popover
@@ -138,64 +127,9 @@ function AnimalCard() {
               </div>
             </Popover>
           )
-        ))
-        }
-
+        ))}
       </div>
     </>
-
-
-
-
-
-
-
-
-
-
-    // <>
-    //   <container className={classes.block}>
-
-    //     {Object.keys(filteredData) && Object.keys(filteredData).map(key => {
-    //       return (filteredData[key] && filteredData[key].map(obj => {
-    //         return (
-    //           <Popover
-    //             content={
-    //               <div>
-    //                 <p>Кличка: {obj.nickname}</p>
-    //                 <p>Порода: {obj.kind}</p>
-    //                 <p>Размер: {obj.adultSize}</p>
-    //                 <p>Родословная: {obj.pedigree}</p>
-    //                 <p>Описание: {obj.description}</p>
-    //               </div>
-    //             }
-    //             title={
-    //               <Link to={`/oneAnimal/${obj._id}`} >
-    //                 Подробнее
-    //               </Link>
-    //             }>
-    //             <div
-    //               key={obj._id}
-    //               onClick={
-    //                 () => history.push(`/oneAnimal/${obj._id}`)
-    //               }
-    //               className={classes.onePet}>
-    //               <div>
-    //                 <img
-    //                   className={classes.img}
-    //                   src={`/${obj.photo}`}
-    //                   alt="animal"
-    //                 />
-    //               </div>
-    //             </div>
-    //           </Popover>
-    //         )
-    //       }))
-    //     })
-    //     }
-
-    //   </container>
-    // </>
   );
 }
 

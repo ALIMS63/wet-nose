@@ -1,11 +1,22 @@
-/* eslint-disable import/extensions */
 import mongoose from 'mongoose';
 import '../misc/db.js';
 import CatModel from '../models/cat.js';
 import DogModel from '../models/dog.js';
 import OtherModel from '../models/other.js';
+import User from '../models/user.js';
+import bcrypt from 'bcrypt';
 
-async function createDog() {
+
+async function seed() {
+  const hashedPassword = await bcrypt.hash('myPass999', 10);
+  let user = await User.create({
+    name: 'Alim',
+    email: 'shogen_077@mail.ru',
+    password: hashedPassword,
+    phone: '8-999-961-95-96',
+    whoAreYou: 'Частное лицо',
+  });
+  console.log(user);
   await DogModel.insertMany([
     {
       kind: 'Котон-де-тулеар',
@@ -24,7 +35,7 @@ async function createDog() {
       onlyInNonApartments: false,
       specialConditionsOfDetention: false,
       childrenInTheHouse: true,
-      sellerID: mongoose.Types.ObjectId('5f6dcc52cf61e421bd891799'),
+      sellerID: mongoose.Types.ObjectId(user._id),
       gender: 'мальчик',
       pedigree: 'нет',
       vaccinationРistory: 'нет',
@@ -46,7 +57,7 @@ async function createDog() {
       onlyInNonApartments: false,
       specialConditionsOfDetention: false,
       childrenInTheHouse: true,
-      sellerID: mongoose.Types.ObjectId('5f6dcbe56a8dce214c6f541b'),
+      sellerID: mongoose.Types.ObjectId(user._id),
       gender: 'male',
       pedigree: 'длиннющая',
       vaccinationРistory: 'проставлены',
@@ -71,7 +82,7 @@ async function createDog() {
       gender: 'мальчик',
       pedigree: 'не имеется',
       vaccinationРistory: 'не имеется',
-      sellerID: mongoose.Types.ObjectId('5f6dcbe56a8dce214c6f541b'),
+      sellerID: mongoose.Types.ObjectId(user._id),
     },
     {
       kind: 'Бишон фризе',
@@ -90,7 +101,7 @@ async function createDog() {
       onlyInNonApartments: false,
       specialConditionsOfDetention: false,
       childrenInTheHouse: true,
-      sellerID: mongoose.Types.ObjectId('5f6dcc52cf61e421bd891799'),
+      sellerID: mongoose.Types.ObjectId(user._id),
       gender: 'мальчик',
       pedigree: 'нет',
       vaccinationРistory: 'есть',
@@ -112,8 +123,7 @@ async function createDog() {
       onlyInNonApartments: false,
       specialConditionsOfDetention: false,
       childrenInTheHouse: false,
-      sellerID: mongoose.Types.ObjectId('5f6dcc52cf61e421bd891799'),
-      gender: 'мальчик',
+      sellerID: mongoose.Types.ObjectId(user._id),
       pedigree: 'нет',
       vaccinationРistory: 'есть',
     },
@@ -134,7 +144,7 @@ async function createDog() {
       onlyInNonApartments: false,
       specialConditionsOfDetention: false,
       childrenInTheHouse: true,
-      sellerID: mongoose.Types.ObjectId('5f6dcc52cf61e421bd891799'),
+      sellerID: mongoose.Types.ObjectId(user._id),
       gender: 'мальчик',
       pedigree: 'нет',
       vaccinationРistory: 'есть',
@@ -156,7 +166,7 @@ async function createDog() {
       onlyInNonApartments: false,
       specialConditionsOfDetention: false,
       childrenInTheHouse: true,
-      sellerID: mongoose.Types.ObjectId('5f6dcc52cf61e421bd891799'),
+      sellerID: mongoose.Types.ObjectId(user._id),
       gender: 'девочка',
       pedigree: 'нет',
       vaccinationРistory: 'есть',
@@ -178,7 +188,7 @@ async function createDog() {
       onlyInNonApartments: false,
       specialConditionsOfDetention: false,
       childrenInTheHouse: true,
-      sellerID: mongoose.Types.ObjectId('5f6dcc52cf61e421bd891799'),
+      sellerID: mongoose.Types.ObjectId(user._id),
       gender: 'девочка',
       pedigree: 'нет',
       vaccinationРistory: 'есть',
@@ -200,7 +210,7 @@ async function createDog() {
       onlyInNonApartments: false,
       specialConditionsOfDetention: false,
       childrenInTheHouse: true,
-      sellerID: mongoose.Types.ObjectId('5f6dcc52cf61e421bd891799'),
+      sellerID: mongoose.Types.ObjectId(user._id),
       gender: 'девочка',
       pedigree: 'нет',
       vaccinationРistory: 'есть',
@@ -222,7 +232,7 @@ async function createDog() {
       onlyInNonApartments: false,
       specialConditionsOfDetention: false,
       childrenInTheHouse: true,
-      sellerID: mongoose.Types.ObjectId('5f6dcbe56a8dce214c6f541b'),
+      sellerID: mongoose.Types.ObjectId(user._id),
       gender: 'девочка',
       pedigree: 'нет',
       vaccinationРistory: 'есть',
@@ -244,15 +254,12 @@ async function createDog() {
       onlyInNonApartments: false,
       specialConditionsOfDetention: false,
       childrenInTheHouse: true,
-      sellerID: mongoose.Types.ObjectId('5f6dcc52cf61e421bd891799'),
+      sellerID: mongoose.Types.ObjectId(user._id),
       gender: 'мальчик',
       pedigree: 'нет',
       vaccinationРistory: 'есть',
     },
   ]);
-}
-
-async function createCat() {
   await CatModel.insertMany([
     {
       kind: 'Сфинкс',
@@ -271,7 +278,7 @@ async function createCat() {
       gender: 'девочка',
       pedigree: 'есть',
       vaccinationРistory: 'есть',
-      sellerID: mongoose.Types.ObjectId('5f6dcc52cf61e421bd891799'),
+      sellerID: mongoose.Types.ObjectId(user._id),
     },
     {
       kind: 'Мейн-кун',
@@ -290,7 +297,7 @@ async function createCat() {
       gender: 'мальчик',
       pedigree: 'наследный принц',
       vaccinationРistory: 'все обязательные',
-      sellerID: mongoose.Types.ObjectId('5f6dcc7acf61e421bd89179a'),
+      sellerID: mongoose.Types.ObjectId(user._id),
     },
     {
       kind: 'Невская маскарадная',
@@ -309,7 +316,7 @@ async function createCat() {
       gender: 'девочка',
       pedigree: '-',
       vaccinationРistory: 'нет',
-      sellerID: mongoose.Types.ObjectId('5f6dcc7acf61e421bd89179a'),
+      sellerID: mongoose.Types.ObjectId(user._id),
     },
     {
       kind: 'Балинезийская кошка',
@@ -328,7 +335,7 @@ async function createCat() {
       gender: 'девочка',
       pedigree: 'нет',
       vaccinationРistory: 'есть',
-      sellerID: mongoose.Types.ObjectId('5f6dcc52cf61e421bd891799'),
+      sellerID: mongoose.Types.ObjectId(user._id),
     },
     {
       kind: 'Яванская кошка',
@@ -347,7 +354,7 @@ async function createCat() {
       gender: 'девочка',
       pedigree: 'нет',
       vaccinationРistory: 'есть',
-      sellerID: mongoose.Types.ObjectId('5f6dcc52cf61e421bd891799'),
+      sellerID: mongoose.Types.ObjectId(user._id),
     },
     {
       kind: 'Ориентальная кошка',
@@ -366,7 +373,7 @@ async function createCat() {
       gender: 'девочка',
       pedigree: 'нет',
       vaccinationРistory: 'есть',
-      sellerID: mongoose.Types.ObjectId('5f6dcc52cf61e421bd891799'),
+      sellerID: mongoose.Types.ObjectId(user._id),
     },
     {
       kind: 'Сибирская кошка',
@@ -385,7 +392,7 @@ async function createCat() {
       gender: 'мальчик',
       pedigree: 'нет',
       vaccinationРistory: 'есть',
-      sellerID: mongoose.Types.ObjectId('5f6dcc52cf61e421bd891799'),
+      sellerID: mongoose.Types.ObjectId(user._id),
     },
     {
       kind: 'Девон-рекс',
@@ -404,7 +411,7 @@ async function createCat() {
       gender: 'мальчик',
       pedigree: 'нет',
       vaccinationРistory: 'есть',
-      sellerID: mongoose.Types.ObjectId('5f6dcc52cf61e421bd891799'),
+      sellerID: mongoose.Types.ObjectId(user._id),
     },
     {
       kind: 'Ликои',
@@ -423,12 +430,9 @@ async function createCat() {
       gender: 'мальчик',
       pedigree: 'нет',
       vaccinationРistory: 'есть',
-      sellerID: mongoose.Types.ObjectId('5f6dcc52cf61e421bd891799'),
+      sellerID: mongoose.Types.ObjectId(user._id),
     },
   ]);
-}
-
-async function createOtherAnimal() {
   await OtherModel.insertMany([
     {
       type: 'Бык',
@@ -453,7 +457,7 @@ async function createOtherAnimal() {
       gender: 'мальчик',
       pedigree: 'в наличии',
       vaccinationРistory: 'есть',
-      sellerID: mongoose.Types.ObjectId('5f6dcbe56a8dce214c6f541b'),
+      sellerID: mongoose.Types.ObjectId(user._id),
     },
     {
       type: 'Жираф',
@@ -478,11 +482,13 @@ async function createOtherAnimal() {
       gender: 'девочка',
       pedigree: 'отцы и деды призеры Нила',
       vaccinationРistory: 'нет',
-      sellerID: mongoose.Types.ObjectId('5f6dcbe56a8dce214c6f541b'),
+      sellerID: mongoose.Types.ObjectId(user._id),
     },
   ]);
 }
 
-createDog();
-createCat();
-createOtherAnimal();
+(async () => {
+  await mongoose.connection.dropDatabase();
+  await seed();
+  await mongoose.connection.close(); // or await mongoose.disconnect();
+})();
